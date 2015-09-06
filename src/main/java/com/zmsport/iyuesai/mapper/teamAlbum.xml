@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zmsport.iyuesai.mapper.TeamAlbumMapper">
+
+	<insert id="insert" parameterType="teamAlbum" useGeneratedKeys="true" keyProperty="id">
+		INSERT INTO t_teamAlbum (teamId,pic,time) VALUES (#{teamId},#{pic},#{time})
+	</insert>
+	
+	<select id="findTeamAlbumByTeamId" parameterType="int" resultType="teamAlbum">
+		SELECT * FROM t_teamAlbum WHERE teamId=#{teamId} ORDER BY time DESC
+	</select>
+	
+	<delete id="deleteAlbumByTeamId" parameterType="int">
+		DELETE FROM t_teamAlbum WHERE teamId=#{teamId}
+	</delete>
+	
+	<delete id="deletePicById"  parameterType="java.util.List">
+    	DELETE FROM t_teamAlbum WHERE id IN 
+		<foreach item="id" index="index" collection="list" open="(" separator="," close=")">  
+ 			#{id}  
+ 		</foreach>
+    </delete>
+
+</mapper>

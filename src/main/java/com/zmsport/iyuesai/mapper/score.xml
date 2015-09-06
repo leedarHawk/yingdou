@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zmsport.iyuesai.mapper.ScoreMapper">
+
+	<resultMap type="score" id="scoreResultMap">
+        <id property="id" column="score_id"/>
+        <result property="tid" column="score_tid"/>
+        <result property="round" column="score_round"/>
+        <result property="win" column="score_win"/>
+        <result property="lose" column="score_lose"/>
+        <result property="gameId" column="score_gameId"/>
+        <association property="team" resultMap="teamResultMap"/>
+    </resultMap>
+	
+	<resultMap type="team" id="teamResultMap">
+        <id property="id" column="team_id"/>
+        <result property="creatorId" column="team_creatorId"/>
+        <result property="name" column="team_name"/>
+        <result property="slogan" column="team_slogan"/>
+        <result property="location" column="team_location"/>
+        <result property="members" column="team_members"/>
+        <result property="description" column="team_description"/>
+        <result property="needConfirm" column="team_needConfirm"/>
+        <result property="candidateItems" column="team_candidateItems"/>
+        <result property="createTime" column="team_createTime"/>
+        <result property="pic" column="team_pic"/>
+    </resultMap>
+    
+	<select id="findTeamsByGameId" parameterType="long" resultMap="scoreResultMap">
+		SELECT t.id AS team_id,t.creatorId AS team_creatorId,t.name AS team_name,t.slogan AS team_slogan,
+		       t.location AS team_location,t.members AS team_members,t.description AS team_description,
+		       t.needConfirm AS team_needConfirm,t.candidateItems AS team_candidateItems,t.createTime AS team_candidateItems,
+		       t.createTime AS team_createTime, t.pic AS team_pic, s.id AS score_id, s.round AS score_round, s.win AS score_win,
+		       s.lose AS score_lose,s.gameId AS score_gameId, (s.win/s.round) AS winRate FROM t_team t,t_score s WHERE t.id=s.tid AND s.gameId=#{gameId} ORDER BY winRate DESC
+	</select>
+	
+	<select id="getTeamsByGameId" parameterType="long" resultMap="scoreResultMap">
+		SELECT t.id AS team_id,t.creatorId AS team_creatorId,t.name AS team_name,t.slogan AS team_slogan,
+		       t.location AS team_location,t.members AS team_members,t.description AS team_description,
+		       t.needConfirm AS team_needConfirm,t.candidateItems AS team_candidateItems,t.createTime AS team_candidateItems,
+		       t.createTime AS team_createTime, t.pic AS team_pic, s.id AS score_id, s.round AS score_round, s.win AS score_win,
+		       s.lose AS score_lose,s.gameId AS score_gameId FROM t_team t,t_score s WHERE t.id=s.tid AND s.gameId=#{gameId} ORDER BY team_id
+	</select>
+	
+    <insert id="insert" parameterType="score">
+    	INSERT t_score (tid,round,win,lose,gameId) VALUES (#{tid},#{round},#{win},#{lose},#{gameId})
+    </insert>
+    
+    <update id="update" parameterType="score">
+    	UPDATE t_score SET round=#{round}, win=#{win},lose=#{lose} WHERE id=#{id}
+    </update>
+</mapper>

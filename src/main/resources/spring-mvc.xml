@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:mvc="http://www.springframework.org/schema/mvc" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:task="http://www.springframework.org/schema/task"
+	xmlns:p="http://www.springframework.org/schema/p"
+	xsi:schemaLocation="
+        http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/mvc
+        http://www.springframework.org/schema/mvc/spring-mvc.xsd
+        http://www.springframework.org/schema/context
+        http://www.springframework.org/schema/context/spring-context.xsd
+        http://www.springframework.org/schema/task
+        http://www.springframework.org/schema/task/spring-task.xsd">
+	<!-- mvc注解 -->
+	<mvc:annotation-driven />
+	<!-- 注解组件扫描配置 -->
+	<context:component-scan base-package="com.zmsport.iyuesai.controller" />
+	<context:component-scan base-package="com.zmsport.iyuesai.context" />
+	<!-- 配置视图解析器，将ModelAndView及字符串解析为具体的页面 -->
+	<bean id="viewResolver" class="org.springframework.web.servlet.view.InternalResourceViewResolver"
+          p:prefix="/"
+          p:suffix=".jsp"/>
+    <!-- 权限拦截器 -->
+    <!-- 自定义拦截链配置 -->
+    <mvc:interceptors>
+    	<!-- 后台拦截 -->
+        <mvc:interceptor>
+            <mvc:mapping path="/admin/**"/>
+            <bean class="com.zmsport.iyuesai.interceptor.AdminAuthorityInterceptor"></bean>
+        </mvc:interceptor>
+        <!-- 主站拦截 -->
+        <mvc:interceptor>
+            <mvc:mapping path="/site/**"/>
+            <bean class="com.zmsport.iyuesai.interceptor.SiteAuthorityInterceptor"></bean>
+        </mvc:interceptor>
+        <!-- 微信js api授权配置拦截 -->
+        <mvc:interceptor>
+            <mvc:mapping path="/site/**"/>
+            <bean class="com.zmsport.iyuesai.interceptor.SiteWechatJsapiInterceptor"></bean>
+        </mvc:interceptor>
+    </mvc:interceptors>
+    <!-- 支持上传文件 -->  
+    <bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver"/> 
+    <!-- 配置scheduler线程名称 -->
+	<task:annotation-driven scheduler="token-refresh" />
+	<task:scheduler id="token-refresh" />
+    <!-- 输出对象转String支持 -->
+	<bean id="stringConverter"
+		class="org.springframework.http.converter.StringHttpMessageConverter">
+		<property name="supportedMediaTypes">
+			<list>
+				<value>text/plain;charset=UTF-8</value>
+			</list>
+		</property>
+	</bean>
+	<!-- 输出对象转JSON支持 -->
+	<bean id="jsonConverter"
+		class="org.springframework.http.converter.json.MappingJackson2HttpMessageConverter">
+		<property name="supportedMediaTypes">
+			<list>
+				<value>application/json;charset=UTF-8</value>
+			</list>
+		</property>
+	</bean>
+	<!-- 输出对象转XML支持 -->
+	<bean id="xmlConverter"
+		class="org.springframework.http.converter.xml.MappingJackson2XmlHttpMessageConverter">
+		<property name="supportedMediaTypes">
+			<list>
+				<value>application/xml;charset=UTF-8</value>
+			</list>
+		</property>
+	</bean>
+	<bean
+		class="org.springframework.web.servlet.mvc.annotation.AnnotationMethodHandlerAdapter">
+		<property name="messageConverters">
+			<list>
+				<ref bean="stringConverter" />
+				<ref bean="jsonConverter" />
+				<ref bean="xmlConverter" />
+			</list>
+		</property>
+	</bean>
+	<bean class="org.springframework.web.client.RestTemplate">
+    	<property name="messageConverters">
+			<list>
+				<ref bean="stringConverter" />
+				<ref bean="jsonConverter" />
+				<ref bean="xmlConverter" />
+			</list>
+		</property>
+    </bean>
+</beans>

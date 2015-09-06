@@ -1,0 +1,21 @@
+package com.zmsport.iyuesai.controller.site;
+
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+
+
+/**
+ * 约战controller
+ * @author bilei
+ *
+ */
+@Controller
+@RequestMapping("/site/challenge")
+public class SiteChallengeController {
+
+	@RequestMapping(value="/list", method=RequestMethod.GET)
+	public String list() {
+		return "/site/pages/challenge";
+	}
+}

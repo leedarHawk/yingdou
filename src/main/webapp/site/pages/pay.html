@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1.0, maximum-scale=1,user-scalable=yes" />
+<meta name="format-detection" content="telephone=no" />
+<title></title>
+<link rel="stylesheet" href="../css/style.css" />
+<script type="text/javascript" src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
+<script type="text/javascript" src="../js/jquery.js"></script>
+<script type="text/javascript">
+	var jsApiList = ['chooseWXPay','chooseImage','uploadImage','downloadImage','previewImage'];
+	window.onload = function() {
+		WeChat.init();
+	}
+	var WeChat = {
+			domain:location.href.split("site")[0],
+			gameName:null,
+			gameId:null,
+			fee:null,
+			init : function() {
+				var _this = this;
+				var param = decodeURIComponent(location.search).replace('?','');
+				this.gameName = param.split('gameName=')[1].split("&")[0];
+				this.gameId = param.split('&')[1].split('gameId=')[1];
+				this.fee = param.split('&')[2].split('fee=')[1];
+				$('td.orderName').text(this.gameName + '报名费');
+				$('td.price').text(this.fee + '元');
+				$('a.return').click(function(){
+					//location.href = _this.domain + 'site/game/gameInfo/' + _this.gameId;
+					history.go(-1);
+				})
+			},
+			pay : function() {
+				var _this = this;
+				if(!this.checkVersion()) {
+					alert("您的微信版本过低，不支持支付");
+					return;
+				}
+				$.ajax({
+					//url : '<c:url value="/site/wechat/initJsApi" />',
+					url : _this.domain + 'site/wechat/initJsApi',
+					data : {'url':location.href},
+					success : function(config) {
+						wx.config({
+						    debug: false, // 开启调试模式,调用的所有api的返回值会在客户端alert出来，若要查看传入的参数，可以在pc端打开，参数信息会通过log打出，仅在pc端时才会打印。
+						    appId: config.appId, // 必填，公众号的唯一标识
+						    timestamp: config.timestamp, // 必填，生成签名的时间戳
+						    nonceStr: config.nonceStr, // 必填，生成签名的随机串
+						    signature: config.signature,// 必填，签名，见附录1
+						    jsApiList: jsApiList // 必填，需要使用的JS接口列表，所有JS接口列表见附录2
+						});
+						wx.ready(function() {
+							wx.checkJsApi({
+							    jsApiList:jsApiList, // 需要检测的JS接口列表，所有JS接口列表见附录2,
+							    success: function(res) {
+							    	$.ajax({
+										//url : '<c:url value="/site/wechat/preOrder" />',
+										url:_this.domain + 'site/wechat/preOrder',
+										data : {'gameName':_this.gameName,'gameId':_this.gameId,'fee':_this.fee},
+										success : function(data) {
+											WeixinJSBridge.invoke('getBrandWCPayRequest',{
+												"appId" : data.appid, //公众号名称,由商户传入 
+												"timeStamp":data.timeStamp, //时间戳,自 1970 年以来的秒数
+												"nonceStr" : data.nonceStr, //随机串 
+												"package" : data.package,
+												"signType" : 'MD5', //微信签名方式:
+												"paySign" : data.paySign //微信签名
+											},function(res){
+												if(res.err_msg == "get_brand_wcpay_request:ok" ) {
+													//支付成功
+													location.href = _this.domain + 'site/wechat/paySuccess/' + _this.gameId + '/' + data.orderNo;
+												}
+											}); 
+										}
+									});
+							    }
+							});
+						});
+					}
+				});
+			},
+			checkVersion : function() {
+				var reg = /MicroMessenger\/[0-9]/g; 
+			    var s = navigator.userAgent.match(reg);
+				var version = s.toString().replace('MicroMessenger/','') * 1;
+				return version >= 5 ? true : false;
+			}
+	};
+</script>
+</head>
+
+<body>
+<div class="header"><span><a class="return" href="#"><img src="../images/jt_fh.png">返回</a></span></div>
+<div class="main">
+	<table width="100%" border="0" cellspacing="0" cellpadding="5">
+	  <tr>
+	    <td width="35%" height="35" align="right">商品名称：</td>
+	    <td width="65%" height="35" class="orderName"></td>
+	  </tr>
+	  <tr>
+	    <td height="35" align="right">价格：</td>
+	    <td height="35" class="price"></td>
+	  </tr>
+	</table>
+	<ul class="hy_btn">
+		<li><a href="javascript:WeChat.pay();void 0;" class="red_del">支付</a></li>
+	</ul>
+</div>
+
+</body>
+</html>

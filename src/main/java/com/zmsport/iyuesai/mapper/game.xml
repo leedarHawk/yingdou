@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zmsport.iyuesai.mapper.GameMapper">
+
+    <select id="getGamesByStatus" parameterType="int" resultType="game">
+    	SELECT * FROM t_game WHERE status=#{0} ORDER BY createTime DESC LIMIT #{1},#{2}
+    </select>
+    
+    <select id="getNewGamesByAdmin" parameterType="int" resultType="game">
+    	SELECT * FROM t_game WHERE status=0 AND createType=0 ORDER BY createTime DESC
+    </select>
+    
+    <select id="getNewGamesByUser" parameterType="int" resultType="game">
+    	SELECT * FROM t_game WHERE status=0 AND createType=1 ORDER BY createTime DESC
+    </select>
+    
+    <select id="getGamesById" parameterType="long" resultType="game">
+    	SELECT * FROM t_game WHERE id=#{id}
+    </select>
+    
+    <select id="getTotalNum" resultType="int">
+    	SELECT COUNT(*) FROM t_game
+    </select>
+    
+    <select id="getGamesByIds" parameterType="java.util.List" resultType="game">
+    	SELECT * FROM t_game WHERE id IN
+    	<foreach item="id" index="index" collection="list" open="(" separator="," close=")">  
+ 			#{id}  
+ 		</foreach>
+    </select>
+    
+    <insert id="insert" parameterType="game">
+    	INSERT t_game (name,duration,location,fee,description,pic,status,createType,creator,createTime,teamNum) 
+    	VALUES (#{name},#{duration},#{location},#{fee},#{description},#{pic},#{status},#{createType},#{creator},#{createTime},#{teamNum})
+    </insert>
+    
+    <update id="update" parameterType="game">
+    	UPDATE t_game SET name=#{name}, duration=#{duration},location=#{location},fee=#{fee},description=#{description},pic=#{pic},teamNum=#{teamNum}
+    	WHERE id=#{id}
+    </update>
+    
+    <delete id="delete" parameterType="java.util.List">
+    	DELETE FROM t_game WHERE id IN 
+		<foreach item="id" index="index" collection="list" open="(" separator="," close=")">  
+ 			#{id}  
+ 		</foreach>
+    </delete>
+</mapper>

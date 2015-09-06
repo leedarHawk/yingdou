@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zmsport.iyuesai.mapper.OrderMapper">
+	
+	<resultMap type="order" id="orderResultMap">
+        <id property="id" column="order_id"/>
+        <result property="gameId" column="order_gameId"/>
+        <result property="teamId" column="order_teamId"/>
+        <result property="creatorId" column="order_creatorId"/>
+        <result property="fee" column="order_fee"/>
+        <result property="payTime" column="order_payTime"/>
+        <result property="orderNo" column="order_orderNo"/>
+        <result property="orderName" column="order_orderName"/>
+        <association property="user" resultMap="userResultMap"/>
+        <association property="team" resultMap="teamResultMap"/>
+        <association property="game" resultMap="gameResultMap"/>
+    </resultMap>
+    
+	<resultMap type="team" id="teamResultMap">
+        <id property="id" column="team_id"/>
+        <result property="name" column="team_name"/>
+    </resultMap>
+    
+    <resultMap type="game" id="gameResultMap">
+        <id property="id" column="game_id"/>
+        <result property="name" column="team_name"/>
+    </resultMap>
+    
+    <resultMap type="user" id="userResultMap">
+        <id property="id" column="user_id"/>
+        <result property="username" column="user_username"/>
+    </resultMap>
+    
+	<select id="listOrders" resultMap="orderResultMap">
+		SELECT o.id AS order_id, o.gameId AS order_gameId, o.teamId AS order_teamId,
+			   o.creatorId AS order_creatorId, o.fee AS order_fee, o.payTime AS order_payTime,
+			   o.orderNo AS order_orderNo, o.orderName AS order_orderName,
+			   t.id AS team_id, t.name AS team_name,
+			   g.id AS game_id, g.name AS game_name,
+			   u.id AS user_id, u.username AS user_username FROM t_user u,t_team t,t_game g,t_order o WHERE u.id=o.creatorId AND t.id=o.teamId AND g.id=o.gameId ORDER BY o.payTime DESC
+	</select>
+	
+	<select id="orderExist" parameterType="String" resultType="int">
+		SELECT COUNT(*) FROM t_order WHERE orderNo=#{orderNo}
+	</select>
+	
+    <insert id="insert" parameterType="order" useGeneratedKeys="true" keyProperty="id">
+    	INSERT t_order (gameId,teamId,creatorId,fee,payTime,orderNo,orderName) 
+    	VALUES (#{gameId},#{teamId},#{creatorId},#{fee},#{payTime},#{orderNo},#{orderName})
+    </insert>
+</mapper>

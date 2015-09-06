@@ -1,0 +1,79 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
+<%@ include file="../../commons/taglibs.jsp"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1.0, maximum-scale=1,user-scalable=yes" />
+<meta name="format-detection" content="telephone=no" />
+<title></title>
+<link rel="stylesheet" href="<c:url value="/site/css/style.css" />" />
+<script type="text/javascript" src="<c:url value="/site/js/jquery.js" />"></script>
+<script type="text/javascript">
+	$(function(){
+		var inputs = '<c:out value="${team.candidateItems}" />';
+		var input;
+		if(inputs.length > 0) {
+			$('tr.hidden').each(function(){
+				input = $('input',this).prop('name');
+				if(inputs.indexOf(input) > -1) {
+					$(this).show();
+				}
+			});
+		}
+	});
+</script>
+<style type="text/css">
+	tr.hidden {
+		display:none;
+	}
+</style>
+</head>
+
+<body>
+<div class="header"><span><a href="<c:url value="/site/team/detail/${team.id}" />"><img src="<c:url value="/site/images/jt_fh.png" />">返回</a></span>加入球队</div>
+<form action="<c:url value="/site/team/candidate" />" method="post">
+<input type="hidden" name="teamId" value="${team.id}" />
+<div class="main3">
+	<div class="jiaq_h1"><c:out value="${team.name }" /></div>
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+  <tr class="hidden">
+    <td width="43%" height="50" align="right">*姓名：</td>
+    <td width="57%" height="50"><input name="username" readonly type="text" class="fab_text" value="${user.username}"></td>
+  </tr>
+  <tr class="hidden">
+    <td height="50" align="right">*身高：</td>
+    <td height="50"><input name="height" type="text" class="fab_text" value="${user.height}"></td>
+  </tr>
+  <tr class="hidden">
+    <td height="50" align="right">*体重：</td>
+    <td height="50"><input name="weight" type="text" class="fab_text" value="${user.weight}"></td>
+  </tr>
+  <tr class="hidden">
+    <td height="50" align="right">*手机：</td>
+    <td height="50"><input name="mobile" type="text" class="fab_text" value="${user.mobile}"></td>
+  </tr>
+  <tr class="hidden">
+    <td height="50" align="right">*QQ号：</td>
+    <td height="50"><input name="qq" type="text" class="fab_text" value="${user.qq}"></td>
+  </tr>
+  <tr>
+    <td height="90" align="right" valign="top">给群主捎个信儿：</td>
+    <td><textarea class="fab_textare" name="msg" cols="" rows=""></textarea></td>
+  </tr>
+</table>
+	<div class="bot_btn"><input class="lv_btn" name="" type="submit" value="提交"></div>
+</div>
+</form>
+<div style="height:50px;"></div>
+<div class="footer">
+<ul>
+<li class="nav01"><a href="<c:url value="/site/game/list" />">比赛</a></li>
+<li class="nav02"><a href="<c:url value="/site/challenge/list" />">约战</a></li>
+<li class="nav03"><a class="hover" href="<c:url value="/site/team/list" />">球队</a></li>
+<li class="nav04"><a href="<c:url value="/site/user/path/me" />">我</a></li>
+</ul>
+</div>
+</body>
+</html>

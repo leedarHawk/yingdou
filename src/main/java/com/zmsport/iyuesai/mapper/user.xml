@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zmsport.iyuesai.mapper.UserMapper">
+
+	<select id="findUserByUid" parameterType="String" resultType="user">
+		SELECT * FROM t_user WHERE uid=#{uid}
+	</select>
+	
+	<select id="findUserById" parameterType="long" resultType="user">
+		SELECT * FROM t_user WHERE id=#{id}
+	</select>
+
+    <insert id="insert" parameterType="user" useGeneratedKeys="true" keyProperty="id">
+    	INSERT t_user (username,sex,height,weight,position,level,mobile,qq,headPic,uid,country,province,city,registerTime) 
+    	VALUES (#{username},#{sex},#{height},#{weight},#{position},#{level},#{mobile},#{qq},#{headPic},#{uid},#{country},#{province},#{city},#{registerTime})
+    </insert>
+    
+    <update id="update" parameterType="user">
+    	UPDATE t_user SET username=#{username}, sex=#{sex},height=#{height},weight=#{weight},position=#{position},level=#{level}
+    	, mobile=#{mobile},qq=#{qq},headPic=#{headPic},country=#{country},province=#{province},city=#{city} WHERE id=#{id}
+    </update>
+</mapper>

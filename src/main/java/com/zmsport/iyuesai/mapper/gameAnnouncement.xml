@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zmsport.iyuesai.mapper.GameAnnouncementMapper">
+
+    <select id="findAnnouncementByGameId" resultType="gameAnnouncement">
+    	SELECT * FROM t_gameAnnouncement WHERE gameId=#{0} ORDER BY time LIMIT #{1},#{2}
+    </select>
+    
+    <select id="findAllAnnouncementByGameId" parameterType="long" resultType="gameAnnouncement">
+    	SELECT * FROM t_gameAnnouncement WHERE gameId=#{gameId} ORDER BY time DESC
+    </select>
+    
+    <select id="findAnnouncementById" parameterType="long" resultType="gameAnnouncement">
+    	SELECT * FROM t_gameAnnouncement WHERE id=#{id}
+    </select>
+    
+    <select id="getTotalNum" parameterType="long" resultType="int">
+    	SELECT COUNT(*) FROM t_gameAnnouncement WHERE gameId=#{gameId}
+    </select>
+    
+    <insert id="insert" parameterType="gameAnnouncement">
+    	INSERT INTO t_gameAnnouncement (gameId,content,time) VALUES (#{gameId},#{content},#{time});
+    </insert>
+    
+    <update id="update" parameterType="gameAnnouncement">
+    	UPDATE t_gameAnnouncement SET content=#{content} WHERE id=#{id}
+    </update>
+    
+    <delete id="delete" parameterType="java.util.List">
+    	DELETE FROM t_gameAnnouncement WHERE id IN 
+		<foreach item="id" index="index" collection="list" open="(" separator="," close=")">  
+ 			#{id}  
+ 		</foreach>
+    </delete>
+    
+    <delete id="deleteByGameId" parameterType="java.util.List">
+    	DELETE FROM t_gameAnnouncement WHERE gameId IN 
+		<foreach item="gameId" index="index" collection="list" open="(" separator="," close=")">  
+ 			#{gameId}  
+ 		</foreach>
+    </delete>
+
+</mapper>
