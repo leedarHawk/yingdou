@@ -3,6 +3,14 @@
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.zmsport.iyuesai.mapper.UserMapper">
 
+	<select id="getTotalCount" resultType="int">
+		SELECT COUNT(*) FROM t_user
+	</select>
+
+	<select id="findAllUsers" parameterType="int" resultType="user">
+		SELECT * FROM t_user ORDER BY registerTime DESC LIMIT #{0},#{1};
+	</select>
+
 	<select id="findUserByUid" parameterType="String" resultType="user">
 		SELECT * FROM t_user WHERE uid=#{uid}
 	</select>
@@ -20,4 +28,9 @@
     	UPDATE t_user SET username=#{username}, sex=#{sex},height=#{height},weight=#{weight},position=#{position},level=#{level}
     	, mobile=#{mobile},qq=#{qq},headPic=#{headPic},country=#{country},province=#{province},city=#{city} WHERE id=#{id}
     </update>
+    
+    <delete id="delete" parameterType="long">
+    	DELETE FROM t_user WHERE id=#{id};
+    </delete>
+    
 </mapper>

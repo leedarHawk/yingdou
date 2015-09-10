@@ -20,5 +20,11 @@ public interface UserTeamLikeMapper {
 	 * @return
 	 */
 	public int findLike(long uid, int tid);
+	
+	/**
+	 * 删除用户相关信息
+	 * @param uid
+	 */
+	public void deleteByUid(long uid);
 
 }

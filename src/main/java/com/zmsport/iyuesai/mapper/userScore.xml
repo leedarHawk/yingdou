@@ -31,4 +31,7 @@
 	<update id="updateScore">
 		UPDATE t_userScore SET score=#{0} WHERE id=#{1}
 	</update>
+	<delete id="deleteByUid" parameterType="long">
+		DELETE FROM t_userScore WHERE uid=#{uid};
+	</delete>
 </mapper>

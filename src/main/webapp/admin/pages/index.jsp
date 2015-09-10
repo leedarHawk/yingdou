@@ -4,7 +4,7 @@
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Frameset//EN" "http://www.w3c.org/TR/1999/REC-html401-19991224/frameset.dtd">
 <HTML xmlns="http://www.w3.org/1999/xhtml">
 <HEAD>
-<TITLE>篮球后台管理系统- 后台管理中心</TITLE>
+<TITLE>篮球后台管理系统</TITLE>
 <META content=text/html;charset=utf-8 http-equiv=Content-Type>
 <META name=GENERATOR content="MCBN"></HEAD>
 <FRAMESET frameSpacing=0 border=0 frameBorder=NO rows=90,*>

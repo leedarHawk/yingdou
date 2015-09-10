@@ -30,4 +30,10 @@ public interface UserScoreService {
 	 * @param id
 	 */
 	public void updateScore(int score, long id);
+	
+	/**
+	 * 删除用户相关信息
+	 * @param uid
+	 */
+	public void deleteByUid(long uid);
 }

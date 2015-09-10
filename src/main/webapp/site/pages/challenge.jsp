@@ -12,11 +12,29 @@
 <link rel="stylesheet" href="<c:url value="/site/css/style.css" />" />
 <script type="text/javascript"
 	src="<c:url value="/site/js/jquery.js" />"></script>
+<style type="text/css">
+	.circle {
+		border-radius: 50%;
+		width: 70px;
+		height: 70px; 
+		background:#f00;
+		position:absolute;
+		left:50%;
+		top:50%;
+		margin-left:-35px;
+		margin-top:-35px;
+		text-align:center;
+		line-height:70px;
+		color:#fff;
+		font-weight:bold;
+		opacity:0.5;
+	}
+</style>
 </head>
 
 <body>
 	<div class="header">
-		约战<b><a href="#">发布约战</a></b>
+		约战<b><a href="<c:url value="/site/challenge/publish" />">发布约战</a></b>
 	</div>
 	<div class="main2">
 
@@ -31,77 +49,52 @@
 				<div class="TabbedPanelsContent">
 					<span class="dingw"><a href=""><img
 							src="<c:url value="/site/images/dingw.png" />"></a></span>
-
-<%-- 					<div class="yuez_con">
-						<dl class="hybs_dl">
-							<dt>
-								<img src="<c:url value="/site/images/tx_no.png" />">樱木花道队
-							</dt>
-							<dd>
-								<strong>VS</strong>
-								<p>等待应战</p>
-							</dd>
-							<dt>
-								<img src="<c:url value="/site/images/tx_no.png" />"><input
-									class="lv_btn" id="btnshow" onClick="showdiv();" name=""
-									type="button" value="应战">
-							</dt>
-						</dl>
-						<ul class="hybs_ul">
-							<li>时间：2015年9月12日 18:00</li>
-							<li>裁判：待定</li>
-							<li>地点：北京体育大学</li>
-							<li>费用：¥400(AA)</li>
-						</ul>
-					</div>
-
-					<div class="yuez_con">
-						<dl class="hybs_dl">
-							<dt>
-								<img src="<c:url value="/site/images/tx_no.png" />">樱木花道队
-							</dt>
-							<dd>
-								<strong>VS</strong>
-								<p>等待上传比分</p>
-							</dd>
-							<dt>
-								<img src="<c:url value="/site/images/tx_no.png" />">潇潇闹革命
-							</dt>
-						</dl>
-						<ul class="hybs_ul">
-							<li>时间：2015年9月12日 18:00</li>
-							<li>裁判：待定</li>
-							<li>地点：北京体育大学</li>
-							<li>费用：¥400(AA)</li>
-						</ul>
-					</div>
-
-					<div class="yuez_con">
-						<dl class="hybs_dl">
-							<dt>
-								<img src="<c:url value="/site/images/tx_no.png" />">樱木花道队
-							</dt>
-							<dd>
-								<strong>7:6</strong>
-								<p>比赛完成</p>
-							</dd>
-							<dt>
-								<img src="<c:url value="/site/images/tx_no.png" />">潇潇闹革命
-							</dt>
-						</dl>
-						<ul class="hybs_ul">
-							<li>时间：2015年9月12日 18:00</li>
-							<li>裁判：待定</li>
-							<li>地点：北京体育大学</li>
-							<li>费用：¥400(AA)</li>
-						</ul>
-					</div>
- --%>
+					<c:forEach items="${list }" var="challenge">
+						<div class="yuez_con">
+							<dl class="hybs_dl">
+								<dt>
+									<img src="<c:url value="${challenge.host.pic }" />"><c:out value="${challenge.host.name }" />
+								</dt>
+								<dd>
+									<c:if test="${empty challenge.guest }">
+										<strong>VS</strong>
+										<p>等待应战</p>
+									</c:if>
+									<c:if test="${not empty challenge.guest }">
+										<c:if test="${challenge.status==1 }">
+											<strong>VS</strong>
+											<p>等待上传比分</p>
+										</c:if>
+										<c:if test="${challenge.status==2 }">
+											<strong>${challenge.score }</strong>
+											<p>比赛完成</p>
+										</c:if>
+									</c:if>
+								</dd>
+								<dt>
+									<c:if test="${empty challenge.guest }">
+										<div style="position:relative;"><c:if test="${challenge.creatorId == user.id }"><a href="<c:url value="/site/challenge/acceptInfoList/${challenge.id }" />"><div class="circle">${challenge.count }</div></a></c:if><img src="<c:url value="/site/images/tx_no.png" />"></div><input
+											class="lv_btn" id="btnshow" onClick="showdiv(<c:out value="${challenge.id }" />,<c:out value="${challenge.teamId}" />);" name=""
+											type="button" value="应战">
+									</c:if>
+									<c:if test="${not empty challenge.guest }">
+										<img src="<c:url value="${challenge.guest.pic }" />"><c:out value="${challenge.guest.name }" />
+									</c:if>
+								</dt>
+							</dl>
+							<ul class="hybs_ul">
+								<li>时间：<fmt:formatDate value="${challenge.time}" type="both" pattern="yyyy年MM月dd日 HH:mm"/></li>
+								<li>裁判：<c:if test="${challenge.needReferee == 1 }">待定</c:if><c:if test="${challenge.needReferee == 0 }">无</c:if></li>
+								<li>地点：<c:out value="${challenge.location }" /></li>
+								<li>费用：<c:if test="${challenge.feeType == 0 }">免费</c:if><c:if test="${challenge.feeType == 1 }">¥<c:out value="${challenge.fee }" />(AA)</c:if></li>
+							</ul>
+						</div>
+					</c:forEach>
 				</div>
 
 
 				<div class="TabbedPanelsContent">
-					<%-- <div class="yuez_con">
+					 <div class="yuez_con">
 						<dl class="hydy_dl">
 							<dt>
 								<a href=""><img
@@ -141,7 +134,7 @@
 							</dd>
 						</dl>
 					</div>
- --%>
+ 
 				</div>
 
 			</div>
@@ -164,10 +157,54 @@
 
 
 	<script language="javascript" type="text/javascript">
-		function showdiv() {
-			document.getElementById("bg").style.display = "block";
-			document.getElementById("show").style.display = "block";
+		function showdiv(id,currentTid) {
+			$('tr.mobile').hide();
+			$('tr.qq').hide()
+			$('span.ps').text('');
+			$('select[name=teamId]').empty();
+			$.ajax({
+				url : '<c:url value="/site/challenge/toAccept" />',
+				data : {id:id},
+				success : function(data) {
+					$("span.ps").text(data.ps);
+					$('tr.' + data.contact).show();
+					var teams = data.myTeams;
+					$('select[name=teamId]').empty().append('<option value="-1">-请选择-</option>');
+					for(var i in teams) {
+						if(teams[i].id == currentTid) {
+							continue;
+						}
+						$('select[name=teamId]').append('<option value="' + teams[i].id + '">' + teams[i].name + '</option>');
+					}
+					$('input.accept').click(function(){
+						accept(id);
+					});
+					document.getElementById("bg").style.display = "block";
+					document.getElementById("show").style.display = "block";
+				}
+			});
 		}
+		
+		function accept(id) {
+			var teamId = $('select[name=teamId] option:selected').val();
+			if(teamId == -1) {
+				return;
+			}
+			var qq = $.trim($('input[name=qq]').val());
+			var mobile = $.trim($('input[name=mobile]').val());
+			var msg = $.trim($('textarea[name=msg]').val());
+			$.ajax({
+				url : '<c:url value="/site/challenge/accept" />',
+				data : {tid:teamId,qq:qq,mobile:mobile,msg:msg,challengeId:id},
+				type : 'post',
+				success : function(res) {
+					if(res == 'ok') {
+						hidediv();
+					}
+				}
+			});
+		}
+		
 		function hidediv() {
 			document.getElementById("bg").style.display = 'none';
 			document.getElementById("show").style.display = 'none';
@@ -185,7 +222,7 @@
 	<style type="text/css">
 #bg {
 	display: none;
-	position: absolute;
+	position: fixed;
 	top: 0%;
 	left: 0%;
 	width: 100%;
@@ -199,7 +236,7 @@
 
 #show {
 	display: none;
-	position: absolute;
+	position: fixed;
 	top: 3%;
 	left: 0;
 	width: 100%;
@@ -242,29 +279,32 @@
 			type="button" value="关闭">
 		<div class="zhc_tcbox" id="djk3">
 			<p>Ta的备注信息:</p>
-			<span>本次比赛所有女篮球队参加比赛场次均以女球队3：0领先开局，若两支球队均以女篮球队则按正常比赛开局进行。</span>
+			<span class="ps"></span>
 			<table width="100%" border="0" cellspacing="0" cellpadding="0">
 				<tr>
 					<td width="43%" height="40" align="right">我的球队：</td>
-					<td width="57%" height="40"><select name="" class="fab_sel"></select></td>
+					<td width="57%" height="40">
+						<select name="teamId" class="fab_sel">
+						</select>
+					</td>
 				</tr>
-				<tr>
+				<tr class="mobile">
 					<td height="40" align="right">我的手机号：</td>
-					<td height="40"><input name="" type="text" class="fab_text"></td>
+					<td height="40"><input name="mobile" type="text" class="fab_text" value="<c:out value="${user.mobile }" />" /></td>
 				</tr>
-				<tr>
+				<tr class="qq">
 					<td height="40" align="right">我的QQ号：</td>
-					<td height="40"><input name="Input2" type="text"
-						class="fab_text"></td>
+					<td height="40"><input name="qq" type="text"
+						class="fab_text" value="<c:out value="${user.qq }" />"></td>
 				</tr>
 				<tr>
 					<td height="40" align="right">捎个信儿：</td>
-					<td height="40"><textarea class="fab_textare" name="" cols=""
+					<td height="40"><textarea class="fab_textare" name="msg" cols=""
 							rows=""></textarea></td>
 				</tr>
 				<tr>
 					<td height="90" colspan="2" align="center"><input
-						class="lv_btn" name="" type="button" value="应战"></td>
+						class="lv_btn accept" name="" type="button" value="应战"></td>
 				</tr>
 			</table>
 		</div>

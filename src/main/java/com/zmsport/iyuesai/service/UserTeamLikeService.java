@@ -22,4 +22,10 @@ public interface UserTeamLikeService {
 	 * @return
 	 */
 	public int alreadyLiked(long uid, int tid);
+	
+	/**
+	 * 删除用户相关信息
+	 * @param uid
+	 */
+	public void deleteByUid(long uid);
 }

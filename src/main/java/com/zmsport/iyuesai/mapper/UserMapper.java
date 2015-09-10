@@ -1,5 +1,7 @@
 package com.zmsport.iyuesai.mapper;
 
+import java.util.List;
+
 /**
  * 用户mapper
  * @author bilei
@@ -32,4 +34,22 @@ public interface UserMapper {
 	 * @return
 	 */
 	public User findUserById(long id);
+	
+	/**
+	 * 删除用户
+	 * 删除用相关的一切
+	 * @param uid
+	 */
+	public void delete (long uid);
+	
+	/**
+	 * 获取所有用户
+	 * @return
+	 */
+	public List<User> findAllUsers(int page, int size);
+	
+	/**
+	 * 获取用户总数
+	 */
+	public int getTotalCount();
 }

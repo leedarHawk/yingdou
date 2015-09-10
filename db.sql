@@ -1,5 +1,20 @@
+drop table  if exists t_acceptInfo;
+drop table  if exists t_admin;
+drop table  if exists t_challenge;
+drop table  if exists t_game;
+drop table  if exists t_gameAnnouncement;
+drop table  if exists t_gameApply;
+drop table  if exists t_match;
+drop table  if exists t_order;
+drop table  if exists t_score;
+drop table  if exists t_team;
+drop table  if exists t_teamAlbum;
+drop table  if exists t_user;
+drop table  if exists t_userScore;
+drop table  if exists t_userTeam;
+drop table  if exists t_userTeamLike;
 
-USE iyuesai;
+
 
 CREATE TABLE `t_admin` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
@@ -8,7 +23,7 @@ CREATE TABLE `t_admin` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COMMENT='后台管理员';
 
-INSERT INTO `iyuesai`.`t_admin`
+INSERT INTO `t_admin`
 (`id`,
 `username`,
 `password`)
@@ -150,7 +165,7 @@ CREATE TABLE `t_score` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='赛事球队成绩';
 
-CREATE TABLE `iyuesai`.`t_userTeamLike` (
+CREATE TABLE `t_userTeamLike` (
   `id` BIGINT NOT NULL AUTO_INCREMENT,
   `uid` BIGINT NULL COMMENT '用户id',
   `tid` INT NULL COMMENT '球队id',
@@ -163,14 +178,49 @@ COMMENT = '用户对球队点赞记录';
 CREATE TABLE `t_order` (
   `id` bigint(20) NOT NULL AUTO_INCREMENT,
   `gameId` bigint(20) DEFAULT NULL COMMENT '赛事id',
-  `gameName` varchar(255) DEFAULT NULL COMMENT '赛事名称',
   `teamId` int(11) DEFAULT NULL COMMENT '球队id',
-  `teamName` varchar(255) DEFAULT NULL COMMENT '球队名称',
   `creatorId` bigint(20) DEFAULT NULL COMMENT '创建人id',
-  `creator` varchar(255) DEFAULT NULL COMMENT '创建人',
   `fee` int(11) DEFAULT NULL COMMENT '报名费用',
   `payTime` datetime DEFAULT NULL COMMENT '支付时间',
+  `orderNo` varchar(255) DEFAULT NULL COMMENT '订单号',
+  `orderName` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=ucs2 COMMENT='赛事支付订单';
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=ucs2 COMMENT='赛事支付订单';
+
+
+CREATE TABLE `t_challenge` (
+  `id` bigint(20) NOT NULL AUTO_INCREMENT,
+  `creatorId` bigint(20) DEFAULT NULL COMMENT '发起人id',
+  `teamId` int(11) DEFAULT NULL COMMENT '球队id',
+  `time` datetime DEFAULT NULL COMMENT '开始时间',
+  `location` varchar(255) DEFAULT NULL COMMENT '地点',
+  `feeType` int(11) DEFAULT NULL COMMENT '费用类型\n0免费\n1AA制\n',
+  `fee` int(11) DEFAULT NULL COMMENT '费用',
+  `needReferee` int(11) DEFAULT NULL COMMENT '需要裁判\n0不需要\n1需要',
+  `mobile` varchar(45) DEFAULT NULL,
+  `firstBakMobile` varchar(45) DEFAULT NULL,
+  `secondBakMobile` varchar(45) DEFAULT NULL,
+  `contact` varchar(45) DEFAULT NULL COMMENT '需要参加者留下的联系方式，qq或手机',
+  `guestTeamId` int(11) DEFAULT NULL COMMENT '约战方球队id',
+  `score` varchar(45) DEFAULT NULL COMMENT '比分',
+  `status` int(11) DEFAULT NULL COMMENT '约战状态\n0等待应战\n1等待上传比分\n2比赛完成',
+  `ps` varchar(255) DEFAULT NULL COMMENT '备注信息',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8 COMMENT='发布的约战信息';
+
+CREATE TABLE `t_acceptInfo` (
+  `id` bigint(20) NOT NULL AUTO_INCREMENT,
+  `tid` int(11) DEFAULT NULL COMMENT '球队id',
+  `qq` varchar(45) DEFAULT NULL,
+  `msg` varchar(255) DEFAULT NULL,
+  `challengeId` bigint(20) DEFAULT NULL COMMENT '约战id',
+  `mobile` varchar(45) DEFAULT NULL,
+  `time` datetime DEFAULT NULL COMMENT '申请时间',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='约战应战';
+
+
+
+
 
 

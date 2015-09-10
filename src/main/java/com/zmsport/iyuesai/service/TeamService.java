@@ -89,4 +89,10 @@ public interface TeamService {
 	 * @return
 	 */
 	public List<Team> getTeamsByIds(String ids);
+	
+	/**
+	 * 删除用户相关信息
+	 * @param uid
+	 */
+	public void deleteByUid(long uid);
 }

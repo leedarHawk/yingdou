@@ -76,4 +76,10 @@ public interface UserTeamMapper {
 	 * @return
 	 */
 	public List<Integer> findTidsByUidAndStatus(long uid, int status);
+	
+	/**
+	 * 删除用户相关信息
+	 * @param uid
+	 */
+	public void deleteByUid(long uid);
 }

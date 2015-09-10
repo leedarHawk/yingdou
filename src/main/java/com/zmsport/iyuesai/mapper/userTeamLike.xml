@@ -10,4 +10,9 @@
     <insert id="insert" parameterType="userTeamLike" useGeneratedKeys="true" keyProperty="id">
     	INSERT t_userTeamLike (uid,tid,time) VALUES (#{uid},#{tid},#{time})
     </insert>
+    
+    <delete id="deleteByUid" parameterType="long">
+    	DELETE FROM t_userTeamLike WHERE uid=#{id};
+    </delete>
+    
 </mapper>

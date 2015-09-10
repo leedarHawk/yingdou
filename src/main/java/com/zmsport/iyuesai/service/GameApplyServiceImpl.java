@@ -99,4 +99,10 @@ public class GameApplyServiceImpl implements GameApplyService {
 		return mapper.getMyGames(uid);
 	}
 
+	@Override
+	public void deleteByCreatorId(long creatorId) {
+		// TODO Auto-generated method stub
+		mapper.deleteByCreatorId(creatorId);
+	}
+
 }

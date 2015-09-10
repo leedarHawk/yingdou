@@ -10,7 +10,7 @@ public final class ConstantUtil {
 	/**
 	 * 微信公众号应用id
 	 */
-	public static final String APP_ID = "wx0748fed2eee81c19";
+	public static final String APP_ID = "wx1f6fbe657881aae5";
 	
 	/**
 	 * 商户号id
@@ -25,7 +25,7 @@ public final class ConstantUtil {
 	/**
 	 * 微信公众号应用密钥
 	 */
-	public static final String APP_SECRET = "0b619d96ff15f7a9e3cf07e5b7c92994";
+	public static final String APP_SECRET = "27a4971265b834738ceaf8c209cb006c";
 	
 	/**
 	 * 微信公众号access_token获取url

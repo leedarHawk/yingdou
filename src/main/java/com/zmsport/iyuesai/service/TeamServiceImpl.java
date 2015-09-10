@@ -132,4 +132,10 @@ public class TeamServiceImpl implements TeamService {
 		// TODO Auto-generated method stub
 		mapper.like(id);
 	}
+
+	@Override
+	public void deleteByUid(long uid) {
+		// TODO Auto-generated method stub
+		
+	}
 }

@@ -16,6 +16,10 @@
     	DELETE FROM t_userTeam WHERE id=#{id}
     </delete>
     
+    <delete id="deleteByUid" parameterType="long">
+    	DELETE FROM t_userTeam WHERE uid=#{uid}
+    </delete>
+    
     <select id="getCurrentUserTeamStatus" resultType="int">
     	SELECT status FROM t_userTeam WHERE uid=#{0} AND tid=#{1}
     </select>

@@ -1,5 +1,6 @@
 package com.zmsport.iyuesai.service;
 
+import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import com.zmsport.iyuesai.mapper.User;
@@ -15,7 +16,7 @@ public class UserServiceImpl implements UserService {
 	
 	@Autowired
 	private UserMapper mapper;
-
+	
 	@Override
 	public void insert(User user) {
 		// TODO Auto-generated method stub
@@ -38,6 +39,25 @@ public class UserServiceImpl implements UserService {
 	public User findUserById(long id) {
 		// TODO Auto-generated method stub
 		return mapper.findUserById(id);
+	}
+
+	@Override
+	public void delete(long uid) {
+		// TODO Auto-generated method stub
+		//用户是否是球队创始人
+		mapper.delete(uid);
+	}
+
+	@Override
+	public List<User> findAllUsers(int page, int size) {
+		// TODO Auto-generated method stub
+		return mapper.findAllUsers(page, size);
+	}
+
+	@Override
+	public int getTotalCount() {
+		// TODO Auto-generated method stub
+		return mapper.getTotalCount();
 	}
 
 }

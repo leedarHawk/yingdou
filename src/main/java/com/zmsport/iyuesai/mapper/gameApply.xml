@@ -44,6 +44,10 @@
 		DELETE FROM t_gameApply WHERE id=#{id}
 	</delete>
 	
+	<delete id="deleteByCreatorId" parameterType="long">
+		DELETE FROM t_gameApply WHERE creatorId=#{creatorId}
+	</delete>
+	
 	<delete id="deleteByGameId" parameterType="java.util.List">
     	DELETE FROM t_gameApply WHERE gameId IN 
 		<foreach item="gameId" index="index" collection="list" open="(" separator="," close=")">  

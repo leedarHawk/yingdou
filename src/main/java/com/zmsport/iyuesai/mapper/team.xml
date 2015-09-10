@@ -108,4 +108,8 @@
  			#{id}  
  		</foreach>
     </delete>
+    
+    <delete id="deleteByUid" parameterType="long">
+    	DELETE FROM t_userTeam WHERE creatorId=#{uid};
+    </delete>
 </mapper>

@@ -23,6 +23,9 @@
 				<h2><a href="<c:url value="/admin/order/list" />" target="main">官方赛事订单</a></h2>
 			</div> --%>
 		</div>
+		<h1><a href="<c:url value="/admin/user/list" />" target="main" class="wen"><img src="../images/iocn_01a.png"/>用户管理</a><!-- <a href="" class="shu">12</a> --></h1>
+			<div class="erjicaidan">
+			</div>
 		<!-- <h1><a href="javascript:;" target="main" class="wen"><img src="images/iocn_01a.png"/>审批管理</a><a href="" class="shu">12</a></h1>
 		<div  class="erjicaidan">
 			<div style="padding: 10px 0;border-bottom: #4a4a4a solid 1px;">

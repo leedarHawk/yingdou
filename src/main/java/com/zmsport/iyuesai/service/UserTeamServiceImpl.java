@@ -88,4 +88,10 @@ public class UserTeamServiceImpl implements UserTeamService {
 		return StringUtils.arrayToCommaDelimitedString(s);
 	}
 
+	@Override
+	public void deleteByUid(long uid) {
+		// TODO Auto-generated method stub
+		mapper.deleteByUid(uid);
+	}
+
 }

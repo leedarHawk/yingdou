@@ -26,4 +26,10 @@ public interface OrderMapper {
 	 * 查询订单是否存在
 	 */
 	public int orderExist(String orderNo);
+	
+	/**
+	 * 删除用户相关信息
+	 * @param creatorId
+	 */
+	public void deleteByCreatorId(long creatorId);
 }

@@ -142,7 +142,7 @@
 				<ul class="ph_txul">
 				<c:forEach items="${teamList }" var="team" varStatus="counter">
 					<c:if test="${counter.count < 9 }">
-						<li><a href=""><img src="<c:url value="${team.pic }" />"><c:out value="${team.name }" /></a></li>
+						<li><a href="<c:url value="/site/team/detail/${team.id }" />"><img src="<c:url value="${team.pic }" />"><c:out value="${team.name }" /></a></li>
 					</c:if>
 				</c:forEach>
 				</ul>

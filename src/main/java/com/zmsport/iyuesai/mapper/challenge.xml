@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zmsport.iyuesai.mapper.ChallengeMapper">
+	
+	<select id="getAllChallenges" parameterType="long" resultType="challenge">
+		SELECT * FROM (SELECT * FROM t_challenge WHERE creatorId=#{uid} ORDER BY time DESC) AS c1
+		 UNION ALL 
+		SELECT * FROM (SELECT * FROM t_challenge WHERE creatorId!=#{uid} ORDER BY time DESC) AS c2
+	</select>
+	
+	<insert id="insert" parameterType="challenge">
+		INSERT INTO t_challenge (creatorId,teamId,time,location,feeType,fee,needReferee,mobile,firstBakMobile,secondBakMobile,contact,guestTeamId,score,status,ps) 
+		VALUES (#{creatorId},#{teamId},#{time},#{location},#{feeType},#{fee},#{needReferee},#{mobile},#{firstBakMobile},#{secondBakMobile},#{contact},#{guestTeamId},#{score},#{status},#{ps})
+	</insert>
+	
+	<select id="getChallenge" parameterType="long" resultType="challenge">
+		SELECT * FROM t_challenge WHERE id=#{id}
+	</select>
+	
+	<update id="updateStatus">
+		UPDATE t_challenge SET status=#{0} WHERE id=#{0}
+	</update>
+	
+	<update id="updateGuestTeamId">
+		UPDATE t_challenge SET guestTeamId=#{0} WHERE id=#{0}
+	</update>
+	
+	<delete id="delete" parameterType="long">
+    	DELETE FROM t_challenge WHERE creatorId=#{id};
+    </delete>
+	
+</mapper>

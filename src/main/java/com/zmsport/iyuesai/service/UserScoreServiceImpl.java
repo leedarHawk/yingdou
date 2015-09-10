@@ -37,4 +37,10 @@ public class UserScoreServiceImpl implements UserScoreService {
 		mapper.updateScore(score, id);
 	}
 
+	@Override
+	public void deleteByUid(long uid) {
+		// TODO Auto-generated method stub
+		mapper.deleteByUid(uid);
+	}
+
 }

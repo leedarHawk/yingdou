@@ -89,4 +89,10 @@ public interface TeamMapper {
 	 * @return
 	 */
 	public List<Team> getTeamsByIds(List<String> ids);
+	
+	/**
+	 * 删除用户相关信息
+	 * @param uid
+	 */
+	public void deleteByUid(long uid);
 }

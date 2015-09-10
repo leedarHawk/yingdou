@@ -49,4 +49,8 @@
     	INSERT t_order (gameId,teamId,creatorId,fee,payTime,orderNo,orderName) 
     	VALUES (#{gameId},#{teamId},#{creatorId},#{fee},#{payTime},#{orderNo},#{orderName})
     </insert>
+    
+    <delete id="deleteByCreatorId" parameterType="long">
+    	DELETE FROM t_order WHERE creatorId=#{creatorId};
+    </delete>
 </mapper>

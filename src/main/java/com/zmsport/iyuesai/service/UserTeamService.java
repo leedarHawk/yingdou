@@ -70,4 +70,10 @@ public interface UserTeamService {
 	 * @return
 	 */
 	public String findTidsByUidAndStatus(long uid, int status);
+	
+	/**
+	 * 删除用户相关信息
+	 * @param uid
+	 */
+	public void deleteByUid(long uid);
 }

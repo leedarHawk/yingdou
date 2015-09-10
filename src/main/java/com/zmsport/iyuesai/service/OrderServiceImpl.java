@@ -36,4 +36,10 @@ public class OrderServiceImpl implements OrderService {
 		return mapper.orderExist(orderNo);
 	}
 
+	@Override
+	public void deleteByCreatorId(long creatorId) {
+		// TODO Auto-generated method stub
+		mapper.deleteByCreatorId(creatorId);
+	}
+
 }

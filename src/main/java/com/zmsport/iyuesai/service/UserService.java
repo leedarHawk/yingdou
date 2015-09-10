@@ -1,5 +1,7 @@
 package com.zmsport.iyuesai.service;
 
+import java.util.List;
+
 import com.zmsport.iyuesai.mapper.User;
 
 /**
@@ -35,4 +37,21 @@ public interface UserService {
 	 */
 	public User findUserById(long id);
 
+	/**
+	 * 删除用户
+	 * 删除用相关的一切
+	 * @param uid
+	 */
+	public void delete (long uid);
+	
+	/**
+	 * 获取所有用户
+	 * @return
+	 */
+	public List<User> findAllUsers(int page, int size);
+	
+	/**
+	 * 获取用户总数
+	 */
+	public int getTotalCount();
 }
