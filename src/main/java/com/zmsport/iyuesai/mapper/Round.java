@@ -111,6 +111,11 @@ public class Round {
 	private int members;
 	
 	/**
+	 * 当前申请人数
+	 */
+	private int applyNum;
+	
+	/**
 	 * 发布时间
 	 */
 	private Date time;
@@ -351,5 +356,19 @@ public class Round {
 	 */
 	public void setUser(User user) {
 		this.user = user;
+	}
+
+	/**
+	 * @return the applyNum
+	 */
+	public int getApplyNum() {
+		return applyNum;
+	}
+
+	/**
+	 * @param applyNum the applyNum to set
+	 */
+	public void setApplyNum(int applyNum) {
+		this.applyNum = applyNum;
 	}
 }

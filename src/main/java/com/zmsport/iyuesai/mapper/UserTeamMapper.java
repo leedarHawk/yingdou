@@ -82,4 +82,11 @@ public interface UserTeamMapper {
 	 * @param uid
 	 */
 	public void deleteByUid(long uid);
+	
+	/**
+	 * 获取某球队的加入申请列表
+	 * @param tid
+	 * @return
+	 */
+	public List<UserTeam> findApplicantsByTid(int tid);
 }

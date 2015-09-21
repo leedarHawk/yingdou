@@ -15,6 +15,9 @@
 	$(function(){
 		DayUtil.getDay($("p.timeAgo"));
 		PageUtil.init();
+		<c:if test="${isCreator == false }">
+			AlertUtil.show('您还没有球队');
+		</c:if>
 	});
 	var PageUtil = {
 			text : null,
@@ -60,6 +63,7 @@
 </head>
 
 <body>
+<%@ include file="../../commons/alert.jsp"%>
 <div class="header"><span><a href="<c:url value="/site/game/list" />"><img src="<c:url value="/site/images/jt_fh.png" />">返回</a></span></div>
 <div class="main3">
 
@@ -103,7 +107,7 @@
 							</c:choose>
 						</c:if>
 						<c:if test="${isCreator == false }">
-							<span class="notice">您还没有球队</span>
+							<span class="notice">我要报名</span>
 						</c:if>
 					</c:when>
 					<c:when test="${game.teamNum > 0 && fn:length(teamList) == game.teamNum}">

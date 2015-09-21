@@ -74,4 +74,10 @@ public class RoundApplyServiceImpl implements RoundApplyService {
 		return list;
 	}
 
+	@Override
+	public boolean isApply(long uid, long rid) {
+		// TODO Auto-generated method stub
+		return mapper.getRoundApplyByUidAndRid(uid, rid) != null;
+	}
+
 }

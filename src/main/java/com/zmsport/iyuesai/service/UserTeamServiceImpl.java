@@ -94,4 +94,10 @@ public class UserTeamServiceImpl implements UserTeamService {
 		mapper.deleteByUid(uid);
 	}
 
+	@Override
+	public List<UserTeam> findApplicantsByTid(int tid) {
+		// TODO Auto-generated method stub
+		return mapper.findApplicantsByTid(tid);
+	}
+
 }

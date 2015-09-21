@@ -76,7 +76,7 @@
          <url-pattern>/site/pages/pay.html</url-pattern>   
      </servlet-mapping>
      <!-- 错误处理 -->
-     <!-- <error-page>
+     <error-page>
      	<error-code>404</error-code>
      	<location>/error/error.jsp</location>
      </error-page>
@@ -87,5 +87,5 @@
      <error-page>
      	<exception-type>Exception</exception-type>
      	<location>/error/error.jsp</location>
-     </error-page> -->
+     </error-page>
 </web-app>

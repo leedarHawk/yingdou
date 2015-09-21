@@ -104,4 +104,15 @@ public class ChallengeServiceImpl implements ChallengeService {
 		mapper.updateScore(score, id);
 	}
 
+	@Override
+	public List<Challenge> findAllChallengesByTeamId(int teamId) {
+		// TODO Auto-generated method stub
+		List<Challenge> list = mapper.findAllChallengesByTeamId(teamId);
+		for(Challenge c : list) {
+			c.setHost(tMapper.findTeamById(c.getTeamId()));
+			c.setGuest(tMapper.findTeamById(c.getGuestTeamId()));
+		}
+		return list;
+	}
+
 }

@@ -91,6 +91,11 @@ public class Team {
 	private int likes;
 	
 	/**
+	 * 申请者
+	 */
+	private List<UserTeam> applicants;
+	
+	/**
 	 * @return the id
 	 */
 	public int getId() {
@@ -284,5 +289,19 @@ public class Team {
 	 */
 	public void setLikes(int likes) {
 		this.likes = likes;
+	}
+
+	/**
+	 * @return the applicants
+	 */
+	public List<UserTeam> getApplicants() {
+		return applicants;
+	}
+
+	/**
+	 * @param applicants the applicants to set
+	 */
+	public void setApplicants(List<UserTeam> applicants) {
+		this.applicants = applicants;
 	}
 }

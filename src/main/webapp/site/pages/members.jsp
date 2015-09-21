@@ -12,7 +12,7 @@
 </head>
 
 <body>
-<div class="header"><span><a href="<c:url value="/site/team/detail/${teamId }" />"><img src="<c:url value="/site/images/jt_fh.png" />">返回</a></span></div>
+<div class="header"><span><a href="javascript:history.go(-1); void 0;"><img src="<c:url value="/site/images/jt_fh.png" />">返回</a></span></div>
 <div class="main4">
 	<div class="hydy_list">
 	<p class="ph_jshtit">新加入成员</p>

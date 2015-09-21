@@ -9,6 +9,7 @@ import com.zmsport.iyuesai.mapper.Round;
 import com.zmsport.iyuesai.mapper.RoundApply;
 import com.zmsport.iyuesai.mapper.RoundApplyMapper;
 import com.zmsport.iyuesai.mapper.RoundMapper;
+import com.zmsport.iyuesai.mapper.TeamMapper;
 import com.zmsport.iyuesai.mapper.UserMapper;
 
 @Service
@@ -23,12 +24,16 @@ public class RoundServiceImpl implements RoundService {
 	@Autowired
 	private RoundApplyMapper raMapper;
 	
+	@Autowired
+	private TeamMapper tMapper;
+	
 	@Override
 	public List<Round> getAllRounds(long uid) {
 		// TODO Auto-generated method stub
 		List<Round> list = mapper.getAllRounds(uid);
 		for(Round round : list) {
 			round.setUser(uMapper.findUserById(round.getCreatorId()));
+			round.setApplyNum(raMapper.getRoundApplyRid(round.getId()).size());
 		}
 		return list;
 	}
@@ -42,6 +47,7 @@ public class RoundServiceImpl implements RoundService {
 		ra.setRid(round.getId());
 		ra.setStatus(RoundApply.STATUS_OK);
 		ra.setUid(round.getCreatorId());
+		ra.setUsername(uMapper.findUserById(round.getCreatorId()).getUsername());
 		raMapper.insert(ra);
 	}
 
@@ -55,6 +61,20 @@ public class RoundServiceImpl implements RoundService {
 	public Round findRoundById(long id) {
 		// TODO Auto-generated method stub
 		return mapper.findRoundById(id);
+	}
+
+	@Override
+	public List<Round> getAllRoundsNew(long uid) {
+		// TODO Auto-generated method stub
+		List<Round> list = mapper.getAllRoundsNew(uid);
+		for(Round round : list) {
+			round.setUser(uMapper.findUserById(round.getCreatorId()));
+			round.setApplyNum(raMapper.getRoundApplyRid(round.getId()).size());
+			if(round.getTid() > 0) {
+				round.setTeam(tMapper.findTeamById(round.getTid()));
+			}
+		}
+		return list;
 	}
 
 }

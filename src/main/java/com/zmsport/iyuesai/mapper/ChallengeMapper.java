@@ -35,6 +35,13 @@ public interface ChallengeMapper {
 	public List<Challenge> findChallengesByTeamId(int teamId);
 	
 	/**
+	 * 获取某球队的约战记录（所有）
+	 * @param teamId
+	 * @return
+	 */
+	public List<Challenge> findAllChallengesByTeamId(int teamId);
+	
+	/**
 	 * 添加
 	 * @param challenge
 	 */

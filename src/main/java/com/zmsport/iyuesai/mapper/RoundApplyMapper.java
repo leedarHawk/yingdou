@@ -24,6 +24,21 @@ public interface RoundApplyMapper {
 	public RoundApply getRoundApplyById(long id);
 	
 	/**
+	 * 获取某一球局申请信息
+	 * @param uid
+	 * @param rid
+	 * @return
+	 */
+	public RoundApply getRoundApplyByUidAndRid(long uid, long rid);
+	
+	/**
+	 * 获取某一球局的申请信息列表
+	 * @param rid
+	 * @return
+	 */
+	public List<RoundApply> getRoundApplyRid(long rid);
+	
+	/**
 	 * 申请
 	 * @param ra
 	 */

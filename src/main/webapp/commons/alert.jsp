@@ -9,23 +9,23 @@
 			init : function() {
 				$('div.button button').click(function(){
 					$('#alertWindow').hide();
-					$('#bg').hide();
+					$('#background').hide();
 				});
 			},
 			show : function(msg) {
 				$('#alertWindow div.alertContent').html(msg);
 				$('#alertWindow').show();
-				$('#bg').show();
+				$('#background').show();
 			}
 	};
 	var LoadingUtil = {
 			show : function() {
 				$('#loadingWindow').show();
-				$('#bg').show();
+				$('#background').show();
 			},
 			hide : function() {
 				$('#loadingWindow').hide();
-				$('#bg').hide();
+				$('#background').hide();
 			}
 	};
 //-->
@@ -43,7 +43,7 @@
 		left:50%;
 		margin-left:-110px;
 		margin-top:-70px;
-		z-index:102;
+		z-index:10000;
 		background:#fff;
 	}
 	div.headBar {
@@ -67,7 +67,7 @@
 		border:1px solid #c0c0c0;
 		height:32px;
 	}
-	#bg {
+	#background {
 		display: none;
 		position: fixed;
 		top: 0%;
@@ -75,14 +75,14 @@
 		width: 100%;
 		height: 100%;
 		background-color: black;
-		z-index: 101;
+		z-index: 9999;
 		-moz-opacity: 0.7;
 		opacity: .70;
 		filter: alpha(opacity = 70);
 	}
 -->
 </style>
-<div id="bg"></div>
+<div id="background"></div>
 <div id="alertWindow">
 	<div class="headBar">提示</div>
 	<div class="alertContent"></div>

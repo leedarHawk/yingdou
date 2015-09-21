@@ -21,21 +21,29 @@
 						if(res == 'ok') {
 							$('#a_' + id).parent().append('<span class="hui_ann">已同意</span>');
 							$('#a_' + id).remove();
+							location.href = '<c:url value="/site/challenge/list" />';
 						}
 					}
 				});
 			},
-			show : function(username,height,weight,qq,mobile,msg) {
+			show : function(username,height,weight,qq,mobile,msg,headPic) {
+				$('tr.mobile').show();
+				$('tr.qq').show();
+				$('td.headPic img').prop('src',headPic)
 				$('td.username').text(username);
-				$('td.height').text(height);
-				$('td.weight').text(weight);
+				$('td.height').text(height.length == 0 ? '无' : height + 'cm');
+				$('td.weight').text(weight.length == 0 ? '无' : weight + 'kg');
 				if(qq.length > 0) {
 					$('td.qq').text(qq);
+				}else {
+					$('tr.qq').hide();
 				}
 				if(mobile.length > 0) {
 					$('td.mobile').text(mobile);
+				}else {
+					$('tr.mobile').hide();
 				}
-				$('td.msg').text(msg);
+				$('td.msg').text(msg.length == 0 ? '无' : msg);
 				$('#bg1,#show1').show();
 			},
 			hide : function() {
@@ -90,7 +98,11 @@
 			<p><span class="hui_ann">球主</span></p>
 		</c:if>
 		<c:if test="${applyRound.uid != creatorId }">
-			<p><a href="javascript:PageUtil.show('${applyRound.username}','${applyRound.height}','${applyRound.weight}','${applyRound.qq}','${applyRound.mobile}','${applyRound.msg}');void 0;">报名信息</a><a id="a_${applyRound.id }" href="javascript:PageUtil.confirmRound(${applyRound.id },${applyRound.rid });void 0;">同意</a></p>
+			<p>
+				<a href="javascript:PageUtil.show('${applyRound.username}','${applyRound.height}','${applyRound.weight}','${applyRound.qq}','${applyRound.mobile}','${applyRound.msg}','<c:url value="${applyRound.user.headPic }" />');void 0;">报名信息</a>
+				<c:if test="${applyRound.status == 0 }"><a id="a_${applyRound.id }" href="javascript:PageUtil.confirmRound(${applyRound.id },${applyRound.rid });void 0;">同意</a></c:if>
+				<c:if test="${applyRound.status == 1 }"><span class="hui_ann">已同意</span></c:if>
+			</p>
 		</c:if>
 		</dd>
 		</dl>
@@ -111,29 +123,32 @@
 		<div class="zhc_tcbox" id="djk4">
 			<table width="100%" border="0" cellspacing="0" cellpadding="0">
 				<tr>
-					<td width="43%" height="50" align="right">姓名：</td>
-					<td width="57%" height="50" class="username"></td>
+					<td colspan="2" class="headPic hy_qdlist" align="center"><dt style="width:100%;text-align:center;"><img src="" /></dt></td>
 				</tr>
 				<tr>
-					<td height="50" align="right">身高：</td>
-					<td height="50" class="height"></td>
+					<td width="43%" align="right">姓名：</td>
+					<td width="57%" class="username"></td>
 				</tr>
 				<tr>
-					<td height="50" align="right">体重：</td>
-					<td height="50" class="weight"></td>
+					<td align="right">身高：</td>
+					<td class="height"></td>
+				</tr>
+				<tr>
+					<td align="right">体重：</td>
+					<td class="weight"></td>
 				</tr>
 				<tr class="qq">
-					<td height="50" align="right">QQ号：</td>
-					<td height="50" class="qq"></td>
+					<td align="right">QQ号：</td>
+					<td class="qq"></td>
 				</tr>
 				
 				<tr class="mobile">
-					<td height="50" align="right">手机号：</td>
-					<td height="50" class="mobile"></td>
+					<td align="right">手机号：</td>
+					<td class="mobile"></td>
 				</tr>
 				
 				<tr>
-					<td height="90" align="right">给群主捎个信儿：</td>
+					<td align="right">给群主捎个信儿：</td>
 					<td class="msg"></td>
 				</tr>
 			</table>

@@ -10,8 +10,10 @@
 <title></title>
 <link rel="stylesheet" href="<c:url value="/site/css/style.css" />" />
 <script type="text/javascript" src="<c:url value="/site/js/jquery.js" />"></script>
+<script type="text/javascript" src="<c:url value="/site/js/common.js?t=${_time }" />"></script>
 <script type="text/javascript">
 	$(function(){
+		PageUtil.initCheck();
 		PageUtil.initSelect('position','${user.position}');
 		PageUtil.initSelect('level','${user.level}');
 	});
@@ -22,12 +24,28 @@
 						$(this).prop("selected",true);
 					}
 				});
+			},
+			initCheck : function() {
+				$('form').submit(function(){
+					var mobile = $.trim($('input[name=mobile]').val());
+					if(mobile.length > 0 && !CommonUtil.isMobile(mobile)) {
+						AlertUtil.show("请输入正确的手机号");
+						return false;
+					}
+					var qq = $.trim($('input[name=qq]').val());
+					if(qq.length > 0 && !CommonUtil.isNumber(qq)) {
+						AlertUtil.show("请输入正确的qq号");
+						return false;
+					}
+					return true;
+				});
 			}
 	};
 </script>
 </head>
 
 <body>
+<%@ include file="../../commons/alert.jsp"%>
 <div class="header"><span><a href="<c:url value="/site/user/path/me" />"><img src="<c:url value="/site/images/jt_fh.png" />">返回</a></span>设置</div>
 <div class="main2">
 	<form action="<c:url value="/site/user/update" />" method="post">
@@ -50,8 +68,8 @@
 			  <option value="女" selected>女</option>
 		  </c:if>
 		</select></li>
-		<li>身高<input class="shez_text" name="height" type="text" value="${user.height}"></li>
-		<li>体重<input class="shez_text" name="weight" type="text" value="${user.weight}"></li>
+		<li>身高(cm)<input class="shez_text" name="height" type="text" style="width:70%;" value="${user.height}"></li>
+		<li>体重(kg)<input class="shez_text" name="weight" type="text" style="width:70%;" value="${user.weight}"></li>
 		</ul>
 		</div>
 	

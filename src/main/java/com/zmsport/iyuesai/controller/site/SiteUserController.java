@@ -1,5 +1,6 @@
 package com.zmsport.iyuesai.controller.site;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.http.HttpSession;
@@ -13,6 +14,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import com.zmsport.iyuesai.mapper.Challenge;
 import com.zmsport.iyuesai.mapper.Team;
 import com.zmsport.iyuesai.mapper.User;
 import com.zmsport.iyuesai.mapper.UserTeam;
@@ -89,11 +91,18 @@ public class SiteUserController {
 		User currentUser = (User)session.getAttribute("user");
 		//我的球队
 		List<Team> list = tService.getTeamsByIds(utService.findTidsByUidAndStatus(currentUser.getId(), UserTeam.STATUS_CONFIRMED));
+		model.addAttribute("num", this.getApplyMemberNum(currentUser.getId()));
 		model.addAttribute("list", list);
 		//我参加的赛事
 		model.addAttribute("gameList", gayService.getMyGames(currentUser.getId()));
 		//我的球局
 		model.addAttribute("myRoundApplys", raService.getRoundApplyByUid(currentUser.getId()));
+		//我的约战
+		List<Challenge> cList = new ArrayList<Challenge>();
+		for(Team team : list) {
+			cList.addAll(cService.findAllChallengesByTeamId(team.getId()));
+		}
+		model.addAttribute("myChallenges", cList);
 		return "/site/pages/" + path;
 	}
 	
@@ -107,21 +116,37 @@ public class SiteUserController {
 	public String info(@PathVariable long id, HttpSession session,Model model) {
 		User currentUser = (User)session.getAttribute("user");
 		User user = service.findUserById(id);
-		List<Team> list = tService.getTeamsByIds(utService.findTidsByUidAndStatus(currentUser.getId(), UserTeam.STATUS_CONFIRMED));
-		model.addAttribute("list", list);
 		if(currentUser.getId() == user.getId()) {
+			//我的球队
+			List<Team> list = tService.getTeamsByIds(utService.findTidsByUidAndStatus(currentUser.getId(), UserTeam.STATUS_CONFIRMED));
+			model.addAttribute("list", list);
+			model.addAttribute("num", this.getApplyMemberNum(currentUser.getId()));
 			//我参加的赛事
 			model.addAttribute("gameList", gayService.getMyGames(currentUser.getId()));
-			model.addAttribute("num", this.getApplyMemberNum(currentUser.getId()));
 			//我的球局
 			model.addAttribute("myRoundApplys", raService.getRoundApplyByUid(currentUser.getId()));
+			//我的约战
+			List<Challenge> cList = new ArrayList<Challenge>();
+			for(Team team : list) {
+				cList.addAll(cService.findAllChallengesByTeamId(team.getId()));
+			}
+			model.addAttribute("myChallenges", cList);
 			return "/site/pages/me";
 		}else {
 			model.addAttribute("user", user);
+			//他的球队
+			List<Team> list = tService.getTeamsByIds(utService.findTidsByUidAndStatus(user.getId(), UserTeam.STATUS_CONFIRMED));
+			model.addAttribute("list", list);
 			//他参加的赛事
 			model.addAttribute("gameList", gayService.getMyGames(user.getId()));
 			//他的球局
 			model.addAttribute("myRoundApplys", raService.getRoundApplyByUid(user.getId()));
+			//他的约战
+			List<Challenge> cList = new ArrayList<Challenge>();
+			for(Team team : list) {
+				cList.addAll(cService.findAllChallengesByTeamId(team.getId()));
+			}
+			model.addAttribute("myChallenges", cList);
 			return "/site/pages/him";
 		}
 	}
@@ -137,6 +162,6 @@ public class SiteUserController {
 		for(Team team : list) {
 			num += tService.findUsersByTeamId(team.getId(),UserTeam.STATUS_NOT_CONFIRM).size();
 		}
-		return num;
+		return num > -1 ? ++num : num;
 	}
 }

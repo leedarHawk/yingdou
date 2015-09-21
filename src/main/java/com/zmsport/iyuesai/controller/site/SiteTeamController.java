@@ -1,5 +1,6 @@
 package com.zmsport.iyuesai.controller.site;
 
+import java.io.UnsupportedEncodingException;
 import java.sql.Timestamp;
 import java.util.List;
 
@@ -102,6 +103,34 @@ public class SiteTeamController {
 	}
 	
 	/**
+	 * 跳转到修改球队页面
+	 * @return
+	 */
+	@RequestMapping(value="/toUpdate/{teamId}",method=RequestMethod.GET)
+	public String toUpdate(@PathVariable int teamId, Model model) {
+		model.addAttribute("team", service.findTeamById(teamId));
+		return "/site/pages/updateTeam";
+	}
+	
+	/**
+	 * 修改球队
+	 * @return
+	 */
+	@RequestMapping(value="/update/{teamId}/{slogan}/{description}",method=RequestMethod.GET)
+	public String update(@PathVariable int teamId, @PathVariable String slogan, @PathVariable String description, Model model) {
+		Team team = service.findTeamById(teamId);
+		try {
+			team.setSlogan(new String(slogan.getBytes(),"UTF-8"));
+			team.setDescription(new String(description.getBytes(),"UTF-8"));
+		} catch (UnsupportedEncodingException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		service.update(team);
+		return "redirect:/site/team/detail/" + teamId;
+	}
+	
+	/**
 	 * 获取球队列表
 	 * @param uid
 	 * @param model
@@ -129,6 +158,7 @@ public class SiteTeamController {
 		model.addAttribute("status", utService.getCurrentUserTeamStatus(user.getId(), team.getId()));
 		model.addAttribute("albumList", taService.findTeamAlbumByTeamId(team.getId()));
 		model.addAttribute("memberNum", utService.getMemberNum(team.getId()));
+		model.addAttribute("ids", service.findMembersIds(id));
 		//约战记录
 		model.addAttribute("challengeList", cService.findChallengesByTeamId(id));
 		return "/site/pages/team";
@@ -282,9 +312,10 @@ public class SiteTeamController {
 			utl.setUid(currentUser.getId());
 			utl.setTime(new Timestamp(System.currentTimeMillis()));
 			utlService.insert(utl);
-			return String.valueOf(service.findTeamById(id).getLikes());
 		}else {
-			return "0";
+			service.unlike(id);
+			utlService.deleteLike(id, currentUser.getId());
 		}
+		return String.valueOf(service.findTeamById(id).getLikes());
 	}
 }

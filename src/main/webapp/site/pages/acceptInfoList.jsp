@@ -19,9 +19,11 @@
 		$('td.teamName').text(map[id].team);
 		if(map[id].mobile.length > 0) {
 			$('td.mobile').text(map[id].mobile);
+			$('tr.mobile').show();
 		}
 		if(map[id].qq.length > 0) {
 			$('td.qq').text(map[id].qq);
+			$('tr.qq').show();
 		}
 		$('td.msg').text(map[id].msg);
 		document.getElementById("bg").style.display = "block";
@@ -75,12 +77,19 @@
 			map['${map.ai.id}'] = {};
 			map['${map.ai.id}'].team = '${map.team.name}';
 			map['${map.ai.id}'].teamPic = '<c:url value="${map.team.pic}" />';
-			map['${map.ai.id}'].qq = '${map.qq}';
-			map['${map.ai.id}'].mobile = '${map.mobile}';
-			map['${map.ai.id}'].msg = '${map.msg}';
+			map['${map.ai.id}'].qq = '${map.ai.qq}';
+			map['${map.ai.id}'].mobile = '${map.ai.mobile}';
+			map['${map.ai.id}'].msg = '${map.ai.msg}';
 		</script>
 	</c:forEach>
-
+	<c:if test="${empty list }">
+		<dl class="hy_jshudl" style="background:none;">
+		<dt><img src="<c:url value="/site/images/ts_ico.png" />"></dt>
+		<dd>
+		<strong>您还没有收到应战请求</strong>
+		</dd>
+		</dl>
+	</c:if>
 </div>
 <div id="bg"></div>
 	<div id="show">

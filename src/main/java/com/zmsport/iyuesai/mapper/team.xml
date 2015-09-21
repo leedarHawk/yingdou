@@ -93,13 +93,17 @@
     	VALUES (#{creatorId},#{name},#{slogan},#{location},#{members},#{description},#{needConfirm},#{candidateItems},#{createTime},#{pic})
     </insert>
     
-    <update id="update" parameterType="user">
-    	UPDATE t_user SET name=#{name}, slogan=#{slogan},location=#{location},members=#{members},description=#{description},needConfirm=#{needConfirm}
+    <update id="update" parameterType="team">
+    	UPDATE t_team SET name=#{name}, slogan=#{slogan},location=#{location},members=#{members},description=#{description},needConfirm=#{needConfirm}
     	, candidateItems=#{candidateItems},pic=#{pic} WHERE id=#{id}
     </update>
     
     <update id="like" parameterType="int">
     	UPDATE t_team SET likes=likes+1 WHERE id=#{id}
+    </update>
+    
+    <update id="unlike" parameterType="int">
+    	UPDATE t_team SET likes=likes-1 WHERE id=#{id}
     </update>
     
     <delete id="delete" parameterType="java.util.List">

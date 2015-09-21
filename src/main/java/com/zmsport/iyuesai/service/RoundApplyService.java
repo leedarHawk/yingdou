@@ -25,6 +25,14 @@ public interface RoundApplyService {
 	public RoundApply getRoundApplyById(long id);
 	
 	/**
+	 * 获取某一球局是否已申请
+	 * @param uid
+	 * @param rid
+	 * @return
+	 */
+	public boolean isApply(long uid, long rid);
+	
+	/**
 	 * 申请
 	 * @param ra
 	 */

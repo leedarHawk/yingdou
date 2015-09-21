@@ -13,6 +13,7 @@
 <script type="text/javascript" src="<c:url value="/site/js/jquery.js" />" ></script>
 <script src="<c:url value="/site/js/jquery.hoverIntent.minified.js" />" type="text/javascript"></script>
 <script type="text/javascript" src="<c:url value="/site/js/qh.js" />" ></script>
+<script type="text/javascript" src="<c:url value="/site/js/common.js" />"></script>
 <script type="text/javascript">
 	var TYPE = "challenge";
 	var CHALLENGE_DATA = [];
@@ -31,18 +32,25 @@
 				ps : '<c:out value="${challenge.ps }" />',
 				time : '<fmt:formatDate value="${challenge.time}" type="both" pattern="yyyy年MM月dd日 HH:mm"/>',
 				needReferee : '<c:if test="${challenge.needReferee == 1 }">待定</c:if><c:if test="${challenge.needReferee == 0 }">无</c:if>',
-				fee : '<c:if test="${challenge.feeType == 0 }">免费</c:if><c:if test="${challenge.feeType == 1 }">¥<c:out value="${challenge.fee }" />(AA)</c:if>'
+				fee : '<c:if test="${challenge.feeType == 0 }">免费</c:if><c:if test="${challenge.feeType == 1 }">¥<c:out value="${challenge.fee }" />(AA)</c:if>',
+				creatorId : ${challenge.creatorId},
+				count : ${challenge.count},
+				score : '${challenge.score}'
 		};
 		CHALLENGE_DATA.push(locationMap);
 	</c:forEach>
 	<c:forEach items="${roundList }" var="round">
 		roundMap = {
-			hostPic : '<c:url value="${round.team.pic }" />',
+			hostPic : '<c:if test="${not empty round.team}"><c:url value="${round.team.pic }" /></c:if><c:if test="${empty round.team}"><c:url value="/site/images/round.png" /></c:if>',
 			roundName : '${round.name }',
 			creator : '${round.user.username }',
 			time : "<fmt:formatDate value="${round.startTime}" pattern="yyyy年MM月dd日 HH:mm"/><c:if test="$(round.endTime != '1970-01-01 00:00:00')">至<fmt:formatDate value="${round.endTime}" pattern="yyyy年MM月dd日 HH:mm"/></c:if>",
 			location : '${round.location}',
-			enroll : '${round.members }/<c:if test="${round.enrollType==0 }">不限</c:if><c:if test="${round.enrollType == 1 }">${round.enrollLimit }</c:if>'
+			enroll : '${round.members }/<c:if test="${round.enrollType==0 }">不限</c:if><c:if test="${round.enrollType == 1 }">${round.enrollLimit }</c:if>',
+			contact : '${round.contact}',
+			id : ${round.id},
+			applyNum : ${round.applyNum},
+			creatorId : ${round.creatorId}
 		};
 		ROUND_DATA.push(roundMap);
 	</c:forEach>
@@ -89,7 +97,18 @@
 												$('dt.host img',info).prop('src',data.hostPic);
 												if(data.guestName.length != 0) {
 													$('dt.guest',info).html('<img src=' + data.guestPic + ' /><span>' + data.guestName + '</span>');
+													if(data.score.length == 0) {
+														$('p.challengeStatus',info).text("等待上传比分");
+													}else {
+														$('p.challengeStatus',info).text("比赛结束");
+														$('strong',info).text(data.score);
+													}
 												}else {
+													if(data.creatorId == ${user.id}) {
+														var $div = $('<div style="position:relative;"><a href="<c:url value="/site/challenge/acceptInfoList/" />' + data.id + '"><div class="circle">' + data.count + '</div></a><img src="<c:url value="/site/images/tx_no.png" />"></div>');
+														$('dt.guest img',info).remove();
+														$('dt.guest input.lv_btn',info).before($div);
+													}
 													$('dt.guest input.lv_btn',info).attr('onClick','PageUtil.showChallenge(' + data.id + ',' + data.teamId + ');');
 												}
 												$('span.ps',info).text(data.ps);
@@ -107,6 +126,12 @@
 												$('span.creator',info).text(data.creator);
 												$('span.enroll',info).text(data.enroll);
 												$('span.location',info).text(data.location);
+												if(data.creatorId == ${user.id}) {
+													var $div = $('<a href="<c:url value="/site/challenge/roundApplyList/" />' + data.id + '/' + data.creatorId + '"><div class="circleRound">' + data.applyNum + '</div></a><img src="' + data.hostPic + '"></div>');
+													$('dt.hostPic img',info).remove();
+													$('dt.hostPic',info).append($div);
+												}
+												$('input.lv_ann',info).attr('onClick','PageUtil.showRound(' + data.id + ',"' + data.contact + '");');
 											}
 											//创建信息窗口对象 
 											infoWindow = new BMap.InfoWindow("");
@@ -168,18 +193,104 @@
 					}
 				});
 			},
+			showRound : function(roundId,contact) {
+				var _this = this;
+				$('#show1 input[name="username"]').val('${user.username}');
+				$('#show1 tr.qq').hide();
+				$('#show1 tr.mobile').hide();
+				$('#show1 tr.' + contact).show();
+				if(contact == 'qq') {
+					$('#show1 tr.qq').show();
+				}else {
+					$('#show1 tr.mobile').show();
+				}
+				$('#show1 input[name="applyRound"]').click(function(){
+					_this.applyRound(roundId,contact);
+				});
+				document.getElementById("bg1").style.display = "block";
+				document.getElementById("show1").style.display = "block";
+			},
+			applyRound : function(roundId,contact) {
+				var username = $.trim($('#show1 input[name="username"]').val());
+				if(username.length == 0) {
+					AlertUtil.show("请输入姓名");
+					return;
+				}
+				var height = $.trim($('#show1 input[name="height"]').val());
+				if(height.length == 0) {
+					AlertUtil.show("请输入身高");
+					return;
+				}else if(!CommonUtil.isNumber(height)){
+					AlertUtil.show("请输入正确的身高");
+					return;
+				}
+				var weight = $.trim($('#show1 input[name="weight"]').val());
+				if(weight.length == 0) {
+					AlertUtil.show("请输入体重");
+					return;
+				}else if(!CommonUtil.isNumber(weight)){
+					AlertUtil.show("请输入正确的体重");
+					return;
+				}
+				var _contact = $.trim($('#show1 input[name="' + contact + '"]').val());
+				if(_contact.length == 0) {
+					AlertUtil.show("请输入联系方式");
+					return;
+				}
+				var msg = $.trim($('#show1 textarea[name="msg"]').val());
+				var _data;
+				if(contact == 'qq') {
+					if(!CommonUtil.isNumber(_contact)) {
+						AlertUtil.show("请输入正确的qq号码");
+						return;
+					}
+					_data = {rid:roundId,uid:${user.id},username:username,height:height,weight:weight,qq:_contact,msg:msg};
+				}else {
+					if(!CommonUtil.isMobile(_contact)) {
+						AlertUtil.show("请输入正确的手机号码");
+						return;
+					}
+					_data = {rid:roundId,uid:${user.id},username:username,height:height,weight:weight,mobile:_contact,msg:msg}
+				}
+				$.ajax({
+					url : '<c:url value="/site/challenge/applyRound" />',
+					data : _data,
+					type : 'post',
+					success : function(res) {
+						if(res == 'ok') {
+							location.reload();
+						}else {
+							AlertUtil.show("您已报名");
+						}
+					}
+				});
+			},
 			hideChallenge : function() {
 				document.getElementById("bg").style.display = "none";
 				document.getElementById("show").style.display = "none";
 			},
+			hideRound : function() {
+				document.getElementById("bg1").style.display = "none";
+				document.getElementById("show1").style.display = "none";
+			},
 			acceptChallenge: function(id) {
 				var _this = this;
 				var teamId = $('#show select[name=teamId] option:selected').val();
+				var team = $('#show select[name=teamId] option:selected').text();
 				if(teamId == -1) {
+					AlertUtil.show("请选择球队");
 					return;
 				}
 				var qq = $.trim($('#show input[name=qq]').val());
 				var mobile = $.trim($('#show input[name=mobile]').val());
+				if(qq.length > 0 && !CommonUtil.isNumber(qq)) {
+					AlertUtil.show("请输入正确的qq号码");
+					return;
+				}
+				if(mobile.length > 0 && !CommonUtil.isMobile(mobile)) {
+					AlertUtil.show("请输入正确的手机号码");
+					return;
+				}
 				var msg = $.trim($('#show textarea[name=msg]').val());
 				$.ajax({
 					url : '<c:url value="/site/challenge/accept" />',
@@ -187,7 +298,9 @@
 					type : 'post',
 					success : function(res) {
 						if(res == 'ok') {
-							_this.hideChallenge();
+							location.reload();
+						}else {
+							AlertUtil.show("球队" + team + "已申请过");
 						}
 					}
 				});
@@ -235,9 +348,66 @@ div.round {
 	z-index: 1002;
 	overflow: auto;
 }
+#bg1 {
+	display: none;
+	position: fixed;
+	top: 0%;
+	left: 0%;
+	width: 100%;
+	height: 100%;
+	background-color: black;
+	z-index: 1001;
+	-moz-opacity: 0.7;
+	opacity: .70;
+	filter: alpha(opacity = 70);
+}
+
+#show1 {
+	display: none;
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	z-index: 1002;
+	overflow: auto;
+}
+.circle {
+	border-radius: 50%;
+	width: 70px;
+	height: 70px; 
+	background:#f00;
+	position:absolute;
+	left:50%;
+	top:50%;
+	margin-left:-35px;
+	margin-top:-35px;
+	text-align:center;
+	line-height:70px;
+	color:#fff;
+	font-weight:bold;
+	opacity:0.5;
+}
+.circleRound {
+	border-radius: 50%;
+	width: 120px;
+	height: 120px; 
+	background:#f00;
+	position:absolute;
+	left:50%;
+	top:50%;
+	margin-left:-60px;
+	margin-top:-60px;
+	text-align:center;
+	line-height:120px;
+	color:#fff;
+	font-weight:bold;
+	opacity:0.5;
+}
 </style>
 </head>
 <body>
+<%@ include file="../../commons/alert.jsp"%>
 <div class="header"><span><a href="javascript:history.go(-1);void 0;"><img src="<c:url value="/site/images/jt_fh.png" />">返回</a></span>约战<font><a href="<c:url value="/site/challenge/publish" />">发布约战</a></font></div>
 <div class="main3" style="position:fixed;width:100%;top:0px;z-index:1;">
 	<!--切换内容开始0-->
@@ -269,7 +439,7 @@ div.round {
 		<dt class="host"><img src=""><span></span></dt>
 		<dd>
 		<strong>VS</strong>
-		<p>等待应战</p>
+		<p class="challengeStatus">等待应战</p>
 		</dd>
 		<dt class="guest"><img src="<c:url value="/site/images/tx_no.png" />"><input class="lv_btn" type="button" value="应战" ></dt>
 	</dl>
@@ -283,7 +453,7 @@ div.round {
 
 <div class="yuez_con round">
 	<dl class="hy_topdl">
-	<dt class="hostPic"><img style="width:64px;height:64px;" src="" /></dt>
+	<dt class="hostPic" style="position:relative;"><img style="width:64px;height:64px;" src="" /></dt>
 	<dd>
 	<strong class="roundName"></strong>
 	</dd>
@@ -308,7 +478,7 @@ div.round {
   </tr>
 </table>
 <ul class="hy_btn">
-<li><input class="lv_ann" id="btnshow1" onClick=""
+<li><input class="lv_ann" id="btnshow1"
 						name="" type="button" value="参加"></li>
 </ul>
 </div>
@@ -347,6 +517,46 @@ div.round {
 					class="lv_btn accept" name="" type="button" value="应战"></td>
 			</tr>
 		</table>
+	</div>
+</div>
+<div id="bg1"></div>
+<div id="show1">
+	<input class="close_btn" id="btnclose1" onClick="PageUtil.hideRound();" name=""
+	type="button" value="关闭">
+<div style="height:10px;"></div>
+	<div class="zhc_tcbox" id="djk4">
+		<table width="100%" border="0" cellspacing="0" cellpadding="0">
+			<tr>
+				<td width="43%" height="50" align="right">*姓名：</td>
+				<td width="57%" height="50"><input name="username" type="text"
+					class="fab_text"></td>
+			</tr>
+			<tr>
+				<td height="50" align="right">*身高(cm)：</td>
+				<td height="50"><input name="height" type="text" class="fab_text"></td>
+			</tr>
+			<tr>
+				<td height="50" align="right">*体重(kg)：</td>
+				<td height="50"><input name="weight" type="text" class="fab_text"></td>
+			</tr>
+			<tr class="qq">
+				<td height="50" align="right">*QQ号：</td>
+				<td height="50"><input name="qq" type="text" class="fab_text"></td>
+			</tr>
+			
+			<tr class="mobile">
+				<td height="50" align="right">*手机号：</td>
+				<td height="50"><input name="mobile" type="text" class="fab_text"></td>
+			</tr>
+			
+			<tr>
+				<td height="90" align="right" valign="top">给群主捎个信儿：</td>
+				<td><textarea class="fab_textare" name="msg" cols="" rows=""></textarea></td>
+			</tr>
+		</table>
+		<div class="bot_btn">
+			<input class="lv_btn" name="applyRound" type="button" value="提交">
+		</div>
 	</div>
 </div>
 </body>

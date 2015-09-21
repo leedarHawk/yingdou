@@ -16,6 +16,13 @@ public interface RoundMapper {
 	public List<Round> getAllRounds(long uid);
 	
 	/**
+	 * 所有球局
+	 * @param uid
+	 * @return
+	 */
+	public List<Round> getAllRoundsNew(long uid);
+	
+	/**
 	 * 查询球局
 	 * @param id
 	 * @return

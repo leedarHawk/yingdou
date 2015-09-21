@@ -25,8 +25,8 @@
 				});
 			},
 			chooseImage : function() {
-				if(<c:out value="${team.creatorId}" /> != ${user.id}) {
-					AlertUtil.show("Oops~您不是创始人喔");
+				if('<c:out value="${ids}" />'.indexOf('${user.id}') < 0) {
+					AlertUtil.show("Oops~您不是球队成员喔");
 					return;
 				}
 				var _this = this;
@@ -102,9 +102,7 @@
 					url : '<c:url value="/site/team/like/${team.id}" />',
 					type : 'post',
 					success : function(res) {
-						if(res * 1) {
-							$('p a.likes').html('<img src="<c:url value="/site/images/xin.png" />" width="18">' + res);
-						}
+						$('p a.likes').html('<img src="<c:url value="/site/images/xin.png" />" width="18">' + res);
 					}
 				});
 			}
@@ -144,7 +142,7 @@
 				<dt><c:out value="${team.name}" /></dt>
 				<dd>
 				<p>活动地点：<c:out value="${team.location}" /></p>
-				<p>约战次数：10次</p>
+				<p>约战次数：${fn:length(challengeList)}次</p>
 				<p><a class="likes" href="javascript:PageUtil.like();void 0;"><img src="<c:url value="/site/images/xin.png" />" width="18"><c:out value="${team.likes }" /></a></p>
 				<c:if test="${team.members == -1 }">
 					<c:choose>
@@ -165,6 +163,10 @@
 						</c:when>
 					</c:choose>
 				</c:if>
+				<c:if test="${user.id == team.creatorId }">
+					<span><a href="<c:url value="/site/team/toUpdate/${team.id }" />" style="color:#fff;">修改</a></span>
+				</c:if>
+				
 				<c:if test="${team.members > -1 }">
 					<c:if test="${team.members == memberNum }">
 						<b class="hui_btn">名额已满</b>

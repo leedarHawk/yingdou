@@ -44,4 +44,8 @@
     	SELECT tid FROM t_userTeam WHERE uid=#{0} AND status=#{1}
     </select>
     
+    <select id="findApplicantsByTid" parameterType="int" resultType="userTeam">
+    	SELECT * FROM t_userTeam WHERE tid=#{tid} AND status=0
+    </select>
+    
 </mapper>

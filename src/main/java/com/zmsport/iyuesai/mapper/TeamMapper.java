@@ -24,6 +24,12 @@ public interface TeamMapper {
 	public void like(int id);
 	
 	/**
+	 * 球队取消点赞
+	 * @param id
+	 */
+	public void unlike(int id);
+	
+	/**
 	 * 插入球队
 	 * @param team
 	 */
@@ -33,7 +39,7 @@ public interface TeamMapper {
 	 * 修改球队
 	 * @param team
 	 */
-	public void upate(Team team);
+	public void update(Team team);
 	
 	/**
 	 * 查询某创始人的球队

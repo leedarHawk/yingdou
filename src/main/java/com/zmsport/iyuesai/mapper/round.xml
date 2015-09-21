@@ -59,6 +59,12 @@
 		 				FROM t_round r, t_team t WHERE r.creatorId!=#{uid} AND t.id=r.tid ORDER BY r.startTime DESC) AS c2
 	</select>
 	
+	<select id="getAllRoundsNew" parameterType="long" resultType="round">
+		SELECT * FROM t_round WHERE creatorId=#{uid} 
+		UNION ALL 
+		SELECT * FROM t_round WHERE creatorId!=#{uid} 
+	</select>
+	
 	<select id="findRoundById" parameterType="long" resultType="round">
 		SELECT * FROM t_round WHERE id=#{id}
 	</select>

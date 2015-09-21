@@ -64,7 +64,7 @@ public class SiteChallengeController {
 	public String list(Model model, HttpSession session) {
 		User currentUser = (User)session.getAttribute("user");
 		model.addAttribute("list", service.getAllChallenges(currentUser.getId()));
-		model.addAttribute("roundList", rService.getAllRounds(currentUser.getId()));
+		model.addAttribute("roundList", rService.getAllRoundsNew(currentUser.getId()));
 		return "/site/pages/challenge";
 	}
 	
@@ -77,7 +77,7 @@ public class SiteChallengeController {
 	public String map(Model model, HttpSession session) {
 		User currentUser = (User)session.getAttribute("user");
 		model.addAttribute("list", service.getAllChallenges(currentUser.getId()));
-		model.addAttribute("roundList", rService.getAllRounds(currentUser.getId()));
+		model.addAttribute("roundList", rService.getAllRoundsNew(currentUser.getId()));
 		return "/site/pages/challengeMap";
 	}
 	
@@ -148,9 +148,13 @@ public class SiteChallengeController {
 	@RequestMapping(value="/accept", method=RequestMethod.POST)
 	@ResponseBody
 	public String accept(AcceptInfo ai) {
-		ai.setTime(new Date(System.currentTimeMillis()));
-		aiService.insert(ai);
-		return "ok";
+		if(aiService.isAccept(ai.getChallengeId(), ai.getTid())) {
+			return "exist";
+		}else {
+			ai.setTime(new Date(System.currentTimeMillis()));
+			aiService.insert(ai);
+			return "ok";
+		}
 	}
 	
 	/**
@@ -215,10 +219,15 @@ public class SiteChallengeController {
 	@RequestMapping(value="/applyRound", method=RequestMethod.POST)
 	@ResponseBody
 	public String applyRound(HttpSession session, RoundApply roundApply) {
-		roundApply.setStatus(RoundApply.STATUS_NOT_OK);
-		roundApply.setTime(new Date(System.currentTimeMillis()));
-		raService.insert(roundApply);
-		return "ok";
+		User user = (User)session.getAttribute("user");
+		if(raService.isApply(user.getId(), roundApply.getRid())) {
+			return "exist";
+		}else {
+			roundApply.setStatus(RoundApply.STATUS_NOT_OK);
+			roundApply.setTime(new Date(System.currentTimeMillis()));
+			raService.insert(roundApply);
+			return "ok";
+		}
 	}
 	
 	/**

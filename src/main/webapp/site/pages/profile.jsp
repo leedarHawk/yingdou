@@ -12,7 +12,7 @@
 </head>
 
 <body>
-<div class="header"><span><a href="<c:url value="/site/team/allMembers?teamId=${userTeam.id }" />"><img src="<c:url value="/site/images/jt_fh.png" />">返回</a></span></div>
+<div class="header"><span><a href="<c:url value="/site/team/allMembers?teamId=${team.id }" />"><img src="<c:url value="/site/images/jt_fh.png" />">返回</a></span></div>
 <div class="main3">
 	<dl class="hy_topdl">
 	<dt><img src="<c:url value="${team.pic }" />"></dt>
@@ -27,20 +27,41 @@
     <td width="65%" height="35"><c:out value="${team.name }" /></td>
   </tr>
   <tr>
-    <td height="35" align="right">*姓名：</td>
+    <td height="35" align="right">姓名：</td>
     <td height="35"><c:out value="${member.username }" /></td>
   </tr>
   <tr>
-    <td height="35" align="right">*手机号码：</td>
-    <td height="35"><c:out value="${member.mobile }" /></td>
+    <td height="35" align="right">手机号码：</td>
+    <td height="35">
+    	<c:if test="${fn:length(memeber.mobile) > 0 }">
+    		<c:out value="${member.mobile }" />
+    	</c:if>
+    	<c:if test="${fn:length(memeber.mobile) == 0 }">
+    		无
+    	</c:if>
+    </td>
   </tr>
   <tr>
-    <td height="35" align="right">*QQ号：</td>
-    <td height="35"><c:out value="${member.qq }" /></td>
+    <td height="35" align="right">QQ号：</td>
+    <td height="35">
+		<c:if test="${fn:length(memeber.qq) > 0 }">
+    		<c:out value="${member.qq }" />
+    	</c:if>
+    	<c:if test="${fn:length(memeber.qq) == 0 }">
+    		无
+    	</c:if>
+	</td>
   </tr>
   <tr>
-    <td height="35" align="right" valign="top">给群主捎个信儿：</td>
-    <td height="35" valign="top"><c:out value="${userTeam.msg }" /></td>
+    <td height="35" align="right" valign="top">给群主捎个信：</td>
+    <td height="35" valign="top">
+		<c:if test="${fn:length(userTeam.msg) > 0 }">
+    		<c:out value="${userTeam.msg }" />
+    	</c:if>
+    	<c:if test="${fn:length(userTeam.msg) == 0 }">
+    		无
+    	</c:if>
+	</td>
   </tr>
 </table>
 

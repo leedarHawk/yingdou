@@ -21,6 +21,10 @@
 		SELECT * FROM t_challenge WHERE (teamId=#{teamId} OR guestTeamId=#{teamId}) AND status=2 
 	</select>
 	
+	<select id="findAllChallengesByTeamId" parameterType="int" resultType="challenge">
+		SELECT * FROM t_challenge WHERE (teamId=#{teamId} OR guestTeamId=#{teamId}) 
+	</select>
+	
 	<insert id="insert" parameterType="challenge">
 		INSERT INTO t_challenge (creatorId,teamId,time,location,feeType,fee,needReferee,mobile,firstBakMobile,secondBakMobile,contact,guestTeamId,score,status,ps) 
 		VALUES (#{creatorId},#{teamId},#{time},#{location},#{feeType},#{fee},#{needReferee},#{mobile},#{firstBakMobile},#{secondBakMobile},#{contact},#{guestTeamId},#{score},#{status},#{ps})

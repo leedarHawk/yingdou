@@ -206,10 +206,12 @@ input.members {
 
 <div id="mapPage">
 <script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=yukxov4aBQUGowvyGuS5lD5t"></script>
+<script type="text/javascript" src="http://developer.baidu.com/map/jsdemo/demo/convertor.js"></script>
 <script type="text/javascript">
 	var PageUtil = {
 			map : null,
 			local : null,
+			level : 18,
 			init : function() {
 				var height = $(window).height() - $('div.search').height();
 				var width = $(window).width() - 114;
@@ -223,45 +225,56 @@ input.members {
 			},
 			initMap : function() {
 				var _this = this;
-				_this.map = new BMap.Map("map");  
-				var myCity = new BMap.LocalCity();
-				myCity.get(function(result){
-					_this.map.centerAndZoom(result.name, 11);
-				});
-				_this.local = new BMap.LocalSearch(_this.map, {
-					onSearchComplete: function(results){
-						// 判断状态是否正确
-						if (_this.local.getStatus() == BMAP_STATUS_SUCCESS){
-							var point,marker,infoWindow,info,location;
-							for (var i = 0; i < results.getCurrentNumPois(); i++){
-								location = results.getPoi(i);
-								//获取坐标点
-								point = location.point;
-								//创建标注
-								marker = new BMap.Marker(point);
-								//将标注添加到地图中
-								_this.map.addOverlay(marker);
-								if(i == 0) {
-									//默认地图中心是搜索结果第一个的位置
-									_this.map.centerAndZoom(point, 15);
+				if(navigator.geolocation.getCurrentPosition) {
+					navigator.geolocation.getCurrentPosition(function(position){
+						var currentLat = position.coords.latitude; 
+						var currentLon = position.coords.longitude; 
+						var gpsPoint = new BMap.Point(currentLon, currentLat); 
+						BMap.Convertor.translate(gpsPoint, 0, function(point){
+							_this.map = new BMap.Map("map");  
+							_this.map.centerAndZoom(point, _this.level); 
+							_this.map.addOverlay(new BMap.Marker(point));
+							/* var myCity = new BMap.LocalCity();
+							myCity.get(function(result){
+								_this.map.centerAndZoom(result.name, 11);
+							}); */
+							_this.local = new BMap.LocalSearch(_this.map, {
+								onSearchComplete: function(results){
+									// 判断状态是否正确
+									if (_this.local.getStatus() == BMAP_STATUS_SUCCESS){
+										var point,marker,infoWindow,info,location;
+										for (var i = 0; i < results.getCurrentNumPois(); i++){
+											location = results.getPoi(i);
+											//获取坐标点
+											point = location.point;
+											//创建标注
+											marker = new BMap.Marker(point);
+											//将标注添加到地图中
+											_this.map.addOverlay(marker);
+											if(i == 0) {
+												//默认地图中心是搜索结果第一个的位置
+												_this.map.centerAndZoom(point, 15);
+											}
+											(function (_location,_marker,_point){
+												_marker.addEventListener("click", function(){ 
+													info = $('div.info').clone();
+													$('div.title',info).text(_location.title);
+													$('div.address',info).text(_location.address);
+													$('a.add',info).attr('data-title',_location.title);
+													//创建信息窗口对象 
+													infoWindow = new BMap.InfoWindow("");
+													infoWindow.setContent(info.html());
+													//开启信息窗口
+													_this.map.openInfoWindow(infoWindow,_point); 
+												});
+											})(location,marker,point);
+										}
+									}
 								}
-								(function (_location,_marker,_point){
-									_marker.addEventListener("click", function(){ 
-										info = $('div.info').clone();
-										$('div.title',info).text(_location.title);
-										$('div.address',info).text(_location.address);
-										$('a.add',info).attr('data-title',_location.title);
-										//创建信息窗口对象 
-										infoWindow = new BMap.InfoWindow("");
-										infoWindow.setContent(info.html());
-										//开启信息窗口
-										_this.map.openInfoWindow(infoWindow,_point); 
-									});
-								})(location,marker,point);
-							}
-						}
-					}
-				});
+							});
+						}); 
+					}); 
+				}
 			},
 			search : function() {
 				var location = $.trim($('input[name=queryLocation]').val());

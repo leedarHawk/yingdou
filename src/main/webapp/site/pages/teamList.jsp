@@ -9,21 +9,30 @@
 <meta name="format-detection" content="telephone=no" />
 <title></title>
 <link rel="stylesheet" href="<c:url value="/site/css/style.css" />" />
+<script type="text/javascript" src="<c:url value="/site/js/jquery.js" />"></script>
+<script language="javascript" type="text/javascript">
+	var PageUtil = {
+			jump : function(teamId){
+				location.href = '<c:url value="/site/team/detail/" />' + teamId;
+			}
+	}
+</script>
 </head>
 
 <body>
 <div class="header">球队<b><a href="<c:url value="/site/team/toCreate" />">创建球队</a></b></div>
 <div class="main2">
 	<c:forEach items="${list}" var="team">
-		<dl class="qiud_dl">
+		<dl class="qiud_dl" onClick="PageUtil.jump(${team.id });">
 		<dt><a href="<c:url value="/site/team/detail/${team.id }" />"><img src="<c:url value="${team.pic}" />"></a></dt>
 		<dd>
 		<strong><a href="<c:url value="/site/team/detail/${team.id }" />"><c:url value="${team.name}" /></a></strong>
 		<ul>
 		<li><span>发起人：</span><c:out value="${team.creator.username }" /></li>
-		<li><span>活动地点：</span><c:url value="${team.location}" /></li>
+		<li><span>活动地点：</span><c:out value="${team.location}" /></li>
 		<li><span>成员数量：</span>${fn:length(team.member) }</li>
-		<li><span>球队公告：</span><c:url value="${team.slogan}" /></li>
+		<li><span>球队公告：</span><c:if test="${fn:length(team.slogan) > 0}"><c:out value="${team.slogan}" /></c:if><c:if test="${fn:length(team.slogan) == 0}">无</c:if></li>
+		<li><span>球队简介：</span><c:if test="${fn:length(team.description) > 0}"><c:out value="${team.description}" /></c:if><c:if test="${fn:length(team.slogan) == 0}">无</c:if></li>
 		</ul>
 		</dd>
 		</dl>

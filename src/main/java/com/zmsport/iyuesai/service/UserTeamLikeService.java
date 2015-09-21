@@ -28,4 +28,11 @@ public interface UserTeamLikeService {
 	 * @param uid
 	 */
 	public void deleteByUid(long uid);
+	
+	/**
+	 * 删除用户对球队的点赞记录
+	 * @param tid
+	 * @param uid
+	 */
+	public void deleteLike(int tid, long uid);
 }

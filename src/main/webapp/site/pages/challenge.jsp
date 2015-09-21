@@ -12,6 +12,7 @@
 <link rel="stylesheet" href="<c:url value="/site/css/style.css" />" />
 <script type="text/javascript"
 	src="<c:url value="/site/js/jquery.js" />"></script>
+<script type="text/javascript" src="<c:url value="/site/js/common.js?t=${_time }" />"></script>
 <style type="text/css">
 	.circle {
 		border-radius: 50%;
@@ -29,10 +30,30 @@
 		font-weight:bold;
 		opacity:0.5;
 	}
+	.circleRound {
+		border-radius: 100%;
+		width: 80px;
+		height: 80px; 
+		background:#f00;
+		position:absolute;
+		left:50%;
+		top:50%;
+		margin-left:-42px;
+		margin-top:-35px;
+		text-align:center;
+		line-height:80px;
+		color:#fff;
+		font-weight:bold;
+		opacity:0.5;
+	}
+	ul.roundUl span {
+		margin-right:10px;
+	}
 </style>
 </head>
 
 <body>
+	<%@ include file="../../commons/alert.jsp"%>
 	<div class="header">
 		约战<b><a href="<c:url value="/site/challenge/publish" />">发布约战</a></b>
 	</div>
@@ -97,16 +118,31 @@
 					<c:forEach items="${roundList }" var="round">
 						<div class="yuez_con">
 							<dl class="hydy_dl">
-								<dt>
-									<a href="<c:url value="/site/team/detail/${round.team.id }" />"><img src="<c:url value="${round.team.pic }" />"></a>
+								<dt style="position:relative;">
+									<c:if test="${user.id == round.creatorId }">
+										<c:if test="${not empty round.team }">
+											<a href="javascript:detail(${round.id },${round.creatorId });void 0;"><div class="circleRound">${round.applyNum }</div><img src="<c:url value="${round.team.pic }" />"></a>
+										</c:if>
+										<c:if test="${empty round.team }">
+											<a href="javascript:detail(${round.id },${round.creatorId });void 0;"><div class="circleRound">${round.applyNum }</div><img src="<c:url value="/site/images/round.png" />"></a>
+										</c:if>
+									</c:if>
+									<c:if test="${ user.id != round.creatorId}">
+										<c:if test="${not empty round.team }">
+											<img src="<c:url value="${round.team.pic }" />">
+										</c:if>
+										<c:if test="${empty round.team }">
+											<img src="<c:url value="/site/images/round.png" />">
+										</c:if>
+									</c:if>
 								</dt>
 								<dd>
 									<strong>${round.name }</strong>
-									<ul>
-										<li><span>发起人：</span>${round.user.username }</li>
-										<li><span>时间：</span><fmt:formatDate value="${round.startTime}" pattern="yyyy年MM月dd日 HH:mm"/><c:if test="$(round.endTime != '1970-01-01 00:00:00')">至<fmt:formatDate value="${round.endTime}" pattern="yyyy年MM月dd日 HH:mm"/></c:if></li>
-										<li><span>地点：</span>${round.location }</li>
-										<li><span>已报名/招募：</span>${round.members }/<c:if test="${round.enrollType==0 }">不限</c:if><c:if test="${round.enrollType == 1 }">${round.enrollLimit }</c:if></li>
+									<ul class="roundUl">
+										<li>发起人：${round.user.username }</li>
+										<li>时间：<fmt:formatDate value="${round.startTime}" pattern="yyyy年MM月dd日 HH:mm"/><c:if test="${round.endTime != '1970-01-01 00:00:00.0'}">至<fmt:formatDate value="${round.endTime}" pattern="yyyy年MM月dd日 HH:mm"/></c:if></li>
+										<li>地点：${round.location }</li>
+										<li>已报名/招募：${round.members }/<c:if test="${round.enrollType==0 }">不限</c:if><c:if test="${round.enrollType == 1 }">${round.enrollLimit }</c:if></li>
 									</ul>
 									<p>
 										<c:if test="${round.enrollType == 1 && round.members == round.enrollLimit}">
@@ -182,11 +218,21 @@
 		
 		function accept(id) {
 			var teamId = $('#show select[name=teamId] option:selected').val();
+			var team = $('#show select[name=teamId] option:selected').text();
 			if(teamId == -1) {
+				AlertUtil.show("请选择球队");
 				return;
 			}
 			var qq = $.trim($('#show input[name=qq]').val());
 			var mobile = $.trim($('#show input[name=mobile]').val());
+			if(qq.length > 0 && !CommonUtil.isNumber(qq)) {
+				AlertUtil.show("请输入正确的qq号码");
+				return;
+			}
+			if(mobile.length > 0 && !CommonUtil.isMobile(mobile)) {
+				AlertUtil.show("请输入正确的手机号码");
+				return;
+			}
 			var msg = $.trim($('#show textarea[name=msg]').val());
 			$.ajax({
 				url : '<c:url value="/site/challenge/accept" />',
@@ -194,7 +240,9 @@
 				type : 'post',
 				success : function(res) {
 					if(res == 'ok') {
-						hidediv();
+						location.reload();
+					}else {
+						AlertUtil.show("球队" + team + "已申请过");
 					}
 				}
 			});
@@ -226,25 +274,37 @@
 		function apply(roundId,contact) {
 			var username = $.trim($('#show1 input[name="username"]').val());
 			if(username.length == 0) {
+				AlertUtil.show("请输入姓名");
 				return;
 			}
 			var height = $.trim($('#show1 input[name="height"]').val());
 			if(height.length == 0) {
+				AlertUtil.show("请输入身高");
 				return;
 			}
-			var weight = $.trim($('#show1 input[name="height"]').val());
-			if(height.length == 0) {
+			var weight = $.trim($('#show1 input[name="weight"]').val());
+			if(weight.length == 0) {
+				AlertUtil.show("请输入体重");
 				return;
 			}
 			var _contact = $.trim($('#show1 input[name="' + contact + '"]').val());
 			if(_contact.length == 0) {
+				AlertUtil.show("请输入联系方式");
 				return;
 			}
 			var msg = $.trim($('#show1 textarea[name="msg"]').val());
 			var _data;
 			if(contact == 'qq') {
+				if(!CommonUtil.isNumber(_contact)) {
+					AlertUtil.show("请输入正确的qq号码");
+					return;
+				}
 				_data = {rid:roundId,uid:${user.id},username:username,height:height,weight:weight,qq:_contact,msg:msg};
 			}else {
+				if(!CommonUtil.isMobile(_contact)) {
+					AlertUtil.show("请输入正确的手机号码");
+					return;
+				}
 				_data = {rid:roundId,uid:${user.id},username:username,height:height,weight:weight,mobile:_contact,msg:msg}
 			}
 			$.ajax({
@@ -254,6 +314,8 @@
 				success : function(res) {
 					if(res == 'ok') {
 						location.reload();
+					}else {
+						AlertUtil.show("您已报名");
 					}
 				}
 			});
@@ -291,7 +353,7 @@
 
 #bg1 {
 	display: none;
-	position: absolute;
+	position: fixed;
 	top: 0%;
 	left: 0%;
 	width: 100%;
@@ -305,7 +367,7 @@
 
 #show1 {
 	display: none;
-	position: absolute;
+	position: fixed;
 	top: 0;
 	left: 0;
 	width: 100%;
@@ -367,11 +429,11 @@
 						class="fab_text"></td>
 				</tr>
 				<tr>
-					<td height="50" align="right">*身高：</td>
+					<td height="50" align="right">*身高(cm)：</td>
 					<td height="50"><input name="height" type="text" class="fab_text"></td>
 				</tr>
 				<tr>
-					<td height="50" align="right">*体重：</td>
+					<td height="50" align="right">*体重(kg)：</td>
 					<td height="50"><input name="weight" type="text" class="fab_text"></td>
 				</tr>
 				<tr class="qq">

@@ -24,6 +24,12 @@ public interface TeamService {
 	public void like(int id);
 	
 	/**
+	 * 球队取消点赞
+	 * @param id
+	 */
+	public void unlike(int id);
+	
+	/**
 	 * 插入球队
 	 * @param team
 	 */
@@ -52,6 +58,13 @@ public interface TeamService {
 	 * @return
 	 */
 	public List<User> findUsersByTeamId(int id, int status);
+	
+	/**
+	 * 获取球队下的成员id
+	 * @param teamId
+	 * @return
+	 */
+	public String findMembersIds(int teamId);
 	
 	/**
 	 * 获取球队的新成员

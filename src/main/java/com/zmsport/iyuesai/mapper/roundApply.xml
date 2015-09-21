@@ -14,6 +14,14 @@
 		SELECT * FROM t_roundApply WHERE uid=#{uid} ORDER BY time DESC
 	</select>
 	
+	<select id="getRoundApplyByUidAndRid" resultType="roundApply">
+		SELECT * FROM t_roundApply WHERE uid=#{0} AND rid=#{1}
+	</select>
+	
+	<select id="getRoundApplyRid" parameterType="long" resultType="roundApply">
+		SELECT * FROM t_roundApply WHERE rid=#{1} AND status=0
+	</select>
+	
 	<insert id="insert" parameterType="roundApply">
 		INSERT INTO t_roundApply (rid,username,height,weight,mobile,qq,msg,time,status,uid) 
 		VALUES (#{rid},#{username},#{height},#{weight},#{mobile},#{qq},#{msg},#{time},#{status},#{uid})

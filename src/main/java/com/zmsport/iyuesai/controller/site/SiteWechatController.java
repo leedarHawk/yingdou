@@ -171,7 +171,6 @@ public class SiteWechatController {
 		order.setOut_trade_no(orderNo);
 		//订单总金额,单位为分,不能带小数点
 		order.setTotal_fee(fee * 100);
-		order.setTotal_fee(1);
 		//订单生成的机器 IP
 		order.setSpbill_create_ip(IpUtil.getRealIp());
 		//接受微信支付成功通知

@@ -1,7 +1,11 @@
 package com.zmsport.iyuesai.util;
 
 import java.awt.image.BufferedImage;
-import java.io.*;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.InputStream;
+import java.util.Properties;
 
 import javax.imageio.ImageIO;
 
@@ -22,17 +26,37 @@ public final class FileUtil {
 	/**
 	 * 上传图片目录
 	 */
-	public static final String UPLOAD_DIR = "upload";
+	public static String UPLOAD_DIR = "upload";
 
 	/**
 	 * 比赛图片目录
 	 */
-	public static final String GAME_DIR = "game";
+	public static String GAME_DIR = "game";
 
 	/**
 	 * 球队图片目录
 	 */
-	public static final String TEAM_DIR = "team";
+	public static String TEAM_DIR = "team";
+	
+	static {
+		Properties p = new Properties();  
+        try {  
+            InputStream in = FileUtil.class.getResourceAsStream("/config.properties");
+            p.load(in);  
+            in.close();  
+            if(p.getProperty("upload.dir") != null && p.getProperty("upload.dir").length() > 0) {
+            	UPLOAD_DIR = p.getProperty("upload.dir");
+            }
+            if(p.getProperty("game.dir") != null && p.getProperty("game.dir").length() > 0) {
+            	GAME_DIR = p.getProperty("game.dir");
+            }
+            if(p.getProperty("team.dir") != null && p.getProperty("team.dir").length() > 0) {
+            	TEAM_DIR = p.getProperty("team.dir");
+            }
+        } catch (IOException ex) {  
+        	log.error("读取config.properties文件错误");
+        }  
+	}
 
 	/**
 	 * 上传比赛图片文件
@@ -51,6 +75,10 @@ public final class FileUtil {
 		String relativePath = File.separator + UPLOAD_DIR + File.separator
 				+ GAME_DIR;
 		File targetFile = new File(absolutePath, fileName);
+		File dir = new File(absolutePath);
+		if (!dir.exists()) {
+			dir.mkdirs();
+		}
 		try {
 			file.transferTo(targetFile);
 		} catch (Exception e) {
@@ -123,22 +151,18 @@ public final class FileUtil {
 	 * @param creatorId
 	 * @param realPath
 	 */
-	public static void deleteTeamAlbum(final long creatorId, String contextPath) {
+	public static void deleteTeamAlbum(long creatorId, String contextPath) {
 		String realPath = contextPath + File.separator + UPLOAD_DIR + File.separator
 				+ TEAM_DIR;
 		File dir = new File(realPath);
-		File[] files = dir.listFiles(new FilenameFilter(){
-
-			@Override
-			public boolean accept(File dir, String name) {
-				if(name.endsWith("_" + creatorId)) {
-					return true;
-				}else {
-					return false;
-				}
+		File[] files = dir.listFiles((fileDir, name)->{
+			// TODO Auto-generated method stub
+			if(name.endsWith("_" + creatorId)) {
+				return true;
+			}else {
+				return false;
 			}
 		});
-
 		for(File f : files) {
 			if(f.isDirectory()) {
 				f.delete();

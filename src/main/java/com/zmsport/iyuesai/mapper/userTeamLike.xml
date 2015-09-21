@@ -15,4 +15,8 @@
     	DELETE FROM t_userTeamLike WHERE uid=#{id};
     </delete>
     
+    <delete id="deleteLike">
+    	DELETE FROM t_userTeamLike WHERE tid=#{0} AND uid=#{1}
+    </delete>
+    
 </mapper>

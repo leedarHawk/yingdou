@@ -3,15 +3,15 @@ package com.zmsport.iyuesai.service;
 import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
-
+import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
 import com.zmsport.iyuesai.mapper.Team;
 import com.zmsport.iyuesai.mapper.TeamMapper;
 import com.zmsport.iyuesai.mapper.User;
 import com.zmsport.iyuesai.mapper.UserMapper;
 import com.zmsport.iyuesai.mapper.UserTeam;
+import com.zmsport.iyuesai.mapper.UserTeamMapper;
 /**
  * 球队service实现
  * @author bilei
@@ -25,6 +25,9 @@ public class TeamServiceImpl implements TeamService {
 	
 	@Autowired 
 	private UserMapper uMapper;
+	
+	@Autowired
+	private UserTeamMapper utMapper;
 	
 	@Override
 	public Team findTeamById(int id) {
@@ -43,7 +46,7 @@ public class TeamServiceImpl implements TeamService {
 	@Override
 	public void update(Team team) {
 		// TODO Auto-generated method stub
-		mapper.upate(team);
+		mapper.update(team);
 	}
 
 	@Override
@@ -123,6 +126,7 @@ public class TeamServiceImpl implements TeamService {
 		for(Team team : list) {
 			team.setCreator(uMapper.findUserById(team.getCreatorId()));
 			team.setMember(mapper.findUsersByTeamId(team.getId(), UserTeam.STATUS_CONFIRMED));
+			team.setApplicants(utMapper.findApplicantsByTid(team.getId()));
 		}
 		return list;
 	}
@@ -137,5 +141,22 @@ public class TeamServiceImpl implements TeamService {
 	public void deleteByUid(long uid) {
 		// TODO Auto-generated method stub
 		
+	}
+
+	@Override
+	public String findMembersIds(int teamId) {
+		// TODO Auto-generated method stub
+		List<User> list = mapper.findUsersByTeamId(teamId, UserTeam.STATUS_CONFIRMED);
+		List<Long> idList = new ArrayList<Long>();
+		for(User user : list) {
+			idList.add(user.getId());
+		}
+		return StringUtils.join(idList, ",");
+	}
+
+	@Override
+	public void unlike(int id) {
+		// TODO Auto-generated method stub
+		mapper.unlike(id);
 	}
 }

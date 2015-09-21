@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>后台管理-登录</title>
+<title>篮球后台管理-登录</title>
 <link rel="stylesheet" type="text/css" href="<spring:url value="/admin/css/login.css" />" />
 <script type="text/javascript" src="<spring:url value="/admin/js/jquery.min.js" />"></script>
 <script type="text/javascript" src="<spring:url value="/admin/js/jquery-ui.min.js" />"></script>
@@ -64,17 +64,22 @@
 			}
 	};
 </script>
+<style type="text/css">
+	body {
+		background:url('<c:url value="/admin/images/bg.jpg" />') no-repeat 30% 25%;
+	}
+</style>
 </head>
 <body>
 	<div id="loginPanel">
-		<div class="titleBar">后台管理</div>
+		<div class="titleBar">篮球后台管理</div>
 		<form id="login" name="login" action="<spring:url value="/admin/pages/index.jsp" />" method="post">
 			<div class="tooltip"></div>
 			<div style="margin-top:60px">
-				<label>用户<input type="text" class="input" name="username" /></label>
+				<label>用户<input type="text" class="input" name="username" placeholder="用户名" /></label>
 			</div>
 			<div>
-				<label>密码<input type="password" class="input" name="password" /></label>
+				<label>密码<input type="password" class="input" name="password" placeholder="密码" /></label>
 			</div>
 			<div style="margin-top:30px">
 				<input type="submit" class="button" value="确定" />

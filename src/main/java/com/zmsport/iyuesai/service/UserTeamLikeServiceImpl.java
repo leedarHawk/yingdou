@@ -34,4 +34,10 @@ public class UserTeamLikeServiceImpl implements UserTeamLikeService {
 		mapper.deleteByUid(uid);
 	}
 
+	@Override
+	public void deleteLike(int tid, long uid) {
+		// TODO Auto-generated method stub
+		mapper.deleteLike(tid, uid);
+	}
+
 }

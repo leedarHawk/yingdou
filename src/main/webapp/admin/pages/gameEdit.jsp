@@ -25,6 +25,9 @@
 					if($('input[name="fee"]').val().length == 0) {
 						$('input[name="fee"]').val(0);
 					}
+					if($('input[name="teamNum"]').val().length == 0) {
+						$('input[name="teamNum"]').val(0);
+					}
 				});
 			},
 			check : function() {
