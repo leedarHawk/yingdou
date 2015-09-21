@@ -1,0 +1,9 @@
+0. 修改appid
+1. 停止 tomcat
+2. 备份 yingdou 下的upload 目录 cp －R ${tomcat_home}/webapps/yingdou.war/upload /tmp/20150921/upload
+3. 检查 /tmp/20150921/upload， 是否拷贝成功，如果不成功再做一次第二步
+4. 删除 webapps 下的硬斗目录
+5. 拷贝新的 yingdou.war， 修改数据库链接
+6. 启动 tomcat
+7. 拷贝备份的upload目录，cp －R /tmp/20150921/upload ${tomcat_home}/webapps/yingdou.war/upload
+8. 通知开发者进行检查
