@@ -20,10 +20,14 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.zmsport.iyuesai.mapper.AcceptInfo;
 import com.zmsport.iyuesai.mapper.Challenge;
+import com.zmsport.iyuesai.mapper.Round;
+import com.zmsport.iyuesai.mapper.RoundApply;
 import com.zmsport.iyuesai.mapper.Team;
 import com.zmsport.iyuesai.mapper.User;
 import com.zmsport.iyuesai.service.AcceptInfoService;
 import com.zmsport.iyuesai.service.ChallengeService;
+import com.zmsport.iyuesai.service.RoundApplyService;
+import com.zmsport.iyuesai.service.RoundService;
 import com.zmsport.iyuesai.service.TeamService;
 
 
@@ -45,8 +49,14 @@ public class SiteChallengeController {
 	@Autowired
 	private AcceptInfoService aiService;
 	
+	@Autowired
+	private RoundService rService;
+	
+	@Autowired
+	private RoundApplyService raService;
+	
 	/**
-	 * 获取约占列表
+	 * 获取约战列表
 	 * @param model
 	 * @return
 	 */
@@ -54,7 +64,21 @@ public class SiteChallengeController {
 	public String list(Model model, HttpSession session) {
 		User currentUser = (User)session.getAttribute("user");
 		model.addAttribute("list", service.getAllChallenges(currentUser.getId()));
+		model.addAttribute("roundList", rService.getAllRounds(currentUser.getId()));
 		return "/site/pages/challenge";
+	}
+	
+	/**
+	 * 获取约战地图模式
+	 * @param model
+	 * @return
+	 */
+	@RequestMapping(value="/map", method=RequestMethod.GET)
+	public String map(Model model, HttpSession session) {
+		User currentUser = (User)session.getAttribute("user");
+		model.addAttribute("list", service.getAllChallenges(currentUser.getId()));
+		model.addAttribute("roundList", rService.getAllRounds(currentUser.getId()));
+		return "/site/pages/challengeMap";
 	}
 	
 	/**
@@ -148,5 +172,91 @@ public class SiteChallengeController {
 		}
 		model.addAttribute("list", resultList);
 		return "/site/pages/acceptInfoList";
+	}
+	
+	/**
+	 * 接受应战
+	 * @param guestId
+	 * @param challengeId
+	 * @return
+	 */
+	@RequestMapping(value="/acceptChallenge/{guestId}/{challengeId}", method=RequestMethod.GET)
+	public String acceptChallenge(@PathVariable int guestId, @PathVariable long challengeId) {
+		service.updateGuestTeamId(guestId, challengeId);
+		service.updateStatus(Challenge.STATUS_STARTED, challengeId);
+		return "redirect:/site/challenge/list";
+	}
+	
+	/**
+	 * 发布球局
+	 * @param session
+	 * @param model
+	 * @return
+	 */
+	@RequestMapping(value="/publishRound", method=RequestMethod.POST)
+	public String publishRound(HttpSession session, Round round) {
+		User currentUser = (User)session.getAttribute("user");
+		round.setCreatorId(currentUser.getId());
+		round.setTime(new Date(System.currentTimeMillis()));
+		if(round.getMembers() == 0) {
+			//包含创始人，所以最少为1
+			round.setMembers(1);
+		}
+		rService.insert(round);
+		return "redirect:/site/challenge/list";
+	}
+	
+	/**
+	 * 申请加入球局
+	 * @param session
+	 * @param model
+	 * @return
+	 */
+	@RequestMapping(value="/applyRound", method=RequestMethod.POST)
+	@ResponseBody
+	public String applyRound(HttpSession session, RoundApply roundApply) {
+		roundApply.setStatus(RoundApply.STATUS_NOT_OK);
+		roundApply.setTime(new Date(System.currentTimeMillis()));
+		raService.insert(roundApply);
+		return "ok";
+	}
+	
+	/**
+	 * 球局申请列表
+	 * @param session
+	 * @param model
+	 * @return
+	 */
+	@RequestMapping(value="/roundApplyList/{rid}/{creatorId}", method=RequestMethod.GET)
+	public String roundApplyList(@PathVariable long rid, @PathVariable long creatorId,Model model) {
+		model.addAttribute("list", raService.getAllRoundApplys(rid));
+		model.addAttribute("creatorId", creatorId);
+		return "/site/pages/roundApplyList";
+	}
+	
+	/**
+	 * 确定加入球局
+	 * @param session
+	 * @param model
+	 * @return
+	 */
+	@RequestMapping(value="/confirmRound", method=RequestMethod.POST)
+	@ResponseBody
+	public String confirmRound(@RequestParam long roundApplyId, @RequestParam long roundId) {
+		raService.updateStatus(RoundApply.STATUS_OK, roundApplyId);
+		rService.updateMembers(roundId);
+		return "ok";
+	}
+	
+	/**
+	 * 查看球局报名信息
+	 * @param session
+	 * @param model
+	 * @return
+	 */
+	@RequestMapping(value="/showRoundApply", method=RequestMethod.GET)
+	@ResponseBody
+	public Object showRoundApply(@RequestParam long roundApplyId) {
+		return raService.getRoundApplyById(roundApplyId);
 	}
 }

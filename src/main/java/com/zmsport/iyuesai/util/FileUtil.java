@@ -1,10 +1,7 @@
 package com.zmsport.iyuesai.util;
 
 import java.awt.image.BufferedImage;
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FilenameFilter;
-import java.io.IOException;
+import java.io.*;
 
 import javax.imageio.ImageIO;
 
@@ -126,23 +123,27 @@ public final class FileUtil {
 	 * @param creatorId
 	 * @param realPath
 	 */
-	public static void deleteTeamAlbum(long creatorId, String contextPath) {
-//		String realPath = contextPath + File.separator + UPLOAD_DIR + File.separator
-//				+ TEAM_DIR;
-//		File dir = new File(realPath);
-//		File[] files = dir.listFiles((fileDir, name)->{
-//			// TODO Auto-generated method stub
-//			if(name.endsWith("_" + creatorId)) {
-//				return true;
-//			}else {
-//				return false;
-//			}
-//		});
-//		for(File f : files) {
-//			if(f.isDirectory()) {
-//				f.delete();
-//			}
-//		}
+	public static void deleteTeamAlbum(final long creatorId, String contextPath) {
+		String realPath = contextPath + File.separator + UPLOAD_DIR + File.separator
+				+ TEAM_DIR;
+		File dir = new File(realPath);
+		File[] files = dir.listFiles(new FilenameFilter(){
+
+			@Override
+			public boolean accept(File dir, String name) {
+				if(name.endsWith("_" + creatorId)) {
+					return true;
+				}else {
+					return false;
+				}
+			}
+		});
+
+		for(File f : files) {
+			if(f.isDirectory()) {
+				f.delete();
+			}
+		}
 	}
 	
 	/**

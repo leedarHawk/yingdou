@@ -77,7 +77,7 @@
 		<div class="TabbedPanelsContent">
 		<c:forEach items="${gameList }" var="game">
 			<div class="hywo_con">
-				<dl class="hywo_dl">
+				<dl class="hywo_dl hydy_dl">
 					<dt><a href=""><img src="<c:url value="${game.pic }" />"></a></dt>
 					<dd>
 						<strong><a href=""><c:out value="${game.name }" /></a></strong>
@@ -108,32 +108,21 @@
 
 		<!--球局-->
 		<div class="TabbedPanelsContent">
-	<%-- <dl class="hydy_dl">
-	<dt><a href=""><img src="<c:url value="/site/images/in_tp2.jpg" />"></a></dt>
-	<dd>
-	<strong><a href="">喜欢打篮球的一起来嗨森！</a></strong>
-	<ul>
-	<li><span>发起人：</span>长腿美眉</li>
-	<li><span>时间：</span>2015年9月12日 18:00</li>
-	<li><span>地点：</span>北京体育大学</li>
-	<li><span>剩余/招募：</span>5/6</li>
-	</ul>
-	</dd>
-	</dl>
-	
-	<dl class="hydy_dl">
-	<dt><a href=""><img src="<c:url value="/site/images/in_tp2.jpg" />"></a></dt>
-	<dd>
-	<strong><a href="">喜欢打篮球的一起来嗨森！</a></strong>
-	<ul>
-	<li><span>发起人：</span>长腿美眉</li>
-	<li><span>时间：</span>2015年9月12日 18:00</li>
-	<li><span>地点：</span>北京体育大学</li>
-	<li><span>剩余/招募：</span>5/6</li>
-	</ul>
-	<b>已参加</b>
-	</dd>
-	</dl> --%>
+		<c:forEach items="${myRoundApplys }" var="ra">
+			<dl class="hydy_dl">
+			<dt><img src="<c:url value="${ra.round.team.pic }" />"></dt>
+			<dd>
+			<strong>${round.name }</strong>
+			<ul>
+			<li><span>发起人：</span>${ra.round.user.username }</li>
+			<li><span>时间：</span><fmt:formatDate value="${ra.round.startTime}" pattern="yyyy年MM月dd日 HH:mm"/><c:if test="$(round.endTime != '1970-01-01 00:00:00')">至<fmt:formatDate value="${ra.round.endTime}" pattern="yyyy年MM月dd日 HH:mm"/></c:if></li>
+			<li><span>地点：</span>${ra.round.location }</li>
+			<li><span>报名/招募：</span>${ra.round.members }/<c:if test="${ra.round.enrollType==0 }">不限</c:if><c:if test="${ra.round.enrollType == 1 }">${ra.round.enrollLimit }</c:if></li>
+			</ul>
+			<c:if test="${ra.status == 0 }"><b>审核中</b></c:if><c:if test="${ra.status == 1 }"><b>已参加</b></c:if>
+			</dd>
+			</dl>
+		</c:forEach>
 		</div>
 		
 		<!--我的球队-->

@@ -16,7 +16,10 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import com.zmsport.iyuesai.mapper.Team;
 import com.zmsport.iyuesai.mapper.User;
 import com.zmsport.iyuesai.mapper.UserTeam;
+import com.zmsport.iyuesai.service.ChallengeService;
 import com.zmsport.iyuesai.service.GameApplyService;
+import com.zmsport.iyuesai.service.RoundApplyService;
+import com.zmsport.iyuesai.service.RoundService;
 import com.zmsport.iyuesai.service.TeamService;
 import com.zmsport.iyuesai.service.UserService;
 import com.zmsport.iyuesai.service.UserTeamService;
@@ -43,6 +46,15 @@ public class SiteUserController {
 	
 	@Autowired
 	private GameApplyService gayService;
+	
+	@Autowired
+	private RoundService rService;
+	
+	@Autowired
+	private RoundApplyService raService;
+	
+	@Autowired
+	private ChallengeService cService;
 	
 	/**
 	 * 跳转到注册页面
@@ -80,6 +92,8 @@ public class SiteUserController {
 		model.addAttribute("list", list);
 		//我参加的赛事
 		model.addAttribute("gameList", gayService.getMyGames(currentUser.getId()));
+		//我的球局
+		model.addAttribute("myRoundApplys", raService.getRoundApplyByUid(currentUser.getId()));
 		return "/site/pages/" + path;
 	}
 	
@@ -99,11 +113,15 @@ public class SiteUserController {
 			//我参加的赛事
 			model.addAttribute("gameList", gayService.getMyGames(currentUser.getId()));
 			model.addAttribute("num", this.getApplyMemberNum(currentUser.getId()));
+			//我的球局
+			model.addAttribute("myRoundApplys", raService.getRoundApplyByUid(currentUser.getId()));
 			return "/site/pages/me";
 		}else {
 			model.addAttribute("user", user);
 			//他参加的赛事
 			model.addAttribute("gameList", gayService.getMyGames(user.getId()));
+			//他的球局
+			model.addAttribute("myRoundApplys", raService.getRoundApplyByUid(user.getId()));
 			return "/site/pages/him";
 		}
 	}

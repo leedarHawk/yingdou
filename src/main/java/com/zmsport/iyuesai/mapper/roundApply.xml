@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zmsport.iyuesai.mapper.RoundApplyMapper">
+	<select id="getAllRoundApplys" parameterType="long" resultType="roundApply">
+		SELECT * FROM t_roundApply WHERE rid=#{rid} ORDER BY time DESC
+	</select>
+	
+	<select id="getRoundApplyById" parameterType="long" resultType="roundApply">
+		SELECT * FROM t_roundApply WHERE id=#{id}
+	</select>
+	
+	<select id="getRoundApplyByUid" parameterType="long" resultType="roundApply">
+		SELECT * FROM t_roundApply WHERE uid=#{uid} ORDER BY time DESC
+	</select>
+	
+	<insert id="insert" parameterType="roundApply">
+		INSERT INTO t_roundApply (rid,username,height,weight,mobile,qq,msg,time,status,uid) 
+		VALUES (#{rid},#{username},#{height},#{weight},#{mobile},#{qq},#{msg},#{time},#{status},#{uid})
+	</insert>
+	
+	<update id="updateStatus">
+		UPDATE t_roundApply SET status=#{0} WHERE id=#{1}
+	</update>
+</mapper>

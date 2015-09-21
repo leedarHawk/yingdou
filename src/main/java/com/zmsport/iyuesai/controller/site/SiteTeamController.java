@@ -20,6 +20,7 @@ import com.zmsport.iyuesai.mapper.Team;
 import com.zmsport.iyuesai.mapper.User;
 import com.zmsport.iyuesai.mapper.UserTeam;
 import com.zmsport.iyuesai.mapper.UserTeamLike;
+import com.zmsport.iyuesai.service.ChallengeService;
 import com.zmsport.iyuesai.service.TeamAlbumService;
 import com.zmsport.iyuesai.service.TeamService;
 import com.zmsport.iyuesai.service.UserService;
@@ -50,6 +51,9 @@ public class SiteTeamController {
 	
 	@Autowired
 	private UserTeamLikeService utlService;
+	
+	@Autowired
+	private ChallengeService cService;
 	
 	/**
 	 * 创建球队
@@ -125,6 +129,8 @@ public class SiteTeamController {
 		model.addAttribute("status", utService.getCurrentUserTeamStatus(user.getId(), team.getId()));
 		model.addAttribute("albumList", taService.findTeamAlbumByTeamId(team.getId()));
 		model.addAttribute("memberNum", utService.getMemberNum(team.getId()));
+		//约战记录
+		model.addAttribute("challengeList", cService.findChallengesByTeamId(id));
 		return "/site/pages/team";
 	}
 	

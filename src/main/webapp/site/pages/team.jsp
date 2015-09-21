@@ -218,53 +218,47 @@
 		
 
 		<div class="TabbedPanelsContent">
-				<dl class="hy_toptx">
-				<dt><img src="images/in_tp2.jpg"></dt>
-				</dl>
-				<dl class="ph_jsh">
-				<dt>硬斗沈阳—3V3占地为王挑战赛</dt>
-				<dd>
-				<p>活动地点：沈阳体育中心</p>
-				<p>约战次数：10次</p>
-				<p><img src="images/xin.png" width="18">231</p>
-				<span><a href="">我要加入</a></span>
-				<!--<b class="hui_btn">等待批准</b>-->
-				</dd>
-				</dl>
-				
-				<div class="yuez_con">
-					<dl class="hybs_dl">
-					<dt><img src="images/in_tp2.jpg">樱木花道队</dt>
-					<dd>
-					<strong>7:6</strong>
-					<p>比赛完成</p>
-					</dd>
-					<dt><img src="images/in_tp2.jpg">潇潇闹革命</dt>
-					</dl>
-					<ul class="hybs_ul">
-					<li>时间：2015年9月12日 18:00</li>
-					<li>裁判：待定</li>
-					<li>地点：北京体育大学</li>
-					<li>费用：¥400(AA)</li>
-					</ul>
-				</div>
-				
-				<div class="yuez_con">
-					<dl class="hybs_dl">
-					<dt><img src="images/in_tp2.jpg">樱木花道队</dt>
-					<dd>
-					<strong>7:6</strong>
-					<p>比赛完成</p>
-					</dd>
-					<dt><img src="images/in_tp2.jpg">潇潇闹革命</dt>
-					</dl>
-					<ul class="hybs_ul">
-					<li>时间：2015年9月12日 18:00</li>
-					<li>裁判：待定</li>
-					<li>地点：北京体育大学</li>
-					<li>费用：¥400(AA)</li>
-					</ul>
-				</div>
+				<c:forEach items="${challengeList }" var="challenge">
+						<div class="yuez_con">
+							<dl class="hybs_dl">
+								<dt>
+									<img src="<c:url value="${challenge.host.pic }" />"><c:out value="${challenge.host.name }" />
+								</dt>
+								<dd>
+									<c:if test="${empty challenge.guest }">
+										<strong>VS</strong>
+										<p>等待应战</p>
+									</c:if>
+									<c:if test="${not empty challenge.guest }">
+										<c:if test="${challenge.status==1 }">
+											<strong>VS</strong>
+											<p>等待上传比分</p>
+										</c:if>
+										<c:if test="${challenge.status==2 }">
+											<strong>${challenge.score }</strong>
+											<p>比赛完成</p>
+										</c:if>
+									</c:if>
+								</dd>
+								<dt>
+									<c:if test="${empty challenge.guest }">
+										<div style="position:relative;"><c:if test="${challenge.creatorId == user.id }"><a href="<c:url value="/site/challenge/acceptInfoList/${challenge.id }" />"><div class="circle">${challenge.count }</div></a></c:if><img src="<c:url value="/site/images/tx_no.png" />"></div><input
+											class="lv_btn" id="btnshow" onClick="showdiv(<c:out value="${challenge.id }" />,<c:out value="${challenge.teamId}" />);" name=""
+											type="button" value="应战">
+									</c:if>
+									<c:if test="${not empty challenge.guest }">
+										<img src="<c:url value="${challenge.guest.pic }" />"><c:out value="${challenge.guest.name }" />
+									</c:if>
+								</dt>
+							</dl>
+							<ul class="hybs_ul">
+								<li>时间：<fmt:formatDate value="${challenge.time}" type="both" pattern="yyyy年MM月dd日 HH:mm"/></li>
+								<li>裁判：<c:if test="${challenge.needReferee == 1 }">待定</c:if><c:if test="${challenge.needReferee == 0 }">无</c:if></li>
+								<li>地点：<c:out value="${challenge.location }" /></li>
+								<li>费用：<c:if test="${challenge.feeType == 0 }">免费</c:if><c:if test="${challenge.feeType == 1 }">¥<c:out value="${challenge.fee }" />(AA)</c:if></li>
+							</ul>
+						</div>
+					</c:forEach>
 			
 		</div>
 		

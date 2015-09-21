@@ -29,6 +29,64 @@
 					}
 					return true;
 				});
+				$('#roundForm').submit(function() {
+					if(!_this.checkRound()) {
+						return false;
+					}
+					return true;
+				});
+			},
+			checkRound : function() {
+				var name = $.trim($('#roundForm input[name="name"]').val());
+				if(name.length == 0) {
+					AlertUtil.show("请输入球局名");
+					return false;
+				}
+				var teamId = $('#roundForm select[name="tid"] option:selected').val();
+				if(teamId < 0) {
+					AlertUtil.show("请选择球队");
+					return false;
+				}else {
+					$('#roundForm select[name="tid"]').val(teamId);
+				}
+				var startDate = $('#roundForm input[name="startDate"]').val();
+				var startTimestamp = $('#roundForm input[name="startTimestamp"]').val();
+				if(startDate.length == 0 || startTimestamp.length == 0) {
+					AlertUtil.show("请选择开始时间");
+					return false;
+				}else {
+					$('#roundForm input[name="startTime"]').val(startDate + " " + startTimestamp + ":00");
+				}
+				var endDate = $('#roundForm input[name="endDate"]').val();
+				var endTimestamp = $('#roundForm input[name="endTimestamp"]').val();
+				if(endDate.length == 0 || endTimestamp.length == 0) {
+					endDate = "1970-01-01";
+					endTimestamp = "00:00";
+				}
+				$('#roundForm input[name="endTime"]').val(endDate + " " + endTimestamp + ":00");
+				var location = $.trim($('#roundForm input[name="location"]').val());
+				if(location.length == 0) {
+					AlertUtil.show("请选择地点");
+					return false;
+				}
+				var mobile = $.trim($('#roundForm input[name="mobile"]').val());
+				if(mobile.length == 0) {
+					AlertUtil.show("请填写联系电话");
+					return false;
+				}
+				var enrollLimit = $.trim($('#roundForm input[name="enrollLimit"]').val());
+				if(enrollLimit.length == 0) {
+					$('#roundForm input[name="enrollLimit"]').val(0);
+				}
+				var members = $.trim($('#roundForm input[name="members"]').val());
+				if(members.length == 0) {
+					$('#roundForm input[name="members"]').val(0);
+				}
+				var fee = $.trim($('#roundForm input[name="fee"]').val());
+				if(fee.length == 0) {
+					$('#roundForm input[name="fee"]').val(0);
+				}
+				return true;
 			},
 			check : function() {
 				var teamId = $('select[name="teamId"] option:selected').val();
@@ -46,36 +104,41 @@
 				}else {
 					$('input[name=time]').val(date + " " + timestamp + ":00");
 				}
-				var location = $.trim($('input[name=location]').val());
+				var location = $.trim($('#matchForm input[name=location]').val());
 				if(location.length == 0) {
 					AlertUtil.show("请输入地点");
 					return false;
 				}
 				var needReferee = $('select[name=needReferee] option:selected').val();
 				$('select[name=needReferee]').val(needReferee);
-				var feeType = $('input[name=feeType]:checked').val();
+				var feeType = $('#matchForm input[name=feeType]:checked').val();
 				if(feeType == '0') {
 					$('input[name=fee]').val(0);
 				}else {
-					var fee = $.trim($('input[name=fee]').val());
+					var fee = $.trim($('#matchForm input[name=fee]').val());
 					if(fee.length == 0) {
 						AlertUtil.show("请输入费用");
 						return false;
 					}else {
-						$('input[name=fee]').val(fee);
+						$('#matchForm input[name=fee]').val(fee);
 					}
 				}
-				var mobile = $.trim($('input[name=mobile]').val());
+				var mobile = $.trim($('#matchForm input[name=mobile]').val());
 				if(mobile.length == 0) {
 					ALertUtil.show("请输入联系电话");
 					return false
 				}else {
-					$('input[name=mobile]').val(mobile);
+					$('#matchForm input[name=mobile]').val(mobile);
 				}
 				return true;
 			}
 	};
 </script>
+<style type="text/css">
+	#roundForm table td {
+		padding:2px 0px;
+	}
+</style>
 </head>
 
 <body>
@@ -179,76 +242,88 @@
 
 				<!--球局-->
 				<div class="TabbedPanelsContent">
-					<table width="100%" border="0" cellspacing="0" cellpadding="0">
-						<tr>
-							<td width="43%" height="40" align="right">*发起人：</td>
-							<td width="57%" height="40">肖肖闹革命</td>
-						</tr>
-						<tr>
-							<td height="40" align="right">*球局名称：</td>
-							<td height="40"><select name="" class="fab_sel"></select></td>
-						</tr>
-						<tr>
-							<td height="40" align="right">*开始时间：</td>
-							<td height="40"><input name="" type="text" class="fab_text"></td>
-						</tr>
-						<tr>
-							<td height="40" align="right">结束时间：</td>
-							<td height="40"><input name="" type="text" class="fab_text"></td>
-						</tr>
-						<tr>
-							<td height="40" align="right">*地点：</td>
-							<td height="40"><a href="#" class="fab_a">进入地图查找</a></td>
-						</tr>
-						<tr>
-							<td height="40" align="right">&nbsp;</td>
-							<td height="40"><input name="Input" type="text"
-								class="fab_text" value="手动录入"></td>
-						</tr>
-						<tr>
-							<td height="40" align="right">*费用：</td>
-							<td height="40">免费</td>
-						</tr>
-						<tr>
-							<td height="40" align="right">&nbsp;</td>
-							<td height="40">AA <img class="fab_ico" src="images/dui.png"
-								width="18" height="18"><input name="Input" type="text"
-								class="fab_text2" value="¥"></td>
-						</tr>
-						<tr>
-							<td height="40" align="right">已有人数：</td>
-							<td height="40">3人</td>
-						</tr>
-						<tr>
-							<td height="40" align="right">招募人数：</td>
-							<td height="40">不限</td>
-						</tr>
-						<tr>
-							<td height="40" align="right">&nbsp;</td>
-							<td height="40">限定 <img class="fab_ico" src="images/dui.png"
-								width="18" height="18"><input name="Input" type="text"
-								class="fab_text2" value=""></td>
-						</tr>
-						<tr>
-							<td height="40" align="right">*联系电话：</td>
-							<td height="40"><input name="Input2" type="text"
-								class="fab_text"></td>
-						</tr>
-						<tr>
-							<td height="40" align="right">需要参加者留下：</td>
-							<td height="40"><span class="right">QQ <img
-									class="fab_ico" src="images/dui.png" width="18" height="18"></span>手机号</td>
-						</tr>
-						<tr>
-							<td height="40" align="right">&nbsp;</td>
-							<td height="40"><input name="Input4" type="text"
-								class="fab_text"></td>
-						</tr>
-						<tr>
-							<td height="90" align="right">&nbsp;</td>
-							<td><input class="lv_btn" name="" type="button" value="提交"></td>
-						</tr>
-					</table>
+					<form id="roundForm" action="<c:url value="/site/challenge/publishRound" />" method="post">
+						<input type="hidden" name="startTime" />
+						<input type="hidden" name="endTime" value="0" />
+						<table width="100%" border="0" cellspacing="0" cellpadding="0">
+							<tr>
+								<td width="43%" height="40" align="right">*发起人：</td>
+								<td width="57%" height="40">${user.username }</td>
+							</tr>
+							<tr>
+								<td height="40" align="right">*球局名称：</td>
+								<td height="40"><input name="name" type="text" class="fab_text" /></td>
+							</tr>
+							<tr>
+								<td height="40" align="right">*我的球队：</td>
+								<td height="40">
+									<select name="tid" class="fab_sel">
+										<option value="-1">-请选择-</option>
+										<c:forEach items="${list }" var="team">
+											<option value="${team.id }">${team.name }</option>
+										</c:forEach>
+									</select>
+								</td>
+							</tr>
+							<tr>
+								<td height="40" align="right">*开始时间：</td>
+								<td height="40">
+									<input class="fab_sel" style="width:148px;" type="date" name="startDate" /><input class="fab_sel" style="width:148px;" type="time" name="startTimestamp" />
+								</td>
+							</tr>
+							<tr>
+								<td height="40" align="right">结束时间：</td>
+								<td height="40">
+									<input class="fab_sel" style="width:148px;" type="date" name="endDate" /><input class="fab_sel" style="width:148px;" type="time" name="endTimestamp" />
+								</td>
+							</tr>
+							<tr>
+								<td height="40" align="right">*地点：</td>
+								<td height="40"><a href="#" class="fab_a">进入地图查找</a></td>
+							</tr>
+							<tr>
+								<td height="40" align="right">&nbsp;</td>
+								<td height="40"><input name="location" type="text"
+									class="fab_text" placeholder="手动录入"></td>
+							</tr>
+							<tr>
+								<td height="40" align="right">*费用：</td>
+								<td height="40"><input type="radio" name="feeType" value="0" checked />免费</td>
+							</tr>
+							<tr>
+								<td height="40" align="right">&nbsp;</td>
+								<td height="40"><input type="radio" name="feeType" value="1" />AA&nbsp;<input name="fee" type="text"
+									class="fab_text2" placeholder="¥"></td>
+							</tr>
+							<tr>
+								<td height="40" align="right">已有人数：</td>
+								<td height="40"><input name="members" type="number"
+									class="fab_text" ></td>
+							</tr>
+							<tr>
+								<td height="40" align="right">招募人数：</td>
+								<td height="40"><input type="radio" name="enrollType" value="0" checked />不限</td>
+							</tr>
+							<tr>
+								<td height="40" align="right">&nbsp;</td>
+								<td height="40"><input type="radio" name="enrollType" value="1" />限定&nbsp;<input name="enrollLimit" type="number"
+									class="fab_text2"></td>
+							</tr>
+							<tr>
+								<td height="40" align="right">*联系电话：</td>
+								<td height="40"><input name="mobile" type="text"
+									class="fab_text" value="${user.mobile }"></td>
+							</tr>
+							<tr>
+								<td height="40" align="right">需要参加者留下：</td>
+								<td height="40"><span class="right"><input type="radio" name="contact" value="qq" checked /> QQ</span><input type="radio" name="contact" value="mobile" />手机号</td>
+							</tr>
+							<tr>
+								<td height="90" align="right">&nbsp;</td>
+								<td><input class="lv_btn" name="" type="submit" value="提交"></td>
+							</tr>
+						</table>
+					</form>
 				</div>
 
 			</div>

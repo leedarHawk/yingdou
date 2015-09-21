@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zmsport.iyuesai.mapper.RoundMapper">
+	
+	<resultMap type="round" id="roundResultMap">
+        <id property="id" column="round_id"/>
+        <result property="creatorId" column="round_creatorId"/>
+        <result property="tid" column="round_tid"/>
+        <result property="name" column="round_name"/>
+        <result property="startTime" column="round_startTime"/>
+        <result property="endTime" column="round_endTime"/>
+        <result property="location" column="round_location"/>
+        <result property="feeType" column="round_feeType"/>
+        <result property="fee" column="round_fee"/>
+        <result property="members" column="round_members"/>
+        <result property="enrollType" column="round_enrollType"/>
+        <result property="enrollLimit" column="round_enrollLimit"/>
+        <result property="mobile" column="round_mobile"/>
+        <result property="contact" column="round_contact"/>
+        <result property="time" column="round_time"/>
+        <result property="members" column="round_members"/>
+        <association property="team" resultMap="teamResultMap"/>
+    </resultMap>
+    <resultMap type="team" id="teamResultMap">
+        <id property="id" column="team_id"/>
+        <result property="creatorId" column="team_creatorId"/>
+        <result property="name" column="team_name"/>
+        <result property="slogan" column="team_slogan"/>
+        <result property="location" column="team_location"/>
+        <result property="members" column="team_members"/>
+        <result property="description" column="team_description"/>
+        <result property="needConfirm" column="team_needConfirm"/>
+        <result property="candidateItems" column="team_candidateItems"/>
+        <result property="createTime" column="team_createTime"/>
+        <result property="pic" column="team_pic"/>
+        <result property="likes" column="team_likes"/>
+    </resultMap>
+	
+	<select id="getAllRounds" parameterType="long" resultMap="roundResultMap">
+		SELECT * FROM (SELECT r.id AS round_id, r.creatorId AS round_creatorId, r.tid AS round_tid, r.name AS round_name,
+		 				r.startTime AS round_startTime, r.endTime AS round_endTime, r.location AS round_location,
+		 				r.feeType AS round_feeType, r.fee AS round_fee, r.members AS round_members,
+		 				r.enrollType AS round_enrollType, r.enrollLimit AS round_enrollLimit, r.mobile AS round_mobile,
+		 				r.contact AS round_contact, r.time AS round_time, t.id AS team_id, t.creatorId AS team_creatorId,
+		 				t.name AS team_name, t.slogan AS team_slogan, t.location AS team_location, t.members AS team_members,
+		 				t.description AS team_description, t.needConfirm AS team_needConfirm, t.candidateItems AS team_candidateItems,
+		 				t.createTime AS team_createTime, t.pic AS team_pic, t.likes AS team_likes 
+		 				FROM t_round r, t_team t WHERE r.creatorId=#{uid} AND t.id=r.tid ORDER BY r.startTime DESC) AS c1
+		 UNION ALL 
+		SELECT * FROM (SELECT r.id AS round_id, r.creatorId AS round_creatorId, r.tid AS round_tid, r.name AS round_name,
+		 				r.startTime AS round_startTime, r.endTime AS round_endTime, r.location AS round_location,
+		 				r.feeType AS round_feeType, r.fee AS round_fee, r.members AS round_members,
+		 				r.enrollType AS round_enrollType, r.enrollLimit AS round_enrollLimit, r.mobile AS round_mobile,
+		 				r.contact AS round_contact, r.time AS round_time, t.id AS team_id, t.creatorId AS team_creatorId,
+		 				t.name AS team_name, t.slogan AS team_slogan, t.location AS team_location, t.members AS team_members,
+		 				t.description AS team_description, t.needConfirm AS team_needConfirm, t.candidateItems AS team_candidateItems,
+		 				t.createTime AS team_createTime, t.pic AS team_pic, t.likes AS team_likes 
+		 				FROM t_round r, t_team t WHERE r.creatorId!=#{uid} AND t.id=r.tid ORDER BY r.startTime DESC) AS c2
+	</select>
+	
+	<select id="findRoundById" parameterType="long" resultType="round">
+		SELECT * FROM t_round WHERE id=#{id}
+	</select>
+	
+	<insert id="insert" parameterType="round" useGeneratedKeys="true" keyProperty="id">
+		INSERT INTO t_round (creatorId,name,startTime,endTime,location,feeType,fee,enrollType,enrollLimit,mobile,contact,time,members,tid) 
+		VALUES (#{creatorId},#{name},#{startTime},#{endTime},#{location},#{feeType},#{fee},#{enrollType},#{enrollLimit},#{mobile},#{contact},#{time},#{members},#{tid})
+	</insert>
+	
+	<update id="updateMembers" parameterType="long">
+		UPDATE t_round SET members=members+1 WHERE id=#{id}
+	</update>
+</mapper>

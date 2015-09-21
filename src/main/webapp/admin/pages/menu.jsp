@@ -14,6 +14,15 @@
 				<h2><a href="list.jsp" target="main">比赛列表</a></h2>
 			</div> -->
 		</div>
+		<h1><a href="<c:url value="/admin/challenge/list" />" target="main" class="wen"><img src="../images/iocn_01a.png"/>约战管理</a><!-- <a href="" class="shu">12</a> --></h1>
+		<div class="erjicaidan">
+			<!-- <div style="padding: 10px 0;border-bottom: #4a4a4a solid 1px;">
+				<h2><a href="list.jsp" target="main">约战</a></h2>
+			</div>
+			<div style="padding: 10px 0;border-bottom: #4a4a4a solid 1px;">
+				<h2><a href="list.jsp" target="main">球局</a></h2>
+			</div> -->
+		</div>
 		<h1><a href="<c:url value="/admin/team/list" />" target="main" class="wen"><img src="../images/iocn_01a.png"/>球队管理</a><!-- <a href="" class="shu">12</a> --></h1>
 		<div  class="erjicaidan">
 		</div>

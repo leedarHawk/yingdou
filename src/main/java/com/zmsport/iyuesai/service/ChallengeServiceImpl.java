@@ -52,21 +52,56 @@ public class ChallengeServiceImpl implements ChallengeService {
 	}
 
 	@Override
-	public void updateStatus(int status) {
+	public void updateStatus(int status, long challengeId) {
 		// TODO Auto-generated method stub
-		mapper.updateStatus(status);
+		mapper.updateStatus(status, challengeId);
 	}
 
 	@Override
-	public void updateGuestTeamId(int guestTeamId) {
+	public void updateGuestTeamId(int guestTeamId, long challengeId) {
 		// TODO Auto-generated method stub
-		mapper.updateGuestTeamId(guestTeamId);
+		mapper.updateGuestTeamId(guestTeamId,challengeId);
 	}
 
 	@Override
 	public Challenge getChallenge(long id) {
 		// TODO Auto-generated method stub
 		return mapper.getChallenge(id);
+	}
+
+	@Override
+	public List<Challenge> findChallengesByTeamId(int teamId) {
+		// TODO Auto-generated method stub
+		List<Challenge> list = mapper.findChallengesByTeamId(teamId);
+		for(Challenge c : list) {
+			c.setHost(tMapper.findTeamById(c.getTeamId()));
+			c.setGuest(tMapper.findTeamById(c.getGuestTeamId()));
+		}
+		return list;
+	}
+
+	@Override
+	public List<Challenge> getChallengesByPage(int page, int size) {
+		// TODO Auto-generated method stub
+		List<Challenge> list = mapper.getChallengesByPage(--page * size, size);
+		for(Challenge c : list) {
+			c.setHost(tMapper.findTeamById(c.getTeamId()));
+			c.setGuest(tMapper.findTeamById(c.getGuestTeamId()));
+			c.setCount(aiMapper.findAcceptInfoByChallengeId(c.getId()).size());
+		}
+		return list;
+	}
+
+	@Override
+	public int getTotalNum() {
+		// TODO Auto-generated method stub
+		return mapper.getTotalNum();
+	}
+
+	@Override
+	public void updateScore(String score, long id) {
+		// TODO Auto-generated method stub
+		mapper.updateScore(score, id);
 	}
 
 }

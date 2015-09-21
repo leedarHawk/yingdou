@@ -24,6 +24,19 @@ public interface ChallengeService {
 	public List<Challenge> getAllChallenges(long uid);
 	
 	/**
+	 * 获取所有约战信息
+	 * @return
+	 */
+	public List<Challenge> getChallengesByPage(int page, int size);
+	
+	/**
+	 * 获取某球队的约战记录（已结束）
+	 * @param teamId
+	 * @return
+	 */
+	public List<Challenge> findChallengesByTeamId(int teamId);
+	
+	/**
 	 * 添加
 	 * @param challenge
 	 */
@@ -33,13 +46,13 @@ public interface ChallengeService {
 	 * 改变约战状态
 	 * @param status
 	 */
-	public void updateStatus(int status);
+	public void updateStatus(int status, long challengeId);
 	
 	/**
 	 * 修改对战球队id
 	 * @param guestTeamId
 	 */
-	public void updateGuestTeamId(int guestTeamId);
+	public void updateGuestTeamId(int guestTeamId, long challengeId);
 	
 	/**
 	 * 获取约战
@@ -47,5 +60,18 @@ public interface ChallengeService {
 	 * @return
 	 */
 	public Challenge getChallenge(long id);
+	
+	/**
+	 * 获取总数
+	 * @return
+	 */
+	public int getTotalNum();
+	
+	/**
+	 * 更新比分
+	 * @param score
+	 * @param id
+	 */
+	public void updateScore(String score, long id);
 	
 }
