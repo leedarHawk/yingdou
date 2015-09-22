@@ -32,15 +32,36 @@
   </tr>
   <tr>
     <td height="35" align="right">*手机号码：</td>
-    <td height="35"><c:out value="${member.mobile }" /></td>
+    <td height="35">
+		<c:if test="${fn:length(memeber.mobile) > 0 }">
+    		<c:out value="${member.mobile }" />
+    	</c:if>
+    	<c:if test="${fn:length(memeber.mobile) == 0 }">
+    		无
+    	</c:if>
+	</td>
   </tr>
   <tr>
     <td height="35" align="right">*QQ号：</td>
-    <td height="35"><c:out value="${member.qq }" /></td>
+    <td height="35">
+		<c:if test="${fn:length(memeber.qq) > 0 }">
+    		<c:out value="${member.qq }" />
+    	</c:if>
+    	<c:if test="${fn:length(memeber.qq) == 0 }">
+    		无
+    	</c:if>
+	</td>
   </tr>
   <tr>
-    <td height="35" align="right" valign="top">给群主捎个信儿：</td>
-    <td height="35" valign="top"><c:out value="${userTeam.msg }" /></td>
+    <td height="35" align="right" valign="top">给群主捎个信：</td>
+    <td height="35" valign="top">
+		<c:if test="${fn:length(userTeam.msg) > 0 }">
+    		<c:out value="${userTeam.msg }" />
+    	</c:if>
+    	<c:if test="${fn:length(userTeam.msg) == 0 }">
+    		无
+    	</c:if>
+	</td>
   </tr>
 </table>
 
@@ -49,6 +70,14 @@
 </ul>
 
 </div>
-
+<div style="height:50px;"></div>
+<div class="footer">
+<ul>
+<li class="nav01"><a class="hover" href="<c:url value="/site/game/list" />">比赛</a></li>
+<li class="nav02"><a href="<c:url value="/site/challenge/list" />">约战</a></li>
+<li class="nav03"><a href="<c:url value="/site/team/list" />">球队</a></li>
+<li class="nav04"><a href="<c:url value="/site/user/path/me" />">我</a></li>
+</ul>
+</div>
 </body>
 </html>

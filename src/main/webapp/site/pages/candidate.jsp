@@ -10,6 +10,7 @@
 <title></title>
 <link rel="stylesheet" href="<c:url value="/site/css/style.css" />" />
 <script type="text/javascript" src="<c:url value="/site/js/jquery.js" />"></script>
+<script type="text/javascript" src="<c:url value="/site/js/common.js" />"></script>
 <style type="text/css">
 	ul.baom_tab li {
 		margin:15px 0px;
@@ -54,10 +55,16 @@
 			if(mobile.length == 0) {
 				AlertUtil.show("请输入联系电话");
 				return false;
+			}else if(!CommonUtil.isMobile(mobile)){
+				AlertUtil.show("请输入正确的电话号码");
+				return false;
 			}
 			var qq = $.trim($('input[name="qq"]').val());
 			if(qq.length == 0) {
 				AlertUtil.show("请输入QQ号");
+				return false;
+			}else if(!CommonUtil.isNumber(qq)){
+				AlertUtil.show("请输入正确的QQ号码");
 				return false;
 			}
 			return true;

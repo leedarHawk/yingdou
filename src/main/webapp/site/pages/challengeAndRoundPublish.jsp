@@ -163,7 +163,7 @@
 				<div class="TabbedPanelsContent">
 					<form id="matchForm" action="<c:url value="/site/challenge/publishMatch" />" method="post">
 						<input type="hidden" name="time" />
-						<table width="100%" border="0" cellspacing="0" cellpadding="0">
+						<table width="90%" border="0" cellspacing="5" cellpadding="0">
 							<tr>
 								<td width="43%" height="40" align="right">*发起人：</td>
 								<td width="57%" height="40"><c:out value="${user.username }" /></td>
@@ -246,7 +246,7 @@
 					<form id="roundForm" action="<c:url value="/site/challenge/publishRound" />" method="post">
 						<input type="hidden" name="startTime" />
 						<input type="hidden" name="endTime" value="0" />
-						<table width="100%" border="0" cellspacing="0" cellpadding="0">
+						<table width="90%" border="0" cellspacing="5" cellpadding="0">
 							<tr>
 								<td width="43%" height="40" align="right">*发起人：</td>
 								<td width="57%" height="40">${user.username }</td>

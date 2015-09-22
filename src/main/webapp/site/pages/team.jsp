@@ -98,11 +98,14 @@
 				});
 			},
 			like : function() {
+				var _this = this;
+				$('a.likes').prop('href','');
 				$.ajax({
 					url : '<c:url value="/site/team/like/${team.id}" />',
 					type : 'post',
 					success : function(res) {
 						$('p a.likes').html('<img src="<c:url value="/site/images/xin.png" />" width="18">' + res);
+						$('a.likes').prop('href','javascript:PageUtil.like();void 0;');
 					}
 				});
 			}

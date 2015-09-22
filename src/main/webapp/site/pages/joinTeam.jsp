@@ -28,17 +28,17 @@
 		}
 		$('form').submit(function(){
 			var height = $.trim($('input[name=height]').val());
-			if(height.length > 0 && !CommonUtil.isNumber(height)) {
+			if(inputs.indexOf('height') > -1 && height.length > 0 && !CommonUtil.isNumber(height)) {
 				AlertUtil.show("请输入正确的身高");
 				return false;
 			}
 			var weight = $.trim($('input[name=weight]').val());
-			if(weight.length > 0 && !CommonUtil.isNumber(weight)) {
+			if(inputs.indexOf('weight') > -1 && weight.length > 0 && !CommonUtil.isNumber(weight)) {
 				AlertUtil.show("请输入正确的体重");
 				return false;
 			}
 			var mobile = $.trim($('input[name=mobile]').val());
-			if(mobile.length > 0 && !CommonUtil.isMobile(mobile)) {
+			if(inputs.indexOf('mobile') > -1 && mobile.length > 0 && !CommonUtil.isMobile(mobile)) {
 				AlertUtil.show("请输入正确的手机号");
 				return false;
 			}

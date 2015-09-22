@@ -80,13 +80,5 @@
 			</list>
 		</property>
 	</bean>
-	<bean class="org.springframework.web.client.RestTemplate">
-    	<property name="messageConverters">
-			<list>
-				<ref bean="stringConverter" />
-				<ref bean="jsonConverter" />
-				<ref bean="xmlConverter" />
-			</list>
-		</property>
-    </bean>
+	<bean id="restTemplate" class="org.springframework.web.client.RestTemplate" />
 </beans>

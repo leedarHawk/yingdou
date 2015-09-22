@@ -123,8 +123,8 @@
 					<td width="15%"><span class="tab_top">报名球队</span></td>
 					<td width="10%"><span class="tab_top">电话</span></td>
 					<td width="10%"><span class="tab_top">qq</span></td>
-					<td width="15%"><span class="tab_top">备用联系人</span></td>
-					<td width="15%"><span class="tab_top">备用联系人电话</span></td>
+					<td width="13%"><span class="tab_top">备用联系人</span></td>
+					<td width="13%"><span class="tab_top">备用联系人电话</span></td>
 					<td width="10%"><span class="tab_top">状态</span></td>
 					<td width="10%"><span class="tab_top">报名时间</span></td>
 					<td><span class="tab_top">审核</span></td>

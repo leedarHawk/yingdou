@@ -141,7 +141,7 @@ input.members {
 	</div>
 	<input type="hidden" name="creatorId" value="${user.id}" />
 	<input type="hidden" name="candidateItems" value="" />
-	<table width="100%" border="0" cellspacing="0" cellpadding="0">
+	<table width="90%" border="0" cellspacing="5" cellpadding="0">
 	  <tr>
 	    <td width="43%" height="40" align="right">*发起人：</td>
 	    <td width="57%" height="40"><c:out value="${user.username}" /></td>
