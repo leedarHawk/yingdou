@@ -64,7 +64,7 @@
 
 <body>
 <%@ include file="../../commons/alert.jsp"%>
-<div class="header"><span><a href="<c:url value="/site/game/list" />"><img src="<c:url value="/site/images/jt_fh.png" />">返回</a></span></div>
+<div class="header"><span><a href="<%-- <c:url value="/site/game/list" /> --%>javascript:history.go(-1);void 0;"><img src="<c:url value="/site/images/jt_fh.png" />">返回</a></span></div>
 <div class="main3">
 
 	<script type="text/javascript" src="<c:url value="/site/js/qh.js" />" ></script>

@@ -81,4 +81,11 @@ public interface ChallengeService {
 	 */
 	public void updateScore(String score, long id);
 	
+	/**
+	 * 获取我所有的约战申请球队的总数
+	 * @param uid
+	 * @return
+	 */
+	public int getMyTeamChallengeNum(long uid);
+	
 }

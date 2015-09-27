@@ -29,6 +29,7 @@ input.members {
 				var _this = this;
 				$('#mapPage').hide();
 				$('a.fab_a').click(function(){
+					PageUtil.initMap();
 					$('#infoPage').fadeOut();
 					$('#mapPage').fadeIn();
 				});
@@ -60,11 +61,11 @@ input.members {
 				if($('input[name="limit"]:eq(0)').prop('checked')) {
 					$('input[name="members"]').val(-1);
 				}
-				var file = $.trim($('input[name="file"]').val());
+				/* var file = $.trim($('input[name="file"]').val());
 				if(file.length == 0) {
 					AlertUtil.show("请上传球队头像");
 					return false;
-				}
+				} */
 				var name = $.trim($('input[name="name"]').val());
 				if(name.length == 0) {
 					AlertUtil.show("请输入球队名称");
@@ -72,7 +73,7 @@ input.members {
 				}
 				var slogan = $.trim($('input[name="slogan"]').val());
 				if(slogan.length == 0) {
-					AlertUtil.show("请输入球队口号");
+					AlertUtil.show("请输入球队公告");
 					return false;
 				}
 				var location = $.trim($('input[name="location"]').val());
@@ -82,7 +83,7 @@ input.members {
 				}
 				var description = $.trim($('textarea[name="description"]').val());
 				if(description.length == 0) {
-					AlertUtil.show("请输入球队说明");
+					AlertUtil.show("请输入球队简介");
 					return false;
 				}
 				return true;
@@ -137,10 +138,11 @@ input.members {
 <form action="<c:url value="/site/team/create" />" method="post" enctype="multipart/form-data">
 	<div class="chj_tx">
 		<img id="head-pic" src="<c:url value="/site/images/tx_mr.jpg" />">
-		<span><input id="get-pic" type="file" name="file" class="zhc_gh" accept="image/*;capture=camera" /></span>
+		<span><input id="get-pic" type="file" name="file" class="zhc_gh" accept="image/*" /></span>
 	</div>
 	<input type="hidden" name="creatorId" value="${user.id}" />
 	<input type="hidden" name="candidateItems" value="" />
+	<div style="text-align:center;color:#fff;background:#c0c0c0;">只能上传本地照片</div>
 	<table width="90%" border="0" cellspacing="5" cellpadding="0">
 	  <tr>
 	    <td width="43%" height="40" align="right">*发起人：</td>
@@ -151,7 +153,7 @@ input.members {
 	    <td height="40"><input name="name" type="text" class="fab_text"></td>
 	  </tr>
 	  <tr>
-	    <td height="40" align="right">*球队口号：</td>
+	    <td height="40" align="right">*球队公告：</td>
 	    <td height="40"><input name="slogan" type="text" class="fab_text"></td>
 	  </tr>
 	  <tr>
@@ -171,7 +173,7 @@ input.members {
 	    <td height="40"><label>限定<input name="limit" type="radio" value="1" class="fx_kuang"></label><input name="members" type="text" class="fab_text2 members" value="" placeholder="成员数量"></td>
 	  </tr>
 	  <tr>
-	    <td height="40" align="right" valign="top">*球队说明：</td>
+	    <td height="40" align="right" valign="top">*球队简介：</td>
 	    <td height="40" valign="top"><textarea class="fab_textare" name="description" cols="" rows=""></textarea></td>
 	  </tr>
 	  <tr>
@@ -225,6 +227,7 @@ input.members {
 			},
 			initMap : function() {
 				var _this = this;
+				$('input[name=queryLocation]').val('');
 				if(navigator.geolocation.getCurrentPosition) {
 					navigator.geolocation.getCurrentPosition(function(position){
 						var currentLat = position.coords.latitude; 
@@ -232,8 +235,18 @@ input.members {
 						var gpsPoint = new BMap.Point(currentLon, currentLat); 
 						BMap.Convertor.translate(gpsPoint, 0, function(point){
 							_this.map = new BMap.Map("map");  
+							var marker = new BMap.Marker(point);
+							_this.map.addOverlay(marker);
 							_this.map.centerAndZoom(point, _this.level); 
-							_this.map.addOverlay(new BMap.Marker(point));
+							var opts = {
+							  width : 80,// 信息窗口宽度
+							  height: 40// 信息窗口高度
+							}
+							var infoWindow = new BMap.InfoWindow("您的位置", opts);  // 创建信息窗口对象 
+							_this.map.openInfoWindow(infoWindow,point); //开启信息窗口
+							marker.addEventListener("click", function(){          
+								_this.map.openInfoWindow(infoWindow,point); //开启信息窗口
+							});
 							/* var myCity = new BMap.LocalCity();
 							myCity.get(function(result){
 								_this.map.centerAndZoom(result.name, 11);

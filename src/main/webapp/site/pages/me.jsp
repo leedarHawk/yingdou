@@ -15,7 +15,7 @@
 	span.notice {
 		background:#c0c0c0;
 		display:inline-block;
-		width:22%;
+		width:70px;
 		color:#fff;
 		height: 32px;
 	    line-height: 32px;
@@ -40,11 +40,42 @@
 		font-weight:bold;
 		opacity:0.5;
 	}
+	.circleRound {
+		border-radius: 100%;
+		width: 80px;
+		height: 80px; 
+		background:#f00;
+		position:absolute;
+		left:50%;
+		top:50%;
+		margin-left:-45px;
+		margin-top:-35px;
+		text-align:center;
+		line-height:80px;
+		color:#fff;
+		font-weight:bold;
+		opacity:0.5;
+	}
+	div.round-status {
+		text-align:center;
+	}
+	div.round-status b {
+		display:inline-block; 
+		width:70px; 
+		text-align:center; 
+		margin-top:15px; 
+		background:#c0c0c0; 
+		height:32px; 
+		line-height:32px;
+		border-radius:5px; 
+		font-weight:normal;
+		color:#fff;
+	}
 </style>
 <script type="text/javascript">
-	$(function(){
-		CommonUtil.replaceContent('replace','无');
-	});
+	function detail(rid,cid) {
+		location.href = '<c:url value="/site/challenge/roundApplyList/" />' + rid + '/' + cid;
+	}
 	var PageUtil = {
 			pay : function(url,creatorId,uid) {
 				if(creatorId == uid) {
@@ -52,6 +83,16 @@
 				}else {
 					AlertUtil.show('只有球队创建者才能支付喔');
 				}
+			},
+			toGame : function(id) {
+				location.href = '<c:url value="/site/game/gameInfo/" />' + id;
+			},
+			toChallenge : function(position) {
+				location.href = '<c:url value="/site/challenge/list" />#' + position;
+			},
+			toChallengeInfo : function(url) {
+				location.href = url;
+				return false;
 			}
 	};
 </script>
@@ -88,16 +129,16 @@
 	<!--切换内容开始0-->
 	<div id="TabbedPanels2" class="hangy_qh3">
 		<ul class="TabbedPanelsTabGroup">        
-			<li class="TabbedPanelsTab" tabindex="0" style="border:0;">我的比赛</li>
-			<li class="TabbedPanelsTab" tabindex="0">我的球局</li>
-			<li class="TabbedPanelsTab" tabindex="0">我的球队<c:if test="${num > 0 }"><span><c:out value="${num }" /></span></c:if></li>
+			<li class="TabbedPanelsTab" tabindex="0" style="border:0;">我的比赛<c:if test="${myChallengesNum > 0 }"><span><c:if test="${myChallengesNum > 9 }">9+</c:if><c:if test="${myChallengesNum <= 9}"><c:out value="${myChallengesNum }" /></c:if></span></c:if></li>
+			<li class="TabbedPanelsTab" tabindex="1">我的球局<c:if test="${myRoundApplyNum > 0 }"><span><c:if test="${myRoundApplyNum > 9 }">9+</c:if><c:if test="${myRoundApplyNum <= 9}"><c:out value="${myRoundApplyNum }" /></c:if></span></c:if></li>
+			<li class="TabbedPanelsTab" tabindex="2">我的球队<c:if test="${num > 0 }"><span><c:if test="${num > 9 }">9+</c:if><c:if test="${num <= 9}"><c:out value="${num }" /></c:if></span></c:if></li>
 		</ul>
 		<div class="TabbedPanelsContentGroup">
 		<!--比赛-->
 		<div class="TabbedPanelsContent">
 		<c:forEach items="${gameList }" var="game">
-			<div class="hywo_con">
-				<dl class="hywo_dl hydy_dl">
+			<div class="hywo_con" onclick="PageUtil.toGame(${game.gameId})">
+				<dl class="hywo_dl hydy_dl" style="border-bottom:none;">
 					<dt><a href=""><img src="<c:url value="${game.pic }" />"></a></dt>
 					<dd>
 						<strong><a href=""><c:out value="${game.name }" /></a></strong>
@@ -126,7 +167,7 @@
 		</c:forEach>
 		<!-- 约战  -->
 		<c:forEach items="${myChallenges }" var="challenge">
-						<div class="yuez_con">
+						<div class="yuez_con" onclick="PageUtil.toChallenge('c_${challenge.id}')">
 							<dl class="hybs_dl">
 								<dt>
 									<img src="<c:url value="${challenge.host.pic }" />"><c:out value="${challenge.host.name }" />
@@ -149,7 +190,7 @@
 								</dd>
 								<dt>
 									<c:if test="${empty challenge.guest }">
-										<div style="position:relative;"><c:if test="${challenge.creatorId == user.id }"><a href="<c:url value="/site/challenge/acceptInfoList/${challenge.id }" />"><div class="circle">${challenge.count }</div></a></c:if><img src="<c:url value="/site/images/tx_no.png" />"></div><%-- <input
+										<div style="position:relative;"><c:if test="${challenge.creatorId == user.id }"><a href="javascript:PageUtil.toChallengeInfo('<c:url value="/site/challenge/acceptInfoList/${challenge.id }" />');void 0;"><div class="circle">${challenge.count }</div></a></c:if><img src="<c:url value="/site/images/tx_no.png" />"></div><%-- <input
 											class="lv_btn" id="btnshow" onClick="showdiv(<c:out value="${challenge.id }" />,<c:out value="${challenge.teamId}" />);" name=""
 											type="button" value="应战"> --%>
 									</c:if>
@@ -171,17 +212,35 @@
 		<!--球局-->
 		<div class="TabbedPanelsContent">
 		<c:forEach items="${myRoundApplys }" var="ra">
-			<dl class="hydy_dl">
-			<dt><img src="<c:if test="${not empty ra.round.team }"><c:url value="${ra.round.team.pic }" /></c:if><c:if test="${empty ra.round.team }"><c:url value="/site/images/round.png" /></c:if>"></dt>
-			<dd>
-			<strong>${round.name }</strong>
+			<dl class="hydy_dl" onclick="PageUtil.toChallenge('r_${ra.round.id}')">
+			<dt style="position:relative;">
+				<c:if test="${user.id == ra.round.creatorId }">
+					<c:if test="${not empty ra.round.team }">
+						<a href="javascript:detail(${ra.round.id },${ra.round.creatorId });void 0;"><div class="circleRound">${ra.round.applyNum }</div><img src="<c:url value="${ra.round.team.pic }" />"></a>
+					</c:if>
+					<c:if test="${empty ra.round.team }">
+						<a href="javascript:detail(${ra.round.id },${ra.round.creatorId });void 0;"><div class="circleRound">${ra.round.applyNum }</div><img src="<c:url value="/site/images/round.png" />"></a>
+					</c:if>
+				</c:if>
+				<c:if test="${ user.id != ra.round.creatorId}">
+					<c:if test="${not empty ra.round.team }">
+						<img src="<c:url value="${ra.round.team.pic }" />">
+					</c:if>
+					<c:if test="${empty ra.round.team }">
+						<img src="<c:url value="/site/images/round.png" />">
+					</c:if>
+				</c:if>
+			</dt>
+			<strong>${ra.round.name }</strong>
 			<ul>
-			<li><span>发起人：</span>${ra.round.user.username }</li>
-			<li><span>时间：</span><fmt:formatDate value="${ra.round.startTime}" pattern="yyyy年MM月dd日 HH:mm"/><c:if test="$(round.endTime != '1970-01-01 00:00:00')">至<fmt:formatDate value="${ra.round.endTime}" pattern="yyyy年MM月dd日 HH:mm"/></c:if></li>
-			<li><span>地点：</span>${ra.round.location }</li>
-			<li><span>报名/招募：</span>${ra.round.members }/<c:if test="${ra.round.enrollType==0 }">不限</c:if><c:if test="${ra.round.enrollType == 1 }">${ra.round.enrollLimit }</c:if></li>
+				<li><span>发起人：</span>${ra.round.user.username }</li>
+				<li><span>时间：</span><fmt:formatDate value="${ra.round.startTime}" pattern="yyyy年MM月dd日 HH:mm"/><c:if test="$(round.endTime != '1970-01-01 00:00:00')">至<fmt:formatDate value="${ra.round.endTime}" pattern="yyyy年MM月dd日 HH:mm"/></c:if></li>
+				<li><span>地点：</span>${ra.round.location }</li>
+				<li"><span style="padding-left:89px;">报名/招募：</span>${ra.round.members }/<c:if test="${ra.round.enrollType==0 }">不限</c:if><c:if test="${ra.round.enrollType == 1 }">${ra.round.enrollLimit }</c:if></li>
 			</ul>
-			<c:if test="${ra.status == 0 }"><b>审核中</b></c:if><c:if test="${ra.status == 1 }"><b>已参加</b></c:if>
+			<div class="round-status">
+				<c:if test="${ra.status == 0 }"><b>审核中</b></c:if><c:if test="${ra.status == 1 }"><b>已参加</b></c:if>
+			</div>
 			</dd>
 			</dl>
 		</c:forEach>
@@ -202,7 +261,7 @@
 						<li><span>球队简介：</span>${team.description }</li>
 					</ul>
 				</dd>
-				<c:if test="${not empty team.applicants }">
+				<c:if test="${not empty team.applicants && user.id == team.creator.id }">
 					<div style="text-align:center;"><a style="background:#f00;color:#fff;padding:5px;" href="<c:url value="/site/team/allMembers?teamId=${team.id }" />">有${fn:length(team.applicants)}个小伙伴加入你的球队</a></div>
 				</c:if>
 			</dl>

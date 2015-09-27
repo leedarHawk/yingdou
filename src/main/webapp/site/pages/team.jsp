@@ -108,6 +108,11 @@
 						$('a.likes').prop('href','javascript:PageUtil.like();void 0;');
 					}
 				});
+			},
+			dismiss : function(url) {
+				if(confirm("确定解散球队?")) {
+					location.href = url;
+				}
 			}
 	}
 </script>
@@ -168,6 +173,7 @@
 				</c:if>
 				<c:if test="${user.id == team.creatorId }">
 					<span><a href="<c:url value="/site/team/toUpdate/${team.id }" />" style="color:#fff;">修改</a></span>
+					<span><a href="javascript:PageUtil.dismiss('<c:url value="/site/team/delete?ids=${team.id }" />');void 0;" style="color:#fff;">解散</a></span>
 				</c:if>
 				
 				<c:if test="${team.members > -1 }">
@@ -198,12 +204,12 @@
 				</dl>
 				
 				<div class="ph_jshdl02">
-				<p class="ph_jshtit">球队口号</p>
+				<p class="ph_jshtit">球队公告</p>
 				<div class="ph_jshart"><c:out value="${team.slogan}" /></div>
 				</div>
 				
 				<div class="ph_jshdl02">
-				<p class="ph_jshtit">球队公告</p>
+				<p class="ph_jshtit">球队简介</p>
 				<div class="ph_jshart"><c:out value="${team.description}" /></div>
 				</div>				
 				

@@ -60,7 +60,7 @@
 <input type="hidden" name="teamId" value="${team.id}" />
 <div class="main3">
 	<div class="jiaq_h1"><c:out value="${team.name }" /></div>
-<table width="100%" border="0" cellspacing="0" cellpadding="0">
+<table width="90%" border="0" cellspacing="0" cellpadding="5">
   <tr class="hidden">
     <td width="43%" height="50" align="right">*姓名：</td>
     <td width="57%" height="50"><input name="username" readonly type="text" class="fab_text" value="${user.username}"></td>

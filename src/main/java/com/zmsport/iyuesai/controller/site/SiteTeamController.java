@@ -1,12 +1,12 @@
 package com.zmsport.iyuesai.controller.site;
 
-import java.io.UnsupportedEncodingException;
+import java.io.File;
 import java.sql.Timestamp;
 import java.util.List;
-
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
-
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -16,7 +16,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
-
 import com.zmsport.iyuesai.mapper.Team;
 import com.zmsport.iyuesai.mapper.User;
 import com.zmsport.iyuesai.mapper.UserTeam;
@@ -37,6 +36,8 @@ import com.zmsport.iyuesai.util.FileUtil;
 @Controller
 @RequestMapping("/site/team")
 public class SiteTeamController {
+	
+	private Logger log = LoggerFactory.getLogger(getClass());
 
 	@Autowired
 	private TeamService service;
@@ -69,6 +70,8 @@ public class SiteTeamController {
 		team.setCreateTime(new Timestamp(System.currentTimeMillis()));
 		if(file.getOriginalFilename().length() > 0) {
 			team.setPic(FileUtil.uploadTeamLogo(file, session.getServletContext().getRealPath("/"),String.valueOf(System.currentTimeMillis()),team.getCreatorId()));
+		}else {
+			team.setPic("/site/images/tx_mr.jpg");
 		}
 		service.insert(team);
 		//创建者自动加入球队
@@ -79,18 +82,6 @@ public class SiteTeamController {
 		ut.setTime(new Timestamp(System.currentTimeMillis()));
 		utService.insert(ut);
 		return "redirect:/site/team/list";
-	}
-	
-	/**
-	 * 修改球队
-	 * @param session
-	 * @param team
-	 * @return
-	 */
-	@RequestMapping(value="/update", method=RequestMethod.POST)
-	public String updateTeam(Team team) {
-		service.update(team);
-		return "";
 	}
 	
 	/**
@@ -116,18 +107,41 @@ public class SiteTeamController {
 	 * 修改球队
 	 * @return
 	 */
-	@RequestMapping(value="/update/{teamId}/{slogan}/{description}",method=RequestMethod.GET)
-	public String update(@PathVariable int teamId, @PathVariable String slogan, @PathVariable String description, Model model) {
+	@RequestMapping(value="/update",method=RequestMethod.POST)
+	public String update(@RequestParam int teamId, @RequestParam String slogan, @RequestParam String description, 
+			@RequestParam MultipartFile file, HttpSession session, Model model) {
 		Team team = service.findTeamById(teamId);
-		try {
-			team.setSlogan(new String(slogan.getBytes(),"UTF-8"));
-			team.setDescription(new String(description.getBytes(),"UTF-8"));
-		} catch (UnsupportedEncodingException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+		team.setSlogan(slogan);
+		team.setDescription(description);
+		String originPic = team.getPic();
+		if(file.getOriginalFilename().length() > 0) {
+			if(originPic.endsWith("site/images/tx_mr.jpg")) {
+				team.setPic(FileUtil.uploadTeamLogo(file, session.getServletContext().getRealPath("/"),String.valueOf(System.currentTimeMillis()),team.getCreatorId()));
+			}else {
+				String segment = originPic.split("_")[0];
+				segment = segment.split("/")[segment.split("/").length - 1];
+				team.setPic(FileUtil.uploadTeamLogo(file, session.getServletContext().getRealPath("/"),segment,team.getCreatorId()));
+			}
 		}
 		service.update(team);
 		return "redirect:/site/team/detail/" + teamId;
+	}
+	
+	/**
+	 * 删除球队 
+	 * @param ids
+	 * @return
+	 */
+	@RequestMapping("/delete")
+	public String delete(@RequestParam String ids,HttpSession session) {
+		List<Team> list = service.getTeamsByIds(ids);
+		String path = File.separator + FileUtil.UPLOAD_DIR + File.separator
+				+ FileUtil.TEAM_DIR + File.separator;
+		for(Team team : list) {
+			FileUtil.deleteAll(session.getServletContext().getRealPath("/") + path + team.getName() + "_" + team.getCreatorId());
+		}
+		service.delete(ids);
+		return "redirect:/site/team/list";
 	}
 	
 	/**

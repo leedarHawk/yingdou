@@ -72,7 +72,9 @@ public class GameApplyController {
 		if(status == 1) {
 			//审核通过
 			gayService.updateStatus(GameApply.STATUS_CONFIRMED, id);
-			
+		}else if(status == 2){
+			//报名成功
+			gayService.updateStatus(GameApply.STATUS_APPLY_SUCCESS, id);
 		}else {
 			//拒绝
 			gayService.updateStatus(GameApply.STATUS_NOT_CONFIRMED, id);

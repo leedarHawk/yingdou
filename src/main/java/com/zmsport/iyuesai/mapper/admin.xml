@@ -2,7 +2,36 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.zmsport.iyuesai.mapper.AdminMapper">
+
+	<select id="getTotalNum" resultType="int">
+		SELECT COUNT(*) FROM t_admin WHERE username!='admin'
+	</select>
+
     <select id="findAdminByName" parameterType="String" resultType="admin">
     	SELECT * FROM t_admin WHERE username=#{username}
     </select>
+    
+    <select id="findAdminById" parameterType="long" resultType="admin">
+    	SELECT * FROM t_admin WHERE id=#{id}
+    </select>
+    
+    <select id="getAdmins" parameterType="int" resultType="admin">
+    	SELECT * FROM t_admin WHERE username!='admin' ORDER BY id DESC LIMIT #{0},#{1}
+    </select>
+    
+    <insert id="insert" parameterType="admin">
+    	INSERT t_admin (username,password,createTime) VALUES (#{username},#{password},#{createTime})
+    </insert>
+    
+    <update id="update" parameterType="admin">
+    	UPDATE t_admin SET username=#{username},password=#{password},updateTime=#{updateTime} WHERE id=#{id}
+    </update>
+    
+    <delete id="delete" parameterType="java.util.List">
+    	DELETE FROM t_admin WHERE id IN 
+		<foreach item="id" index="index" collection="list" open="(" separator="," close=")">  
+ 			#{id}  
+ 		</foreach>
+    </delete>
+    
 </mapper>

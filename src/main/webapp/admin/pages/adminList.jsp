@@ -24,10 +24,15 @@
 					$('input.headBox').prop("checked",status);
 				});
 			})
+			var teamNum;
+			$('td.teamNum').each(function(){
+				teamNum = $(this).text(); 
+				$(this).text(teamNum == '0' ? '不限' : teamNum);
+			});
 		},
 		del : function(id) {
 			if(confirm("是否删除?")) {
-				window.location.href = "<c:url value="/admin/team/delete" />?ids=" + id;
+				window.location.href = "<c:url value="/admin/admin/deleteAdmin" />?ids=" + id;
 			}
 		},
 		delMulti : function() {
@@ -42,7 +47,7 @@
 			}
 			ids = ids.join(",");
 			if(confirm("是否删除?")) {
-				window.location.href = "<c:url value="/admin/team/delete" />?ids=" + ids;
+				window.location.href = "<c:url value="/admin/admin/deleteAdmin" />?ids=" + ids;
 			}
 		},
 		toPage : function() {
@@ -53,7 +58,7 @@
 					$('#page').val('').focus();
 					return;
 				}
-				window.location.href = '<c:url value="/admin/team/list?page=" />' + page;
+				window.location.href = '<c:url value="/admin/admin/list?page=" />' + page;
 			}
 		}
 	};
@@ -70,7 +75,7 @@
 <div class="main_right"  id="main_col1"  style="overflow:hidden;">
 	<div class="hangy_qh2">
 		<ul class="TabbedPanelsTabGroup">           
-			<li class="TabbedPanelsTab TabbedPanelsTabSelected" >球队管理</li>
+			<li class="TabbedPanelsTab TabbedPanelsTabSelected" >管理员</li>
 		</ul>
 		<div class="TabbedPanelsContentGroup">
 		
@@ -89,44 +94,41 @@
 				<input type="button" class="button_shaixuan" value="筛选" /><input type="text" class=" input_ss"  value="" placeholder="请输入你要搜索的关键字"/><input type="text" class=" input_ss"  value="" placeholder="请输入第二个关键字"/><input type="button" class="button_shaixuan" value="搜索" /> -->
 			</div>
 			<div class="yhtz">
+				<a href="<c:url value="/admin/admin/edit/add/0" />" class="lvse_btn">新建</a>
 				<a href="javascript:PageUtil.delMulti();void 0;" class="lvse_btn">删除</a>
 			</div>
 			<table width="100%" border="0" cellpadding="0" cellspacing="0" class="table_renzheng">
 				<tr>
-					<td width="5%" style="background:#e7e7e7;"><input class="headBox" style="vertical-align:middle;" type="checkbox" /></td>
-					<td width="20%"><span class="tab_top">球队名称</span></td>
-					<td width="20%"><span class="tab_top">球队公告</span></td>
-					<td width="20%"><span class="tab_top">球队简介</span></td>
-					<td width="20%"><span class="tab_top">活动地点</span></td>
-					<td width="10%"><span class="tab_top">创建时间</span></td>
+					<td width="4%" style="background:#e7e7e7;"><input class="headBox" style="vertical-align:middle;" type="checkbox" /></td>
+					<td width="20%"><span class="tab_top">管理员</span></td>
+					<td width="17%"><span class="tab_top">创建时间</span></td>
+					<td width="17%"><span class="tab_top">修改时间</span></td>
 					<td><span class="tab_top">操作</span></td>
 				</tr>
-				<c:forEach items="${list}" var="team">
+				<c:forEach items="${list}" var="admin">
 					<tr>
-						<td><input class="bodyBox" style="vertical-align:middle;" value="${team.id}" type="checkbox" /></td>
-						<td>${team.name}</td>
-						<td>${team.slogan}</td>
-						<td>${team.description}</td>
-						<td>${team.location}</td>
-						<td>${team.createTime}</td>
-						<td><%-- <a class="btn" href="<c:url value="/admin/team/edit/update/" />${team.id}">修改</a>&nbsp;&nbsp;&nbsp;&nbsp; --%><a class="btn" href="javascript:PageUtil.del(${team.id});void 0;">删除</a></td>
+						<td><input class="bodyBox" style="vertical-align:middle;" value="${admin.id}" type="checkbox" /></td>
+						<td>${admin.username}</td>
+						<td><fmt:formatDate value="${admin.createTime}" pattern="yyyy-MM-dd HH:mm:ss"/></td>
+						<td><fmt:formatDate value="${admin.updateTime}" pattern="yyyy-MM-dd HH:mm:ss"/></td>
+						<td><a class="btn" href="<c:url value="/admin/admin/edit/update/" />${admin.id}">修改</a>&nbsp;&nbsp;&nbsp;&nbsp;<a class="btn" href="javascript:PageUtil.del(${admin.id});void 0;">删除</a></td>
 					</tr>
 				</c:forEach>
 			</table>
 			<div class="page">
 				<c:if test="${currentPage > 1}">
-		       		<a href="<c:url value="/admin/team/list?page=" />${currentPage-1}">上一页</a>
+		       		<a href="<c:url value="/admin/admin/list?page=" />${currentPage-1}">上一页</a>
 		       	</c:if>
 				<c:forEach var="i" begin="1" end="${totalPage}" varStatus="status">
 					<c:if test="${status.index == currentPage}">
-			       		<a href="<c:url value="/admin/team/list?page=" />${status.index}" class="hover">${status.index}</a>
+			       		<a href="<c:url value="/admin/admin/list?page=" />${status.index}" class="hover">${status.index}</a>
 			       	</c:if>
 			       	<c:if test="${status.index != currentPage}">
-			       		<a href="<c:url value="/admin/team/list?page=" />${status.index}">${status.index}</a>
+			       		<a href="<c:url value="/admin/admin/list?page=" />${status.index}">${status.index}</a>
 			       	</c:if>
 				</c:forEach>
 				<c:if test="${currentPage < totalPage}">
-					<a href="<c:url value="/admin/team/list?page=" />${currentPage+1}">下一页</a>
+					<a href="<c:url value="/admin/admin/list?page=" />${currentPage+1}">下一页</a>
 				</c:if>
 				<span>跳至<input id="page" class="fy_text" name="" type="text" /><a href="javascript:PageUtil.toPage();void 0;">确定</a></span></div>
 		</div>

@@ -41,6 +41,9 @@
             <bean class="com.zmsport.iyuesai.interceptor.SiteWechatJsapiInterceptor"></bean>
         </mvc:interceptor>
     </mvc:interceptors>
+    <!-- 配置scheduler线程名称 -->
+	<task:annotation-driven scheduler="token-refresh" />
+	<task:scheduler id="token-refresh" />
     <!-- 支持上传文件 -->  
     <bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver"/> 
     <!-- 输出对象转String支持 -->

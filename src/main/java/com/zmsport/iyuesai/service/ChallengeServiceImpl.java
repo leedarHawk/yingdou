@@ -111,8 +111,16 @@ public class ChallengeServiceImpl implements ChallengeService {
 		for(Challenge c : list) {
 			c.setHost(tMapper.findTeamById(c.getTeamId()));
 			c.setGuest(tMapper.findTeamById(c.getGuestTeamId()));
+			c.setCount(aiMapper.findAcceptInfoByChallengeId(c.getId()).size());
+			
 		}
 		return list;
+	}
+
+	@Override
+	public int getMyTeamChallengeNum(long uid) {
+		// TODO Auto-generated method stub
+		return mapper.getMyTeamChallengeNum(uid);
 	}
 
 }

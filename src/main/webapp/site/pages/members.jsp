@@ -40,9 +40,9 @@
 </div>
 <div class="footer">
 <ul>
-<li class="nav01"><a class="hover" href="<c:url value="/site/game/list" />">比赛</a></li>
+<li class="nav01"><a href="<c:url value="/site/game/list" />">比赛</a></li>
 <li class="nav02"><a href="<c:url value="/site/challenge/list" />">约战</a></li>
-<li class="nav03"><a href="<c:url value="/site/team/list" />">球队</a></li>
+<li class="nav03"><a class="hover" href="<c:url value="/site/team/list" />">球队</a></li>
 <li class="nav04"><a href="<c:url value="/site/user/path/me" />">我</a></li>
 </ul>
 </div>

@@ -5,5 +5,5 @@
 <link rel="stylesheet" type="text/css" href="../css/backstage.css" />
 <div class="header">
 	<dt><h1 style="color:#fff;">篮球后台管理系统</h1></dt>
-	<dd><a href="" class="yhm"><img src="../images/touxiang.jpg">管理员&nbsp;<c:out value="${admin.username}" /></a>&nbsp;&nbsp;|&nbsp;&nbsp;<a href="javascript:parent.document.location.href='<spring:url value="/admin/logout" />';void 0;">退出</a></dd>
+	<dd><a href="<c:url value="/admin/admin/edit/update/" />${admin.id}" class="yhm" target="main"><img src="../images/admin.png">管理员&nbsp;<c:out value="${admin.username}" /></a>&nbsp;&nbsp;|&nbsp;&nbsp;<a href="javascript:parent.document.location.href='<spring:url value="/admin/logout" />';void 0;">退出</a></dd>
 </div>

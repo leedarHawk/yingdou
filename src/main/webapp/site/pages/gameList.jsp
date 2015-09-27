@@ -9,6 +9,20 @@
 <meta name="format-detection" content="telephone=no" />
 <title></title>
 <link rel="stylesheet" href="<c:url value="/site/css/style.css" />" />
+<script type="text/javascript" src="<c:url value="/site/js/jquery.js" />"></script>
+<script type="text/javascript">
+	$(function(){
+		PageUtil.init();
+	});
+	var PageUtil = {
+		init : function() {
+			var height = $(window).height() - $('.header').height() - $('.footer').height();
+			$('div.in_tp').height((height - 15)/ 3).css({
+				'overflow':'hidden'
+			});
+		}
+	};
+</script>
 </head>
 
 <body>

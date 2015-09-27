@@ -61,7 +61,7 @@
 <style type="text/css">
 #bg1 {
 	display: none;
-	position: absolute;
+	position: fixed;
 	top: 0%;
 	left: 0%;
 	width: 100%;
@@ -75,7 +75,7 @@
 
 #show1 {
 	display: none;
-	position: absolute;
+	position: fixed;
 	top: 0;
 	left: 0;
 	width: 100%;

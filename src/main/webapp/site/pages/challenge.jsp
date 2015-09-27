@@ -12,6 +12,19 @@
 <link rel="stylesheet" href="<c:url value="/site/css/style.css" />" />
 <script type="text/javascript"
 	src="<c:url value="/site/js/jquery.js" />"></script>
+<script type="text/javascript">
+	window.onload = function(){
+		var anchor = location.href.split('#')[1];
+		//处理球局
+		if(anchor.indexOf('r_') == 0) {
+			$('li.TabbedPanelsTab:last').click();
+		}
+		if(anchor.length > 0) {
+			var top = $('#' + anchor).offset().top;
+			$(document).scrollTop(top - $('.header').height() - 8);
+		}
+	};
+</script>
 <script type="text/javascript" src="<c:url value="/site/js/common.js?t=${_time }" />"></script>
 <style type="text/css">
 	.circle {
@@ -71,7 +84,7 @@
 					<span class="dingw"><a href="<c:url value="/site/challenge/map" />"><img
 							src="<c:url value="/site/images/dingw.png" />"></a></span>
 					<c:forEach items="${list }" var="challenge">
-						<div class="yuez_con">
+						<div class="yuez_con" id="c_${challenge.id}">
 							<dl class="hybs_dl">
 								<dt>
 									<img src="<c:url value="${challenge.host.pic }" />"><c:out value="${challenge.host.name }" />
@@ -93,10 +106,12 @@
 									</c:if>
 								</dd>
 								<dt>
-									<c:if test="${empty challenge.guest }">
-										<div style="position:relative;"><c:if test="${challenge.creatorId == user.id }"><a href="<c:url value="/site/challenge/acceptInfoList/${challenge.id }" />"><div class="circle">${challenge.count }</div></a></c:if><img src="<c:url value="/site/images/tx_no.png" />"></div><input
-											class="lv_btn" id="btnshow" onClick="showdiv(<c:out value="${challenge.id }" />,<c:out value="${challenge.teamId}" />);" name=""
-											type="button" value="应战">
+									<c:if test="${empty challenge.guest}">
+										<div style="position:relative;"><c:if test="${challenge.creatorId == user.id }"><a href="<c:url value="/site/challenge/acceptInfoList/${challenge.id }" />"><div class="circle">${challenge.count }</div></a></c:if><img src="<c:url value="/site/images/tx_no.png" />"></div>
+										<c:if test="${challenge.creatorId != user.id }">
+											<input class="lv_btn" id="btnshow" onClick="showdiv(<c:out value="${challenge.id }" />,<c:out value="${challenge.teamId}" />);" name=""
+												type="button" value="应战">
+										</c:if>
 									</c:if>
 									<c:if test="${not empty challenge.guest }">
 										<img src="<c:url value="${challenge.guest.pic }" />"><c:out value="${challenge.guest.name }" />
@@ -116,7 +131,7 @@
 
 				<div class="TabbedPanelsContent">
 					<c:forEach items="${roundList }" var="round">
-						<div class="yuez_con">
+						<div class="yuez_con" id="r_${round.id}">
 							<dl class="hydy_dl">
 								<dt style="position:relative;">
 									<c:if test="${user.id == round.creatorId }">

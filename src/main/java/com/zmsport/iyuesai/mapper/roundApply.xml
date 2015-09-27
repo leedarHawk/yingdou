@@ -22,6 +22,10 @@
 		SELECT * FROM t_roundApply WHERE rid=#{1} AND status=0
 	</select>
 	
+	<select id="getMyRoundApplyNum" parameterType="long" resultType="int">
+		SELECT COUNT(ra.id) FROM t_round r,t_roundApply ra WHERE r.creatorId=#{uid} AND r.id=ra.rid AND ra.status=0
+	</select>
+	
 	<insert id="insert" parameterType="roundApply">
 		INSERT INTO t_roundApply (rid,username,height,weight,mobile,qq,msg,time,status,uid) 
 		VALUES (#{rid},#{username},#{height},#{weight},#{mobile},#{qq},#{msg},#{time},#{status},#{uid})

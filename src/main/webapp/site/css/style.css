@@ -132,10 +132,10 @@ pre{ margin:0;}
 .hangy_qh3{ overflow:hidden;zoom:1;}
 .hangy_qh3 .TabbedPanelsTab {float: left;-moz-user-select: none;-khtml-user-select: none;cursor: pointer;}
 .hangy_qh3 .TabbedPanelsTabGroup{overflow:hidden;zoom:1;border-top:1px solid #bcbcbc;width:80%; margin:0 auto;height:35px; position:relative;}
-.hangy_qh3 .TabbedPanelsTabGroup li{display:block; float:left;font-size:16px;width:33%;border-left:1px solid #bcbcbc; text-align: center;height: 35px;line-height: 35px;}
+.hangy_qh3 .TabbedPanelsTabGroup li{display:block; float:left;font-size:16px;width:33%;border-left:1px solid #bcbcbc; text-align: center;height: 35px;line-height: 35px;position:relative;}
 .hangy_qh3 .TabbedPanelsTabGroup li.TabbedPanelsTabHover { color:#ed3030;}
 .hangy_qh3 .TabbedPanelsTabGroup li.TabbedPanelsTabSelected {color:#ed3030;}
-.hangy_qh3 .TabbedPanelsTabGroup li span{border-radius:100%; border:1px solid #ed3030; color:#ed3030; width:15px; height:15px; line-height:15px; font-size:12px; text-align:center; display:block; position:absolute; right:0; top:0;}
+.hangy_qh3 .TabbedPanelsTabGroup li span{border-radius:100%; border:1px solid #ed3030; color:#fff; background:#ed3030;width:15px; height:15px; line-height:15px; font-size:12px; text-align:center; display:block; position:absolute; right:0; top:0;}
 .hangy_qh3 .TabbedPanelsContentGroup {clear: both; overflow:hidden;zoom:1;}
 
 

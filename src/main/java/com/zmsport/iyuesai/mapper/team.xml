@@ -70,7 +70,7 @@
 	</select>
 	
 	<select id="getAllTeams" resultType="team">
-		SELECT * FROM t_team ORDER BY name
+		SELECT * FROM t_team ORDER BY createTime DESC
 	</select>
 	
 	<select id="findAllTeamsByPage" resultType="team">

@@ -10,6 +10,7 @@
 <title></title>
 <link rel="stylesheet" href="<c:url value="/site/css/style.css" />" />
 <script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=yukxov4aBQUGowvyGuS5lD5t"></script>
+<script type="text/javascript" src="http://developer.baidu.com/map/jsdemo/demo/convertor.js"></script>
 <script type="text/javascript" src="<c:url value="/site/js/jquery.js" />" ></script>
 <script src="<c:url value="/site/js/jquery.hoverIntent.minified.js" />" type="text/javascript"></script>
 <script type="text/javascript" src="<c:url value="/site/js/qh.js" />" ></script>
@@ -58,6 +59,7 @@
 		PageUtil.init();
 	});
 	var PageUtil = {
+			level:14,
 			map : null,
 			local : null,
 			init : function() {
@@ -70,7 +72,7 @@
 				_this.map = new BMap.Map("map");  
 				var myCity = new BMap.LocalCity();
 				myCity.get(function(result){
-					_this.map.centerAndZoom(result.name, 11);
+					//_this.map.centerAndZoom(result.name, _this.level);
 				});
 				_this.local = new BMap.LocalSearch(_this.map, {
 					onSearchComplete: function(results){
@@ -87,7 +89,7 @@
 								_this.map.addOverlay(marker);
 								if(i == 0) {
 									//默认地图中心是搜索结果第一个的位置
-									_this.map.centerAndZoom(point, 11);
+									//_this.map.centerAndZoom(point, _this.level);
 									(function (_location,_marker,_point){
 										_marker.addEventListener("click", function(){
 											if(TYPE == 'challenge') {
@@ -108,6 +110,9 @@
 														var $div = $('<div style="position:relative;"><a href="<c:url value="/site/challenge/acceptInfoList/" />' + data.id + '"><div class="circle">' + data.count + '</div></a><img src="<c:url value="/site/images/tx_no.png" />"></div>');
 														$('dt.guest img',info).remove();
 														$('dt.guest input.lv_btn',info).before($div);
+														$('dt.guest input.lv_btn',info).hide();
+													}else {
+														$('dt.guest input.lv_btn',info).show();
 													}
 													$('dt.guest input.lv_btn',info).attr('onClick','PageUtil.showChallenge(' + data.id + ',' + data.teamId + ');');
 												}
@@ -145,6 +150,25 @@
 							}
 						}
 					}
+				});
+				navigator.geolocation.getCurrentPosition(function(position){
+					var currentLat = position.coords.latitude; 
+					var currentLon = position.coords.longitude; 
+					var gpsPoint = new BMap.Point(currentLon, currentLat); 
+					BMap.Convertor.translate(gpsPoint, 0, function(point){
+						var marker = new BMap.Marker(point);
+						_this.map.addOverlay(marker);
+						_this.map.centerAndZoom(point, _this.level); 
+						var opts = {
+						  width : 80,// 信息窗口宽度
+						  height: 40// 信息窗口高度
+						}
+						var infoWindow = new BMap.InfoWindow("您的位置", opts);  // 创建信息窗口对象 
+						_this.map.openInfoWindow(infoWindow,point); //开启信息窗口
+						marker.addEventListener("click", function(){          
+							_this.map.openInfoWindow(infoWindow,point); //开启信息窗口
+						});
+					});
 				});
 			},
 			search : function() {

@@ -1,5 +1,8 @@
 package com.zmsport.iyuesai.mapper;
 
+import java.sql.Date;
+import java.sql.Timestamp;
+
 /**
  * 管理员
  * @author bilei
@@ -20,6 +23,16 @@ public class Admin {
 	 * 密码
 	 */
 	private String password;
+	
+	/**
+	 * 创建时间
+	 */
+	private Timestamp createTime;
+	
+	/**
+	 * 修改时间
+	 */
+	private Timestamp updateTime;
 
 	/**
 	 * @return the id
@@ -61,5 +74,33 @@ public class Admin {
 	 */
 	public void setPassword(String password) {
 		this.password = password;
+	}
+
+	/**
+	 * @return the createTime
+	 */
+	public Timestamp getCreateTime() {
+		return createTime;
+	}
+
+	/**
+	 * @param createTime the createTime to set
+	 */
+	public void setCreateTime(Timestamp createTime) {
+		this.createTime = createTime;
+	}
+
+	/**
+	 * @return the updateTime
+	 */
+	public Timestamp getUpdateTime() {
+		return updateTime;
+	}
+
+	/**
+	 * @param updateTime the updateTime to set
+	 */
+	public void setUpdateTime(Timestamp updateTime) {
+		this.updateTime = updateTime;
 	}
 }

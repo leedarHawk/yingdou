@@ -57,5 +57,12 @@ public interface RoundApplyMapper {
 	 * @return
 	 */
 	public List<RoundApply> getRoundApplyByUid(long uid);
+	
+	/**
+	 * 获取我创建的球局中请求参加的总数
+	 * @param uid
+	 * @return
+	 */
+	public int getMyRoundApplyNum(long uid);
 
 }

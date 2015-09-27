@@ -69,6 +69,7 @@ public class RoundApplyServiceImpl implements RoundApplyService {
 			round = rMapper.findRoundById(ra.getRid());
 			round.setTeam(tMapper.findTeamById(round.getTid()));
 			round.setUser(uMapper.findUserById(round.getCreatorId()));
+			round.setApplyNum(mapper.getRoundApplyRid(round.getId()).size());
 			ra.setRound(round);
 		}
 		return list;
@@ -78,6 +79,12 @@ public class RoundApplyServiceImpl implements RoundApplyService {
 	public boolean isApply(long uid, long rid) {
 		// TODO Auto-generated method stub
 		return mapper.getRoundApplyByUidAndRid(uid, rid) != null;
+	}
+
+	@Override
+	public int getMyRoundApplyNum(long uid) {
+		// TODO Auto-generated method stub
+		return mapper.getMyRoundApplyNum(uid);
 	}
 
 }

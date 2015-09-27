@@ -25,3 +25,10 @@ CommonUtil.isNumber = function(param) {
 	var reg = /^\+?[1-9][0-9]*$/;
 	return reg.test(param);
 }
+
+/**
+ * 验证长度
+ */
+CommonUtil.limit = function(limit, param) {
+	return param.length > limit;
+}

@@ -67,6 +67,10 @@
 						//允许
 						$('#' + id + ' td.check').html('<span style=color:#c0c0c0>已允许</span>');
 						$('#' + id + ' td.status').text('待支付');
+					}else if(result == 2) {
+						//报名成功
+						$('#' + id + ' td.check').html('<span style=color:#c0c0c0>已允许</span>');
+						$('#' + id + ' td.status').text('已报名');
 					}else {
 						//拒绝
 						$('#' + id + ' td.check').html('<span style=color:#c0c0c0>已拒绝</span>');
@@ -154,7 +158,7 @@
 						</c:choose>
 						<td>${gameApply.time}</td>
 						<c:choose>
-							<c:when test="${not empty game.fee }">
+							<c:when test="${game.fee != '0' }">
 								<c:if test="${gameApply.status == 0 }">
 									<td class="check"><a class="btn" href="javascript:PageUtil.initCheck(1,${gameApply.id });void 0;">允许</a>&nbsp;&nbsp;&nbsp;&nbsp;<a class="btn" href="javascript:PageUtil.initCheck(3,${gameApply.id });void 0;">拒绝</a></td>
 								</c:if>
@@ -165,7 +169,7 @@
 									<td class="check"><span style="color:#c0c0c0;">已拒绝</span></td>
 								</c:if>
 							</c:when>
-							<c:when test="${empty game.fee }">
+							<c:when test="${game.fee == '0' }">
 								<c:if test="${gameApply.status == 0 }">
 									<td class="check"><a class="btn" href="javascript:PageUtil.initCheck(2,${gameApply.id });void 0;">允许</a>&nbsp;&nbsp;&nbsp;&nbsp;<a class="btn" href="javascript:PageUtil.initCheck(3,${gameApply.id });void 0;">拒绝</a></td>
 								</c:if>

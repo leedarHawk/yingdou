@@ -22,7 +22,7 @@ import com.zmsport.iyuesai.util.IpUtil;
  * @author bilei
  *
  */
-//@Configuration
+@Configuration
 @EnableScheduling
 public class TokenRefreshService {
 	private Logger log = LoggerFactory.getLogger(getClass());

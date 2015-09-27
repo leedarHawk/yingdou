@@ -66,7 +66,7 @@ public class SiteUserController {
 	public String update(HttpSession session,User user) {
 		service.update(user);
 		session.setAttribute("user", user);
-		return "redirect:/site/user/settings";
+		return "redirect:/site/user/path/me";
 	}
 	
 	/**
@@ -97,12 +97,14 @@ public class SiteUserController {
 		model.addAttribute("gameList", gayService.getMyGames(currentUser.getId()));
 		//我的球局
 		model.addAttribute("myRoundApplys", raService.getRoundApplyByUid(currentUser.getId()));
+		model.addAttribute("myRoundApplyNum", raService.getMyRoundApplyNum(currentUser.getId()));
 		//我的约战
 		List<Challenge> cList = new ArrayList<Challenge>();
 		for(Team team : list) {
 			cList.addAll(cService.findAllChallengesByTeamId(team.getId()));
 		}
 		model.addAttribute("myChallenges", cList);
+		model.addAttribute("myChallengesNum", cService.getMyTeamChallengeNum(currentUser.getId()));
 		return "/site/pages/" + path;
 	}
 	
