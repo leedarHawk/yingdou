@@ -101,4 +101,11 @@ public interface TeamMapper {
 	 * @param uid
 	 */
 	public void deleteByUid(long uid);
+	
+	/**
+	 * 按名称查询球队
+	 * @param name
+	 * @return
+	 */
+	public List<Team> getAllTeamsByName(String name);
 }

@@ -73,6 +73,10 @@
 		SELECT * FROM t_team ORDER BY createTime DESC
 	</select>
 	
+	<select id="getAllTeamsByName" parameterType="String" resultType="team">
+		SELECT * FROM t_team WHERE name LIKE CONCAT('%',#{name},'%')
+	</select>
+	
 	<select id="findAllTeamsByPage" resultType="team">
 		SELECT * FROM t_team ORDER BY createTime DESC LIMIT #{0},#{1}
 	</select>

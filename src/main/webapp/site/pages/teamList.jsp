@@ -20,7 +20,9 @@
 </head>
 
 <body>
-<div class="header">球队<b><a href="<c:url value="/site/team/toCreate" />">创建球队</a></b></div>
+<div class="header"><span><a style="color:#f00;" href="<c:url value="/site/pages/searchTeam.jsp" />">球队搜索</a></span>球队<b><a href="<c:url value="/site/team/toCreate" />">创建球队</a></b></div>
+<span class="dingw"><a href="<c:url value="/site/team/map" />"><img style="top:80px;"
+							src="<c:url value="/site/images/dingw.png" />"></a></span>
 <div class="main2">
 	<c:forEach items="${list}" var="team">
 		<dl class="qiud_dl" onClick="PageUtil.jump(${team.id });">

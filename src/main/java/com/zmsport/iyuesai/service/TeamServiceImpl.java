@@ -3,9 +3,11 @@ package com.zmsport.iyuesai.service;
 import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
+
 import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
 import com.zmsport.iyuesai.mapper.Team;
 import com.zmsport.iyuesai.mapper.TeamMapper;
 import com.zmsport.iyuesai.mapper.User;
@@ -158,5 +160,16 @@ public class TeamServiceImpl implements TeamService {
 	public void unlike(int id) {
 		// TODO Auto-generated method stub
 		mapper.unlike(id);
+	}
+
+	@Override
+	public List<Team> getAllTeamsByName(String name) {
+		// TODO Auto-generated method stub
+		List<Team> list = mapper.getAllTeamsByName(name);
+		for(Team team : list) {
+			team.setCreator(uMapper.findUserById(team.getCreatorId()));
+			team.setMember(mapper.findUsersByTeamId(team.getId(), UserTeam.STATUS_CONFIRMED));
+		}
+		return list;
 	}
 }

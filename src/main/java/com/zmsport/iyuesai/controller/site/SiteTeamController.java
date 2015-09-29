@@ -3,11 +3,14 @@ package com.zmsport.iyuesai.controller.site;
 import java.io.File;
 import java.sql.Timestamp;
 import java.util.List;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -16,6 +19,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
+
 import com.zmsport.iyuesai.mapper.Team;
 import com.zmsport.iyuesai.mapper.User;
 import com.zmsport.iyuesai.mapper.UserTeam;
@@ -154,6 +158,18 @@ public class SiteTeamController {
 	public String list(Model model) {
 		model.addAttribute("list", service.getAllTeams());
 		return "/site/pages/teamList";
+	}
+	
+	/**
+	 * 获取球队地图
+	 * @param uid
+	 * @param model
+	 * @return
+	 */
+	@RequestMapping(value="/map", method=RequestMethod.GET)
+	public String map(Model model) {
+		model.addAttribute("list", service.getAllTeams());
+		return "/site/pages/teamMap";
 	}
 	
 	/**
@@ -331,5 +347,16 @@ public class SiteTeamController {
 			utlService.deleteLike(id, currentUser.getId());
 		}
 		return String.valueOf(service.findTeamById(id).getLikes());
+	}
+	
+	/**
+	 * 搜索球队
+	 * @param name
+	 * @return
+	 */
+	@RequestMapping(value="/search", method=RequestMethod.GET, produces={MediaType.APPLICATION_JSON_VALUE})
+	@ResponseBody
+	public Object search(@RequestParam String name) {
+		return service.getAllTeamsByName(name);
 	}
 }

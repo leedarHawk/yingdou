@@ -10,7 +10,7 @@
 		PageUtil.init();
 	});
 	var PageUtil = {
-			fileType : "jpg,jpeg,png,gif,bmp",
+			fileType : "jpg,JPG,jpeg,png,gif,bmp",
 			init : function() {
 				var _this = this;
 				this.handleUpload();
@@ -63,7 +63,7 @@
 					return false;
 				}
 				if(this.fileType.indexOf(type) == -1) {
-					alert("请上传图片格式");
+					alert("请上传图片格式的文件");
 					return false;
 				}
 				return true;

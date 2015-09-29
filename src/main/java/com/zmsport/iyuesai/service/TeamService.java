@@ -1,6 +1,7 @@
 package com.zmsport.iyuesai.service;
 
 import java.util.List;
+
 import com.zmsport.iyuesai.mapper.Team;
 import com.zmsport.iyuesai.mapper.User;
 /**
@@ -108,4 +109,11 @@ public interface TeamService {
 	 * @param uid
 	 */
 	public void deleteByUid(long uid);
+	
+	/**
+	 * 按名称查询球队
+	 * @param name
+	 * @return
+	 */
+	public List<Team> getAllTeamsByName(String name);
 }

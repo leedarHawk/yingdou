@@ -1,7 +1,10 @@
 package com.zmsport.iyuesai.util;
 
 import java.awt.image.BufferedImage;
-import java.io.*;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.InputStream;
 import java.util.Properties;
 
 import javax.imageio.ImageIO;
@@ -66,7 +69,7 @@ public final class FileUtil {
 	@SuppressWarnings("finally")
 	public static String uploadGamePic(MultipartFile file, String realPath) {
 		String fileName = "game_" + System.currentTimeMillis() + "."
-				+ file.getOriginalFilename().split("\\.")[1];
+				+ file.getOriginalFilename().split("\\.")[1].toLowerCase();
 		String absolutePath = realPath + File.separator + UPLOAD_DIR
 				+ File.separator + GAME_DIR;
 		String relativePath = File.separator + UPLOAD_DIR + File.separator
@@ -148,18 +151,16 @@ public final class FileUtil {
 	 * @param creatorId
 	 * @param realPath
 	 */
-	public static void deleteTeamAlbum(final long creatorId, String contextPath) {
+	public static void deleteTeamAlbum(long creatorId, String contextPath) {
 		String realPath = contextPath + File.separator + UPLOAD_DIR + File.separator
 				+ TEAM_DIR;
 		File dir = new File(realPath);
-		File[] files = dir.listFiles(new FilenameFilter(){
-			@Override
-			public boolean accept(File fileDir, String name) {
-				if(name.endsWith("_" + creatorId)) {
-					return true;
-				}else {
-					return false;
-				}
+		File[] files = dir.listFiles((fileDir, name)->{
+			// TODO Auto-generated method stub
+			if(name.endsWith("_" + creatorId)) {
+				return true;
+			}else {
+				return false;
 			}
 		});
 		for(File f : files) {
