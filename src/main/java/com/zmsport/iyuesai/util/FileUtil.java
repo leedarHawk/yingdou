@@ -69,7 +69,7 @@ public final class FileUtil {
 	@SuppressWarnings("finally")
 	public static String uploadGamePic(MultipartFile file, String realPath) {
 		String fileName = "game_" + System.currentTimeMillis() + "."
-				+ file.getOriginalFilename().split("\\.")[1].toLowerCase();
+				+ file.getOriginalFilename().split("\\.")[1];
 		String absolutePath = realPath + File.separator + UPLOAD_DIR
 				+ File.separator + GAME_DIR;
 		String relativePath = File.separator + UPLOAD_DIR + File.separator
