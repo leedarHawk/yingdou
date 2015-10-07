@@ -24,7 +24,9 @@
 	</select>
     
     <select id="getMyGames" parameterType="long" resultType="java.util.HashMap">
-    	SELECT ga.gameId,ga.status,g.name,g.fee,g.location,g.duration, ga.creatorId, g.pic FROM t_userTeam ut, t_game g, t_gameApply ga WHERE ut.uid=#{uid} AND ut.status=1 AND ut.tid=ga.teamId AND g.id=ga.gameId
+    	SELECT ga.gameId,ga.status,g.name,g.fee,g.location,g.duration, ga.creatorId, g.pic
+    	FROM t_userTeam ut, t_game g, t_gameApply ga WHERE ut.uid=#{uid} AND ut.status=1 AND ut.tid=ga.teamId
+    	AND g.id=ga.gameId ORDER BY g.createTime DESC
     </select>
 	
 	<insert id="insert" parameterType="gameApply" useGeneratedKeys="true" keyProperty="id">

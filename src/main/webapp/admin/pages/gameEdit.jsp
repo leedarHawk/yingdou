@@ -3,7 +3,9 @@
 <%@ include file="../../commons/taglibs.jsp"%>
 <META content=text/html;charset=utf-8 http-equiv=Content-Type ></Meta>
 <link rel="stylesheet" type="text/css" href="<c:url value="/admin/css/backstage.css" />" />
+<link rel="stylesheet" type="text/css" href="<c:url value="/admin/css/jquery-ui.min.css" />" />
 <script type="text/javascript" src="<c:url value="/admin/js/jquery.min.js" />"></script>
+<script type="text/javascript" src="<c:url value="/admin/js/jquery-ui.min.js" />"></script>
 <script type="text/javascript">
 <!--
 	$(function(){
@@ -12,6 +14,15 @@
 	var PageUtil = {
 			fileType : "jpg,jpeg,png,gif,bmp",
 			init : function() {
+				//add date picker
+				$('input[name="duration"]').datepicker({
+							dateFormat: 'yy-mm-dd',//日期格式
+							monthNames: ['一月','二月','三月','四月','五月','六月','七月','八月','九月','十月','十一月','十二月'],
+							dayNames: ['星期日','星期一','星期二','星期三','星期四','星期五','星期六'],
+							dayNamesShort: ['周日','周一','周二','周三','周四','周五','周六'],
+							dayNamesMin: ['日','一','二','三','四','五','六']
+						}
+				);
 				var _this = this;
 				this.handleUpload();
 				$('input[name="name"]').focus();
@@ -31,6 +42,8 @@
 				});
 			},
 			check : function() {
+
+
 				var name = $.trim($('input[name="name"]').val());
 				if(name.length == 0) {
 					alert("请输入赛事名称");
