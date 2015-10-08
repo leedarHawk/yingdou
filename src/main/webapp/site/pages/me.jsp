@@ -154,13 +154,13 @@
 						<p><i><span class="notice">审核中</span></i></p>
 					</c:when>
 					<c:when test="${game.status == 1 }">
-						<p><i class="lv_zhf"><span><a href="javascript:PageUtil.pay('<c:url value="/site/pages/pay.html?gameName=" /><c:out value="${game.name }" />&gameId=<c:out value="${game.id }" />&fee=<c:out value="${game.fee }" />',<c:out value="${game.creatorId }" />,<c:out value="${user.id }" />);void 0;">去支付</a></span></i></p>
+						<p><i class="lv_zhf"><span><a href="javascript:PageUtil.pay('<c:url value="/site/pages/pay.html?gameName=" /><c:out value="${game.name }" />&gameId=<c:out value="${game.gameId }" />&fee=<c:out value="${game.fee }" />',<c:out value="${game.creatorId }" />,<c:out value="${user.id }" />);void 0;">去支付</a></span></i></p>
 					</c:when>
 					<c:when test="${game.status == 2 }">
 						<p><i><span class="notice">已报名</span></i></p>
 					</c:when>
 					<c:when test="${game.status == 3 }">
-						<p><i><span class="notice">审核不通过</span></i></p>
+						<p><i><span class="notice">审核不通过</span></i> <i class="lv_zhf"><span><a href="<c:url value="/site/game/candidate/${game.gameId}" />">重新报名</a></span></i></p>
 					</c:when>
 				</c:choose>
 			</div>

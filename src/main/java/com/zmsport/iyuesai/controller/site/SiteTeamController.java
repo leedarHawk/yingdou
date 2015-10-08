@@ -168,7 +168,12 @@ public class SiteTeamController {
 	 */
 	@RequestMapping(value="/map", method=RequestMethod.GET)
 	public String map(Model model) {
-		model.addAttribute("list", service.getAllTeams());
+		List<Team> teamList = service.getAllTeams();
+		for (Team team : teamList){
+			team.setDescription(team.getDescription().replace("\n", ""));
+			team.setDescription(team.getDescription().replace("\r", ""));
+		}
+		model.addAttribute("list", teamList);
 		return "/site/pages/teamMap";
 	}
 	

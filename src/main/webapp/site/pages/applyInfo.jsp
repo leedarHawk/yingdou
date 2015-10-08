@@ -13,7 +13,7 @@
 
 <body>
 <div class="header"><span><a href="<c:url value="/site/game/gameInfo/${gameApply.gameId }" />"><img src="<c:url value="/site/images/jt_fh.png" />">返回</a></span></div>
-<div class="main3">
+<br class="main3">
 	<dl class="hy_topdl">
 	<dt><img src="<c:url value="${team.pic }" />"></dt>
 	<dd>
@@ -49,7 +49,12 @@
 </table>
 
 <ul class="hy_btn">
-<li><a href="<c:url value="/site/game/deleteGameApply/${gameApply.id }/${gameApply.gameId }" />" class="red_del">删除</a></li>
+  <li> <strong>提交报名表成功</strong></li>
+</ul>
+
+
+<ul class="hy_btn">
+<li><a href="<c:url value="/site/game/deleteGameApply/${gameApply.id }/${gameApply.gameId }" />" class="red_del">取消报名</a></li>
 </ul>
 
 </div>

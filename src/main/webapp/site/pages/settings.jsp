@@ -29,7 +29,7 @@
 				$('form').submit(function(){
 					var username = $.trim($('input[name=username]').val());
 					if(username.length == 0) {
-						AlertUtil.show("昵称不能为空");
+						AlertUtil.show("昵称不能为空!");
 						return false;
 					}
 					if(CommonUtil.limit(5,username)) {
@@ -38,15 +38,26 @@
 					}
 					$('input[name=username]').val(username);
 					var height = $.trim($('input[name=height]').val());
-					if(height.length > 0 && !CommonUtil.isNumber(height)) {
+					if(height.length > 0 && !CommonUtil.isNumber(height) ) {
 						AlertUtil.show("请输入正确的身高");
 						return false;
 					}
+					
+					if (height > 260) {
+						AlertUtil.show("请输入正确的身高");
+						return false;
+					}
+					
 					var weight = $.trim($('input[name=weight]').val());
-					if(weight.length > 0 && !CommonUtil.isNumber(weight)) {
+					if(weight.length > 0 && !CommonUtil.isNumber(weight) ) {
 						AlertUtil.show("请输入正确的体重");
 						return false;
 					}
+					if  (weight > 300) {
+						AlertUtil.show("请输入正确的体重");
+						return false;
+					}
+					
 					var mobile = $.trim($('input[name=mobile]').val());
 					if(mobile.length > 0 && !CommonUtil.isMobile(mobile)) {
 						AlertUtil.show("请输入正确的手机号");
