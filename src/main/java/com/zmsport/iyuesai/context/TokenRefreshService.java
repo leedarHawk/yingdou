@@ -1,7 +1,7 @@
 package com.zmsport.iyuesai.context;
 
-import java.util.ArrayList;
-import java.util.List;
+import com.zmsport.iyuesai.util.ConstantUtil;
+import com.zmsport.iyuesai.util.IpUtil;
 import net.sf.json.JSONObject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -14,8 +14,9 @@ import org.springframework.http.converter.xml.MappingJackson2XmlHttpMessageConve
 import org.springframework.scheduling.annotation.EnableScheduling;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.web.client.RestTemplate;
-import com.zmsport.iyuesai.util.ConstantUtil;
-import com.zmsport.iyuesai.util.IpUtil;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * 更新access_token和jsapi_ticket服务
@@ -35,7 +36,7 @@ public class TokenRefreshService {
 	 * 微信服务器每7200秒更新一次access_token和jsapi_ticket
 	 * 服务器需提前更新access_token，执行间隔为7000秒
 	 */
-	@Scheduled(fixedDelay=ConstantUtil.REFRESH_INTERVAL)
+	@Scheduled(fixedRate=600000)
 	public void refresh() {
 		log.info(Thread.currentThread().getName() + " 开始更新access_token和jsapi_ticket, 请求来源:{}", IpUtil.getRealIp());
 		List<HttpMessageConverter<?>> converters = new ArrayList<HttpMessageConverter<?>>();
