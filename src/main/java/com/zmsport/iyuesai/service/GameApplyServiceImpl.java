@@ -105,4 +105,10 @@ public class GameApplyServiceImpl implements GameApplyService {
 		mapper.deleteByCreatorId(creatorId);
 	}
 
+	@Override
+	public GameApply applyExited(GameApply ga) {
+		// TODO Auto-generated method stub
+		return mapper.applyExited(ga);
+	}
+
 }

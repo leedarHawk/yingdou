@@ -13,7 +13,7 @@
 
 <body>
 <div class="header"><span><a href="<c:url value="/site/game/gameInfo/${gameApply.gameId }" />"><img src="<c:url value="/site/images/jt_fh.png" />">返回</a></span></div>
-<br class="main3">
+<div class="main3">
 	<dl class="hy_topdl">
 	<dt><img src="<c:url value="${team.pic }" />"></dt>
 	<dd>

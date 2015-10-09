@@ -92,7 +92,7 @@
 		<div class="TabbedPanelsContent">
 		<!--比赛-->
 		<c:forEach items="${gameList }" var="game">
-			<div class="hywo_con">
+			<div class="hywo_con" style="border-bottom: none;">
 				<dl class="hywo_dl hydy_dl">
 					<dt><a href=""><img src="<c:url value="${game.pic }" />"></a></dt>
 					<dd>
@@ -104,20 +104,20 @@
 							</ul>
 					</dd>
 				</dl>
-				<%--<c:choose>--%>
-					<%--<c:when test="${game.status == 0 }">--%>
-						<%--<p><i><span class="notice">审核中</span></i></p>--%>
-					<%--</c:when>--%>
-					<%--<c:when test="${game.status == 1 }">--%>
-						<%--<p><i class="lv_zhf"><span><a href="javascript:PageUtil.pay('<c:url value="/site/pages/pay.html?gameName=" /><c:out value="${game.name }" />&gameId=<c:out value="${game.id }" />&fee=<c:out value="${game.fee }" />',<c:out value="${game.creatorId }" />,<c:out value="${user.id }" />);void 0;">去支付</a></span></i></p>--%>
-					<%--</c:when>--%>
-					<%--<c:when test="${game.status == 2 }">--%>
-						<%--<p><i><span class="notice">已报名</span></i></p>--%>
-					<%--</c:when>--%>
-					<%--<c:when test="${game.status == 3 }">--%>
-						<%--<p><i><span class="notice">审核不通过</span></i></p>--%>
-					<%--</c:when>--%>
-				<%--</c:choose>--%>
+				<%-- <c:choose>
+					<c:when test="${game.status == 0 }">
+						<p><i><span class="notice">审核中</span></i></p>
+					</c:when>
+					<c:when test="${game.status == 1 }">
+						<p><i class="lv_zhf"><span><a href="javascript:PageUtil.pay('<c:url value="/site/pages/pay.html?gameName=" /><c:out value="${game.name }" />&gameId=<c:out value="${game.id }" />&fee=<c:out value="${game.fee }" />',<c:out value="${game.creatorId }" />,<c:out value="${user.id }" />);void 0;">去支付</a></span></i></p>
+					</c:when>
+					<c:when test="${game.status == 2 }">
+						<p><i><span class="notice">已报名</span></i></p>
+					</c:when>
+					<c:when test="${game.status == 3 }">
+						<p><i><span class="notice">审核不通过</span></i></p>
+					</c:when>
+				</c:choose> --%>
 			</div>
 		</c:forEach>
 		<!-- 约战  -->

@@ -103,6 +103,7 @@
 								</c:when>
 								<c:when test="${status == 3 }">
 									<span class="notice">审核不通过</span>
+									<span><a href="<c:url value="/site/game/reApply/${game.id}" />">重新报名</a></span>
 								</c:when>
 							</c:choose>
 						</c:if>
@@ -130,6 +131,7 @@
 								</c:when>
 								<c:when test="${status == 3 }">
 									<span class="notice">审核不通过</span>
+									<span><a href="<c:url value="/site/game/reApply/${game.id}" />">重新报名</a></span>
 								</c:when>
 							</c:choose>
 						</c:if>

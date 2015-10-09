@@ -32,3 +32,13 @@ CommonUtil.isNumber = function(param) {
 CommonUtil.limit = function(limit, param) {
 	return param.length > limit;
 }
+
+/**
+ * 根据长度限制设置内容
+ * 
+ */
+//CommonUtil.limitTxt = function(limit, e) {
+//	if(CommonUtil.limit(limit, e.text())) {
+//		e.text(e.text().substr(0, limit));
+//	}
+//}

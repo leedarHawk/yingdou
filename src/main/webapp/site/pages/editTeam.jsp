@@ -154,7 +154,7 @@ input.members {
 	  </tr>
 	  <tr>
 	    <td height="40" align="right">*球队公告：</td>
-	    <td height="40"><input name="slogan" type="text" class="fab_text" maxlength="30"></td>
+	    <td height="40"><input name="slogan" type="text" class="fab_text"></td>
 	  </tr>
 	  <tr>
 	    <td height="40" align="right">*活动地点：</td>
@@ -174,7 +174,7 @@ input.members {
 	  </tr>
 	  <tr>
 	    <td height="40" align="right" valign="top">*球队简介：</td>
-	    <td height="40" valign="top"><textarea class="fab_textare" name="description" cols="" rows="" onkeyup="value=value.substr(0,30);"></textarea></td>
+	    <td height="40" valign="top"><textarea class="fab_textare" name="description" cols="" rows=""></textarea></td>
 	  </tr>
 	  <tr>
 	    <td height="40" align="right">需要参加者留下：</td>

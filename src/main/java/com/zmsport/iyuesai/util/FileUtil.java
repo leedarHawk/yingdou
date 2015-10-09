@@ -1,14 +1,13 @@
 package com.zmsport.iyuesai.util;
 
-import java.awt.image.BufferedImage;
-import java.io.*;
-import java.util.Properties;
-
-import javax.imageio.ImageIO;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.web.multipart.MultipartFile;
+
+import javax.imageio.ImageIO;
+import java.awt.image.BufferedImage;
+import java.io.*;
+import java.util.Properties;
 
 /**
  * 文件通用类
@@ -66,7 +65,7 @@ public final class FileUtil {
 	@SuppressWarnings("finally")
 	public static String uploadGamePic(MultipartFile file, String realPath) {
 		String fileName = "game_" + System.currentTimeMillis() + "."
-				+ file.getOriginalFilename().split("\\.")[1];
+				+ file.getOriginalFilename().split("\\.")[1].toLowerCase();
 		String absolutePath = realPath + File.separator + UPLOAD_DIR
 				+ File.separator + GAME_DIR;
 		String relativePath = File.separator + UPLOAD_DIR + File.separator
@@ -153,11 +152,12 @@ public final class FileUtil {
 				+ TEAM_DIR;
 		File dir = new File(realPath);
 		File[] files = dir.listFiles(new FilenameFilter() {
+			// TODO Auto-generated method stub
 			@Override
 			public boolean accept(File fileDir, String name) {
-				if(name.endsWith("_" + creatorId)) {
+				if (name.endsWith("_" + creatorId)) {
 					return true;
-				}else {
+				} else {
 					return false;
 				}
 			}

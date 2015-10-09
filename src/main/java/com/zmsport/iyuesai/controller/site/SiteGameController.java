@@ -133,6 +133,22 @@ public class SiteGameController {
 	}
 	
 	/**
+	 * 重新报名
+	 * @param session
+	 * @param gameApply
+	 * @return
+	 */
+	@RequestMapping("/reApply/{gameId}")
+	public String reApply(HttpSession session, @PathVariable long gameId, Model model) {
+		User currentUser = (User)session.getAttribute("user");
+		GameApply gameApply = gayService.getApplyByGameIdAndCreatorId(gameId, currentUser.getId());
+		gayService.updateStatus(GameApply.STATUS_CONFIRMING, gameApply.getId());
+		model.addAttribute("gameApply", gameApply);
+		model.addAttribute("team", tService.findTeamById(gameApply.getTeamId()));
+		return "/site/pages/applyInfo";
+	}
+	
+	/**
 	 * 删除报名信息
 	 * @param id
 	 * @return

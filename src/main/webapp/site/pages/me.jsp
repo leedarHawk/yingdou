@@ -160,7 +160,9 @@
 						<p><i><span class="notice">已报名</span></i></p>
 					</c:when>
 					<c:when test="${game.status == 3 }">
-						<p><i><span class="notice">审核不通过</span></i> <i class="lv_zhf"><span><a href="<c:url value="/site/game/candidate/${game.gameId}" />">重新报名</a></span></i></p>
+						<p><i><span class="notice" style="padding:0px 5px;">审核不通过</span></i></p>
+						<p><i class="lv_zhf"><span><a href="<c:url value="/site/game/reApply/${game.gameId}" />">重新报名</a></span></p>
+						<p><i class="lv_zhf"><span><a href="<c:url value="/site/game/deleteGameApply/${game.id }/${game.gameId }" />">取消报名</a></span></p>
 					</c:when>
 				</c:choose>
 			</div>
@@ -236,7 +238,7 @@
 				<li><span>发起人：</span>${ra.round.user.username }</li>
 				<li><span>时间：</span><fmt:formatDate value="${ra.round.startTime}" pattern="yyyy年MM月dd日 HH:mm"/><c:if test="$(round.endTime != '1970-01-01 00:00:00')">至<fmt:formatDate value="${ra.round.endTime}" pattern="yyyy年MM月dd日 HH:mm"/></c:if></li>
 				<li><span>地点：</span>${ra.round.location }</li>
-				<li"><span style="padding-left:89px;">报名/招募：</span>${ra.round.members }/<c:if test="${ra.round.enrollType==0 }">不限</c:if><c:if test="${ra.round.enrollType == 1 }">${ra.round.enrollLimit }</c:if></li>
+				<li><span style="padding-left:89px;">报名/招募：</span>${ra.round.members }/<c:if test="${ra.round.enrollType==0 }">不限</c:if><c:if test="${ra.round.enrollType == 1 }">${ra.round.enrollLimit }</c:if></li>
 			</ul>
 			<div class="round-status">
 				<c:if test="${ra.status == 0 }"><b>审核中</b></c:if><c:if test="${ra.status == 1 }"><b>已参加</b></c:if>

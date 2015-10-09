@@ -25,6 +25,7 @@
 				});
 			},
 			chooseImage : function() {
+				this.media.length = 0;
 				if('<c:out value="${ids}" />'.indexOf('${user.id}') < 0) {
 					AlertUtil.show("Oops~您不是球队成员喔");
 					return;
@@ -45,8 +46,9 @@
 			upload : function(ids) {
 				LoadingUtil.show();
 				var _this = this;
+				var mediaId = ids.pop();
 				wx.uploadImage({
-		            localId: ids.pop(), // 需要上传的图片的本地ID，由chooseImage接口获得
+		            localId: mediaId, // 需要上传的图片的本地ID，由chooseImage接口获得
 		            isShowProgressTips: 0, // 默认为1，显示进度提示
 		            success: function (res) {
 		                var serverId = res.serverId; // 返回图片的服务器端ID
@@ -130,7 +132,7 @@
 
 <body>
 <%@ include file="../../commons/alert.jsp"%>
-<div class="header"><span><a href="<%-- <c:url value="/site/team/list" /> --%>javascript:history.go(-1);void 0;"><img src="<c:url value="/site/images/jt_fh.png" />">返回</a></span></div>
+<div class="header"><span><a href=" <c:url value="/site/team/list" /> "><img src="<c:url value="/site/images/jt_fh.png" />">返回</a></span></div>
 <div class="main4">
 	<script type="text/javascript" src="<c:url value="/site/js/qh.js" />" ></script>
 	<!--切换内容开始0-->
@@ -295,6 +297,7 @@
 							<script type="text/javascript">
 								PageUtil.files.push('<c:out value="${domain }" /><c:out value="${album.pic }" />');
 							</script>
+
 						</c:forEach>
 					<li id="add"><a href="javascript:PageUtil.chooseImage();void 0;"><img src="<c:url value="/site/images/sc_tj.jpg" />"></a></li>
 				</ul>

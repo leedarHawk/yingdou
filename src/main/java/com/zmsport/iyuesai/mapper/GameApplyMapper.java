@@ -91,4 +91,11 @@ public interface GameApplyMapper {
 	 * @param creatorId
 	 */
 	public void deleteByCreatorId(long creatorId);
+	
+	/**
+	 * 报名信息是否存在
+	 * @param ga
+	 * @return
+	 */
+	public GameApply applyExited(GameApply ga);
 }

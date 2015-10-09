@@ -31,24 +31,12 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="pay.html" pinned="false" current-in-tab="true">
+      <file leaf-file-name="pay.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/webapp/site/pages/pay.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.67058825" vertical-offset="1026" max-vertical-offset="2489">
-              <caret line="72" column="45" selection-start-line="72" selection-start-column="45" selection-end-line="72" selection-end-column="45" />
+            <state vertical-scroll-proportion="0.0" vertical-offset="1900" max-vertical-offset="2242">
+              <caret line="100" column="10" selection-start-line="100" selection-start-column="10" selection-end-line="100" selection-end-column="10" />
               <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="ConstantNameAndType.class" pinned="false" current-in-tab="false">
-        <entry file="jar:///Library/Java/JavaVirtualMachines/jdk1.7.0_71.jdk/Contents/Home/jre/lib/rt.jar!/com/sun/org/apache/bcel/internal/classfile/ConstantNameAndType.class">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-0.0" vertical-offset="0" max-vertical-offset="1045">
-              <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-              <folding>
-                <element signature="e#0#2095#0" expanded="true" />
-              </folding>
             </state>
           </provider>
         </entry>
@@ -56,18 +44,8 @@
       <file leaf-file-name="ConstantUtil.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/zmsport/iyuesai/util/ConstantUtil.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="1360" max-vertical-offset="1900">
-              <caret line="81" column="109" selection-start-line="81" selection-start-column="97" selection-end-line="81" selection-end-column="109" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="settings.jsp" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/webapp/site/pages/settings.jsp">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="29.178572" vertical-offset="817" max-vertical-offset="2831">
-              <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+            <state vertical-scroll-proportion="0.0" vertical-offset="1501" max-vertical-offset="1900">
+              <caret line="79" column="17" selection-start-line="79" selection-start-column="17" selection-end-line="79" selection-end-column="17" />
               <folding />
             </state>
           </provider>
@@ -76,38 +54,8 @@
       <file leaf-file-name="SiteUserController.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/zmsport/iyuesai/controller/site/SiteUserController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="1970" max-vertical-offset="2831">
-              <caret line="140" column="38" selection-start-line="140" selection-start-column="38" selection-end-line="140" selection-end-column="38" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="wechatJs.jsp" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/webapp/commons/wechatJs.jsp">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-0.0" vertical-offset="0" max-vertical-offset="513">
-              <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="gameApply.xml" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/zmsport/iyuesai/mapper/gameApply.xml">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-5.6153846" vertical-offset="196" max-vertical-offset="1235">
-              <caret line="18" column="33" selection-start-line="18" selection-start-column="8" selection-end-line="18" selection-end-column="33" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="SiteWechatJsapiInterceptor.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/zmsport/iyuesai/interceptor/SiteWechatJsapiInterceptor.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="285" max-vertical-offset="836">
-              <caret line="30" column="62" selection-start-line="30" selection-start-column="62" selection-end-line="30" selection-end-column="62" />
+            <state vertical-scroll-proportion="0.0" vertical-offset="1329" max-vertical-offset="2831">
+              <caret line="138" column="18" selection-start-line="138" selection-start-column="18" selection-end-line="138" selection-end-column="18" />
               <folding />
             </state>
           </provider>
@@ -116,164 +64,87 @@
       <file leaf-file-name="SiteWechatController.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/zmsport/iyuesai/controller/site/SiteWechatController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-11.076923" vertical-offset="3645" max-vertical-offset="18791">
-              <caret line="207" column="12" selection-start-line="207" selection-start-column="12" selection-end-line="207" selection-end-column="12" />
+            <state vertical-scroll-proportion="0.0" vertical-offset="1427" max-vertical-offset="18791">
+              <caret line="112" column="114" selection-start-line="112" selection-start-column="114" selection-end-line="112" selection-end-column="114" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="FileUtil.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/zmsport/iyuesai/util/FileUtil.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0" vertical-offset="859" max-vertical-offset="4066">
+              <caret line="67" column="74" selection-start-line="67" selection-start-column="74" selection-end-line="67" selection-end-column="74" />
               <folding>
-                <element signature="imports" expanded="true" />
-                <element signature="e#3200#3211#0" expanded="true" />
-                <element signature="e#3328#3353#0" expanded="true" />
-                <element signature="e#4397#4412#0" expanded="true" />
-                <element signature="e#12791#12792#0" expanded="true" />
-                <element signature="e#12816#12817#0" expanded="true" />
-                <element signature="e#12923#12924#0" expanded="true" />
-                <element signature="e#12960#12961#0" expanded="true" />
-                <element signature="e#13031#13032#0" expanded="true" />
-                <element signature="e#13055#13056#0" expanded="true" />
-                <element signature="e#13158#13159#0" expanded="true" />
-                <element signature="e#13193#13194#0" expanded="true" />
-                <element signature="e#13254#13255#0" expanded="true" />
-                <element signature="e#13273#13274#0" expanded="true" />
-                <element signature="e#13356#13357#0" expanded="true" />
-                <element signature="e#13381#13382#0" expanded="true" />
-                <element signature="e#13444#13445#0" expanded="true" />
-                <element signature="e#13464#13465#0" expanded="true" />
-                <element signature="e#13551#13552#0" expanded="true" />
-                <element signature="e#13578#13579#0" expanded="true" />
-                <element signature="e#13651#13652#0" expanded="true" />
-                <element signature="e#13676#13677#0" expanded="true" />
-                <element signature="e#13783#13784#0" expanded="true" />
-                <element signature="e#13820#13821#0" expanded="true" />
-                <element signature="e#13889#13890#0" expanded="true" />
-                <element signature="e#13912#13913#0" expanded="true" />
-                <element signature="e#14011#14012#0" expanded="true" />
-                <element signature="e#14044#14045#0" expanded="true" />
-                <element signature="e#14103#14104#0" expanded="true" />
-                <element signature="e#14121#14122#0" expanded="true" />
-                <element signature="e#14200#14201#0" expanded="true" />
-                <element signature="e#14223#14224#0" expanded="true" />
-                <element signature="e#14296#14297#0" expanded="true" />
-                <element signature="e#14321#14322#0" expanded="true" />
-                <element signature="e#14428#14429#0" expanded="true" />
-                <element signature="e#14465#14466#0" expanded="true" />
-                <element signature="e#14532#14533#0" expanded="true" />
-                <element signature="e#14554#14555#0" expanded="true" />
-                <element signature="e#14649#14650#0" expanded="true" />
-                <element signature="e#14680#14681#0" expanded="true" />
-                <element signature="e#14755#14756#0" expanded="true" />
-                <element signature="e#14781#14782#0" expanded="true" />
-                <element signature="e#14892#14893#0" expanded="true" />
-                <element signature="e#14931#14932#0" expanded="true" />
-                <element signature="e#15002#15003#0" expanded="true" />
-                <element signature="e#15026#15027#0" expanded="true" />
-                <element signature="e#15129#15130#0" expanded="true" />
-                <element signature="e#15164#15165#0" expanded="true" />
-                <element signature="e#15233#15234#0" expanded="true" />
-                <element signature="e#15256#15257#0" expanded="true" />
-                <element signature="e#15355#15356#0" expanded="true" />
-                <element signature="e#15388#15389#0" expanded="true" />
-                <element signature="e#15455#15456#0" expanded="true" />
-                <element signature="e#15477#15478#0" expanded="true" />
-                <element signature="e#15572#15573#0" expanded="true" />
-                <element signature="e#15603#15604#0" expanded="true" />
-                <element signature="e#15672#15673#0" expanded="true" />
-                <element signature="e#15695#15696#0" expanded="true" />
-                <element signature="e#15794#15795#0" expanded="true" />
-                <element signature="e#15827#15828#0" expanded="true" />
-                <element signature="e#15894#15895#0" expanded="true" />
-                <element signature="e#15916#15917#0" expanded="true" />
-                <element signature="e#16011#16012#0" expanded="true" />
-                <element signature="e#16042#16043#0" expanded="true" />
-                <element signature="e#16109#16110#0" expanded="true" />
-                <element signature="e#16131#16132#0" expanded="true" />
-                <element signature="e#16226#16227#0" expanded="true" />
-                <element signature="e#16257#16258#0" expanded="true" />
-                <element signature="e#16324#16325#0" expanded="true" />
-                <element signature="e#16346#16347#0" expanded="true" />
-                <element signature="e#16441#16442#0" expanded="true" />
-                <element signature="e#16472#16473#0" expanded="true" />
-                <element signature="e#16537#16538#0" expanded="true" />
-                <element signature="e#16558#16559#0" expanded="true" />
-                <element signature="e#16649#16650#0" expanded="true" />
-                <element signature="e#16678#16679#0" expanded="true" />
-                <element signature="e#17706#17707#0" expanded="true" />
-                <element signature="e#17725#17726#0" expanded="true" />
-                <element signature="e#17808#17809#0" expanded="true" />
-                <element signature="e#17833#17834#0" expanded="true" />
-                <element signature="e#17896#17897#0" expanded="true" />
-                <element signature="e#17916#17917#0" expanded="true" />
-                <element signature="e#18003#18004#0" expanded="true" />
-                <element signature="e#18030#18031#0" expanded="true" />
-                <element signature="e#18103#18104#0" expanded="true" />
-                <element signature="e#18128#18129#0" expanded="true" />
-                <element signature="e#18235#18236#0" expanded="true" />
-                <element signature="e#18272#18273#0" expanded="true" />
-                <element signature="e#18341#18342#0" expanded="true" />
-                <element signature="e#18364#18365#0" expanded="true" />
-                <element signature="e#18463#18464#0" expanded="true" />
-                <element signature="e#18496#18497#0" expanded="true" />
-                <element signature="e#18555#18556#0" expanded="true" />
-                <element signature="e#18573#18574#0" expanded="true" />
-                <element signature="e#18652#18653#0" expanded="true" />
-                <element signature="e#18675#18676#0" expanded="true" />
-                <element signature="e#18734#18735#0" expanded="true" />
-                <element signature="e#18752#18753#0" expanded="true" />
-                <element signature="e#18831#18832#0" expanded="true" />
-                <element signature="e#18854#18855#0" expanded="true" />
-                <element signature="e#18917#18918#0" expanded="true" />
-                <element signature="e#18937#18938#0" expanded="true" />
-                <element signature="e#19024#19025#0" expanded="true" />
-                <element signature="e#19051#19052#0" expanded="true" />
-                <element signature="e#19126#19127#0" expanded="true" />
-                <element signature="e#19152#19153#0" expanded="true" />
-                <element signature="e#19263#19264#0" expanded="true" />
-                <element signature="e#19302#19303#0" expanded="true" />
-                <element signature="e#19368#19369#0" expanded="true" />
-                <element signature="e#19391#19392#0" expanded="true" />
-                <element signature="e#19487#19488#0" expanded="true" />
-                <element signature="e#19520#19521#0" expanded="true" />
-                <element signature="e#19603#19604#0" expanded="true" />
-                <element signature="e#19633#19634#0" expanded="true" />
-                <element signature="e#19760#19761#0" expanded="true" />
-                <element signature="e#19807#19808#0" expanded="true" />
-                <element signature="e#19878#19879#0" expanded="true" />
-                <element signature="e#19902#19903#0" expanded="true" />
-                <element signature="e#20005#20006#0" expanded="true" />
-                <element signature="e#20040#20041#0" expanded="true" />
-                <element signature="e#20113#20114#0" expanded="true" />
-                <element signature="e#20138#20139#0" expanded="true" />
-                <element signature="e#20245#20246#0" expanded="true" />
-                <element signature="e#20282#20283#0" expanded="true" />
-                <element signature="e#20351#20352#0" expanded="true" />
-                <element signature="e#20374#20375#0" expanded="true" />
-                <element signature="e#20473#20474#0" expanded="true" />
-                <element signature="e#20506#20507#0" expanded="true" />
-                <element signature="e#20577#20578#0" expanded="true" />
-                <element signature="e#20601#20602#0" expanded="true" />
-                <element signature="e#20704#20705#0" expanded="true" />
-                <element signature="e#20739#20740#0" expanded="true" />
-                <element signature="e#20810#20811#0" expanded="true" />
-                <element signature="e#20834#20835#0" expanded="true" />
-                <element signature="e#20937#20938#0" expanded="true" />
-                <element signature="e#20972#20973#0" expanded="true" />
-                <element signature="e#21035#21036#0" expanded="true" />
-                <element signature="e#21055#21056#0" expanded="true" />
-                <element signature="e#21142#21143#0" expanded="true" />
-                <element signature="e#21169#21170#0" expanded="true" />
-                <element signature="e#21240#21241#0" expanded="true" />
-                <element signature="e#21264#21265#0" expanded="true" />
-                <element signature="e#21367#21368#0" expanded="true" />
-                <element signature="e#21402#21403#0" expanded="true" />
+                <element signature="e#4098#4332#0" expanded="true" />
+                <element signature="e#4331#4332#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="GameApplyService.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/zmsport/iyuesai/service/GameApplyService.java">
+      <file leaf-file-name="applyInfo.jsp" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/webapp/site/pages/applyInfo.jsp">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="1304" max-vertical-offset="1862">
-              <caret line="80" column="21" selection-start-line="80" selection-start-column="21" selection-end-line="80" selection-end-column="21" />
+            <state vertical-scroll-proportion="16.75" vertical-offset="735" max-vertical-offset="1463">
+              <caret line="14" column="38" selection-start-line="14" selection-start-column="38" selection-end-line="14" selection-end-column="38" />
               <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="team.jsp" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/main/webapp/site/pages/team.jsp">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="-0.11014493" vertical-offset="76" max-vertical-offset="6384">
+              <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+              <folding>
+                <marker date="1444352731000" expanded="true" signature="2722:2756" placeholder="..." />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="me.jsp" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/webapp/site/pages/me.jsp">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="-12.428572" vertical-offset="2673" max-vertical-offset="5624">
+              <caret line="159" column="69" selection-start-line="159" selection-start-column="69" selection-end-line="159" selection-end-column="69" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="him.jsp" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/webapp/site/pages/him.jsp">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="-6.107143" vertical-offset="1805" max-vertical-offset="4313">
+              <caret line="104" column="25" selection-start-line="104" selection-start-column="25" selection-end-line="104" selection-end-column="25" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="gameApply.xml" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/zmsport/iyuesai/mapper/gameApply.xml">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0" vertical-offset="285" max-vertical-offset="1273">
+              <caret line="30" column="8" selection-start-line="30" selection-start-column="8" selection-end-line="30" selection-end-column="8" />
+              <folding>
+                <marker date="1444351925000" expanded="true" signature="290:357" placeholder="SELECT * FRO..t_gameApply..." />
+                <marker date="1444351925000" expanded="true" signature="449:545" placeholder="SELECT * FRO..t_gameApply..." />
+                <marker date="1444351925000" expanded="true" signature="633:673" placeholder="SELECT * FRO..t_gameApply..." />
+                <marker date="1444351925000" expanded="true" signature="755:822" placeholder="SELECT statu..t_gameApply..." />
+                <marker date="1444351925000" expanded="true" signature="905:967" placeholder="SELECT * FRO..t_gameApply..." />
+                <marker date="1444351925000" expanded="true" signature="1065:1131" placeholder="SELECT teamI..t_gameApply..." />
+                <marker date="1444351925000" expanded="true" signature="1234:1471" placeholder="SELECT ga.id..t_userTeam..." />
+                <marker date="1444351925000" expanded="true" signature="1579:1813" placeholder="INSERT INTO ..." />
+                <marker date="1444351925000" expanded="true" signature="1857:1905" placeholder="UPDATE t_gam..." />
+                <marker date="1444351925000" expanded="true" signature="1969:2040" placeholder="UPDATE t_gam..." />
+                <marker date="1444351925000" expanded="true" signature="2099:2137" placeholder="DELETE FROM ..." />
+                <marker date="1444351925000" expanded="true" signature="2207:2259" placeholder="DELETE FROM ..." />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -298,17 +169,18 @@
         <option value="$PROJECT_DIR$/src/main/java/com/zmsport/iyuesai/mapper/team.xml" />
         <option value="$PROJECT_DIR$/src/main/webapp/site/pages/him.jsp" />
         <option value="$PROJECT_DIR$/src/main/java/com/zmsport/iyuesai/util/ConstantUtil.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/zmsport/iyuesai/mapper/gameApply.xml" />
-        <option value="$PROJECT_DIR$/src/main/java/com/zmsport/iyuesai/util/FileUtil.java" />
         <option value="$PROJECT_DIR$/src/main/webapp/admin/pages/gameEdit.jsp" />
         <option value="$PROJECT_DIR$/src/main/webapp/site/pages/updateTeam.jsp" />
         <option value="$PROJECT_DIR$/src/main/webapp/site/pages/editTeam.jsp" />
         <option value="$PROJECT_DIR$/src/main/webapp/site/pages/teamMap.jsp" />
         <option value="$PROJECT_DIR$/src/main/resources/jdbc.properties" />
         <option value="$PROJECT_DIR$/src/main/java/com/zmsport/iyuesai/controller/site/SiteTeamController.java" />
-        <option value="$PROJECT_DIR$/src/main/webapp/site/pages/me.jsp" />
         <option value="$PROJECT_DIR$/src/main/java/com/zmsport/iyuesai/controller/site/SiteWechatController.java" />
         <option value="$PROJECT_DIR$/src/main/webapp/site/pages/pay.html" />
+        <option value="$PROJECT_DIR$/src/main/webapp/site/pages/team.jsp" />
+        <option value="$PROJECT_DIR$/src/main/webapp/site/pages/me.jsp" />
+        <option value="$PROJECT_DIR$/src/main/java/com/zmsport/iyuesai/mapper/gameApply.xml" />
+        <option value="$PROJECT_DIR$/src/main/java/com/zmsport/iyuesai/util/FileUtil.java" />
       </list>
     </option>
   </component>
@@ -807,14 +679,6 @@
       <option name="USE_PATTERN" value="false" />
       <method />
     </configuration>
-    <configuration default="true" type="js.build_tools.gulp" factoryName="Gulp.js">
-      <node-options />
-      <gulpfile />
-      <tasks />
-      <pass-parent-envs>true</pass-parent-envs>
-      <envs />
-      <method />
-    </configuration>
     <configuration default="true" type="JUnit" factoryName="JUnit">
       <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
       <module name="" />
@@ -836,39 +700,12 @@
       <patterns />
       <method />
     </configuration>
-    <configuration default="true" type="FlashRunConfigurationType" factoryName="Flash App">
-      <option name="BCName" value="" />
-      <option name="IOSSimulatorSdkPath" value="" />
-      <option name="adlOptions" value="" />
-      <option name="airProgramParameters" value="" />
-      <option name="appDescriptorForEmulator" value="Android" />
-      <option name="debugTransport" value="USB" />
-      <option name="debuggerSdkRaw" value="BC SDK" />
-      <option name="emulator" value="NexusOne" />
-      <option name="emulatorAdlOptions" value="" />
-      <option name="fastPackaging" value="true" />
-      <option name="fullScreenHeight" value="0" />
-      <option name="fullScreenWidth" value="0" />
-      <option name="launchUrl" value="false" />
-      <option name="launcherParameters">
-        <LauncherParameters>
-          <option name="browser" value="a7bb68e0-33c0-4d6f-a81a-aac1fdb870c8" />
-          <option name="launcherType" value="OSDefault" />
-          <option name="newPlayerInstance" value="false" />
-          <option name="playerPath" value="/Applications/Flash Player Debugger.app" />
-        </LauncherParameters>
-      </option>
-      <option name="mobileRunTarget" value="Emulator" />
-      <option name="moduleName" value="" />
-      <option name="overriddenMainClass" value="" />
-      <option name="overriddenOutputFileName" value="" />
-      <option name="overrideMainClass" value="false" />
-      <option name="runTrusted" value="true" />
-      <option name="screenDpi" value="0" />
-      <option name="screenHeight" value="0" />
-      <option name="screenWidth" value="0" />
-      <option name="url" value="http://" />
-      <option name="usbDebugPort" value="7936" />
+    <configuration default="true" type="js.build_tools.gulp" factoryName="Gulp.js">
+      <node-options />
+      <gulpfile />
+      <tasks />
+      <pass-parent-envs>true</pass-parent-envs>
+      <envs />
       <method />
     </configuration>
     <configuration default="true" type="#com.intellij.j2ee.web.tomcat.TomcatRunConfigurationFactory" factoryName="Local" editBeforeRun="true" APPLICATION_SERVER_NAME="Tomcat 7.0.62" ALTERNATIVE_JRE_ENABLED="false" ALTERNATIVE_JRE_PATH="">
@@ -937,6 +774,41 @@
       </ConfigurationWrapper>
       <method />
     </configuration>
+    <configuration default="true" type="FlashRunConfigurationType" factoryName="Flash App">
+      <option name="BCName" value="" />
+      <option name="IOSSimulatorSdkPath" value="" />
+      <option name="adlOptions" value="" />
+      <option name="airProgramParameters" value="" />
+      <option name="appDescriptorForEmulator" value="Android" />
+      <option name="debugTransport" value="USB" />
+      <option name="debuggerSdkRaw" value="BC SDK" />
+      <option name="emulator" value="NexusOne" />
+      <option name="emulatorAdlOptions" value="" />
+      <option name="fastPackaging" value="true" />
+      <option name="fullScreenHeight" value="0" />
+      <option name="fullScreenWidth" value="0" />
+      <option name="launchUrl" value="false" />
+      <option name="launcherParameters">
+        <LauncherParameters>
+          <option name="browser" value="a7bb68e0-33c0-4d6f-a81a-aac1fdb870c8" />
+          <option name="launcherType" value="OSDefault" />
+          <option name="newPlayerInstance" value="false" />
+          <option name="playerPath" value="/Applications/Flash Player Debugger.app" />
+        </LauncherParameters>
+      </option>
+      <option name="mobileRunTarget" value="Emulator" />
+      <option name="moduleName" value="" />
+      <option name="overriddenMainClass" value="" />
+      <option name="overriddenOutputFileName" value="" />
+      <option name="overrideMainClass" value="false" />
+      <option name="runTrusted" value="true" />
+      <option name="screenDpi" value="0" />
+      <option name="screenHeight" value="0" />
+      <option name="screenWidth" value="0" />
+      <option name="url" value="http://" />
+      <option name="usbDebugPort" value="7936" />
+      <method />
+    </configuration>
     <configuration default="true" type="AndroidTestRunConfigurationType" factoryName="Android Tests">
       <module name="" />
       <option name="TESTING_TYPE" value="0" />
@@ -981,6 +853,22 @@
       <envs />
       <method />
     </configuration>
+    <configuration default="true" type="GradleRunConfiguration" factoryName="Gradle">
+      <ExternalSystemSettings>
+        <option name="executionName" />
+        <option name="externalProjectPath" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list />
+        </option>
+        <option name="vmOptions" />
+      </ExternalSystemSettings>
+      <method />
+    </configuration>
     <configuration default="true" type="tests" factoryName="Unittests">
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -1002,22 +890,6 @@
       <option name="PUREUNITTEST" value="true" />
       <option name="PARAMS" value="" />
       <option name="USE_PARAM" value="false" />
-      <method />
-    </configuration>
-    <configuration default="true" type="GradleRunConfiguration" factoryName="Gradle">
-      <ExternalSystemSettings>
-        <option name="executionName" />
-        <option name="externalProjectPath" />
-        <option name="externalSystemIdString" value="GRADLE" />
-        <option name="scriptParameters" />
-        <option name="taskDescriptions">
-          <list />
-        </option>
-        <option name="taskNames">
-          <list />
-        </option>
-        <option name="vmOptions" />
-      </ExternalSystemSettings>
       <method />
     </configuration>
     <configuration default="true" type="FlexUnitRunConfigurationType" factoryName="FlexUnit" appDescriptorForEmulator="Android" class_name="" emulatorAdlOptions="" method_name="" package_name="" scope="Class">
@@ -1220,12 +1092,15 @@
       <workItem from="1443595965682" duration="2636000" />
       <workItem from="1444119365386" duration="944000" />
       <workItem from="1444132589226" duration="8496000" />
-      <workItem from="1444200306630" duration="15545000" />
+      <workItem from="1444200306630" duration="21397000" />
+      <workItem from="1444298455478" duration="924000" />
+      <workItem from="1444300779117" duration="15000" />
+      <workItem from="1444351059393" duration="1187000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="67844000" />
+    <option name="totallyTimeSpent" value="75822000" />
   </component>
   <component name="TodoView" selected-index="0">
     <todo-panel id="selected-file">
@@ -1251,35 +1126,35 @@
     <frame x="4" y="23" width="1436" height="877" extended-state="0" />
     <editor active="true" />
     <layout>
-      <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Palette&#9;" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32938075" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Java Enterprise" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Spring" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32806325" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
+      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="IDEtalk Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="IDEtalk" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32938075" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32806325" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.27977043" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3320158" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32938075" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32806325" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.23715416" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Web" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
+      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32938075" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32806325" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.18651363" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3320158" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.22468354" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.20737328" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
     </layout>
   </component>
@@ -1308,13 +1183,6 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/zmsport/iyuesai/service/TeamAlbumService.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="34" max-vertical-offset="731">
-          <caret line="10" column="17" selection-start-line="10" selection-start-column="17" selection-end-line="10" selection-end-column="17" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/zmsport/iyuesai/controller/admin/UserController.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="205" max-vertical-offset="2261">
@@ -1347,7 +1215,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="780" max-vertical-offset="1496">
           <caret line="81" column="48" selection-start-line="81" selection-start-column="48" selection-end-line="81" selection-end-column="48" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1439,7 +1306,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="540" max-vertical-offset="2074">
           <caret line="53" column="36" selection-start-line="53" selection-start-column="36" selection-end-line="53" selection-end-column="36" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1454,7 +1320,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-11.34" vertical-offset="136" max-vertical-offset="4864">
           <caret line="37" column="0" selection-start-line="21" selection-start-column="0" selection-end-line="37" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1462,7 +1327,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="836">
           <caret line="13" column="19" selection-start-line="13" selection-start-column="19" selection-end-line="13" selection-end-column="19" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1470,7 +1334,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1482">
           <caret line="13" column="19" selection-start-line="13" selection-start-column="19" selection-end-line="13" selection-end-column="19" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1495,26 +1358,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/admin/css/jquery-ui.min.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="508">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/zmsport/iyuesai/mapper/Order.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="1615" max-vertical-offset="3667">
           <caret line="19" column="23" selection-start-line="19" selection-start-column="17" selection-end-line="19" selection-end-column="23" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/site/pages/him.jsp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-14.25" vertical-offset="1862" max-vertical-offset="4313">
-          <caret line="119" column="31" selection-start-line="106" selection-start-column="20" selection-end-line="119" selection-end-column="31" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1522,7 +1369,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="1729" max-vertical-offset="2508">
           <caret line="108" column="108" selection-start-line="108" selection-start-column="73" selection-end-line="108" selection-end-column="108" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1530,17 +1376,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="3059" max-vertical-offset="7638">
           <caret line="177" column="11" selection-start-line="177" selection-start-column="11" selection-end-line="177" selection-end-column="11" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/site/pages/team.jsp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="5847" max-vertical-offset="6327">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding>
-            <marker date="1443453807000" expanded="true" signature="-1:-1" placeholder="..." />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1548,7 +1383,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="570" max-vertical-offset="4788">
           <caret line="30" column="16" selection-start-line="30" selection-start-column="16" selection-end-line="30" selection-end-column="16" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1560,23 +1394,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/zmsport/iyuesai/util/FileUtil.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-6.6538463" vertical-offset="872" max-vertical-offset="4199">
-          <caret line="55" column="5" selection-start-line="55" selection-start-column="5" selection-end-line="55" selection-end-column="5" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#4085#4279#0" expanded="true" />
-            <element signature="e#4278#4279#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/resources/jdbc.properties">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="285">
           <caret line="6" column="22" selection-start-line="6" selection-start-column="14" selection-end-line="6" selection-end-column="22" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1584,7 +1405,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="15.535714" vertical-offset="1917" max-vertical-offset="4085">
           <caret line="78" column="61" selection-start-line="78" selection-start-column="20" selection-end-line="78" selection-end-column="61" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1592,7 +1412,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-5.8076925" vertical-offset="20" max-vertical-offset="4218">
           <caret line="9" column="17" selection-start-line="9" selection-start-column="13" selection-end-line="9" selection-end-column="17" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1604,27 +1423,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/site/pages/me.jsp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-60.17857" vertical-offset="1431" max-vertical-offset="5586">
-          <caret line="164" column="27" selection-start-line="164" selection-start-column="27" selection-end-line="164" selection-end-column="27" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/site/pages/applyInfo.jsp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="22.357143" vertical-offset="626" max-vertical-offset="1463">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/webapp/site/pages/settings.jsp">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="29.178572" vertical-offset="817" max-vertical-offset="2831">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1632,23 +1434,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="1304" max-vertical-offset="1862">
           <caret line="80" column="21" selection-start-line="80" selection-start-column="21" selection-end-line="80" selection-end-column="21" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/zmsport/iyuesai/mapper/gameApply.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-5.6153846" vertical-offset="196" max-vertical-offset="1235">
-          <caret line="18" column="33" selection-start-line="18" selection-start-column="8" selection-end-line="18" selection-end-column="33" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/zmsport/iyuesai/util/ConstantUtil.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="1360" max-vertical-offset="1900">
-          <caret line="81" column="109" selection-start-line="81" selection-start-column="97" selection-end-line="81" selection-end-column="109" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1656,7 +1441,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="57" max-vertical-offset="836">
           <caret line="30" column="62" selection-start-line="30" selection-start-column="62" selection-end-line="30" selection-end-column="62" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1664,16 +1448,14 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1045">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding>
-            <element signature="e#0#2095#0" expanded="true" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/zmsport/iyuesai/controller/site/SiteUserController.java">
+    <entry file="jar://$MAVEN_REPOSITORY$/org/springframework/spring-web/4.1.6.RELEASE/spring-web-4.1.6.RELEASE.jar!/org/springframework/web/client/RestTemplate.class">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="1970" max-vertical-offset="2831">
-          <caret line="140" column="38" selection-start-line="140" selection-start-column="38" selection-end-line="140" selection-end-column="38" />
+        <state vertical-scroll-proportion="0.0" vertical-offset="1244" max-vertical-offset="9861">
+          <caret line="124" column="17" selection-start-line="124" selection-start-column="17" selection-end-line="124" selection-end-column="17" />
           <folding />
         </state>
       </provider>
@@ -1688,162 +1470,107 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/zmsport/iyuesai/controller/site/SiteWechatController.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-11.076923" vertical-offset="3645" max-vertical-offset="18791">
-          <caret line="207" column="12" selection-start-line="207" selection-start-column="12" selection-end-line="207" selection-end-column="12" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#3200#3211#0" expanded="true" />
-            <element signature="e#3328#3353#0" expanded="true" />
-            <element signature="e#4397#4412#0" expanded="true" />
-            <element signature="e#12791#12792#0" expanded="true" />
-            <element signature="e#12816#12817#0" expanded="true" />
-            <element signature="e#12923#12924#0" expanded="true" />
-            <element signature="e#12960#12961#0" expanded="true" />
-            <element signature="e#13031#13032#0" expanded="true" />
-            <element signature="e#13055#13056#0" expanded="true" />
-            <element signature="e#13158#13159#0" expanded="true" />
-            <element signature="e#13193#13194#0" expanded="true" />
-            <element signature="e#13254#13255#0" expanded="true" />
-            <element signature="e#13273#13274#0" expanded="true" />
-            <element signature="e#13356#13357#0" expanded="true" />
-            <element signature="e#13381#13382#0" expanded="true" />
-            <element signature="e#13444#13445#0" expanded="true" />
-            <element signature="e#13464#13465#0" expanded="true" />
-            <element signature="e#13551#13552#0" expanded="true" />
-            <element signature="e#13578#13579#0" expanded="true" />
-            <element signature="e#13651#13652#0" expanded="true" />
-            <element signature="e#13676#13677#0" expanded="true" />
-            <element signature="e#13783#13784#0" expanded="true" />
-            <element signature="e#13820#13821#0" expanded="true" />
-            <element signature="e#13889#13890#0" expanded="true" />
-            <element signature="e#13912#13913#0" expanded="true" />
-            <element signature="e#14011#14012#0" expanded="true" />
-            <element signature="e#14044#14045#0" expanded="true" />
-            <element signature="e#14103#14104#0" expanded="true" />
-            <element signature="e#14121#14122#0" expanded="true" />
-            <element signature="e#14200#14201#0" expanded="true" />
-            <element signature="e#14223#14224#0" expanded="true" />
-            <element signature="e#14296#14297#0" expanded="true" />
-            <element signature="e#14321#14322#0" expanded="true" />
-            <element signature="e#14428#14429#0" expanded="true" />
-            <element signature="e#14465#14466#0" expanded="true" />
-            <element signature="e#14532#14533#0" expanded="true" />
-            <element signature="e#14554#14555#0" expanded="true" />
-            <element signature="e#14649#14650#0" expanded="true" />
-            <element signature="e#14680#14681#0" expanded="true" />
-            <element signature="e#14755#14756#0" expanded="true" />
-            <element signature="e#14781#14782#0" expanded="true" />
-            <element signature="e#14892#14893#0" expanded="true" />
-            <element signature="e#14931#14932#0" expanded="true" />
-            <element signature="e#15002#15003#0" expanded="true" />
-            <element signature="e#15026#15027#0" expanded="true" />
-            <element signature="e#15129#15130#0" expanded="true" />
-            <element signature="e#15164#15165#0" expanded="true" />
-            <element signature="e#15233#15234#0" expanded="true" />
-            <element signature="e#15256#15257#0" expanded="true" />
-            <element signature="e#15355#15356#0" expanded="true" />
-            <element signature="e#15388#15389#0" expanded="true" />
-            <element signature="e#15455#15456#0" expanded="true" />
-            <element signature="e#15477#15478#0" expanded="true" />
-            <element signature="e#15572#15573#0" expanded="true" />
-            <element signature="e#15603#15604#0" expanded="true" />
-            <element signature="e#15672#15673#0" expanded="true" />
-            <element signature="e#15695#15696#0" expanded="true" />
-            <element signature="e#15794#15795#0" expanded="true" />
-            <element signature="e#15827#15828#0" expanded="true" />
-            <element signature="e#15894#15895#0" expanded="true" />
-            <element signature="e#15916#15917#0" expanded="true" />
-            <element signature="e#16011#16012#0" expanded="true" />
-            <element signature="e#16042#16043#0" expanded="true" />
-            <element signature="e#16109#16110#0" expanded="true" />
-            <element signature="e#16131#16132#0" expanded="true" />
-            <element signature="e#16226#16227#0" expanded="true" />
-            <element signature="e#16257#16258#0" expanded="true" />
-            <element signature="e#16324#16325#0" expanded="true" />
-            <element signature="e#16346#16347#0" expanded="true" />
-            <element signature="e#16441#16442#0" expanded="true" />
-            <element signature="e#16472#16473#0" expanded="true" />
-            <element signature="e#16537#16538#0" expanded="true" />
-            <element signature="e#16558#16559#0" expanded="true" />
-            <element signature="e#16649#16650#0" expanded="true" />
-            <element signature="e#16678#16679#0" expanded="true" />
-            <element signature="e#17706#17707#0" expanded="true" />
-            <element signature="e#17725#17726#0" expanded="true" />
-            <element signature="e#17808#17809#0" expanded="true" />
-            <element signature="e#17833#17834#0" expanded="true" />
-            <element signature="e#17896#17897#0" expanded="true" />
-            <element signature="e#17916#17917#0" expanded="true" />
-            <element signature="e#18003#18004#0" expanded="true" />
-            <element signature="e#18030#18031#0" expanded="true" />
-            <element signature="e#18103#18104#0" expanded="true" />
-            <element signature="e#18128#18129#0" expanded="true" />
-            <element signature="e#18235#18236#0" expanded="true" />
-            <element signature="e#18272#18273#0" expanded="true" />
-            <element signature="e#18341#18342#0" expanded="true" />
-            <element signature="e#18364#18365#0" expanded="true" />
-            <element signature="e#18463#18464#0" expanded="true" />
-            <element signature="e#18496#18497#0" expanded="true" />
-            <element signature="e#18555#18556#0" expanded="true" />
-            <element signature="e#18573#18574#0" expanded="true" />
-            <element signature="e#18652#18653#0" expanded="true" />
-            <element signature="e#18675#18676#0" expanded="true" />
-            <element signature="e#18734#18735#0" expanded="true" />
-            <element signature="e#18752#18753#0" expanded="true" />
-            <element signature="e#18831#18832#0" expanded="true" />
-            <element signature="e#18854#18855#0" expanded="true" />
-            <element signature="e#18917#18918#0" expanded="true" />
-            <element signature="e#18937#18938#0" expanded="true" />
-            <element signature="e#19024#19025#0" expanded="true" />
-            <element signature="e#19051#19052#0" expanded="true" />
-            <element signature="e#19126#19127#0" expanded="true" />
-            <element signature="e#19152#19153#0" expanded="true" />
-            <element signature="e#19263#19264#0" expanded="true" />
-            <element signature="e#19302#19303#0" expanded="true" />
-            <element signature="e#19368#19369#0" expanded="true" />
-            <element signature="e#19391#19392#0" expanded="true" />
-            <element signature="e#19487#19488#0" expanded="true" />
-            <element signature="e#19520#19521#0" expanded="true" />
-            <element signature="e#19603#19604#0" expanded="true" />
-            <element signature="e#19633#19634#0" expanded="true" />
-            <element signature="e#19760#19761#0" expanded="true" />
-            <element signature="e#19807#19808#0" expanded="true" />
-            <element signature="e#19878#19879#0" expanded="true" />
-            <element signature="e#19902#19903#0" expanded="true" />
-            <element signature="e#20005#20006#0" expanded="true" />
-            <element signature="e#20040#20041#0" expanded="true" />
-            <element signature="e#20113#20114#0" expanded="true" />
-            <element signature="e#20138#20139#0" expanded="true" />
-            <element signature="e#20245#20246#0" expanded="true" />
-            <element signature="e#20282#20283#0" expanded="true" />
-            <element signature="e#20351#20352#0" expanded="true" />
-            <element signature="e#20374#20375#0" expanded="true" />
-            <element signature="e#20473#20474#0" expanded="true" />
-            <element signature="e#20506#20507#0" expanded="true" />
-            <element signature="e#20577#20578#0" expanded="true" />
-            <element signature="e#20601#20602#0" expanded="true" />
-            <element signature="e#20704#20705#0" expanded="true" />
-            <element signature="e#20739#20740#0" expanded="true" />
-            <element signature="e#20810#20811#0" expanded="true" />
-            <element signature="e#20834#20835#0" expanded="true" />
-            <element signature="e#20937#20938#0" expanded="true" />
-            <element signature="e#20972#20973#0" expanded="true" />
-            <element signature="e#21035#21036#0" expanded="true" />
-            <element signature="e#21055#21056#0" expanded="true" />
-            <element signature="e#21142#21143#0" expanded="true" />
-            <element signature="e#21169#21170#0" expanded="true" />
-            <element signature="e#21240#21241#0" expanded="true" />
-            <element signature="e#21264#21265#0" expanded="true" />
-            <element signature="e#21367#21368#0" expanded="true" />
-            <element signature="e#21402#21403#0" expanded="true" />
-          </folding>
+        <state vertical-scroll-proportion="0.0" vertical-offset="1427" max-vertical-offset="18791">
+          <caret line="112" column="114" selection-start-line="112" selection-start-column="114" selection-end-line="112" selection-end-column="114" />
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/webapp/site/pages/pay.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.67058825" vertical-offset="1026" max-vertical-offset="2489">
-          <caret line="72" column="45" selection-start-line="72" selection-start-column="45" selection-end-line="72" selection-end-column="45" />
+        <state vertical-scroll-proportion="0.0" vertical-offset="1900" max-vertical-offset="2242">
+          <caret line="100" column="10" selection-start-line="100" selection-start-column="10" selection-end-line="100" selection-end-column="10" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/zmsport/iyuesai/util/ConstantUtil.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1900">
+          <caret line="79" column="17" selection-start-line="79" selection-start-column="17" selection-end-line="79" selection-end-column="17" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/zmsport/iyuesai/controller/site/SiteUserController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="1329" max-vertical-offset="2831">
+          <caret line="138" column="18" selection-start-line="138" selection-start-column="18" selection-end-line="138" selection-end-column="18" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/zmsport/iyuesai/context/TokenRefreshService.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.21521036" vertical-offset="0" max-vertical-offset="1236">
+          <caret line="29" column="14" selection-start-line="29" selection-start-column="14" selection-end-line="29" selection-end-column="14" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/site/pages/me.jsp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-12.428572" vertical-offset="2673" max-vertical-offset="5624">
+          <caret line="159" column="69" selection-start-line="159" selection-start-column="69" selection-end-line="159" selection-end-column="69" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/site/pages/him.jsp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-6.107143" vertical-offset="1805" max-vertical-offset="4313">
+          <caret line="104" column="25" selection-start-line="104" selection-start-column="25" selection-end-line="104" selection-end-column="25" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/zmsport/iyuesai/mapper/gameApply.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="285" max-vertical-offset="1273">
+          <caret line="30" column="8" selection-start-line="30" selection-start-column="8" selection-end-line="30" selection-end-column="8" />
+          <folding>
+            <marker date="1444351925000" expanded="true" signature="290:357" placeholder="SELECT * FRO..t_gameApply..." />
+            <marker date="1444351925000" expanded="true" signature="449:545" placeholder="SELECT * FRO..t_gameApply..." />
+            <marker date="1444351925000" expanded="true" signature="633:673" placeholder="SELECT * FRO..t_gameApply..." />
+            <marker date="1444351925000" expanded="true" signature="755:822" placeholder="SELECT statu..t_gameApply..." />
+            <marker date="1444351925000" expanded="true" signature="905:967" placeholder="SELECT * FRO..t_gameApply..." />
+            <marker date="1444351925000" expanded="true" signature="1065:1131" placeholder="SELECT teamI..t_gameApply..." />
+            <marker date="1444351925000" expanded="true" signature="1234:1471" placeholder="SELECT ga.id..t_userTeam..." />
+            <marker date="1444351925000" expanded="true" signature="1579:1813" placeholder="INSERT INTO ..." />
+            <marker date="1444351925000" expanded="true" signature="1857:1905" placeholder="UPDATE t_gam..." />
+            <marker date="1444351925000" expanded="true" signature="1969:2040" placeholder="UPDATE t_gam..." />
+            <marker date="1444351925000" expanded="true" signature="2099:2137" placeholder="DELETE FROM ..." />
+            <marker date="1444351925000" expanded="true" signature="2207:2259" placeholder="DELETE FROM ..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/zmsport/iyuesai/util/FileUtil.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="859" max-vertical-offset="4066">
+          <caret line="67" column="74" selection-start-line="67" selection-start-column="74" selection-end-line="67" selection-end-column="74" />
+          <folding>
+            <element signature="e#4098#4332#0" expanded="true" />
+            <element signature="e#4331#4332#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/site/pages/applyInfo.jsp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="16.75" vertical-offset="735" max-vertical-offset="1463">
+          <caret line="14" column="38" selection-start-line="14" selection-start-column="38" selection-end-line="14" selection-end-column="38" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/site/pages/team.jsp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-0.11014493" vertical-offset="76" max-vertical-offset="6384">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding>
+            <marker date="1444352731000" expanded="true" signature="2722:2756" placeholder="..." />
+          </folding>
         </state>
       </provider>
     </entry>
