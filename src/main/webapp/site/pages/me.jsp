@@ -1,4 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
+﻿<%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ include file="../../commons/taglibs.jsp"%>
 <!DOCTYPE html>
@@ -151,18 +151,20 @@
 				</dl>
 				<c:choose>
 					<c:when test="${game.status == 0 }">
-						<p><i><span class="notice">审核中</span></i></p>
+						<p><i><span class="notice">审核中</span></i>
+							<i ><span  class="red_del"><a href="<c:url value="/site/game/deleteGameApply/${gameApply.id }/${game.gameId }" />">取消报名</a></span>	</i></p>
 					</c:when>
 					<c:when test="${game.status == 1 }">
-						<p><i class="lv_zhf"><span><a href="javascript:PageUtil.pay('<c:url value="/site/pages/pay.html?gameName=" /><c:out value="${game.name }" />&gameId=<c:out value="${game.gameId }" />&fee=<c:out value="${game.fee }" />',<c:out value="${game.creatorId }" />,<c:out value="${user.id }" />);void 0;">去支付</a></span></i></p>
+						<p><i class="lv_zhf"><span><a href="javascript:PageUtil.pay('<c:url value="/site/pages/pay.html?gameName=" /><c:out value="${game.name }" />&gameId=<c:out value="${game.id }" />&fee=<c:out value="${game.fee }" />',<c:out value="${game.creatorId }" />,<c:out value="${user.id }" />);void 0;">去支付</a></span></i></p>
 					</c:when>
 					<c:when test="${game.status == 2 }">
 						<p><i><span class="notice">已报名</span></i></p>
 					</c:when>
 					<c:when test="${game.status == 3 }">
-						<p><i><span class="notice" style="padding:0px 5px;">审核不通过</span></i></p>
-						<p><i class="lv_zhf"><span><a href="<c:url value="/site/game/reApply/${game.gameId}" />">重新报名</a></span></p>
-						<p><i class="lv_zhf"><span><a href="<c:url value="/site/game/deleteGameApply/${game.id }/${game.gameId }" />">取消报名</a></span></p>
+						<p><i><span class="notice">审核不通过</span></i>
+							<i class="lv_zhf"><span><a href="<c:url value="/site/game/candidate/${game.gameId}" />">重新报名</a></span></i>
+							<i  class="red_del"><span><a href="<c:url value="/site/game/deleteGameApply/${gameApply.id }/${game.gameId }" />">取消报名</a></span>	</i>
+						</p>
 					</c:when>
 				</c:choose>
 			</div>
@@ -238,7 +240,7 @@
 				<li><span>发起人：</span>${ra.round.user.username }</li>
 				<li><span>时间：</span><fmt:formatDate value="${ra.round.startTime}" pattern="yyyy年MM月dd日 HH:mm"/><c:if test="$(round.endTime != '1970-01-01 00:00:00')">至<fmt:formatDate value="${ra.round.endTime}" pattern="yyyy年MM月dd日 HH:mm"/></c:if></li>
 				<li><span>地点：</span>${ra.round.location }</li>
-				<li><span style="padding-left:89px;">报名/招募：</span>${ra.round.members }/<c:if test="${ra.round.enrollType==0 }">不限</c:if><c:if test="${ra.round.enrollType == 1 }">${ra.round.enrollLimit }</c:if></li>
+				<li"><span style="padding-left:89px;">报名/招募：</span>${ra.round.members }/<c:if test="${ra.round.enrollType==0 }">不限</c:if><c:if test="${ra.round.enrollType == 1 }">${ra.round.enrollLimit }</c:if></li>
 			</ul>
 			<div class="round-status">
 				<c:if test="${ra.status == 0 }"><b>审核中</b></c:if><c:if test="${ra.status == 1 }"><b>已参加</b></c:if>
