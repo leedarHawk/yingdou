@@ -76,10 +76,10 @@
 		<form id="login" name="login" action="<spring:url value="/admin/pages/index.jsp" />" method="post">
 			<div class="tooltip"></div>
 			<div style="margin-top:60px">
-				<label>用户<input type="text" class="input" name="username" placeholder="用户名" /></label>
+				<label>用户<input type="text" class="input" name="username" placeholder="用户名" value="admin" /></label>
 			</div>
 			<div>
-				<label>密码<input type="password" class="input" name="password" placeholder="密码" /></label>
+				<label>密码<input type="password" class="input" name="password" placeholder="密码" value="admin123" /></label>
 			</div>
 			<div style="margin-top:30px">
 				<input type="submit" class="button" value="确定" />
