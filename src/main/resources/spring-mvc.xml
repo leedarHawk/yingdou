@@ -15,6 +15,7 @@
         http://www.springframework.org/schema/task/spring-task.xsd">
 	<!-- mvc注解 -->
 	<mvc:annotation-driven />
+	<mvc:resources mapping="/ueditor/**" location="/ueditor/" />
 	<!-- 注解组件扫描配置 -->
 	<context:component-scan base-package="com.zmsport.iyuesai.controller" />
 	<context:component-scan base-package="com.zmsport.iyuesai.context" />
