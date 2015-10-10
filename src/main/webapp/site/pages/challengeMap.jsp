@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ include file="../../commons/taglibs.jsp"%>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -20,6 +21,9 @@
 	var CHALLENGE_DATA = [];
 	var ROUND_DATA = [];
 	var locationMap,roundMap;
+	<%
+    request.setAttribute("vEnter", "\r\n");
+%>
 	<c:forEach items="${list}" var="challenge">
 		locationMap = {
 				hostPic : '<c:url value="${challenge.host.pic }" />',
@@ -30,7 +34,7 @@
 				location : '<c:out value="${challenge.location }" />',
 				id : <c:out value="${challenge.id }" />,
 				teamId : <c:out value="${challenge.teamId }" />,
-				ps : '<c:out value="${challenge.ps }" />',
+				ps : '<c:out value="${fn:replace(challenge.ps, vEnter, '') }" />',
 				time : '<fmt:formatDate value="${challenge.time}" type="both" pattern="yyyy年MM月dd日 HH:mm"/>',
 				needReferee : '<c:if test="${challenge.needReferee == 1 }">待定</c:if><c:if test="${challenge.needReferee == 0 }">无</c:if>',
 				fee : '<c:if test="${challenge.feeType == 0 }">免费</c:if><c:if test="${challenge.feeType == 1 }">¥<c:out value="${challenge.fee }" />(AA)</c:if>',
@@ -585,3 +589,5 @@ div.round {
 </div>
 </body>
 </html>
+
+2222
