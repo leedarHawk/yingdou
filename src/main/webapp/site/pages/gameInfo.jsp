@@ -174,7 +174,7 @@
 				</div>
 				<c:forEach items="${gameAnnouncementList}" var="gameAnnouncement">
 					<div class="ph_ggart">
-						<c:out value="${gameAnnouncement.content}" />
+						<c:out value="${gameAnnouncement.content}" escapeXml="false" />
 						<p class="ph_huidate timeAgo"><c:out value="${gameAnnouncement.time}" /></p>
 					</div>
 				</c:forEach>
