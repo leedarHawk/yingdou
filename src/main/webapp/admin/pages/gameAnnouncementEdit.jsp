@@ -55,7 +55,36 @@
 				<ul class="tongdao">
 					<li>
 						<span class="ziduan">公告内容：</span>
-						<div class="wen"><textarea name="content" class="textarea_td"><c:out value="${gameAnnouncement.content }" /></textarea></div>
+						<div class="wen">
+
+							<!--<textarea name="content" class="textarea_td">-->
+							<!-- 加载编辑器的容器 -->
+							<script id="container" name="content" type="text/plain">
+								<c:out value="${gameAnnouncement.content }" escapeXml="false"/>
+    						</script>
+							<!-- 配置文件 -->
+							<script type="text/javascript" src="/ueditor/ueditor.config.js"></script>
+							<!-- 编辑器源码文件 -->
+							<script type="text/javascript" src="/ueditor/ueditor.all.js"></script>
+							<!-- 实例化编辑器 -->
+							<script type="text/javascript">
+
+								var ue = UE.getEditor('container',{
+									//这里可以选择自己需要的工具按钮名称,此处仅选择如下五个
+									//toolbars:[['FullScreen', 'Source', 'Undo', 'Redo','Bold','test']],
+									//关闭elementPath
+									elementPathEnabled:false,
+									//默认的编辑区域高度
+									//autoHeightEnabled: true,
+									//autoFloatEnabled: true
+								});
+
+
+
+							</script>
+
+							<!--</textarea>-->
+						</div>
 					</li>
 					<li>
 						<div class="wen">
