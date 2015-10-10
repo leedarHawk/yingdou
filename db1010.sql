@@ -1,0 +1,1 @@
+alter table t_gameAnnouncement MODIFY column content varchar(11000) ;
