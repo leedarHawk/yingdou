@@ -109,7 +109,7 @@
 				<c:forEach items="${list}" var="gameAnnouncement">
 					<tr>
 						<td><input class="bodyBox" style="vertical-align:middle;" value="${gameAnnouncement.id}" type="checkbox" /></td>
-						<td title="${gameAnnouncement.content}">${gameAnnouncement.content}</td>
+						<td >${gameAnnouncement.content}</td>
 						<td>${gameAnnouncement.time}</td>
 						<td><a class="btn" href="<c:url value="/admin/gameAnnouncement/edit/update/" />${gameAnnouncement.id}/${game.id}">修改</a>&nbsp;&nbsp;&nbsp;&nbsp;<a class="btn" href="javascript:PageUtil.del(${gameAnnouncement.id});void 0;">删除</a></td>
 					</tr>
