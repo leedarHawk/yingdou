@@ -214,7 +214,7 @@
 				<p class="ph_jshtit">球队简介</p>
 				<div class="ph_jshart"><c:out value="${team.description}" /></div>
 				</div>				
-				
+
 				<div class="ph_jshdl02">
 				<p class="ph_jshtit"><c:if test="${team.creatorId == user.id }"><a href="<c:url value="/site/team/allMembers?teamId=${team.id }" />">管理成员</a></c:if>球队成员(${fn:length(list)})</p>
 				<ul class="ph_txul">
