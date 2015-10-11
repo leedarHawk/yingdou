@@ -158,4 +158,10 @@ public class SiteGameController {
 		gayService.delete(id);
 		return "redirect:/site/game/gameInfo/" + gameId;
 	}
+
+	@RequestMapping("/announcement/detail/{id}")
+	public String AnnouncementDetail(HttpSession session,@PathVariable long id, Model model){
+		model.addAttribute("gameAnnouncement",gaService.findAnnouncementById(id));
+		return "/site/pages/announcementDetail" ;
+	}
 }
