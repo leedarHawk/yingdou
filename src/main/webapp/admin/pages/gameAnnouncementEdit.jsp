@@ -54,7 +54,11 @@
 				<input type="hidden" name="gameId" value="${gameId}" />
 				<ul class="tongdao">
 					<li>
-						<span class="ziduan">公告内容：</span>
+						<span class="ziduan">公告标题</span>
+						<div class="wen"><input type="text" name="annoTitle" value="${gameAnnouncement.annoTitle}" class="input_cjxm2" /></div>
+					</li>
+					<li>
+						<span class="ziduan">公告内容</span>
 						<div class="wen">
 
 							<!--<textarea name="content" class="textarea_td">-->
@@ -64,7 +68,7 @@
     						</script>
 							<!-- 配置文件 -->
 							<script type="text/javascript" src="/ueditor/ueditor.config.js"></script>
-							<!-- 编辑器源码文件 -->
+							<!-- 编辑器源码文件-->
 							<script type="text/javascript" src="/ueditor/ueditor.all.js"></script>
 							<!-- 实例化编辑器 -->
 							<script type="text/javascript">
@@ -74,7 +78,7 @@
 									//toolbars:[['FullScreen', 'Source', 'Undo', 'Redo','Bold','test']],
 									//关闭elementPath
 									elementPathEnabled:false,
-									//默认的编辑区域高度
+									//默认的编辑区域高级
 									//autoHeightEnabled: true,
 									//autoFloatEnabled: true
 								});
