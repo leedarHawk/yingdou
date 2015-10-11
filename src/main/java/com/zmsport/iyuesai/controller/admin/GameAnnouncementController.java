@@ -74,7 +74,19 @@ public class GameAnnouncementController {
 	}
 	
 	/**
-	 * 跳转到编辑页面
+	 * 修改
+	 * @param gameAnnouncement
+	 * @return
+	 */
+	@RequestMapping(value="/view/{id}", method=RequestMethod.GET)
+	public String view(@PathVariable long id,Model model) {
+		model.addAttribute("gameAnnouncement", service.findAnnouncementById(id));
+		return "/admin/pages/gameAnnouncementView";
+	}
+
+
+	/**
+	 * 跳转到编辑页�?
 	 * @param type
 	 * @param model
 	 * @return

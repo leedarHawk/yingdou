@@ -20,11 +20,11 @@
     </select>
     
     <insert id="insert" parameterType="gameAnnouncement">
-    	INSERT INTO t_gameAnnouncement (gameId,content,time) VALUES (#{gameId},#{content},#{time});
+    	INSERT INTO t_gameAnnouncement (gameId, annoTitle, content, time) VALUES (#{gameId}, #{annoTitle}, #{content}, #{time});
     </insert>
     
     <update id="update" parameterType="gameAnnouncement">
-    	UPDATE t_gameAnnouncement SET content=#{content} WHERE id=#{id}
+    	UPDATE t_gameAnnouncement SET content=#{content},annoTitle=#{annoTitle}  WHERE id=#{id}
     </update>
     
     <delete id="delete" parameterType="java.util.List">

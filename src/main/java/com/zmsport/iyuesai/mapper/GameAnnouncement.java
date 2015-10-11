@@ -21,6 +21,11 @@ public class GameAnnouncement {
 	private long gameId;
 	
 	/**
+	 * 公告标题
+	 */
+	private String annoTitle ;
+	
+	/**
 	 * 公告内容
 	 */
 	private String content;
@@ -85,4 +90,8 @@ public class GameAnnouncement {
 	public void setTime(Timestamp time) {
 		this.time = time;
 	}
+
+	public String getAnnoTitle() { return annoTitle; }
+
+	public void setAnnoTitle(String annoTitle) { this.annoTitle = annoTitle; }
 }
