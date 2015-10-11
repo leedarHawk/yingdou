@@ -364,4 +364,19 @@ public class SiteTeamController {
 	public Object search(@RequestParam String name) {
 		return service.getAllTeamsByName(name);
 	}
+
+	/**
+	 * 删除球队图片
+	 * @param id
+	 * @param pic
+	 * @param model
+	 * @return
+	 */
+	@RequestMapping(value="/delPic", method=RequestMethod.GET)
+	@ResponseBody
+	public String delPic(@RequestParam long id, @RequestParam String pic, HttpSession session) {
+		taService.deletePicById(String.valueOf(id));
+		FileUtil.delFile(session.getServletContext().getRealPath("/") + pic);
+		return "ok";
+	}
 }
