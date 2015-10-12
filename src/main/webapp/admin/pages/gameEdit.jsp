@@ -134,16 +134,6 @@
 						<span class="ziduan">球队名额：</span>
 						<div class="wen"><input type="text" name="teamNum" class="input_cjxm2" value="<c:out value="${game.teamNum }" />"></div>
 					</li>
-					<li>
-						<span class="ziduan">赛事简介：</span>
-						<div class="wen"><textarea name="description" class="textarea_td"><c:out value="${game.description }" /></textarea></div>
-					</li>
-					<li>
-						<span class="ziduan"><span class="required">*</span>赛事配图：</span>
-						<div class="wen"><input readonly type="text" name="tempPic" class="input_cjxm" value="<c:out value="${game.pic }" />">
-							<a href="javascript:void(0);" class="btn_addPic"><span>浏览</span><input type="file" name="file" tabindex="3" title="支持jpg、jpeg、gif、png格式，文件小于5M" size="3" class="filePrew"></a>
-						</div>
-					</li>
 					<c:if test="${editType == 'update' }">
 						<li>
 							<span class="ziduan">&nbsp;</span>
@@ -151,7 +141,46 @@
 								<img src="<c:url value="${game.pic}" />" style="width:320px;"/>
 							</div>
 						</li>
-					</c:if>   
+					</c:if>
+					<li>
+						<span class="ziduan"><span class="required">*</span>赛事配图：</span>
+						<div class="wen"><input readonly type="text" name="tempPic" class="input_cjxm" value="<c:out value="${game.pic }" />">
+							<a href="javascript:void(0);" class="btn_addPic"><span>浏览</span><input type="file" name="file" tabindex="3" title="支持jpg、jpeg、gif、png格式，文件小于5M" size="3" class="filePrew"></a>
+						</div>
+					</li>
+
+					<li>
+						<span class="ziduan">赛事简介：</span>
+						<div class="wen">
+
+							<!--<textarea name="content" class="textarea_td">-->
+							<!-- 加载编辑器的容器 -->
+							<script id="container" name="description" type="text/plain">
+								<c:out value="${game.description }"  escapeXml="false"/>
+    						</script>
+							<!-- 配置文件 -->
+							<script type="text/javascript" src="<%=request.getContextPath()%>/ueditor/ueditor.config.js"></script>
+							<!-- 编辑器源码文件-->
+							<script type="text/javascript" src="<%=request.getContextPath()%>/ueditor/ueditor.all.js"></script>
+							<!-- 实例化编辑器 -->
+							<script type="text/javascript">
+
+								var ue = UE.getEditor('container',{
+									//这里可以选择自己需要的工具按钮名称,此处仅选择如下五个
+									toolbars:[['FullScreen', 'Source', 'Undo', 'Redo','Bold']],
+									//关闭elementPath
+									elementPathEnabled:false,
+									//默认的编辑区域高级
+									initialFrameHeight:320,
+									initialFrameWidth:320
+								});
+
+							</script>
+
+							<!--</textarea>-->
+						</div>
+					</li>
+
 					<li>
 						<span class="ziduan">&nbsp;</span>
 						<div class="wen">

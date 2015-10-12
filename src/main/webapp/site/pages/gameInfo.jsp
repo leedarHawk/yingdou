@@ -156,11 +156,18 @@
 
 					<div class="ph_jshdl02">
 						<p class="ph_jshtit">赛事简介</p>
-						<div class="ph_jshart">
-							<c:out value="${game.description }" />
+						<!--<div class="ph_jshart">-->
+						<div>
+							<table width="100%" border="0" cellspacing="0" cellpadding="5">
+								<tr>
+									<td height="100"><c:out value="${game.description }"  escapeXml="false" /></td>
+								</tr>
+
+							</table>
+
 						</div>
-						<p class="ph_jshmore"><a href="javascript:PageUtil.showAll();void 0;">查看全部</a></p>
-						<p class="ph_jshhide"><a href="javascript:PageUtil.hide();void 0;">收起</a></p>
+						<!--<p class="ph_jshmore"><a href="javascript:PageUtil.showAll();void 0;">查看全部</a></p>-->
+						<!--<p class="ph_jshhide"><a href="javascript:PageUtil.hide();void 0;">收起</a></p>-->
 					</div>
 				</div>
 			</div>
