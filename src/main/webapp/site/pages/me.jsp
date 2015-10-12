@@ -139,9 +139,9 @@
 		<c:forEach items="${gameList }" var="game">
 			<div class="hywo_con" onclick="PageUtil.toGame(${game.gameId})">
 				<dl class="hywo_dl hydy_dl" style="border-bottom:none;">
-					<dt><a href=""><img src="<c:url value="${game.pic }" />"></a></dt>
+					<dt><a href="<c:url value="/site/game/gameInfo/" />${game.gameId }"><img src="<c:url value="${game.pic }" />"></a></dt>
 					<dd>
-						<strong><a href=""><c:out value="${game.name }" /></a></strong>
+						<strong><a href="<c:url value="/site/game/gameInfo/" />${game.gameId }"><c:out value="${game.name }" /></a></strong>
 							<ul>
 								<li>时间：<c:out value="${game.duration }" /></li>
 								<li>地点：<c:out value="${game.location }" /></li>
