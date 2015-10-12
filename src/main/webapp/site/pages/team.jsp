@@ -64,6 +64,9 @@
 			saveToServer : function() {
 				var _this = this;
 				var dir = "<c:url value="${team.pic}" />".split("/logo")[0].split('team/')[1];
+				if (!dir){
+					dir = (new Date()).valueOf();
+				}
 				var medias = this.media.join(",");
 				$.ajax({
 					url : '<c:url value="/site/wechat/download" />',
