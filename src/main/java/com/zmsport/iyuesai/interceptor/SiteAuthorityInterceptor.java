@@ -134,7 +134,9 @@ public class SiteAuthorityInterceptor extends HandlerInterceptorAdapter {
 				response.sendRedirect(url);
 				return false;
 			}
-			String url = domain + "/site/wechatLoginConfirm";
+			String url = domain + "/site/wechatLoginConfirm?callback="+
+					URLEncoder.encode(request.getRequestURL().toString(), "UTF-8");
+//			String url = request.getRequestURL().toString();
 			//跳转到微信登录授权页面
 			response.sendRedirect(String.format(ConstantUtil.WECHAT_AUTH_URL, URLEncoder.encode(url, "UTF-8")));
 			return false;

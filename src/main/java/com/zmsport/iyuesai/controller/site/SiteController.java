@@ -5,6 +5,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
 /**
  * 主站controller
@@ -25,7 +26,7 @@ public class SiteController {
 	 * @return
 	 */
 	@RequestMapping(value="/wechatLoginConfirm", method=RequestMethod.GET)
-	public String wechatLoginConfirm() {
-		return "redirect:/site/game/list";
+	public String wechatLoginConfirm(@RequestParam String callback) {
+		return "redirect:"+callback;
 	}
 }
