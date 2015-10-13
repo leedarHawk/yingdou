@@ -54,17 +54,17 @@ public class SiteAuthorityInterceptor extends HandlerInterceptorAdapter {
 		//时间戳
 		request.setAttribute("_time", System.currentTimeMillis());
 		String userAgent = request.getHeader("User-Agent");
-		if(!userAgent.toLowerCase().contains("micromessenger")) {
-			//非微信浏览器直接跳转
-			log.info("非微信浏览器访问,浏览器信息:{}", userAgent);
-			//虚拟用户
-			User user = new User();
-			user.setId(0);
-			user.setUsername("未知用户");
-			user.setRegisterTime(new Timestamp(System.currentTimeMillis()));
-			request.getSession().setAttribute("user", user);
-			return true;
-		}
+//		if(!userAgent.toLowerCase().contains("micromessenger")) {
+//			//非微信浏览器直接跳转
+//			log.info("非微信浏览器访问,浏览器信息:{}", userAgent);
+//			//虚拟用户
+//			User user = new User();
+//			user.setId(0);
+//			user.setUsername("未知用户");
+//			user.setRegisterTime(new Timestamp(System.currentTimeMillis()));
+//			request.getSession().setAttribute("user", user);
+//			return true;
+//		}
 		//判断用户是否已经微信授权登录
 		if(request.getSession().getAttribute("user") != null) {
 			return true;
