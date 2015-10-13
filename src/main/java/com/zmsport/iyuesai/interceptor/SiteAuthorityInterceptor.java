@@ -111,7 +111,9 @@ public class SiteAuthorityInterceptor extends HandlerInterceptorAdapter {
 						user.setHeadPic(headimgurl);
 					}
 					//跳转到比赛列表
-					url = "/site/game/list";
+					//url = "/site/game/list";
+					url = requestUrl.toString();
+
 				}else {
 					//用户未注册，跳转到设置页面
 					user = new User();
@@ -125,7 +127,8 @@ public class SiteAuthorityInterceptor extends HandlerInterceptorAdapter {
 					user.setRegisterTime(new Timestamp(System.currentTimeMillis()));
 					service.insert(user);
 					//跳转到用户设置
-					url = "/site/user/settings";
+					//url = "/site/user/settings";
+					url = requestUrl.toString();
 				}
 				request.getSession().setAttribute("user", user);
 				response.sendRedirect(domain + url);
