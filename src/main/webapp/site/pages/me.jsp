@@ -152,7 +152,7 @@
 				<c:choose>
 					<c:when test="${game.status == 0 }">
 						<p><i><span class="notice">审核中</span></i>
-							<i ><span  class="red_del"><a href="<c:url value="/site/game/deleteGameApply/${gameApply.id }/${game.gameId }" />">取消报名</a></span>	</i></p>
+							<i ><span  class="red_del"><a href="<c:url value="/site/game/deleteGameApply/${game.id }/${game.gameId }" />">取消报名</a></span>	</i></p>
 					</c:when>
 					<c:when test="${game.status == 1 }">
 						<p><i class="lv_zhf"><span><a href="javascript:PageUtil.pay('<c:url value="/site/pages/pay.html?gameName=" /><c:out value="${game.name }" />&gameId=<c:out value="${game.id }" />&fee=<c:out value="${game.fee }" />',<c:out value="${game.creatorId }" />,<c:out value="${user.id }" />);void 0;">去支付</a></span></i></p>
@@ -163,7 +163,7 @@
 					<c:when test="${game.status == 3 }">
 						<p><i><span class="notice">审核不通过</span></i>
 							<i class="lv_zhf"><span><a href="<c:url value="/site/game/candidate/${game.gameId}" />">重新报名</a></span></i>
-							<i  class="red_del"><span><a href="<c:url value="/site/game/deleteGameApply/${gameApply.id }/${game.gameId }" />">取消报名</a></span>	</i>
+							<i  class="red_del"><span><a href="<c:url value="/site/game/deleteGameApply/${game.id }/${game.gameId }" />">取消报名</a></span>	</i>
 						</p>
 					</c:when>
 				</c:choose>
