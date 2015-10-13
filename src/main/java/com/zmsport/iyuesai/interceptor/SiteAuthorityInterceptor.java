@@ -112,7 +112,7 @@ public class SiteAuthorityInterceptor extends HandlerInterceptorAdapter {
 					}
 					//跳转到比赛列表
 					//url = "/site/game/list";
-					url = requestUrl.toString();
+					url = request.getRequestURL().toString();
 
 				}else {
 					//用户未注册，跳转到设置页面
@@ -128,10 +128,10 @@ public class SiteAuthorityInterceptor extends HandlerInterceptorAdapter {
 					service.insert(user);
 					//跳转到用户设置
 					//url = "/site/user/settings";
-					url = requestUrl.toString();
+					url = request.getRequestURL().toString();
 				}
 				request.getSession().setAttribute("user", user);
-				response.sendRedirect(domain + url);
+				response.sendRedirect(url);
 				return false;
 			}
 			String url = domain + "/site/wechatLoginConfirm";
