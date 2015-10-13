@@ -75,10 +75,16 @@ public class SiteAuthorityInterceptor extends HandlerInterceptorAdapter {
 			}
 			//获取要访问的请求路径，作为微信登录的回调路径
 			StringBuffer requestUrl = request.getRequestURL();
+			log.debug("requestUrl is ---> " + requestUrl);
+			request.getServletContext().setAttribute("firstUrl", requestUrl.toString());
+
 			String domain = requestUrl.delete(requestUrl.length() - request.getRequestURI().length(), requestUrl.length()) + request.getServletContext().getContextPath();
+			log.debug("request.getServletContext().getContextPath() is ---> " + request.getServletContext().getContextPath());
+			log.debug("domain is ---> " + domain);
 			request.getServletContext().setAttribute("domain", domain);
 			//第一步：用户已经同意授权，获取code
 			if(request.getRequestURI().contains("wechatLoginConfirm") && request.getParameter("code") != null) {
+
 				String url;
 				//第二步：通过code换取网页授权access_token
 				String code = request.getParameter("code");
@@ -112,7 +118,11 @@ public class SiteAuthorityInterceptor extends HandlerInterceptorAdapter {
 					}
 					//跳转到比赛列表
 					//url = "/site/game/list";
-					url = request.getRequestURL().toString();
+					url = request.getRequestURL().toString();  // 这次次进来url = wechatLoginConfirm
+					System.out.println("allready register user url ---> " + url);
+					log.debug("allready register user url ---> " + url);
+//					response.sendRedirect(String.format(ConstantUtil.WECHAT_AUTH_URL, URLEncoder.encode(url, "UTF-8")));
+
 
 				}else {
 					//用户未注册，跳转到设置页面
@@ -129,15 +139,21 @@ public class SiteAuthorityInterceptor extends HandlerInterceptorAdapter {
 					//跳转到用户设置
 					//url = "/site/user/settings";
 					url = request.getRequestURL().toString();
+					System.out.println("unregister user url ---> " + url);
+					log.debug("unregister register user url ---> " + url);
+
 				}
 				request.getSession().setAttribute("user", user);
+				log.debug("SiteAuthorityInterceptor url 1 is  --> " + url);
 				response.sendRedirect(url);
 				return false;
 			}
-			String url = domain + "/site/wechatLoginConfirm?callback="+
-					URLEncoder.encode(request.getRequestURL().toString(), "UTF-8");
-//			String url = request.getRequestURL().toString();
+			String url = domain + "/site/wechatLoginConfirm";
+
 			//跳转到微信登录授权页面
+
+			log.debug("SiteAuthorityInterceptor url 2 is  --> " + url);
+
 			response.sendRedirect(String.format(ConstantUtil.WECHAT_AUTH_URL, URLEncoder.encode(url, "UTF-8")));
 			return false;
 		}

@@ -7,6 +7,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import javax.servlet.http.HttpServletRequest;
+
 /**
  * 主站controller
  * @author bilei
@@ -26,7 +28,18 @@ public class SiteController {
 	 * @return
 	 */
 	@RequestMapping(value="/wechatLoginConfirm", method=RequestMethod.GET)
-	public String wechatLoginConfirm(@RequestParam String callback) {
-		return "redirect:"+callback;
+	public String wechatLoginConfirm() {
+		HttpServletRequest request = null;
+		String firstUrl = null;
+		if (request.getSession().getAttribute("firstUrl")!=null) {
+			firstUrl = request.getSession().getAttribute("firstUrl").toString();
+			System.out.println("firstUrl is ----> " + firstUrl);
+		}
+
+		if (firstUrl!=null){
+			return "redirect:firstUrl";
+		}
+		return "redirect:/site/game/list";
+
 	}
 }
