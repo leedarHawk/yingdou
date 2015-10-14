@@ -75,8 +75,10 @@ public class SiteAuthorityInterceptor extends HandlerInterceptorAdapter {
 			}
 			//获取要访问的请求路径，作为微信登录的回调路径
 			StringBuffer requestUrl = request.getRequestURL();
-			log.debug("requestUrl is ---> " + requestUrl);
-			request.getServletContext().setAttribute("firstUrl", requestUrl.toString());
+			if  (!requestUrl.toString().contains("wechatLoginConfirm")){
+				request.getSession().setAttribute("firstUrl", requestUrl.toString());
+				log.debug("requestUrl is ---> " + requestUrl);
+			}
 
 			String domain = requestUrl.delete(requestUrl.length() - request.getRequestURI().length(), requestUrl.length()) + request.getServletContext().getContextPath();
 			log.debug("request.getServletContext().getContextPath() is ---> " + request.getServletContext().getContextPath());
