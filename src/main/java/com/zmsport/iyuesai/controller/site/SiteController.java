@@ -28,8 +28,10 @@ public class SiteController {
 	 * @return
 	 */
 	@RequestMapping(value="/wechatLoginConfirm", method=RequestMethod.GET)
-	public String wechatLoginConfirm() {
-		HttpServletRequest request = null;
+	public String wechatLoginConfirm(HttpServletRequest request) {
+//		HttpServletRequest request = null;
+		System.out.println(" wechatLoginConfirm firstUrl is ----> " + request.getSession().getAttribute("firstUrl").toString());
+
 		String firstUrl = null;
 		if (request.getSession().getAttribute("firstUrl")!=null) {
 			firstUrl = request.getSession().getAttribute("firstUrl").toString();
@@ -37,7 +39,8 @@ public class SiteController {
 		}
 
 		if (firstUrl!=null){
-			return "redirect:firstUrl";
+			request.getSession().removeAttribute("firstUrl");
+			return "redirect:" + firstUrl;
 		}
 		return "redirect:/site/game/list";
 
