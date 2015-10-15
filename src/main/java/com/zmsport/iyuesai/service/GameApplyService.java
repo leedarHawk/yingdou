@@ -86,7 +86,7 @@ public interface GameApplyService {
 	 * @return
 	 */
 	public List<Map> getMyGames(long uid);
-	
+
 	/**
 	 * 删除用户相关信息
 	 * @param creatorId

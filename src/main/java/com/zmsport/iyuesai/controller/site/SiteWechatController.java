@@ -176,9 +176,16 @@ public class SiteWechatController {
 		//接受微信支付成功通知
 		//获取要访问的请求路径，作为微信登录的回调路径
 		StringBuffer requestUrl = request.getRequestURL();
+		log.debug("preOrder requestUrl is ---> " + requestUrl);
 		String domain = requestUrl.delete(requestUrl.length() - request.getRequestURI().length(), requestUrl.length()) + request.getServletContext().getContextPath();
+		log.debug("preOrder domain is ---> " + domain);
 		StringBuilder orderUrl = new StringBuilder();
-		GameApply ga = gayService.getApplyByGameIdAndCreatorId(gameId, currentUser.getId());
+		log.debug("preOrder orderUrl is ---> " + orderUrl);
+		log.debug("preOrder gameId is ---> " + gameId);
+		log.debug("preOrder currentUser is ---> " + currentUser.getId());
+
+		GameApply ga = (GameApply)gayService.getApplyByGameIdAndCreatorId(gameId, currentUser.getId());
+		log.debug("preOrder GameApply teamid is ---> " + String.valueOf(ga.getTeamId()));
 		orderUrl.append(domain).append("/site/wechat/createOrder/").append(gameId).append("/").append(ga.getTeamId())
 			    .append("/").append(currentUser.getId()).append("/").append(fee).append("/").append(orderNo);
 		log.info("微信支付成功后回调路径:{}",orderUrl);
