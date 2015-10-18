@@ -152,7 +152,7 @@
 									</c:if>
 								</dt>
 								<dd>
-									<strong>${round.name }</strong>
+									<strong><a href ="#" onclick="javascript:roundApplyList(${round.id});">${round.name }</a></strong>
 									<ul class="roundUl">
 										<li>发起人：${round.user.username }</li>
 										<li>时间：<fmt:formatDate value="${round.startTime}" pattern="yyyy年MM月dd日 HH:mm"/><c:if test="${round.endTime != '1970-01-01 00:00:00.0'}">至<fmt:formatDate value="${round.endTime}" pattern="yyyy年MM月dd日 HH:mm"/></c:if></li>
@@ -184,6 +184,9 @@
 			<script type="text/javascript">
 				function detail(rid,cid) {
 					location.href = '<c:url value="/site/challenge/roundApplyList/" />' + rid + '/' + cid;
+				}
+				function roundApplyList(id){
+					location.href = '<c:url value="/site/challenge/roundApplyDetail/" />'  + id;
 				}
 				var TabbedPanels1 = new Spry.Widget.TabbedPanels(
 						"TabbedPanels1");
