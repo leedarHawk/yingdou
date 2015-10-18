@@ -12,7 +12,37 @@
 	<link rel="stylesheet" href="../css/style.css" />
 	<script type="text/javascript" src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
 	<script type="text/javascript" src="../js/jquery.js"></script>
+
+	<style type="text/css">
+		.mask {
+			position: absolute; top: 0px; filter: alpha(opacity=60); background-color: #777;
+			z-index: 1002; left: 0px;
+			opacity:0.5; -moz-opacity:0.5;
+		}
+	</style>
+
 	<script type="text/javascript">
+
+		function showMask(){
+			$("#mask").css("height",$(document).height());
+			$("#mask").css("width",$(document).width());
+			$("#loadImg").css("display",'block');
+			$("#mask").append("<font data-align='center' size='10px' color='red'>数据加载...</font>");
+			$("#mask").css("font-size",'10px');
+			var widthX = document.body.offsetWidth ;
+			var heightY = document.body.offsetHeight;
+
+			$("#loadImg").css("margin-top",heightY/2);
+			$("#loadImg").css("margin-left",widthX/2);
+			$("#mask").show();
+		}
+
+		function unmask(){
+			//setTimeout(unmask(),50000000000000000);
+			$("#mask").hide();
+			$("#loadImg").css("display",'none');
+		}
+
 		var jsApiList = ['chooseWXPay','chooseImage','uploadImage','downloadImage','previewImage'];
 		window.onload = function() {
 			WeChat.init();
@@ -37,8 +67,12 @@
 			},
 			pay : function() {
 				var _this = this;
+
+				showMask() ;
+
 				if(!this.checkVersion()) {
 					alert("您的微信版本过低，不支持支付");
+					unmask();
 					return;
 				}
 				$.ajax({
@@ -55,6 +89,7 @@
 							jsApiList: jsApiList // 必填，需要使用的JS接口列表，所有JS接口列表见附录2
 						});
 						wx.ready(function() {
+							unmask();
 							wx.checkJsApi({
 								jsApiList:jsApiList, // 需要检测的JS接口列表，所有JS接口列表见附录2,
 								success: function(res) {
@@ -86,6 +121,7 @@
 													// 支付成功后的回调函数
 //													if(res.err_msg == "get_brand_wcpay_request:ok" ) {
 													//支付成功
+
 													location.href = _this.domain + 'site/wechat/paySuccess/' + _this.gameId + '/' + data.orderNo;
 //													}
 												}
@@ -107,9 +143,12 @@
 									});
 								}
 							});
+
 						});
 					}
+
 				});
+
 			},
 			checkVersion : function() {
 				var reg = /MicroMessenger\/[0-9]/g;
@@ -123,6 +162,11 @@
 
 <body>
 <div class="header"><span><a class="return" href="javascript:history.go(-1);void 0;"><img src="../images/jt_fh.png">返回</a></span></div>
+
+<div id="mask" class="mask">
+	<img id="loadImg" src="../images/2010829142848750.gif" style="clear: both; display: none; margin:auto; ">
+</div>
+
 <div class="main">
 	<table width="100%" border="0" cellspacing="0" cellpadding="5">
 		<tr>
