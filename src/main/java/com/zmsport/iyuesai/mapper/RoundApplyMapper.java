@@ -1,6 +1,7 @@
 package com.zmsport.iyuesai.mapper;
 
 import java.util.List;
+import java.util.Map;
 
 /**
  * 球局申请mapper
@@ -65,4 +66,10 @@ public interface RoundApplyMapper {
 	 */
 	public int getMyRoundApplyNum(long uid);
 
+	/**
+	 * 球局的所有申请人员
+	 * @param id
+	 * @return
+	 */
+	public List<RoundApply> getRoundAllApplyDetail( long id) ;
 }

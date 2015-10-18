@@ -69,6 +69,35 @@ public class SiteChallengeController {
 	}
 	
 	/**
+	 * 获取球局的所有的申请人员
+	 * @param session
+	 * @return
+	 */
+	@RequestMapping(value="/roundApplyDetail/{detailId}", method=RequestMethod.GET)
+	public String roundApplyDetail(@PathVariable long detailId, Model model ) {
+//		User currentUser = (User)session.getAttribute("user");
+		model.addAttribute("list", raService.getRoundAllApplyDetail(detailId));
+		model.addAttribute("round", rService.findRoundById(detailId)) ;
+		System.out.println("===========================round Apply list ") ;
+		return "/site/pages/roundApplyDetail";
+	}
+
+	/**
+	 * 球局申请列表
+	 * @param session
+	 * @param model
+	 * @return
+	 */
+	@RequestMapping(value="/roundApplyList/{rid}/{creatorId}", method=RequestMethod.GET)
+	public String roundApplyList(@PathVariable long rid, @PathVariable long creatorId,Model model) {
+		model.addAttribute("list", raService.getAllRoundApplys(rid));
+		model.addAttribute("creatorId", creatorId);
+		return "/site/pages/roundApplyList";
+	}
+
+
+
+	/**
 	 * 获取约战地图模式
 	 * @param model
 	 * @return
@@ -230,18 +259,7 @@ public class SiteChallengeController {
 		}
 	}
 	
-	/**
-	 * 球局申请列表
-	 * @param session
-	 * @param model
-	 * @return
-	 */
-	@RequestMapping(value="/roundApplyList/{rid}/{creatorId}", method=RequestMethod.GET)
-	public String roundApplyList(@PathVariable long rid, @PathVariable long creatorId,Model model) {
-		model.addAttribute("list", raService.getAllRoundApplys(rid));
-		model.addAttribute("creatorId", creatorId);
-		return "/site/pages/roundApplyList";
-	}
+
 	
 	/**
 	 * 确定加入球局

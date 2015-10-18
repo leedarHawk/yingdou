@@ -1,6 +1,7 @@
 package com.zmsport.iyuesai.service;
 
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -85,6 +86,15 @@ public class RoundApplyServiceImpl implements RoundApplyService {
 	public int getMyRoundApplyNum(long uid) {
 		// TODO Auto-generated method stub
 		return mapper.getMyRoundApplyNum(uid);
+	}
+
+	@Override
+	public List<RoundApply> getRoundAllApplyDetail( long id) {
+		List<RoundApply> list = mapper.getRoundAllApplyDetail(id);
+		for(RoundApply roundApply : list) {
+			roundApply.setUser(uMapper.findUserById(roundApply.getUid()));
+		}
+		return list ;
 	}
 
 }

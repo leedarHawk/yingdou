@@ -1,6 +1,8 @@
 package com.zmsport.iyuesai.service;
 
 import java.util.List;
+import java.util.Map;
+
 import com.zmsport.iyuesai.mapper.RoundApply;
 
 /**
@@ -58,5 +60,7 @@ public interface RoundApplyService {
 	 * @return
 	 */
 	public int getMyRoundApplyNum(long uid);
+
+	public List<RoundApply> getRoundAllApplyDetail( long id) ;
 
 }
