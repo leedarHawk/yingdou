@@ -13,9 +13,10 @@ import org.springframework.web.bind.annotation.RequestParam;
 import com.zmsport.iyuesai.mapper.GameAnnouncement;
 import com.zmsport.iyuesai.service.GameAnnouncementService;
 import com.zmsport.iyuesai.service.GameService;
+import com.zmsport.iyuesai.util.ConstantUtil;
 
 /**
- * 璧涗簨鍏憡controller
+ * 赛事公告controller
  * @author bilei
  *
  */
@@ -30,7 +31,7 @@ public class GameAnnouncementController {
 	private GameService gService;
 	
 	/**
-	 * 鑾峰彇鏌愯禌浜嬬殑鍏憡鍒楄〃
+	 * 获取某赛事的公告列表
 	 * @param page
 	 * @param gameId
 	 * @param size
@@ -41,6 +42,7 @@ public class GameAnnouncementController {
 	public String list(@RequestParam(value="page",defaultValue="1") int page,
 			   @RequestParam long gameId,
 	           @RequestParam(value="size",defaultValue="10") int size,Model model) {
+		size = ConstantUtil.PAGE_SIZE;
 		int totalNum = service.getTotalNum(gameId);
 		int totalPage = totalNum < size ? 1 : (int)Math.ceil(1.0 * totalNum / size);
 		model.addAttribute("totalPage", totalPage);
@@ -51,7 +53,7 @@ public class GameAnnouncementController {
 	}
 	
 	/**
-	 * 娣诲姞
+	 * 添加
 	 * @param gameAnnouncement
 	 * @return
 	 */
@@ -63,7 +65,7 @@ public class GameAnnouncementController {
 	}
 
 	/**
-	 * 淇敼
+	 * 修改
 	 * @param gameAnnouncement
 	 * @return
 	 */
@@ -74,7 +76,7 @@ public class GameAnnouncementController {
 	}
 	
 	/**
-	 * 淇敼
+	 * 公告
 	 * @param gameAnnouncement
 	 * @return
 	 */
@@ -86,7 +88,7 @@ public class GameAnnouncementController {
 
 
 	/**
-	 * 璺宠浆鍒扮紪杈戦〉闈?
+	 * 跳转到编辑页面
 	 * @param type
 	 * @param model
 	 * @return
@@ -102,7 +104,7 @@ public class GameAnnouncementController {
 	}
 	
 	/**
-	 * 鍒犻櫎
+	 * 删除
 	 * @param ids
 	 * @param gameId
 	 * @return

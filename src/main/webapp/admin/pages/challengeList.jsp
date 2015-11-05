@@ -21,6 +21,9 @@
 </style>
 <script type="text/javascript">
 <!--
+	$(function(){
+		PageUtil.initPage();
+	});
 	var PageUtil = {
 		toPage : function() {
 			var page = $.trim($('#page').val());
@@ -45,6 +48,24 @@
 				success : function(res) {
 					if(res == 'ok') {
 						alert('更新成功');
+					}
+				}
+			});
+		},
+		initPage :function() {
+			var currentPage = <c:out value="${currentPage}" />;
+			var totalPage = <c:out value="${totalPage}" />;
+			var section = currentPage <= 10 ? 1 : Math.ceil(currentPage / 10);
+			var minPage = (section - 1) * 10 + 1;
+			var lastPage = (minPage + 9) < totalPage ? (minPage + 9) : totalPage;
+			var txt;
+			$('div.page a').each(function(){
+				txt = $(this).text();
+				if(txt.indexOf("页") < 0) {
+					if(txt*1 >= minPage && txt <= lastPage) {
+						$(this).show();
+					}else {
+						$(this).hide();
 					}
 				}
 			});
@@ -99,6 +120,7 @@
 				</c:forEach>
 			</table>
 			<div class="page">
+					<a href="<c:url value="/admin/challenge/list?page=1" />">首页</a>
 					<c:if test="${currentPage > 1}">
 			       		<a href="<c:url value="/admin/challenge/list?page=" />${currentPage-1}">上一页</a>
 			       	</c:if>

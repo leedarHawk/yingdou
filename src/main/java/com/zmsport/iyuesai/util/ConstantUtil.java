@@ -1,11 +1,35 @@
 package com.zmsport.iyuesai.util;
 
+import java.io.IOException;
+import java.io.InputStream;
+import java.util.Properties;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 /**
  * 常量类
  * @author bilei
  *
  */
 public final class ConstantUtil {
+
+	private static Logger log = LoggerFactory.getLogger(ConstantUtil.class);
+
+	static {
+		Properties p = new Properties();
+		try {
+			InputStream in = FileUtil.class.getResourceAsStream("/config.properties");
+			p.load(in);
+			in.close();
+			if(p.getProperty("page.size") != null && p.getProperty("page.size").length() > 0) {
+				ConstantUtil.PAGE_SIZE = Integer.parseInt(p.getProperty("page.size"));
+			}
+		} catch (IOException ex) {
+			log.error("读取config.properties文件错误");
+		}
+	}
+
+
 
 	/**
 	 * 微信公众号应用id
@@ -91,4 +115,6 @@ public final class ConstantUtil {
 	 * 1个月
 	 */
 	public static final long TEAM_USERS_TIME_LINE = 1 * 30 * 24 * 60 * 60 * 1000;
+
+	public static int PAGE_SIZE;
 }

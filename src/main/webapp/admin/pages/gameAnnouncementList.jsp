@@ -8,6 +8,7 @@
 <!--
 	$(function(){
 		PageUtil.init();
+		PageUtil.initPage();
 	});
 	var PageUtil = {
 		init :function(){
@@ -58,6 +59,24 @@
 				}
 				window.location.href = '<c:url value="/admin/gameAnnouncement/list?page=" />' + page + '&gameId=${game.id}';
 			}
+		},
+		initPage :function() {
+			var currentPage = <c:out value="${currentPage}" />;
+			var totalPage = <c:out value="${totalPage}" />;
+			var section = currentPage <= 10 ? 1 : Math.ceil(currentPage / 10);
+			var minPage = (section - 1) * 10 + 1;
+			var lastPage = (minPage + 9) < totalPage ? (minPage + 9) : totalPage;
+			var txt;
+			$('div.page a').each(function(){
+				txt = $(this).text();
+				if(txt.indexOf("页") < 0) {
+					if(txt*1 >= minPage && txt <= lastPage) {
+						$(this).show();
+					}else {
+						$(this).hide();
+					}
+				}
+			});
 		}
 	};
 //-->
@@ -84,17 +103,17 @@
 		
 		<div class="TabbedPanelsContent"  id="main_col2" >
 			<div class="riqi_sousuo">
-				<!-- <span>日期�?/span>
+				<!-- <span>日期�?/span>
 				<span>
 				<input id="d13" class="input_riqi" type="text" onClick="WdatePicker()"/>
 				<img class="riqi_img" src="images/rili.png" onClick="WdatePicker({el:'d13'})">
 				</span>
-				<span>�?nbsp;&nbsp;</span>
+				<span>�?nbsp;&nbsp;</span>
 				<span>
 				<input id="d14" class="input_riqi" type="text" onClick="WdatePicker()"/>
 				<img class="riqi_img" src="images/rili.png" onClick="WdatePicker({el:'d14'})">
 				</span>
-				<input type="button" class="button_shaixuan" value="筛�? /><input type="text" class=" input_ss"  value="" placeholder="请输入你要搜索的关键�?/><input type="text" class=" input_ss"  value="" placeholder="请输入第二个关键�?/><input type="button" class="button_shaixuan" value="搜索" /> -->
+				<input type="button" class="button_shaixuan" value="筛�? /><input type="text" class=" input_ss"  value="" placeholder="请输入你要搜索的关键�?/><input type="text" class=" input_ss"  value="" placeholder="请输入第二个关键�?/><input type="button" class="button_shaixuan" value="搜索" /> -->
 			</div>
 			<div class="yhtz">
 				<a href="<c:url value="/admin/gameAnnouncement/edit/add/0/${game.id }" />" class="lvse_btn">新建</a>
@@ -124,7 +143,7 @@
 			</table>
 			<div class="page">
 				<c:if test="${currentPage > 1}">
-		       		<a href="<c:url value="/admin/gameAnnouncement/list?page=" />${currentPage-1}&gameId=${game.id}">上一�?/a>
+		       		<a href="<c:url value="/admin/gameAnnouncement/list?page=" />${currentPage-1}&gameId=${game.id}">上一页</a>
 		       	</c:if>
 				<c:forEach var="i" begin="1" end="${totalPage}" varStatus="status">
 					<c:if test="${status.index == currentPage}">
@@ -135,7 +154,7 @@
 			       	</c:if>
 				</c:forEach>
 				<c:if test="${currentPage < totalPage}">
-					<a href="<c:url value="/admin/gameAnnouncement/list?page=" />${currentPage+1}&gameId=${game.id}">下一�?/a>
+					<a href="<c:url value="/admin/gameAnnouncement/list?page=" />${currentPage+1}&gameId=${game.id}">下一页</a>
 				</c:if>
 				<span>跳至<input id="page" class="fy_text" name="" type="text" /><a href="javascript:PageUtil.toPage();void 0;">确定</a></span></div>
 		</div>
