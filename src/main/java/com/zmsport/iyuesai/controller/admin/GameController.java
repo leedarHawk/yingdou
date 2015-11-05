@@ -19,6 +19,7 @@ import org.springframework.web.multipart.MultipartFile;
 import com.zmsport.iyuesai.mapper.Admin;
 import com.zmsport.iyuesai.mapper.Game;
 import com.zmsport.iyuesai.service.GameService;
+import com.zmsport.iyuesai.util.ConstantUtil;
 import com.zmsport.iyuesai.util.FileUtil;
 
 /**
@@ -45,6 +46,7 @@ public class GameController {
 	public String list(@RequestParam(value="status",defaultValue="0") int status,
 					   @RequestParam(value="page",defaultValue="1") int page,
 			           @RequestParam(value="size",defaultValue="10") int size,Model model) {
+		size = ConstantUtil.PAGE_SIZE;
 		int totalNum = service.getTotalNum();
 		int totalPage = totalNum < size ? 1 : (int)Math.ceil(1.0 * totalNum / size);
 		model.addAttribute("totalPage", totalPage);
