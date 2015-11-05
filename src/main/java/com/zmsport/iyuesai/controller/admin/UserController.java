@@ -24,6 +24,7 @@ import com.zmsport.iyuesai.service.UserScoreService;
 import com.zmsport.iyuesai.service.UserService;
 import com.zmsport.iyuesai.service.UserTeamLikeService;
 import com.zmsport.iyuesai.service.UserTeamService;
+import com.zmsport.iyuesai.util.ConstantUtil;
 import com.zmsport.iyuesai.util.FileUtil;
 
 /**
@@ -72,6 +73,7 @@ public class UserController {
 	@RequestMapping(value="/list", method=RequestMethod.GET)
 	public String list(@RequestParam(value="page",defaultValue="1") int page,
 			           @RequestParam(value="size",defaultValue="10") int size,Model model) {
+		size = ConstantUtil.PAGE_SIZE;
 		int totalNum = service.getTotalCount();
 		int totalPage = totalNum < size ? 1 : (int)Math.ceil(1.0 * totalNum / size);
 		model.addAttribute("totalPage", totalPage);
