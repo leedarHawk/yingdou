@@ -11,8 +11,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+
 import com.zmsport.iyuesai.mapper.Admin;
 import com.zmsport.iyuesai.service.AdminService;
+import com.zmsport.iyuesai.util.ConstantUtil;
 import com.zmsport.iyuesai.util.EncryptUtil;
 
 /**
@@ -38,6 +40,7 @@ public class AdminController {
 	@RequestMapping(value="/list", method=RequestMethod.GET)
 	public String list(@RequestParam(value="page",defaultValue="1") int page,
 			           @RequestParam(value="size",defaultValue="10") int size,Model model) {
+		size = ConstantUtil.PAGE_SIZE;
 		int totalNum = service.getTotalNum();
 		int totalPage = totalNum < size ? 1 : (int)Math.ceil(1.0 * totalNum / size);
 		model.addAttribute("totalPage", totalPage);

@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.zmsport.iyuesai.mapper.Challenge;
 import com.zmsport.iyuesai.service.ChallengeService;
+import com.zmsport.iyuesai.util.ConstantUtil;
 
 /**
  * 约战管理
@@ -33,6 +34,7 @@ public class ChallengeController {
 	@RequestMapping(value="/list", method=RequestMethod.GET)
 	public String list(@RequestParam(value="page",defaultValue="1") int page,
 	           		   @RequestParam(value="size",defaultValue="10") int size, Model model) {
+		size = ConstantUtil.PAGE_SIZE;
 		int totalNum = cService.getTotalNum();
 		int totalPage = totalNum < size ? 1 : (int)Math.ceil(1.0 * totalNum / size);
 		model.addAttribute("totalPage", totalPage);
