@@ -90,63 +90,36 @@
 <div class="header"><span><a href="javascript:history.go(-1);void 0;"><img src="<c:url value="/site/images/jt_fh.png" />">返回</a></span>列表</div>
 < class="main4">
 <dl class="hy_qdlist">
-	<dt></dt>
+
 	<dd>
-		<ul>
-			<br/>
-			<li><span>球局名称：</span><c:out value="${round.name}" /></li>
-			<li><span>开始时间：</span><fmt:formatDate value="${round.startTime}" type="both" pattern="yyyy年MM月dd日 HH:mm"/></li>
-			<li><span>结束时间：</span><fmt:formatDate value="${round.endTime}" type="both" pattern="yyyy年MM月dd日 HH:mm"/></li>
-			<li><span>地点：</span><c:out value="${round.location}" /></li>
+		<ul >
+			<p class="ph_jshtit">详细信息</p>
+			<li>名称：<c:out value="${round.name}" /></li>
+			<li>开始：<fmt:formatDate value="${round.startTime}" type="both" pattern="yyyy年MM月dd日 HH:mm"/></li>
+			<li>结束：<fmt:formatDate value="${round.endTime}" type="both" pattern="yyyy年MM月dd日 HH:mm"/></li>
+			<li>地点：<c:out value="${round.location}" /></li>
 		</ul>
 	</dd>
 </dl>
-	<c:forEach items="${list }" var="applyRound">
-	<c:choose>
-		<c:when test="${applyRound.uid == round.creatorId }">
-		<dl class="hy_qdlist">
-		<dt><img src="<c:url value="${applyRound.user.headPic }" />"></dt>
-		<dd>
-			<strong>${applyRound.username }</strong>
-			<c:if test="${applyRound.uid == round.creatorId }">
-				<p><span class="hui_ann">球主</span></p>
-			</c:if>
-			<ul>
-						<br/>
-				<li><span>电话：</span><c:out value="${applyRound.mobile}" /></li>
-				<li><span>身高：</span><c:out value="${applyRound.height}" /></li>
-				<li><span>体重：</span><c:out value="${applyRound.weight}" /></li>
-				<li><span>QQ：</span><c:out value="${applyRound.qq}" /></li>
-				<li><span>备注：</span><c:out value="${applyRound.msg}" /></li>
-			</ul>
-		</dd>
-	</dl>
-		</c:when>
-		<c:otherwise>
-	<dl class="hy_qdlist">
-				<dt><img src="<c:url value="${applyRound.user.headPic }" />"></dt>
-			<dd>
-					<c:out value="${applyRound.username }" />
-				<ul>
-					<li><span>电话：</span><c:out value="${applyRound.mobile}" /></li>
-					<li><span>身高：</span><c:out value="${applyRound.height}" /></li>
-					<li><span>体重：</span><c:out value="${applyRound.weight}" /></li>
-					<li><span>QQ：</span><c:out value="${applyRound.qq}" /></li>
-					<li><span>备注：</span><c:out value="${applyRound.msg}" /></li>
-				</ul>
-			</dd>
-		</dl>
 
-		</c:otherwise>
-	</c:choose>
+<div class="ph_jshdl02">
+	<ul class="ph_txul">
+	<c:forEach items="${list }" var="applyRound" varStatus="status">
+
+
+		<c:if test="${status.count < 9 }">
+			<li><img src="<c:url value="${applyRound.user.headPic }" />">${applyRound.username }</li>
+		</c:if>
 
 
 
 
+	</c:forEach>
+	</ul>
 
+</div>
 
-
-	</c:forEach><br><br><br>
+<br><br><br>
 </div>
 <div class="footer">
 		<ul>
