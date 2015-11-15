@@ -82,6 +82,21 @@ public class SiteChallengeController {
 		return "/site/pages/roundApplyDetail";
 	}
 
+
+	/**
+	 * 获取约战的所有的申请人员
+	 * @param session
+	 * @return
+	 */
+	@RequestMapping(value="/challengeDetail/{detailId}/{creatorId}", method=RequestMethod.GET)
+	public String challengeDetail(@PathVariable long detailId, @PathVariable int creatorId, Model model ) {
+//		User currentUser = (User)session.getAttribute("user");
+		model.addAttribute("list", service.getChallegeDetailByid(detailId));
+		model.addAttribute("challengeDetail", service.getChallenge(detailId)) ;
+		System.out.println("===========================challege detail " + detailId + " creatorId " + creatorId ) ;
+		return "/site/pages/challengeDetail";
+	}
+
 	/**
 	 * 球局申请列表
 	 * @param session

@@ -85,5 +85,7 @@ public interface ChallengeMapper {
 	 * @return
 	 */
 	public int getMyTeamChallengeNum(long uid);
+
+	public List<Challenge> getChallegeDetailByid(long id);
 	
 }

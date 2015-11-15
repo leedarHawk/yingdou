@@ -87,5 +87,13 @@ public interface ChallengeService {
 	 * @return
 	 */
 	public int getMyTeamChallengeNum(long uid);
-	
+
+	/**
+	 *
+	 * @param id
+	 * @return
+	 */
+	public List<Challenge> getChallegeDetailByid( long id) ;
+
+
 }

@@ -100,13 +100,11 @@ public class ChallengeServiceImpl implements ChallengeService {
 
 	@Override
 	public void updateScore(String score, long id) {
-		// TODO Auto-generated method stub
 		mapper.updateScore(score, id);
 	}
 
 	@Override
 	public List<Challenge> findAllChallengesByTeamId(int teamId) {
-		// TODO Auto-generated method stub
 		List<Challenge> list = mapper.findAllChallengesByTeamId(teamId);
 		for(Challenge c : list) {
 			c.setHost(tMapper.findTeamById(c.getTeamId()));
@@ -118,8 +116,17 @@ public class ChallengeServiceImpl implements ChallengeService {
 	}
 
 	@Override
+	public List<Challenge> getChallegeDetailByid( long id) {
+		List<Challenge> list = mapper.getChallegeDetailByid(id);
+		for(Challenge c : list) {
+			c.setHost(tMapper.findTeamById(c.getTeamId()));
+			c.setGuest(tMapper.findTeamById(c.getGuestTeamId()));
+		}
+		return list;
+	}
+
+	@Override
 	public int getMyTeamChallengeNum(long uid) {
-		// TODO Auto-generated method stub
 		return mapper.getMyTeamChallengeNum(uid);
 	}
 

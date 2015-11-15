@@ -37,7 +37,12 @@
 	<select id="getChallenge" parameterType="long" resultType="challenge">
 		SELECT * FROM t_challenge WHERE id=#{id}
 	</select>
-	
+
+
+	<select id="getChallegeDetailByid" parameterType="long" resultType="challenge">
+		SELECT * FROM t_challenge WHERE id=#{id}
+	</select>
+
 	<update id="updateStatus">
 		UPDATE t_challenge SET status=#{0} WHERE id=#{1}
 	</update>

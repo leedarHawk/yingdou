@@ -118,12 +118,14 @@
 									</c:if>
 								</dt>
 							</dl>
+							<a href ="#" onclick="javascript:challengeApplyList(${challenge.id},${challenge.teamId});">
 							<ul class="hybs_ul">
 								<li>时间：<fmt:formatDate value="${challenge.time}" type="both" pattern="yyyy年MM月dd日 HH:mm"/></li>
 								<li>裁判：<c:if test="${challenge.needReferee == 1 }">待定</c:if><c:if test="${challenge.needReferee == 0 }">无</c:if></li>
 								<li>地点：<c:out value="${challenge.location }" /></li>
 								<li>费用：<c:if test="${challenge.feeType == 0 }">免费</c:if><c:if test="${challenge.feeType == 1 }">¥<c:out value="${challenge.fee }" />(AA)</c:if></li>
 							</ul>
+							</a>
 						</div>
 					</c:forEach>
 				</div>
@@ -187,6 +189,9 @@
 				}
 				function roundApplyList(id){
 					location.href = '<c:url value="/site/challenge/roundApplyDetail/" />'  + id;
+				}
+				function challengeApplyList(id,creatorId){
+					location.href = '<c:url value="/site/challenge/challengeDetail/" />'  + id+ '/' + creatorId;
 				}
 				var TabbedPanels1 = new Spry.Widget.TabbedPanels(
 						"TabbedPanels1");
