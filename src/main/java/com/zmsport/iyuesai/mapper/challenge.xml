@@ -22,7 +22,7 @@
 	</select>
 	
 	<select id="findAllChallengesByTeamId" parameterType="int" resultType="challenge">
-		SELECT * FROM t_challenge WHERE (teamId=#{teamId} OR guestTeamId=#{teamId}) 
+		SELECT * FROM t_challenge WHERE (teamId=#{teamId} OR guestTeamId=#{teamId})  order by TIME  DESC
 	</select>
 	
 	<select id="getMyTeamChallengeNum" parameterType="long" resultType="int">
