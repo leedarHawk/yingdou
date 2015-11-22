@@ -1,6 +1,7 @@
 package com.zmsport.iyuesai.controller.site;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 import javax.servlet.http.HttpSession;
@@ -132,6 +133,8 @@ public class SiteUserController {
 			for(Team team : list) {
 				cList.addAll(cService.findAllChallengesByTeamId(team.getId()));
 			}
+
+
 			model.addAttribute("myChallenges", cList);
 			return "/site/pages/me";
 		}else {
@@ -148,6 +151,7 @@ public class SiteUserController {
 			for(Team team : list) {
 				cList.addAll(cService.findAllChallengesByTeamId(team.getId()));
 			}
+			Collections.reverse( cList);
 			model.addAttribute("myChallenges", cList);
 			return "/site/pages/him";
 		}
