@@ -106,7 +106,7 @@
   </tr>
   <tr>
     <td height="90" align="right" valign="top">球队简介：</td>
-    <td><textarea class="fab_textare" name="description" cols="" rows="" onkeyup="value=value.substr(0,30);"><c:out value="${team.description }" /></textarea></td>
+    <td><textarea class="fab_textare" name="description" cols="" rows="" onkeyup="value=value.substr(0,100);"><c:out value="${team.description }" /></textarea></td>
   </tr>
 </table>
 	<div class="bot_btn"><input class="lv_btn" name="" type="submit" value="确定"></div>

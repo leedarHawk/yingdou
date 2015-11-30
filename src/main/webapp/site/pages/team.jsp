@@ -282,9 +282,8 @@
 							</dd>
 							<dt>
 								<c:if test="${empty challenge.guest }">
-							<div style="position:relative;"><c:if test="${challenge.creatorId == user.id }"><a href="<c:url value="/site/challenge/acceptInfoList/${challenge.id }" />"><div class="circle">${challenge.count }</div></a></c:if><img src="<c:url value="/site/images/tx_no.png" />"></div><input
-								class="lv_btn" id="btnshow" onClick="showdiv(<c:out value="${challenge.id }" />,<c:out value="${challenge.teamId}" />);" name=""
-								type="button" value="应战">
+							<div style="position:relative;"><c:if test="${challenge.creatorId == user.id }"><a href="<c:url value="/site/challenge/acceptInfoList/${challenge.id }" />"><div class="circle">${challenge.count }</div></a></c:if><img src="<c:url value="/site/images/tx_no.png" />"></div>
+							
 							</c:if>
 							<c:if test="${not empty challenge.guest }">
 								<img src="<c:url value="${challenge.guest.pic }" />"><c:out value="${challenge.guest.name }" />

@@ -1,6 +1,12 @@
+
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+<%@ page import="java.text.SimpleDateFormat" %>
+<%@ page import="java.util.Date" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+		 pageEncoding="UTF-8"%>
 <%@ include file="../../commons/taglibs.jsp"%>
+
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -50,7 +56,7 @@
 				}else {
 					$('#roundForm select[name="tid"]').val(teamId);
 				} */
-				var startDate = $('#roundForm input[name="startDate"]').val();
+				var startDate = $('#roundForm select[name="startDate"]').val();
 				var startTimestamp = $('#roundForm input[name="startTimestamp"]').val();
 				if(startDate.length == 0 || startTimestamp.length == 0) {
 					AlertUtil.show("请选择开始时间");
@@ -58,7 +64,7 @@
 				}else {
 					$('#roundForm input[name="startTime"]').val(startDate + " " + startTimestamp + ":00");
 				}
-				var endDate = $('#roundForm input[name="endDate"]').val();
+				var endDate = $('#roundForm select[name="endDate"]').val();
 				var endTimestamp = $('#roundForm input[name="endTimestamp"]').val();
 				if(endDate.length == 0 || endTimestamp.length == 0) {
 					endDate = "1970-01-01";
@@ -97,7 +103,7 @@
 				}else {
 					$('select[name="teamId"]').val(teamId);
 				}
-				var date = $('input[name=date]').val();
+				var date = $('select[name=date]').val();
 				var timestamp = $('input[name=timestamp]').val();
 				if(date.length == 0 || timestamp == 0) {
 					AlertUtil.show("请选择时间");
@@ -181,7 +187,20 @@
 							</tr>
 							<tr>
 								<td height="40" align="right">*开始时间：</td>
-								<td height="40"><input class="fab_sel" style="width:148px;" type="date" name="date" /><input class="fab_sel" style="width:148px;" type="time" name="timestamp" /></td>
+								<td height="40">
+									<select class="fab_sel" style="width:148px;" name="date">
+									<%
+										Date d=new Date();
+										SimpleDateFormat df=new SimpleDateFormat("yyyy-MM-dd");
+										for (int i=0; i<15; i++){
+											String dayStr = df.format(new Date(d.getTime() + i * 24 * 60 * 60 * 1000));
+									%>
+											<option value="<%=dayStr%>"><%=dayStr%></option>
+									<%
+										}
+									%>
+								</select>
+									<input class="fab_sel" style="width:148px;" type="time" name="timestamp" /></td>
 							</tr>
 							<tr>
 								<td height="40" align="right">*地点：</td>
@@ -269,13 +288,33 @@
 							<tr>
 								<td height="40" align="right">*开始时间：</td>
 								<td height="40">
-									<input class="fab_sel" style="width:148px;" type="date" name="startDate" /><input class="fab_sel" style="width:148px;" type="time" name="startTimestamp" />
+									<select class="fab_sel" style="width:148px;" type="date" name="startDate" />
+									<%
+										for (int i=0; i<15; i++){
+											String dayStr = df.format(new Date(d.getTime() + i * 24 * 60 * 60 * 1000));
+									%>
+									<option value="<%=dayStr%>"><%=dayStr%></option>
+									<%
+										}
+									%>
+									</select
+									<input class="fab_sel" style="width:148px;" type="time" name="startTimestamp" />
 								</td>
 							</tr>
 							<tr>
 								<td height="40" align="right">结束时间：</td>
 								<td height="40">
-									<input class="fab_sel" style="width:148px;" type="date" name="endDate" /><input class="fab_sel" style="width:148px;" type="time" name="endTimestamp" />
+									<select class="fab_sel" style="width:148px;" type="date" name="endDate">
+									<%
+										for (int i=0; i<15; i++){
+											String dayStr = df.format(new Date(d.getTime() + i * 24 * 60 * 60 * 1000));
+									%>
+									<option value="<%=dayStr%>"><%=dayStr%></option>
+									<%
+										}
+									%>
+									</select>
+									<input class="fab_sel" style="width:148px;" type="time" name="endTimestamp" />
 								</td>
 							</tr>
 							<tr>
