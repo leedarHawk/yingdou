@@ -2,6 +2,7 @@ package com.zmsport.iyuesai.controller.site;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 import javax.servlet.http.HttpSession;
@@ -104,6 +105,7 @@ public class SiteUserController {
 		for(Team team : list) {
 			cList.addAll(cService.findAllChallengesByTeamId(team.getId()));
 		}
+		sortCList(cList) ;
 		model.addAttribute("myChallenges", cList);
 		model.addAttribute("myChallengesNum", cService.getMyTeamChallengeNum(currentUser.getId()));
 		return "/site/pages/" + path;
@@ -133,8 +135,7 @@ public class SiteUserController {
 			for(Team team : list) {
 				cList.addAll(cService.findAllChallengesByTeamId(team.getId()));
 			}
-
-
+			sortCList(cList) ;
 			model.addAttribute("myChallenges", cList);
 			return "/site/pages/me";
 		}else {
@@ -151,7 +152,6 @@ public class SiteUserController {
 			for(Team team : list) {
 				cList.addAll(cService.findAllChallengesByTeamId(team.getId()));
 			}
-			Collections.reverse( cList);
 			model.addAttribute("myChallenges", cList);
 			return "/site/pages/him";
 		}
@@ -169,5 +169,15 @@ public class SiteUserController {
 			num += tService.findUsersByTeamId(team.getId(),UserTeam.STATUS_NOT_CONFIRM).size();
 		}
 		return num > -1 ? ++num : num;
+	}
+
+	private void sortCList(List<Challenge> clist){
+		Collections.sort(clist, new Comparator() {
+			@Override
+			public int compare(Object o1, Object o2) {
+				return ((Challenge)o1).getTime().compareTo(((Challenge)o2).getTime()) ;
+				//return new Double((String) o1).compareTo(new Double((String) o2));
+			}
+		});
 	}
 }
