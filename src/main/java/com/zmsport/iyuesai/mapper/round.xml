@@ -60,9 +60,9 @@
 	</select>
 	
 	<select id="getAllRoundsNew" parameterType="long" resultType="round">
-		SELECT * FROM t_round WHERE creatorId=#{uid} 
+		SELECT * FROM t_round WHERE creatorId=#{uid} AND TIME > date_sub(NOW(),interval 7 day)
 		UNION ALL 
-		SELECT * FROM t_round WHERE creatorId!=#{uid} 
+		SELECT * FROM t_round WHERE creatorId!=#{uid} AND TIME > date_sub(NOW(),interval 7 day)
 	</select>
 	
 	<select id="findRoundById" parameterType="long" resultType="round">

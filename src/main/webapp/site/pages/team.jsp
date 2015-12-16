@@ -7,7 +7,10 @@
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 	<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1.0, maximum-scale=1,user-scalable=yes" />
 	<meta name="format-detection" content="telephone=no" />
-	<title></title>
+	<div id='wx_pic' style='margin:0 auto;display:none;'>
+		<img src='/site/images/yingdoulogo.jpg' />
+	</div>
+	<title>硬斗超级战队</title>
 	<link rel="stylesheet" href="<c:url value="/site/css/style.css" />" />
 	<script type="text/javascript" src="<c:url value="/site/js/jquery.js" />"></script>
 	<%@ include file="../../commons/wechatJs.jsp"%>
@@ -246,7 +249,7 @@
 						<p class="ph_jshtit"><c:if test="${team.creatorId == user.id }"><a href="<c:url value="/site/team/allMembers?teamId=${team.id }" />">管理成员</a></c:if>球队成员(${fn:length(list)})</p>
 						<ul class="ph_txul">
 							<c:forEach items="${list }" var="user" varStatus="status">
-								<c:if test="${status.count < 9 }">
+								<c:if test="${status.count < 100 }">
 									<li><a href="<c:url value="/site/user/info/${user.id}" />"><img src="<c:url value="${user.headPic }" />">${user.username}</a></li>
 								</c:if>
 							</c:forEach>

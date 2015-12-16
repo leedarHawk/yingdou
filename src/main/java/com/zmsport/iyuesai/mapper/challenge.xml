@@ -12,9 +12,9 @@
 	</select>
 	
 	<select id="getAllChallenges" parameterType="long" resultType="challenge">
-		SELECT * FROM (SELECT * FROM t_challenge WHERE creatorId=#{uid} ORDER BY time DESC) AS c1
+		SELECT * FROM (SELECT * FROM t_challenge WHERE creatorId=#{uid} and TIME > date_sub(NOW(),interval 7 day) ORDER BY time DESC) AS c1
 		 UNION ALL 
-		SELECT * FROM (SELECT * FROM t_challenge WHERE creatorId!=#{uid} ORDER BY time DESC) AS c2
+		SELECT * FROM (SELECT * FROM t_challenge WHERE creatorId!=#{uid} and TIME > date_sub(NOW(),interval 7 day) ORDER BY time DESC) AS c2
 	</select>
 	
 	<select id="findChallengesByTeamId" parameterType="int" resultType="challenge">

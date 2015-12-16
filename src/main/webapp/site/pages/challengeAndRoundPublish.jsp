@@ -14,6 +14,11 @@
 <meta name="viewport"
 	content="width=device-width,initial-scale=1,minimum-scale=1.0, maximum-scale=1,user-scalable=yes" />
 <meta name="format-detection" content="telephone=no" />
+
+	<div id='wx_pic' style='margin:0 auto;display:none;'>
+		<img src='/site/images/yingdoulogo.jpg' />
+	</div>
+
 <title></title>
 <link rel="stylesheet" href="<c:url value="/site/css/style.css" />" />
 <script type="text/javascript" src="<c:url value="/site/js/jquery.js" />"></script>
@@ -288,7 +293,7 @@
 							<tr>
 								<td height="40" align="right">*开始时间：</td>
 								<td height="40">
-									<select class="fab_sel" style="width:148px;" type="date" name="startDate" />
+									<select class="fab_sel" style="width:148px;" type="date" name="startDate" >
 									<%
 										for (int i=0; i<15; i++){
 											String dayStr = df.format(new Date(d.getTime() + i * 24 * 60 * 60 * 1000));
@@ -297,7 +302,7 @@
 									<%
 										}
 									%>
-									</select
+									</select>
 									<input class="fab_sel" style="width:148px;" type="time" name="startTimestamp" />
 								</td>
 							</tr>
