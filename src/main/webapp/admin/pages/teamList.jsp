@@ -27,8 +27,9 @@
 			})
 		},
 		del : function(id) {
+			var currentPage = <c:out value="${currentPage}" />;
 			if(confirm("是否删除?")) {
-				window.location.href = "<c:url value="/admin/team/delete" />?ids=" + id;
+				window.location.href = "<c:url value="/admin/team/delete" />?ids=" + id +"&page=" + currentPage;
 			}
 		},
 		delMulti : function() {
@@ -42,8 +43,9 @@
 				return;
 			}
 			ids = ids.join(",");
+			var currentPage = <c:out value="${currentPage}" />;
 			if(confirm("是否删除?")) {
-				window.location.href = "<c:url value="/admin/team/delete" />?ids=" + ids;
+				window.location.href = "<c:url value="/admin/team/delete" />?ids=" + ids +"&page=" + currentPage;
 			}
 		},
 		toPage : function() {

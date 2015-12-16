@@ -56,7 +56,7 @@ public class TeamController {
 	
 	/**
 	 * 获取球队列表
-	 * @param uid
+	 * @param
 	 * @param model
 	 * @return
 	 */
@@ -78,7 +78,9 @@ public class TeamController {
 	 * @return
 	 */
 	@RequestMapping("/delete")
-	public String delete(@RequestParam String ids,HttpSession session) {
+	public String delete(@RequestParam String ids,
+						 @RequestParam(value="page",defaultValue="1") int page,
+						 HttpSession session) {
 		List<Team> list = service.getTeamsByIds(ids);
 		String path = File.separator + FileUtil.UPLOAD_DIR + File.separator
 				+ FileUtil.TEAM_DIR + File.separator;
@@ -86,7 +88,7 @@ public class TeamController {
 			FileUtil.deleteAll(session.getServletContext().getRealPath("/") + path + team.getName() + "_" + team.getCreatorId());
 		}
 		service.delete(ids);
-		return "redirect:/admin/team/list";
+		return "redirect:/admin/team/list?page="+page;
 	}
 	
 	/**
