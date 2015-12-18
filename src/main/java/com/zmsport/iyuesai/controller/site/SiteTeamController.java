@@ -206,9 +206,11 @@ public class SiteTeamController {
 	 * @return
 	 */
 	@RequestMapping(value="/join/{id}", method=RequestMethod.GET)
-	public String join(@PathVariable int id, Model model) {
+	public String join(@PathVariable int id, Model model, HttpSession session) {
 		Team team = service.findTeamById(id);
+		User user = (User)session.getAttribute("user");
 		model.addAttribute("team", team);
+		model.addAttribute("user", user);
 		return "/site/pages/joinTeam";
 	}
 	

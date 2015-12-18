@@ -137,7 +137,7 @@
 				}
 				var mobile = $.trim($('#matchForm input[name=mobile]').val());
 				if(mobile.length == 0) {
-					ALertUtil.show("请输入联系电话");
+					AlertUtil.show("请输入联系电话");
 					return false
 				}else {
 					$('#matchForm input[name=mobile]').val(mobile);

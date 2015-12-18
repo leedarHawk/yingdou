@@ -248,6 +248,14 @@
 			}
 			var qq = $.trim($('#show input[name=qq]').val());
 			var mobile = $.trim($('#show input[name=mobile]').val());
+			if(qq.length = 0 ) {
+				AlertUtil.show("请输入qq号码");
+				return;
+			}
+			if(mobile.length = 0 ) {
+				AlertUtil.show("请输入手机号码");
+				return;
+			}
 			if(qq.length > 0 && !CommonUtil.isNumber(qq)) {
 				AlertUtil.show("请输入正确的qq号码");
 				return;

@@ -48,11 +48,19 @@
 						return false;
 					}
 					var mobile = $.trim($('input[name=mobile]').val());
+					if(mobile.length = 0 ) {
+						AlertUtil.show("请输入手机号");
+						return false;
+					}
 					if(mobile.length > 0 && !CommonUtil.isMobile(mobile)) {
 						AlertUtil.show("请输入正确的手机号");
 						return false;
 					}
 					var qq = $.trim($('input[name=qq]').val());
+					if(qq.length = 0 ) {
+						AlertUtil.show("请输入qq号");
+						return false;
+					}
 					if(qq.length > 0 && !CommonUtil.isNumber(qq)) {
 						AlertUtil.show("请输入正确的qq号");
 						return false;
