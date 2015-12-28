@@ -27,19 +27,51 @@
 			});
 		}
 		$('form').submit(function(){
+			var username = $.trim($('input[name=username]').val());
+			if(username.length == 0) {
+				AlertUtil.show("请输入姓名");
+				return false;
+			}
 			var height = $.trim($('input[name=height]').val());
+			if(height.length == 0){
+				AlertUtil.show("请输入身高");
+				return false;
+			}
 			if(inputs.indexOf('height') > -1 && height.length > 0 && !CommonUtil.isNumber(height)) {
 				AlertUtil.show("请输入正确的身高");
 				return false;
 			}
 			var weight = $.trim($('input[name=weight]').val());
+			if(weight.length == 0){
+				AlertUtil.show("请输入体重");
+				return false;
+			}
 			if(inputs.indexOf('weight') > -1 && weight.length > 0 && !CommonUtil.isNumber(weight)) {
 				AlertUtil.show("请输入正确的体重");
 				return false;
 			}
 			var mobile = $.trim($('input[name=mobile]').val());
+			if(mobile.length == 0){
+				AlertUtil.show("请输入手机号");
+				return false;
+			}
 			if(inputs.indexOf('mobile') > -1 && mobile.length > 0 && !CommonUtil.isMobile(mobile)) {
 				AlertUtil.show("请输入正确的手机号");
+				return false;
+			}
+			var qq = $.trim($('input[name=qq]').val());
+			if(qq.length == 0){
+				AlertUtil.show("请输入QQ号");
+				return false;
+			}
+			if(inputs.indexOf('qq') > -1 && qq.length > 0 && !CommonUtil.isNumber(qq)) {
+				AlertUtil.show("请输入正确的QQ号");
+				return false;
+			}
+			var msg = $.trim($("[name='msg']").val());
+
+			if(msg.length == 0 || msg.length > 20){
+				AlertUtil.show("给群主捎个信不能为空且不超过20个字");
 				return false;
 			}
 			return true;
