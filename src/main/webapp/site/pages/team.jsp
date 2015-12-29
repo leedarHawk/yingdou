@@ -10,7 +10,7 @@
 	<div id='wx_pic' style='margin:0 auto;display:none;'>
 		<img src='/site/images/yingdoulogo.jpg' />
 	</div>
-	<title>硬斗超级战队</title>
+	<title>快来加入我的超级战队吧 ！</title>
 	<link rel="stylesheet" href="<c:url value="/site/css/style.css" />" />
 	<script type="text/javascript" src="<c:url value="/site/js/jquery.js" />"></script>
 	<%@ include file="../../commons/wechatJs.jsp"%>
