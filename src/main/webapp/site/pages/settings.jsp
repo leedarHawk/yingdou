@@ -29,7 +29,7 @@
 				$('form').submit(function(){
 					var username = $.trim($('input[name=username]').val());
 					if(username.length == 0) {
-						AlertUtil.show("昵称不能为空");
+						AlertUtil.show("请您填写完整信息");
 						return false;
 					}
 					if(CommonUtil.limit(5,username)) {
@@ -38,18 +38,26 @@
 					}
 					$('input[name=username]').val(username);
 					var height = $.trim($('input[name=height]').val());
+					if(CommonUtil.isBlank(height)){
+						AlertUtil.show("请您填写完整信息");
+						return false;
+					}
 					if(height.length > 0 && !CommonUtil.isNumber(height)) {
 						AlertUtil.show("请输入正确的身高");
 						return false;
 					}
 					var weight = $.trim($('input[name=weight]').val());
+					if(CommonUtil.isBlank(weight)){
+						AlertUtil.show("请您填写完整信息");
+						return false;
+					}
 					if(weight.length > 0 && !CommonUtil.isNumber(weight)) {
 						AlertUtil.show("请输入正确的体重");
 						return false;
 					}
 					var mobile = $.trim($('input[name=mobile]').val());
 					if(mobile.length = 0 ) {
-						AlertUtil.show("请输入手机号");
+						AlertUtil.show("请您填写完整信息");
 						return false;
 					}
 					if(mobile.length > 0 && !CommonUtil.isMobile(mobile)) {
@@ -58,7 +66,7 @@
 					}
 					var qq = $.trim($('input[name=qq]').val());
 					if(qq.length = 0 ) {
-						AlertUtil.show("请输入qq号");
+						AlertUtil.show("请您填写完整信息");
 						return false;
 					}
 					if(qq.length > 0 && !CommonUtil.isNumber(qq)) {
