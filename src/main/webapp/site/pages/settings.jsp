@@ -56,7 +56,7 @@
 						return false;
 					}
 					var mobile = $.trim($('input[name=mobile]').val());
-					if(mobile.length = 0 ) {
+					if(mobile.length == 0 ) {
 						AlertUtil.show("请您填写完整信息");
 						return false;
 					}
@@ -65,7 +65,7 @@
 						return false;
 					}
 					var qq = $.trim($('input[name=qq]').val());
-					if(qq.length = 0 ) {
+					if(qq.length == 0 ) {
 						AlertUtil.show("请您填写完整信息");
 						return false;
 					}
