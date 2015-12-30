@@ -139,6 +139,9 @@
 				if(mobile.length == 0) {
 					AlertUtil.show("请输入联系电话");
 					return false
+				}else if(mobile.length > 0 && !CommonUtil.isMobile(mobile)){
+					AlertUtil.show("请输入正确的手机号码");
+					return;
 				}else {
 					$('#matchForm input[name=mobile]').val(mobile);
 				}
