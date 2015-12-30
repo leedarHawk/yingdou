@@ -49,7 +49,7 @@
 		height: 80px; 
 		background:#f00;
 		position:absolute;
-		left:50%;
+		left:45%;
 		top:50%;
 		margin-left:-42px;
 		margin-top:-35px;
