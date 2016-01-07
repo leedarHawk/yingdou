@@ -8,7 +8,8 @@ ul,ol,li{list-style:none;text-align:left;}
 table,td,input,button,select{font-size:14px; color:#333;font-family:Arial,"Microsoft YaHei";}
 input,img{ vertical-align:middle;}
 a{outline-style:none;color:#333;text-decoration:none}
-a:hover{color:#37b0e9;}
+a:hover{color:#ff0000;} /*37b0e9  */
+
 /**/
 a,area {blur:expression(this.onFocus=this.blur())}
 button{border:none;}
