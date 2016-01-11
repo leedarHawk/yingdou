@@ -271,6 +271,7 @@
 				type : 'post',
 				success : function(res) {
 					if(res == 'ok') {
+						//AlertUtil.show("保存成功！");
 						location.reload();
 					}else {
 						AlertUtil.show("球队" + team + "已申请过");
@@ -338,13 +339,22 @@
 				}
 				_data = {rid:roundId,uid:${user.id},username:username,height:height,weight:weight,mobile:_contact,msg:msg}
 			}
+			if(CommonUtil.isBlank(msg)){
+				AlertUtil.show("给咱们领队捎个信不能为空");
+				return ;
+			}
+			if(CommonUtil.limit(20,msg)){
+				AlertUtil.show("给咱们领队捎个信不超过20个字");
+				return ;
+			}
 			$.ajax({
 				url : '<c:url value="/site/challenge/applyRound" />',
 				data : _data,
 				type : 'post',
 				success : function(res) {
 					if(res == 'ok') {
-						location.reload();
+						AlertUtil.show('您的申请已提交') ;
+						setTimeout("location.reload();", 3000) ;
 					}else {
 						AlertUtil.show("您已报名");
 					}
