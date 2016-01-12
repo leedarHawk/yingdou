@@ -22,6 +22,7 @@
 <title></title>
 <link rel="stylesheet" href="<c:url value="/site/css/style.css" />" />
 <script type="text/javascript" src="<c:url value="/site/js/jquery.js" />"></script>
+	<script type="text/javascript" src="<c:url value="/site/js/common.js?t=${_time }" />"></script>
 <script type="text/javascript">
 	$(function(){
 		CPageUtil.init();
@@ -86,6 +87,12 @@
 					AlertUtil.show("请填写联系电话");
 					return false;
 				}
+
+				if(mobile.length > 0 && !CommonUtil.isMobile(mobile)) {
+					AlertUtil.show("请输入正确的手机号");
+					return false;
+
+				}
 				var enrollLimit = $.trim($('#roundForm input[name="enrollLimit"]').val());
 				if(enrollLimit.length == 0) {
 					$('#roundForm input[name="enrollLimit"]').val(0);
@@ -136,6 +143,7 @@
 					}
 				}
 				var mobile = $.trim($('#matchForm input[name=mobile]').val());
+				alert(mobile) ;
 				if(mobile.length == 0) {
 					AlertUtil.show("请输入联系电话");
 					return false
