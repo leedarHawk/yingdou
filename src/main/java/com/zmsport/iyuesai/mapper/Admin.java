@@ -9,6 +9,17 @@ import java.sql.Timestamp;
  *
  */
 public class Admin {
+
+	/**
+	 * 系统总管理员
+	 */
+	public static final int SYSTEM_ADMINISTRATOR = 1 ;
+
+	/**
+	 * 区域管理员
+	 */
+	public static final int ZONE_ADMINISTRATOR = 2 ;
+
 	/**
 	 * id
 	 */
@@ -33,6 +44,16 @@ public class Admin {
 	 * 修改时间
 	 */
 	private Timestamp updateTime;
+
+	/**
+	 * 用户类型，系统管理员和区域管理员
+	 */
+	private int type ;
+
+	/**
+	 * 如果是区域管理员，则显示所在的城市的ID
+	 */
+	private long city_id ;
 
 	/**
 	 * @return the id
@@ -102,5 +123,21 @@ public class Admin {
 	 */
 	public void setUpdateTime(Timestamp updateTime) {
 		this.updateTime = updateTime;
+	}
+
+	public int getType() {
+		return type;
+	}
+
+	public void setType(int type) {
+		this.type = type;
+	}
+
+	public long getCity_id() {
+		return city_id;
+	}
+
+	public void setCity_id(long city_id) {
+		this.city_id = city_id;
 	}
 }
