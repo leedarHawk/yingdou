@@ -33,12 +33,16 @@ public interface AdminMapper {
 	 * 插入
 	 * @param admin
 	 */
+	//TODO ken add the type and city id
+	// can't modified the xml files
 	public void insert(Admin admin);
 	
 	/**
 	 * 修改
 	 * @param admin
 	 */
+	//TODO ken add the type and city id
+	//can't modified the xml files
 	public void update(Admin admin);
 	
 	/**
