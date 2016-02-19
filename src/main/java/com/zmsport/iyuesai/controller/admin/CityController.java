@@ -87,8 +87,8 @@ public class CityController {
 	 * @param ids
 	 * @return
 	 */
-	@RequestMapping(value="/deleteAdmin")
-	public String delete(@RequestParam String ids) {
+	@RequestMapping(value="/deleteCity")
+	public String deleteCity(@RequestParam String ids) {
 		service.delete(ids);
 		return "redirect:/admin/city/list";
 	}
