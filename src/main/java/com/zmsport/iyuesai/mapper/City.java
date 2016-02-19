@@ -1,5 +1,7 @@
 package com.zmsport.iyuesai.mapper;
 
+import java.sql.Timestamp;
+
 /**
  * Created by ken.kang on 2016/2/16.
  */
@@ -24,6 +26,16 @@ public class City {
      */
     private int status ;
 
+    /**
+     * 创建时间
+     */
+    private Timestamp createTime;
+
+    /**
+     * 修改时间
+     */
+    private Timestamp updateTime;
+
     public long getId() {
         return id;
     }
@@ -46,5 +58,33 @@ public class City {
 
     public void setStatus(int status) {
         this.status = status;
+    }
+
+    /**
+     * @return the createTime
+     */
+    public Timestamp getCreateTime() {
+        return createTime;
+    }
+
+    /**
+     * @param createTime the createTime to set
+     */
+    public void setCreateTime(Timestamp createTime) {
+        this.createTime = createTime;
+    }
+
+    /**
+     * @return the updateTime
+     */
+    public Timestamp getUpdateTime() {
+        return updateTime;
+    }
+
+    /**
+     * @param updateTime the updateTime to set
+     */
+    public void setUpdateTime(Timestamp updateTime) {
+        this.updateTime = updateTime;
     }
 }
