@@ -35,7 +35,7 @@ public class CityController {
 			           @RequestParam(value="size",defaultValue="10") int size,Model model) {
 		size = ConstantUtil.PAGE_SIZE;
 		int totalNum = service.getTotalNum();
-		int totalPage = totalNum < size ? 1 : (int)Math.ceil(1.0 * totalNum / size);
+		int totalPage = totalNum < size ? 0 : (int)Math.ceil(1.0 * totalNum / size);
 		model.addAttribute("totalPage", totalPage);
 		model.addAttribute("currentPage", page);
 		model.addAttribute("list", service.getCitys(totalPage, size));
@@ -52,7 +52,7 @@ public class CityController {
 	public String edit(@PathVariable String editType, @PathVariable long id, Model model) {
 		model.addAttribute("editType", editType);
 		if(editType.equals("update")) {
-			model.addAttribute("admin", service.findCityById(id));
+			model.addAttribute("city", service.findCityById(id));
 		}
 		return "/admin/pages/city/cityEdit";
 	}
@@ -78,8 +78,14 @@ public class CityController {
 	 */
 	@RequestMapping(value="/updateCity", method=RequestMethod.POST)
 	public String updateCity(City city) {
-		city.setUpdateTime(new java.sql.Timestamp(System.currentTimeMillis()));
-		service.update(city);
+		//city.setUpdateTime(new java.sql.Timestamp(System.currentTimeMillis()));
+		//city.setStatus(City.USABLED);
+		City persistenceCity = service.findCityById(city.getId()) ;
+		persistenceCity.setCityName(city.getCityName());
+		persistenceCity.setUpdateTime(new java.sql.Timestamp(System.currentTimeMillis()));
+
+
+		service.update(persistenceCity);
 		return "redirect:/admin/city/list";
 	}
 	
@@ -98,7 +104,7 @@ public class CityController {
 	* 验证城市名存在
 	* @param cityName
 	* @return
-			*/
+	*/
 	@ResponseBody
 	@RequestMapping(value="/checkCity")
 	public String checkCity(@RequestParam String cityName) {
@@ -117,7 +123,8 @@ public class CityController {
 		if(city.getStatus() == 0){
 			status = 1 ;
 		}
-		service.changeStatus(id, status);
+		city.setStatus(status);
+		service.changeStatus(city);
 		return "redirect:/admin/city/list";
 	}
 }
