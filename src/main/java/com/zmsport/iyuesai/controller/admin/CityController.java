@@ -77,7 +77,7 @@ public class CityController {
 	public String addCity(City city) {
 		city.setCreateTime(new java.sql.Timestamp(System.currentTimeMillis()));
 		service.insert(city);
-		return "redirect:/admin/admin/list";
+		return "redirect:/admin/city/list";
 	}
 	
 
