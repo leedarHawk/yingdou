@@ -60,4 +60,6 @@ public interface CityMapper {
 	 * @param ids
 	 */
 	public void delete(List<String> ids);
+
+	public void changeStatus(String id);
 }
