@@ -58,18 +58,7 @@ public class CityController {
 	}
 	
 	/**
-	 * 验证用户名存在
-	 * @param username
-	 * @return
-	 */
-	@ResponseBody
-	@RequestMapping(value="/checkAdmin")
-	public String checkAdmin(@RequestParam String username) {
-		return String.valueOf(service.findCityByName(username) == null);
-	}
-	
-	/**
-	 * 添加管理员
+	 * 添加城市
 	 * @param city
 	 * @return
 	 */
@@ -82,7 +71,7 @@ public class CityController {
 	
 
 	/**
-	 * 修改管理员
+	 * 修改城市
 	 * @param city
 	 * @return
 	 */
@@ -94,7 +83,7 @@ public class CityController {
 	}
 	
 	/**
-	 * 删除管理员
+	 * 删除城市
 	 * @param ids
 	 * @return
 	 */
@@ -102,6 +91,17 @@ public class CityController {
 	public String delete(@RequestParam String ids) {
 		service.delete(ids);
 		return "redirect:/admin/city/list";
+	}
+
+	/**
+	* 验证城市名存在
+	* @param username
+	* @return
+			*/
+	@ResponseBody
+	@RequestMapping(value="/checkCity")
+	public String checkCity(@RequestParam String username) {
+		return String.valueOf(service.findCityByName(username) == null);
 	}
 	
 }
