@@ -27,10 +27,14 @@
     	UPDATE t_city SET cityName=#{cityName},status=#{status} WHERE id=#{id}
     </update>
 
+    <update id="changeStatus">
+        UPDATE t_city SET status=#{status} WHERE id=#{id}
+    </update>
+
     <update id="changeCityStatus" parameterType="int">
         UPDATE t_city SET status=#{status} WHERE id=#{id}
     </update>
-    
+
     <delete id="delete" parameterType="java.util.List">
     	DELETE FROM t_city WHERE id IN
 		<foreach item="id" index="index" collection="list" open="(" separator="," close=")">  
