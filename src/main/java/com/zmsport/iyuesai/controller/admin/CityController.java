@@ -86,11 +86,11 @@ public class CityController {
 	 * @param city
 	 * @return
 	 */
-	@RequestMapping(value="/updateAdmin", method=RequestMethod.POST)
-	public String updateAdmin(City city) {
+	@RequestMapping(value="/updateCity", method=RequestMethod.POST)
+	public String updateCity(City city) {
 		city.setUpdateTime(new java.sql.Timestamp(System.currentTimeMillis()));
 		service.update(city);
-		return "redirect:/admin/admin/list";
+		return "redirect:/admin/city/list";
 	}
 	
 	/**
