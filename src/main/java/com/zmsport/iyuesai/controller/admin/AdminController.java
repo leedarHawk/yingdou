@@ -67,7 +67,6 @@ public class AdminController {
 	/**
 	 * 验证用户名存在
 	 * @param username
-	 * @param password
 	 * @return
 	 */
 	@ResponseBody
@@ -91,7 +90,7 @@ public class AdminController {
 	
 	/**
 	 * 验证旧密码正确
-	 * @param username
+	 * @param id
 	 * @param password
 	 * @return
 	 */
