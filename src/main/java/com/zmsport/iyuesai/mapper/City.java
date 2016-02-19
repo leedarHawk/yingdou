@@ -7,8 +7,10 @@ import java.sql.Timestamp;
  */
 public class City {
 
+    //正在线上
     public static final int USABLED = 1 ;
 
+    //已下线
     public static final int UN_USABLED = 0 ;
     /**
     * ID
