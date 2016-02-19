@@ -56,5 +56,6 @@ public interface CityService {
 	 * @param ids
 	 */
 	public void delete(String ids);
-	
+
+	void changeStatus(String id);
 }
