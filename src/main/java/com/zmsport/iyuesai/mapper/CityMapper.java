@@ -13,7 +13,7 @@ public interface CityMapper {
 	 * @param cityName
 	 * @return
 	 */
-	public Admin findCityByName(String cityName);
+	public City findCityByName(String cityName);
 	
 	/**
 	 * 分页获取管理员列表
@@ -37,9 +37,9 @@ public interface CityMapper {
 	
 	/**
 	 * 修改
-	 * @param admin
+	 * @param city
 	 */
-	public void update(Admin admin);
+	public void update(City city);
 
 	/**
 	 * 修改城市的状态
