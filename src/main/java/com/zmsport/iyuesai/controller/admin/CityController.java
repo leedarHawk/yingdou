@@ -73,8 +73,8 @@ public class CityController {
 	 * @param city
 	 * @return
 	 */
-	@RequestMapping(value="/addAdmin", method=RequestMethod.POST)
-	public String addAdmin(City city) {
+	@RequestMapping(value="/addCity", method=RequestMethod.POST)
+	public String addCity(City city) {
 		city.setCreateTime(new java.sql.Timestamp(System.currentTimeMillis()));
 		service.insert(city);
 		return "redirect:/admin/admin/list";
