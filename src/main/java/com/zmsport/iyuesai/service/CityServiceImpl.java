@@ -47,7 +47,7 @@ public class CityServiceImpl implements CityService {
         mapper.delete(Arrays.asList(ids.split(",")));
     }
 
-    public void changeStatus(String id){
-        mapper.changeStatus(id) ;
+    public void changeStatus(String id, int status){
+        mapper.changeStatus(id, status) ;
     }
 }
