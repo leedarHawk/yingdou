@@ -95,13 +95,13 @@ public class CityController {
 
 	/**
 	* 验证城市名存在
-	* @param username
+	* @param cityName
 	* @return
 			*/
 	@ResponseBody
 	@RequestMapping(value="/checkCity")
-	public String checkCity(@RequestParam String username) {
-		return String.valueOf(service.findCityByName(username) == null);
+	public String checkCity(@RequestParam String cityName) {
+		return String.valueOf(service.findCityByName(cityName) == null);
 	}
 	
 }
