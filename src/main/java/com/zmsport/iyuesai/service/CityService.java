@@ -58,4 +58,6 @@ public interface CityService {
 	public void delete(String ids);
 
 	void changeStatus(City city);
+
+	List<City> getEffectiveCitys();
 }

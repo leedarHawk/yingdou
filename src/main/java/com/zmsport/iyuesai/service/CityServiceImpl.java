@@ -57,4 +57,8 @@ public class CityServiceImpl implements CityService {
     public void changeStatus(City city){
         mapper.changeStatus(city) ;
     }
+
+    public List<City> getEffectiveCitys(){
+        return mapper.getEffectiveCitys() ;
+    }
 }
