@@ -4,7 +4,7 @@
 <mapper namespace="com.zmsport.iyuesai.mapper.CityMapper">
 
 	<select id="getTotalNum" resultType="int">
-		SELECT COUNT(*) FROM t_city WHERE status = 1
+		SELECT COUNT(*) FROM t_city /*WHERE status = 1*/
 	</select>
 
     <select id="findCityByName" parameterType="String" resultType="city">
@@ -16,18 +16,18 @@
     </select>
     
     <select id="getCitys" parameterType="int" resultType="city">
-    	SELECT * FROM t_city WHERE status = 1 ORDER BY id DESC LIMIT #{0},#{1}
+    	SELECT * FROM t_city /*WHERE status = 1*/ ORDER BY id DESC LIMIT #{0},#{1}
     </select>
     
     <insert id="insert" parameterType="city">
-    	INSERT t_city (cityName,status) VALUES (#{cityName},#{status})
+    	INSERT t_city (cityName,status,createTime) VALUES (#{cityName},#{status},#{createTime})
     </insert>
     
     <update id="update" parameterType="city">
-    	UPDATE t_city SET cityName=#{cityName},status=#{status} WHERE id=#{id}
+    	UPDATE t_city SET cityName=#{cityName},status=#{status}, updateTime=#{updateTime} WHERE id=#{id}
     </update>
 
-    <update id="changeStatus">
+    <update id="changeStatus" parameterType="city">
         UPDATE t_city SET status=#{status} WHERE id=#{id}
     </update>
 
