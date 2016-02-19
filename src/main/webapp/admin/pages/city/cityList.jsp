@@ -127,14 +127,15 @@
 					<td width="20%"><span class="tab_top">城市名称</span></td>
 					<td width="17%"><span class="tab_top">创建时间</span></td>
 					<td width="17%"><span class="tab_top">修改时间</span></td>
+					<td width="17%"><span class="tab_top">状态</span></td>
 					<td><span class="tab_top">操作</span></td>
 				</tr>
-				<c:forEach items="${list}" var="admin">
+				<c:forEach items="${list}" var="city">
 					<tr>
-						<td><input class="bodyBox" style="vertical-align:middle;" value="${admin.id}" type="checkbox" /></td>
+						<td><input class="bodyBox" style="vertical-align:middle;" value="${city.id}" type="checkbox" /></td>
 						<td>${city.cityName}</td>
-						<td><fmt:formatDate value="${admin.createTime}" pattern="yyyy-MM-dd HH:mm:ss"/></td>
-						<td><fmt:formatDate value="${admin.updateTime}" pattern="yyyy-MM-dd HH:mm:ss"/></td>
+						<td><fmt:formatDate value="${city.createTime}" pattern="yyyy-MM-dd HH:mm:ss"/></td>
+						<td><fmt:formatDate value="${city.updateTime}" pattern="yyyy-MM-dd HH:mm:ss"/></td>
 						<td>
 							<c:choose>
 								<c:when test="${city.status == 1}">
@@ -144,7 +145,6 @@
 									已下线
 								</c:when>
 							</c:choose>
-
 						</td>
 						<td>
 							<a class="btn" href="<c:url value="/admin/city/edit/update/" />${city.id}">修改</a>&nbsp;&nbsp;&nbsp;&nbsp;
