@@ -65,6 +65,7 @@ public class CityController {
 	@RequestMapping(value="/addCity", method=RequestMethod.POST)
 	public String addCity(City city) {
 		city.setCreateTime(new java.sql.Timestamp(System.currentTimeMillis()));
+		city.setStatus(City.USABLED);
 		service.insert(city);
 		return "redirect:/admin/city/list";
 	}
