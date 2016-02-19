@@ -62,4 +62,6 @@ public interface CityMapper {
 	public void delete(List<String> ids);
 
 	public void changeStatus(City city);
+
+	List<City> getEffectiveCitys();
 }
