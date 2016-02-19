@@ -103,5 +103,15 @@ public class CityController {
 	public String checkCity(@RequestParam String cityName) {
 		return String.valueOf(service.findCityByName(cityName) == null);
 	}
-	
+
+	/**
+	 * 更改城市状态
+	 * @param id
+	 * @return
+	 */
+	@RequestMapping(value="/changeStatus")
+	public String changeStatus(@RequestParam String id) {
+		service.changeStatus(id);
+		return "redirect:/admin/city/list";
+	}
 }
