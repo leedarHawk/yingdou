@@ -54,7 +54,7 @@ public class CityController {
 		if(editType.equals("update")) {
 			model.addAttribute("admin", service.findCityById(id));
 		}
-		return "/admin/pages/adminEdit";
+		return "/admin/pages/city/cityEdit";
 	}
 	
 	/**
