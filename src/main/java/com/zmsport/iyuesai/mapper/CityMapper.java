@@ -61,5 +61,5 @@ public interface CityMapper {
 	 */
 	public void delete(List<String> ids);
 
-	public void changeStatus(String id);
+	public void changeStatus(String id, int status);
 }
