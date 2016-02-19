@@ -3,6 +3,8 @@ package com.zmsport.iyuesai.service;
 import com.zmsport.iyuesai.mapper.Admin;
 import com.zmsport.iyuesai.mapper.City;
 import com.zmsport.iyuesai.mapper.CityMapper;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -14,6 +16,11 @@ import java.util.List;
  */
 @Service
 public class CityServiceImpl implements CityService {
+
+    /**
+     * logger
+     */
+    private Logger log = LoggerFactory.getLogger(getClass());
 
     @Autowired
     private CityMapper mapper;
@@ -47,7 +54,7 @@ public class CityServiceImpl implements CityService {
         mapper.delete(Arrays.asList(ids.split(",")));
     }
 
-    public void changeStatus(String id, int status){
-        mapper.changeStatus(id, status) ;
+    public void changeStatus(City city){
+        mapper.changeStatus(city) ;
     }
 }
