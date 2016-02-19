@@ -53,7 +53,7 @@ public class Admin {
 	/**
 	 * 如果是区域管理员，则显示所在的城市的ID
 	 */
-	private long city_id ;
+	private long cityId ;
 
 	/**
 	 * @return the id
@@ -133,11 +133,11 @@ public class Admin {
 		this.type = type;
 	}
 
-	public long getCity_id() {
-		return city_id;
+	public long getCityId() {
+		return cityId;
 	}
 
-	public void setCity_id(long city_id) {
-		this.city_id = city_id;
+	public void setCityId(long cityId) {
+		this.cityId = cityId;
 	}
 }
