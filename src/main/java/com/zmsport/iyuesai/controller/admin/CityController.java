@@ -111,7 +111,12 @@ public class CityController {
 	 */
 	@RequestMapping(value="/changeStatus")
 	public String changeStatus(@RequestParam String id) {
-		service.changeStatus(id);
+		City city = service.findCityById(Long.valueOf(id)) ;
+		int status = 0 ;
+		if(city.getStatus() == 0){
+			status = 1 ;
+		}
+		service.changeStatus(id, status);
 		return "redirect:/admin/city/list";
 	}
 }
