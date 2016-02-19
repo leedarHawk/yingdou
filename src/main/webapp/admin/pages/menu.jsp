@@ -8,36 +8,46 @@
 <body style="padding-left:20px;">
 <div class="main_left" id="col1"  style="overflow:hidden;position: relative;">
 	<div id="menu"  style="overflow:hidden;position: relative;top:0px;">
-		<h1><a href="<c:url value="/admin/game/list" />" target="main" class="wen"><img src="../images/iocn_01a.png"/>赛事管理</a><!-- <a href="" class="shu">12</a> --></h1>
-		<div class="erjicaidan">
-			<!-- <div style="padding: 10px 0;border-bottom: #4a4a4a solid 1px;">
-				<h2><a href="list.jsp" target="main">比赛列表</a></h2>
-			</div> -->
-		</div>
-		<h1><a href="<c:url value="/admin/challenge/list" />" target="main" class="wen"><img src="../images/iocn_01a.png"/>约战管理</a><!-- <a href="" class="shu">12</a> --></h1>
-		<div class="erjicaidan">
-			<!-- <div style="padding: 10px 0;border-bottom: #4a4a4a solid 1px;">
-				<h2><a href="list.jsp" target="main">约战</a></h2>
-			</div>
-			<div style="padding: 10px 0;border-bottom: #4a4a4a solid 1px;">
-				<h2><a href="list.jsp" target="main">球局</a></h2>
-			</div> -->
-		</div>
-		<h1><a href="<c:url value="/admin/team/list" />" target="main" class="wen"><img src="../images/iocn_01a.png"/>球队管理</a><!-- <a href="" class="shu">12</a> --></h1>
-		<div  class="erjicaidan">
-		</div>
-		<h1><a href="<c:url value="/admin/order/list" />" target="main" class="wen"><img src="../images/iocn_01a.png"/>订单管理</a><!-- <a href="" class="shu">12</a> --></h1>
-		<div class="erjicaidan">
-			<%-- <div style="padding: 10px 0;border-bottom: #4a4a4a solid 1px;">
-				<h2><a href="<c:url value="/admin/order/list" />" target="main">官方赛事订单</a></h2>
-			</div> --%>
-		</div>
-		<h1><a href="<c:url value="/admin/user/list" />" target="main" class="wen"><img src="../images/iocn_01a.png"/>用户管理</a><!-- <a href="" class="shu">12</a> --></h1>
-			<div class="erjicaidan">
-			</div>
-		<h1><a href="<c:url value="/admin/admin/list" />" target="main" class="wen"><img src="../images/iocn_01a.png"/>管理员</a><!-- <a href="" class="shu">12</a> --></h1>
-			<div class="erjicaidan">
-			</div>
+		<c:choose>
+			<c:when test="${admin.type == 1}">
+				<h1><a href="<c:url value="/admin/game/list" />" target="main" class="wen"><img src="../images/iocn_01a.png"/>     赛事管理</a><!-- <a href="" class="shu">12</a> --></h1>
+				<div class="erjicaidan">
+					<!-- <div style="padding: 10px 0;border-bottom: #4a4a4a solid 1px;">
+                        <h2><a href="list.jsp" target="main">比赛列表</a></h2>
+                    </div> -->
+				</div>
+				<h1><a href="<c:url value="/admin/challenge/list" />" target="main" class="wen"><img src="../images/iocn_01a.png"/>约战管理</a><!-- <a href="" class="shu">12</a> --></h1>
+				<div class="erjicaidan">
+					<!-- <div style="padding: 10px 0;border-bottom: #4a4a4a solid 1px;">
+                        <h2><a href="list.jsp" target="main">约战</a></h2>
+                    </div>
+                    <div style="padding: 10px 0;border-bottom: #4a4a4a solid 1px;">
+                        <h2><a href="list.jsp" target="main">球局</a></h2>
+                    </div> -->
+				</div>
+				<h1><a href="<c:url value="/admin/team/list" />" target="main" class="wen"><img src="../images/iocn_01a.png"/>球队管理</a><!-- <a href="" class="shu">12</a> --></h1>
+				<div  class="erjicaidan">
+				</div>
+				<h1><a href="<c:url value="/admin/order/list" />" target="main" class="wen"><img src="../images/iocn_01a.png"/>订单管理</a><!-- <a href="" class="shu">12</a> --></h1>
+				<div class="erjicaidan">
+						<%-- <div style="padding: 10px 0;border-bottom: #4a4a4a solid 1px;">
+                            <h2><a href="<c:url value="/admin/order/list" />" target="main">官方赛事订单</a></h2>
+                        </div> --%>
+				</div>
+				<h1><a href="<c:url value="/admin/user/list" />" target="main" class="wen"><img src="../images/iocn_01a.png"/>用户管理</a><!-- <a href="" class="shu">12</a> --></h1>
+				<div class="erjicaidan">
+				</div>
+				<h1><a href="<c:url value="/admin/admin/list" />" target="main" class="wen"><img src="../images/iocn_01a.png"/>管理员</a><!-- <a href="" class="shu">12</a> --></h1>
+				<div class="erjicaidan">
+				</div>
+			</c:when>
+			<c:otherwise>
+				<h1><a href="<c:url value="/admin/admin/list" />" target="main" class="wen"><img src="../images/iocn_01a.png"/>区域管理员</a><!-- <a href="" class="shu">12</a> --></h1>
+				<div class="erjicaidan">
+				</div>
+			</c:otherwise>
+		</c:choose>
+
 		<!-- <h1><a href="javascript:;" target="main" class="wen"><img src="images/iocn_01a.png"/>审批管理</a><a href="" class="shu">12</a></h1>
 		<div  class="erjicaidan">
 			<div style="padding: 10px 0;border-bottom: #4a4a4a solid 1px;">
