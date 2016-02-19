@@ -1,10 +1,8 @@
 package com.zmsport.iyuesai.controller.admin;
 
-import com.zmsport.iyuesai.mapper.Admin;
 import com.zmsport.iyuesai.mapper.City;
 import com.zmsport.iyuesai.service.CityService;
 import com.zmsport.iyuesai.util.ConstantUtil;
-import com.zmsport.iyuesai.util.EncryptUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -41,7 +39,7 @@ public class CityController {
 		model.addAttribute("totalPage", totalPage);
 		model.addAttribute("currentPage", page);
 		model.addAttribute("list", service.getCitys(totalPage, size));
-		return "/admin/pages/cityList";
+		return "/admin/pages/city/cityList";
 	}
 	
 	/**
@@ -77,8 +75,7 @@ public class CityController {
 	 */
 	@RequestMapping(value="/addAdmin", method=RequestMethod.POST)
 	public String addAdmin(City city) {
-		//admin.setCreateTime(new java.sql.Timestamp(System.currentTimeMillis()));
-		//admin.setPassword(EncryptUtil.encryptMD5(admin.getPassword()));
+		city.setCreateTime(new java.sql.Timestamp(System.currentTimeMillis()));
 		service.insert(city);
 		return "redirect:/admin/admin/list";
 	}
@@ -91,8 +88,7 @@ public class CityController {
 	 */
 	@RequestMapping(value="/updateAdmin", method=RequestMethod.POST)
 	public String updateAdmin(City city) {
-		//admin.setUpdateTime(new java.sql.Timestamp(System.currentTimeMillis()));
-		//admin.setPassword(EncryptUtil.encryptMD5(admin.getPassword()));
+		city.setUpdateTime(new java.sql.Timestamp(System.currentTimeMillis()));
 		service.update(city);
 		return "redirect:/admin/admin/list";
 	}
