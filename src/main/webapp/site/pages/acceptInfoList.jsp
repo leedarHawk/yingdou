@@ -91,6 +91,7 @@
 		</dl>
 	</c:if>
 </div>
+<br><br><br>
 <div id="bg"></div>
 	<div id="show">
 		<input class="close_btn" id="btnclose" onClick="hidediv();" name=""

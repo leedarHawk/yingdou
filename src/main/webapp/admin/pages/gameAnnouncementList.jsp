@@ -156,6 +156,7 @@
 				<c:if test="${currentPage < totalPage}">
 					<a href="<c:url value="/admin/gameAnnouncement/list?page=" />${currentPage+1}&gameId=${game.id}">下一页</a>
 				</c:if>
+				<a href="<c:url value="/admin/gameAnnouncement/list?page=" />${currentPage+1}">尾页</a>
 				<span>跳至<input id="page" class="fy_text" name="" type="text" /><a href="javascript:PageUtil.toPage();void 0;">确定</a></span></div>
 		</div>
 		</div>

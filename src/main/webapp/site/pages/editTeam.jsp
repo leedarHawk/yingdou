@@ -174,7 +174,7 @@ input.members {
 	  </tr>
 	  <tr>
 	    <td height="40" align="right" valign="top">*球队简介：</td>
-	    <td height="40" valign="top"><textarea class="fab_textare" name="description" cols="" rows=""></textarea></td>
+	    <td height="40" valign="top"><textarea class="fab_textare" name="description" cols="" rows="" onkeyup="value=value.substr(0,100);"></textarea></td>
 	  </tr>
 	  <tr>
 	    <td height="40" align="right">需要参加者留下：</td>

@@ -112,9 +112,10 @@ public class SiteTeamController {
 	 * @return
 	 */
 	@RequestMapping(value="/update",method=RequestMethod.POST)
-	public String update(@RequestParam int teamId, @RequestParam String slogan, @RequestParam String description, 
+	public String update(@RequestParam int teamId,  @RequestParam String name,@RequestParam String slogan, @RequestParam String description,
 			@RequestParam MultipartFile file, HttpSession session, Model model) {
 		Team team = service.findTeamById(teamId);
+		team.setName(name);
 		team.setSlogan(slogan);
 		team.setDescription(description);
 		String originPic = team.getPic();
@@ -206,9 +207,11 @@ public class SiteTeamController {
 	 * @return
 	 */
 	@RequestMapping(value="/join/{id}", method=RequestMethod.GET)
-	public String join(@PathVariable int id, Model model) {
+	public String join(@PathVariable int id, Model model, HttpSession session) {
 		Team team = service.findTeamById(id);
+		User user = (User)session.getAttribute("user");
 		model.addAttribute("team", team);
+		model.addAttribute("user", user);
 		return "/site/pages/joinTeam";
 	}
 	

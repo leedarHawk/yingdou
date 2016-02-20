@@ -27,8 +27,9 @@
 			})
 		},
 		del : function(id) {
+			var currentPage = <c:out value="${currentPage}" />;
 			if(confirm("是否删除?")) {
-				window.location.href = "<c:url value="/admin/team/delete" />?ids=" + id;
+				window.location.href = "<c:url value="/admin/team/delete" />?ids=" + id +"&page=" + currentPage;
 			}
 		},
 		delMulti : function() {
@@ -42,8 +43,9 @@
 				return;
 			}
 			ids = ids.join(",");
+			var currentPage = <c:out value="${currentPage}" />;
 			if(confirm("是否删除?")) {
-				window.location.href = "<c:url value="/admin/team/delete" />?ids=" + ids;
+				window.location.href = "<c:url value="/admin/team/delete" />?ids=" + ids +"&page=" + currentPage;
 			}
 		},
 		toPage : function() {
@@ -146,8 +148,9 @@
 			       	</c:if>
 				</c:forEach>
 				<c:if test="${currentPage < totalPage}">
-					<a href="<c:url value="/admin/team/list?page=" />${currentPage+1}">下一页</a>
+					<a href="<c:url value="/admin/team/list?page=" />${totalPage+1}">下一页</a>
 				</c:if>
+				<a href="<c:url value="/admin/team/list?page=" />${currentPage+1}">尾页</a>
 				<span>跳至<input id="page" class="fy_text" name="" type="text" /><a href="javascript:PageUtil.toPage();void 0;">确定</a></span></div>
 		</div>
 		</div>

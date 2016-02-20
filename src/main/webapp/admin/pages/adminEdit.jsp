@@ -129,6 +129,18 @@
 							<div class="wen"><input type="text" name="username" class="input_cjxm2"></div>
 						</li>
 						<li>
+							<span class="ziduan"><span class="required">*</span>所有区域：</span>
+							<div class="wen">
+								<select class="input_cjxm2">
+									<option value="0">系统管理员</option>
+									<c:forEach items="${cityList}" var="city">
+										<option value="${city.id}">${city.cityName}</option>
+									</c:forEach>
+								</select>
+							</div>
+						</li>
+
+						<li>
 							<span class="ziduan"><span class="required">*</span>设置密码：</span>
 							<div class="wen"><input type="password" name="password" class="input_cjxm2" /></div>
 						</li>
@@ -141,6 +153,17 @@
 						<li>
 							<span class="ziduan"><span class="required">*</span>管理员：</span>
 							<div class="wen"><input type="text" name="username" class="input_cjxm2" value="<c:out value="${admin.username }" />"></div>
+						</li>
+						<li>
+							<span class="ziduan"><span class="required">*</span>所有区域：</span>
+							<div class="wen">
+								<select class="input_cjxm2">
+									<option value="0">系统管理员</option>
+									<c:forEach items="${cityList}" var="city">
+										<option value="${city.id}">${city.cityName}</option>
+									</c:forEach>
+								</select>
+							</div>
 						</li>
 						<li>
 							<span class="ziduan"><span class="required">*</span>旧密码：</span>

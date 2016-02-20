@@ -152,7 +152,6 @@ public class SiteUserController {
 			for(Team team : list) {
 				cList.addAll(cService.findAllChallengesByTeamId(team.getId()));
 			}
-			sortCList(cList) ;
 			model.addAttribute("myChallenges", cList);
 			return "/site/pages/him";
 		}
@@ -176,7 +175,7 @@ public class SiteUserController {
 		Collections.sort(clist, new Comparator() {
 			@Override
 			public int compare(Object o1, Object o2) {
-				return ((Challenge)o1).getTime().compareTo(((Challenge)o2).getTime()) ;
+				return ((Challenge)o2).getTime().compareTo(((Challenge)o1).getTime()) ;
 				//return new Double((String) o1).compareTo(new Double((String) o2));
 			}
 		});

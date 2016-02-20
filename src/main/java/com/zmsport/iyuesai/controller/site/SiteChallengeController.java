@@ -1,9 +1,7 @@
 package com.zmsport.iyuesai.controller.site;
 
 import java.sql.Date;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
+import java.util.*;
 
 import javax.servlet.http.HttpSession;
 
@@ -64,7 +62,10 @@ public class SiteChallengeController {
 	public String list(Model model, HttpSession session) {
 		User currentUser = (User)session.getAttribute("user");
 		model.addAttribute("list", service.getAllChallenges(currentUser.getId()));
-		model.addAttribute("roundList", rService.getAllRoundsNew(currentUser.getId()));
+		List<Round> cList = new ArrayList<Round>();
+		cList = rService.getAllRoundsNew(currentUser.getId());
+		this.sortCList(cList);
+		model.addAttribute("roundList", cList  );
 		return "/site/pages/challenge";
 	}
 	
@@ -300,5 +301,16 @@ public class SiteChallengeController {
 	@ResponseBody
 	public Object showRoundApply(@RequestParam long roundApplyId) {
 		return raService.getRoundApplyById(roundApplyId);
+	}
+
+
+	private void sortCList(List<Round> clist){
+		Collections.sort(clist, new Comparator() {
+			@Override
+			public int compare(Object o1, Object o2) {
+				return ((Round) o2).getTime().compareTo(((Round) o1).getTime());
+				//return new Double((String) o1).compareTo(new Double((String) o2));
+			}
+		});
 	}
 }

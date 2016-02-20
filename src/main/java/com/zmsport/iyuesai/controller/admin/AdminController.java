@@ -1,5 +1,7 @@
 package com.zmsport.iyuesai.controller.admin;
 
+import com.zmsport.iyuesai.mapper.City;
+import com.zmsport.iyuesai.service.CityService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,6 +19,8 @@ import com.zmsport.iyuesai.service.AdminService;
 import com.zmsport.iyuesai.util.ConstantUtil;
 import com.zmsport.iyuesai.util.EncryptUtil;
 
+import java.util.List;
+
 /**
  * 后台登录
  * @author bilei
@@ -32,6 +36,9 @@ public class AdminController {
 	
 	@Autowired
 	private AdminService service;
+
+	@Autowired
+	private CityService cityService;
 	
 	/**
 	 * 获取赛事列表
@@ -61,13 +68,14 @@ public class AdminController {
 		if(editType.equals("update")) {
 			model.addAttribute("admin", service.findAdminById(id));
 		}
+		//get the city list
+		model.addAttribute("cityList", cityService.getEffectiveCitys());
 		return "/admin/pages/adminEdit";
 	}
 	
 	/**
 	 * 验证用户名存在
 	 * @param username
-	 * @param password
 	 * @return
 	 */
 	@ResponseBody
@@ -91,7 +99,7 @@ public class AdminController {
 	
 	/**
 	 * 验证旧密码正确
-	 * @param username
+	 * @param id
 	 * @param password
 	 * @return
 	 */

@@ -100,13 +100,17 @@
 <div class="jiaq_h1"><c:out value="${team.name }" /></div>
 <div style="text-align:center;color:#fff;background:#c0c0c0;margin-bottom:10px;">只能上传本地照片</div>
 <table width="100%" border="0" cellspacing="0" cellpadding="0">
-  <tr>
+	<tr>
+		<td height="50" align="right">球队：</td>
+		<td height="50"><input name="name" type="text" class="fab_text" maxlength="30" value="<c:out value="${team.name }"/>"></td>
+	</tr>
+	<tr>
     <td height="50" align="right">球队公告：</td>
     <td height="50"><input name="slogan" type="text" class="fab_text" maxlength="30" value="<c:out value="${team.slogan }"/>"></td>
   </tr>
   <tr>
     <td height="90" align="right" valign="top">球队简介：</td>
-    <td><textarea class="fab_textare" name="description" cols="" rows="" onkeyup="value=value.substr(0,30);"><c:out value="${team.description }" /></textarea></td>
+    <td><textarea class="fab_textare" name="description" cols="" rows="" onkeyup="value=value.substr(0,100);"><c:out value="${team.description }" /></textarea></td>
   </tr>
 </table>
 	<div class="bot_btn"><input class="lv_btn" name="" type="submit" value="确定"></div>

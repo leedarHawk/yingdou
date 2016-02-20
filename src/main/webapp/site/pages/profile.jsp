@@ -33,10 +33,10 @@
   <tr>
     <td height="35" align="right">手机号码：</td>
     <td height="35">
-    	<c:if test="${fn:length(memeber.mobile) > 0 }">
+    	<c:if test="${fn:length(member.mobile) > 0 }">
     		<c:out value="${member.mobile }" />
     	</c:if>
-    	<c:if test="${fn:length(memeber.mobile) == 0 }">
+    	<c:if test="${fn:length(member.mobile) == 0 }">
     		无
     	</c:if>
     </td>
@@ -44,11 +44,11 @@
   <tr>
     <td height="35" align="right">QQ号：</td>
     <td height="35">
-		<c:if test="${fn:length(memeber.qq) > 0 }">
+		<c:if test="${fn:length(member.qq) > 0 }">
     		<c:out value="${member.qq }" />
     	</c:if>
-    	<c:if test="${fn:length(memeber.qq) == 0 }">
-    		无
+    	<c:if test="${fn:length(member.qq) == 0 }">
+			<c:out value="${member.qq }" />
     	</c:if>
 	</td>
   </tr>

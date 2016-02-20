@@ -12,7 +12,7 @@
     </select>
     
     <select id="getNewGamesByUser" parameterType="int" resultType="game">
-    	SELECT * FROM t_game WHERE status=0 AND createType=1 ORDER BY createTime DESC
+    	SELECT * FROM t_game WHERE status=0 AND createType=1  ORDER BY createTime DESC
     </select>
     
     <select id="getGamesById" parameterType="long" resultType="game">

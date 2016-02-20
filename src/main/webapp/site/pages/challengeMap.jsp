@@ -320,6 +320,10 @@
 					return;
 				}
 				var msg = $.trim($('#show textarea[name=msg]').val());
+				if(msg.length > 20){
+					AlertUtil.show("稍个信儿字数不能超过20个字");
+					return;
+				}
 				$.ajax({
 					url : '<c:url value="/site/challenge/accept" />',
 					data : {tid:teamId,qq:qq,mobile:mobile,msg:msg,challengeId:id},
