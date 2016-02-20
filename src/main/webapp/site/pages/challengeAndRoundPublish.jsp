@@ -1,21 +1,33 @@
+
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+<%@ page import="java.text.SimpleDateFormat" %>
+<%@ page import="java.util.Date" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+		 pageEncoding="UTF-8"%>
 <%@ include file="../../commons/taglibs.jsp"%>
+
+
 <!DOCTYPE html>
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-<meta name="viewport"
-	content="width=device-width,initial-scale=1,minimum-scale=1.0, maximum-scale=1,user-scalable=yes" />
-<meta name="format-detection" content="telephone=no" />
-<title></title>
-<link rel="stylesheet" href="<c:url value="/site/css/style.css" />" />
-<script type="text/javascript" src="<c:url value="/site/js/jquery.js" />"></script>
-<script type="text/javascript">
-	$(function(){
-		CPageUtil.init();
-	});
-	var CPageUtil = {
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+	<meta name="viewport"
+		  content="width=device-width,initial-scale=1,minimum-scale=1.0, maximum-scale=1,user-scalable=yes" />
+	<meta name="format-detection" content="telephone=no" />
+
+	<div id='wx_pic' style='margin:0 auto;display:none;'>
+		<img src='/site/images/yingdoulogo.jpg' />
+	</div>
+
+	<title></title>
+	<link rel="stylesheet" href="<c:url value="/site/css/style.css" />" />
+	<script type="text/javascript" src="<c:url value="/site/js/jquery.js" />"></script>
+	<script type="text/javascript" src="<c:url value="/site/js/common.js?t=${_time }" />"></script>
+	<script type="text/javascript">
+		$(function(){
+			CPageUtil.init();
+		});
+		var CPageUtil = {
 			init : function() {
 				var _this = this;
 				$('#mapPage').hide();
@@ -45,12 +57,12 @@
 				var teamId = $('#roundForm select[name="tid"] option:selected').val();
 				$('#roundForm select[name="tid"]').val(teamId);
 				/* if(teamId < 0) {
-					AlertUtil.show("请选择球队");
-					return false;
-				}else {
-					$('#roundForm select[name="tid"]').val(teamId);
-				} */
-				var startDate = $('#roundForm input[name="startDate"]').val();
+				 AlertUtil.show("请选择球队");
+				 return false;
+				 }else {
+				 $('#roundForm select[name="tid"]').val(teamId);
+				 } */
+				var startDate = $('#roundForm select[name="startDate"]').val();
 				var startTimestamp = $('#roundForm input[name="startTimestamp"]').val();
 				if(startDate.length == 0 || startTimestamp.length == 0) {
 					AlertUtil.show("请选择开始时间");
@@ -58,7 +70,7 @@
 				}else {
 					$('#roundForm input[name="startTime"]').val(startDate + " " + startTimestamp + ":00");
 				}
-				var endDate = $('#roundForm input[name="endDate"]').val();
+				var endDate = $('#roundForm select[name="endDate"]').val();
 				var endTimestamp = $('#roundForm input[name="endTimestamp"]').val();
 				if(endDate.length == 0 || endTimestamp.length == 0) {
 					endDate = "1970-01-01";
@@ -74,6 +86,12 @@
 				if(mobile.length == 0) {
 					AlertUtil.show("请填写联系电话");
 					return false;
+				}
+
+				if(mobile.length > 0 && !CommonUtil.isMobile(mobile)) {
+					AlertUtil.show("请输入正确的手机号");
+					return false;
+
 				}
 				var enrollLimit = $.trim($('#roundForm input[name="enrollLimit"]').val());
 				if(enrollLimit.length == 0) {
@@ -97,7 +115,7 @@
 				}else {
 					$('select[name="teamId"]').val(teamId);
 				}
-				var date = $('input[name=date]').val();
+				var date = $('select[name=date]').val();
 				var timestamp = $('input[name=timestamp]').val();
 				if(date.length == 0 || timestamp == 0) {
 					AlertUtil.show("请选择时间");
@@ -125,21 +143,25 @@
 					}
 				}
 				var mobile = $.trim($('#matchForm input[name=mobile]').val());
+				alert(mobile) ;
 				if(mobile.length == 0) {
-					ALertUtil.show("请输入联系电话");
+					AlertUtil.show("请输入联系电话");
 					return false
+				}else if(mobile.length > 0 && !CommonUtil.isMobile(mobile)){
+					AlertUtil.show("请输入正确的手机号码");
+					return;
 				}else {
 					$('#matchForm input[name=mobile]').val(mobile);
 				}
 				return true;
 			}
-	};
-</script>
-<style type="text/css">
-	#roundForm table td {
-		padding:2px 0px;
-	}
-</style>
+		};
+	</script>
+	<style type="text/css">
+		#roundForm table td {
+			padding:2px 0px;
+		}
+	</style>
 </head>
 
 <body>
@@ -181,7 +203,20 @@
 							</tr>
 							<tr>
 								<td height="40" align="right">*开始时间：</td>
-								<td height="40"><input class="fab_sel" style="width:148px;" type="date" name="date" /><input class="fab_sel" style="width:148px;" type="time" name="timestamp" /></td>
+								<td height="40">
+									<select class="fab_sel" style="width:148px;" name="date">
+										<%
+											Date d=new Date();
+											SimpleDateFormat df=new SimpleDateFormat("yyyy-MM-dd");
+											for (int i=0; i<15; i++){
+												String dayStr = df.format(new Date(d.getTime() + i * 24 * 60 * 60 * 1000));
+										%>
+										<option value="<%=dayStr%>"><%=dayStr%></option>
+										<%
+											}
+										%>
+									</select>
+									<input class="fab_sel" style="width:148px;" type="time" name="timestamp" /></td>
 							</tr>
 							<tr>
 								<td height="40" align="right">*地点：</td>
@@ -190,7 +225,7 @@
 							<tr>
 								<td height="40" align="right">&nbsp;</td>
 								<td height="40"><input name="location" type="text"
-									class="fab_text" placeholder="手动输入" /></td>
+													   class="fab_text" placeholder="手动输入" /></td>
 							</tr>
 							<tr>
 								<td height="40" align="right">*费用：</td>
@@ -199,7 +234,7 @@
 							<tr>
 								<td height="40" align="right">&nbsp;</td>
 								<td height="40"><input type="radio" name="feeType" value="1" />AA&nbsp;<input name="fee" type="text"
-									class="fab_text2" placeholder="¥"></td>
+																											  class="fab_text2" placeholder="¥"></td>
 							</tr>
 							<tr>
 								<td height="40" align="right">裁判：</td>
@@ -213,17 +248,17 @@
 							<tr>
 								<td height="40" align="right">*发起人联系电话：</td>
 								<td height="40"><input name="mobile" type="text"
-									class="fab_text" value="<c:out value="${user.mobile }" />" /></td>
+													   class="fab_text" value="<c:out value="${user.mobile }" />" /></td>
 							</tr>
 							<tr>
 								<td height="40" align="right">备用联系人电话：</td>
 								<td height="40"><input name="firstBakMobile" type="text"
-									class="fab_text"></td>
+													   class="fab_text"></td>
 							</tr>
 							<tr>
 								<td height="40" align="right">备用联系人电话：</td>
 								<td height="40"><input name="secondBakMobile" type="text"
-									class="fab_text"></td>
+													   class="fab_text"></td>
 							</tr>
 							<tr>
 								<td height="40" align="right">需要参加者留下：</td>
@@ -269,13 +304,33 @@
 							<tr>
 								<td height="40" align="right">*开始时间：</td>
 								<td height="40">
-									<input class="fab_sel" style="width:148px;" type="date" name="startDate" /><input class="fab_sel" style="width:148px;" type="time" name="startTimestamp" />
+									<select class="fab_sel" style="width:148px;" type="date" name="startDate" >
+										<%
+											for (int i=0; i<15; i++){
+												String dayStr = df.format(new Date(d.getTime() + i * 24 * 60 * 60 * 1000));
+										%>
+										<option value="<%=dayStr%>"><%=dayStr%></option>
+										<%
+											}
+										%>
+									</select>
+									<input class="fab_sel" style="width:148px;" type="time" name="startTimestamp" />
 								</td>
 							</tr>
 							<tr>
 								<td height="40" align="right">结束时间：</td>
 								<td height="40">
-									<input class="fab_sel" style="width:148px;" type="date" name="endDate" /><input class="fab_sel" style="width:148px;" type="time" name="endTimestamp" />
+									<select class="fab_sel" style="width:148px;" type="date" name="endDate">
+										<%
+											for (int i=0; i<15; i++){
+												String dayStr = df.format(new Date(d.getTime() + i * 24 * 60 * 60 * 1000));
+										%>
+										<option value="<%=dayStr%>"><%=dayStr%></option>
+										<%
+											}
+										%>
+									</select>
+									<input class="fab_sel" style="width:148px;" type="time" name="endTimestamp" />
 								</td>
 							</tr>
 							<tr>
@@ -285,7 +340,7 @@
 							<tr>
 								<td height="40" align="right">&nbsp;</td>
 								<td height="40"><input name="location" type="text"
-									class="fab_text" placeholder="手动录入"></td>
+													   class="fab_text" placeholder="手动录入"></td>
 							</tr>
 							<tr>
 								<td height="40" align="right">*费用：</td>
@@ -294,12 +349,12 @@
 							<tr>
 								<td height="40" align="right">&nbsp;</td>
 								<td height="40"><input type="radio" name="feeType" value="1" />AA&nbsp;<input name="fee" type="text"
-									class="fab_text2" placeholder="¥"></td>
+																											  class="fab_text2" placeholder="¥"></td>
 							</tr>
 							<tr>
 								<td height="40" align="right">已有人数：</td>
 								<td height="40"><input name="members" type="number"
-									class="fab_text" ></td>
+													   class="fab_text" ></td>
 							</tr>
 							<tr>
 								<td height="40" align="right">招募人数：</td>
@@ -308,12 +363,12 @@
 							<tr>
 								<td height="40" align="right">&nbsp;</td>
 								<td height="40"><input type="radio" name="enrollType" value="1" />限定&nbsp;<input name="enrollLimit" type="number"
-									class="fab_text2"></td>
+																												 class="fab_text2"></td>
 							</tr>
 							<tr>
 								<td height="40" align="right">*联系电话：</td>
 								<td height="40"><input name="mobile" type="text"
-									class="fab_text" value="${user.mobile }"></td>
+													   class="fab_text" value="${user.mobile }"></td>
 							</tr>
 							<tr>
 								<td height="40" align="right">需要参加者留下：</td>
@@ -340,17 +395,17 @@
 		<ul>
 			<li class="nav01"><a href="<c:url value="/site/game/list" />">比赛</a></li>
 			<li class="nav02"><a class="hover"
-				href="<c:url value="/site/challenge/list" />">约战</a></li>
+								 href="<c:url value="/site/challenge/list" />">约战</a></li>
 			<li class="nav03"><a href="<c:url value="/site/team/list" />">球队</a></li>
 			<li class="nav04"><a href="<c:url value="/site/user/path/me" />">我</a></li>
 		</ul>
 	</div>
 </div>
 <div id="mapPage">
-<script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=yukxov4aBQUGowvyGuS5lD5t"></script>
-<script type="text/javascript" src="http://developer.baidu.com/map/jsdemo/demo/convertor.js"></script>
-<script type="text/javascript">
-	var PageUtil = {
+	<script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=yukxov4aBQUGowvyGuS5lD5t"></script>
+	<script type="text/javascript" src="http://developer.baidu.com/map/jsdemo/demo/convertor.js"></script>
+	<script type="text/javascript">
+		var PageUtil = {
 			map : null,
 			local : null,
 			level : 18,
@@ -369,17 +424,17 @@
 				var _this = this;
 				if(navigator.geolocation.getCurrentPosition) {
 					navigator.geolocation.getCurrentPosition(function(position){
-						var currentLat = position.coords.latitude; 
-						var currentLon = position.coords.longitude; 
-						var gpsPoint = new BMap.Point(currentLon, currentLat); 
+						var currentLat = position.coords.latitude;
+						var currentLon = position.coords.longitude;
+						var gpsPoint = new BMap.Point(currentLon, currentLat);
 						BMap.Convertor.translate(gpsPoint, 0, function(point){
-							_this.map = new BMap.Map("map");  
-							_this.map.centerAndZoom(point, _this.level); 
+							_this.map = new BMap.Map("map");
+							_this.map.centerAndZoom(point, _this.level);
 							_this.map.addOverlay(new BMap.Marker(point));
 							/* var myCity = new BMap.LocalCity();
-							myCity.get(function(result){
-								_this.map.centerAndZoom(result.name, 11);
-							}); */
+							 myCity.get(function(result){
+							 _this.map.centerAndZoom(result.name, 11);
+							 }); */
 							_this.local = new BMap.LocalSearch(_this.map, {
 								onSearchComplete: function(results){
 									// 判断状态是否正确
@@ -398,24 +453,24 @@
 												_this.map.centerAndZoom(point, 15);
 											}
 											(function (_location,_marker,_point){
-												_marker.addEventListener("click", function(){ 
+												_marker.addEventListener("click", function(){
 													info = $('div.info').clone();
 													$('div.title',info).text(_location.title);
 													$('div.address',info).text(_location.address);
 													$('a.add',info).attr('data-title',_location.title);
-													//创建信息窗口对象 
+													//创建信息窗口对象
 													infoWindow = new BMap.InfoWindow("");
 													infoWindow.setContent(info.html());
 													//开启信息窗口
-													_this.map.openInfoWindow(infoWindow,_point); 
+													_this.map.openInfoWindow(infoWindow,_point);
 												});
 											})(location,marker,point);
 										}
 									}
 								}
 							});
-						}); 
-					}); 
+						});
+					});
 				}
 			},
 			search : function() {
@@ -436,63 +491,63 @@
 				$('#infoPage').fadeIn();
 				$('#mapPage').fadeOut();
 			}
-	};
-</script>
-<style type="text/css">
-	#map {
-		width:100%;
-		height:500px;
-	}
-	div.search {
-		height:50px;
-		background:#f8f8f8;
-	    border-bottom: 1px solid #dedede;
-	    padding:2px;
-	}
-	div.search input {
-		height:40px;
-		border:1px solid #c0c0c0;
-		text-align:center;
-		line-height:100%;
-		margin:0px 2px;
-		
-	}
-	a.searchBtn {
-		width:50px;
-		height:50px;
-		margin-left:2px;
-	}
-	a.returnBtn {
-		width:50px;
-		height:50px;
-	}
-	a.returnBtn img {
-		width:14px;
-		margin:0px 2px;
-	}
-	div.info {
-		display:none;
-	}
-	div.infoPanel {
-		font-size:14px;
-	}
-	a.add span {
-		display:inline-block;
-		width:50px;
-		height:30px;
-		background:#f00;
-		color:#fff;
-		line-height:30px;
-		text-align:center;
-	}
-	div.button {
-		text-align:right;
-	}
-	div.title {
-		color:#f00;
-		font-weight:bold;
-	}
-</style>
+		};
+	</script>
+	<style type="text/css">
+		#map {
+			width:100%;
+			height:500px;
+		}
+		div.search {
+			height:50px;
+			background:#f8f8f8;
+			border-bottom: 1px solid #dedede;
+			padding:2px;
+		}
+		div.search input {
+			height:40px;
+			border:1px solid #c0c0c0;
+			text-align:center;
+			line-height:100%;
+			margin:0px 2px;
+
+		}
+		a.searchBtn {
+			width:50px;
+			height:50px;
+			margin-left:2px;
+		}
+		a.returnBtn {
+			width:50px;
+			height:50px;
+		}
+		a.returnBtn img {
+			width:14px;
+			margin:0px 2px;
+		}
+		div.info {
+			display:none;
+		}
+		div.infoPanel {
+			font-size:14px;
+		}
+		a.add span {
+			display:inline-block;
+			width:50px;
+			height:30px;
+			background:#f00;
+			color:#fff;
+			line-height:30px;
+			text-align:center;
+		}
+		div.button {
+			text-align:right;
+		}
+		div.title {
+			color:#f00;
+			font-weight:bold;
+		}
+	</style>
 	<div class="info">
 		<div class="infoPanel">
 			<div class="title"></div>
@@ -508,8 +563,8 @@
 		<a class="searchBtn" href="javascript:PageUtil.search();void 0;"><img alt="" src="<c:url value="/site/images/search.png" />"></a>
 	</div>
 	<div id="map"></div>
-<script type="text/javascript">
-	PageUtil.init();
-</script>
+	<script type="text/javascript">
+		PageUtil.init();
+	</script>
 </body>
 </html>
