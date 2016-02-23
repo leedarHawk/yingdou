@@ -19,6 +19,11 @@
 					}
 					return true;
 				});
+				var editType = '${editType}' ;
+				if(editType == 'add'){
+					$('input[name="username"]').val('') ;
+					$('input[name="password"]').val('') ;
+				}
 			},
 			check : function() {
 				var username = $.trim($('input[name="username"]').val());
@@ -131,7 +136,8 @@
 						<li>
 							<span class="ziduan"><span class="required">*</span>所有区域：</span>
 							<div class="wen">
-								<select class="input_cjxm2">
+								<select class="input_cjxm2" name="cityId">
+									<option value="-1">请选择</option>
 									<option value="0">系统管理员</option>
 									<c:forEach items="${cityList}" var="city">
 										<option value="${city.id}">${city.cityName}</option>
@@ -157,10 +163,13 @@
 						<li>
 							<span class="ziduan"><span class="required">*</span>所有区域：</span>
 							<div class="wen">
-								<select class="input_cjxm2">
-									<option value="0">系统管理员</option>
+								<select class="input_cjxm2" name="cityId">
+									<option value="-1">请选择</option>
+									<option value="0" <c:if test="${admin.type == 1}">>selected</c:if>系统管理员</option>
 									<c:forEach items="${cityList}" var="city">
-										<option value="${city.id}">${city.cityName}</option>
+										<option value="${city.id}"
+											<c:if test="${admin.cityId == city.id}">selected </c:if>
+										>${city.cityName}</option>
 									</c:forEach>
 								</select>
 							</div>

@@ -93,6 +93,12 @@ public class AdminController {
 	public String addAdmin(Admin admin) {
 		admin.setCreateTime(new java.sql.Timestamp(System.currentTimeMillis()));
 		admin.setPassword(EncryptUtil.encryptMD5(admin.getPassword()));
+		//admin.set
+		if(admin.getCityId() == 0){
+			admin.setType(Admin.SYSTEM_ADMINISTRATOR);
+		}else{
+			admin.setType(Admin.ZONE_ADMINISTRATOR);
+		}
 		service.insert(admin);
 		return "redirect:/admin/admin/list";
 	}
@@ -119,6 +125,11 @@ public class AdminController {
 	public String updateAdmin(Admin admin) {
 		admin.setUpdateTime(new java.sql.Timestamp(System.currentTimeMillis()));
 		admin.setPassword(EncryptUtil.encryptMD5(admin.getPassword()));
+		if(admin.getCityId() == 0){
+			admin.setType(Admin.SYSTEM_ADMINISTRATOR);
+		}else{
+			admin.setType(Admin.ZONE_ADMINISTRATOR);
+		}
 		service.update(admin);
 		return "redirect:/admin/admin/list";
 	}

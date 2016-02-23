@@ -20,11 +20,11 @@
     </select>
     
     <insert id="insert" parameterType="admin">
-    	INSERT t_admin (username,password,createTime) VALUES (#{username},#{password},#{createTime})
+    	INSERT t_admin (username,password,createTime, type,cityId) VALUES (#{username},#{password},#{createTime},#{type},#{cityId})
     </insert>
     
     <update id="update" parameterType="admin">
-    	UPDATE t_admin SET username=#{username},password=#{password},updateTime=#{updateTime} WHERE id=#{id}
+    	UPDATE t_admin SET username=#{username},password=#{password},updateTime=#{updateTime}, type=#{type}, cityId=#{cityId} WHERE id=#{id}
     </update>
     
     <delete id="delete" parameterType="java.util.List">
