@@ -99,6 +99,7 @@ public class AdminController {
 		}else{
 			admin.setType(Admin.ZONE_ADMINISTRATOR);
 		}
+		admin.setStatus(Admin.USEABLE);
 		service.insert(admin);
 		return "redirect:/admin/admin/list";
 	}
@@ -144,5 +145,22 @@ public class AdminController {
 		service.delete(ids);
 		return "redirect:/admin/admin/list";
 	}
-	
+
+
+	/**
+	 * 更改管理员状态
+	 * @param ids
+	 * @return
+	 */
+	@RequestMapping(value="/changeStatus")
+	public String changeStatus(@RequestParam String ids) {
+		Admin admin = service.findAdminById(Long.valueOf(ids)) ;
+		if(admin.getStatus() == Admin.USEABLE){
+			admin.setStatus(Admin.UN_USEABLE);
+		}else{
+			admin.setStatus(Admin.USEABLE);
+		}
+		service.changeStatus(admin);
+		return "redirect:/admin/admin/list";
+	}
 }

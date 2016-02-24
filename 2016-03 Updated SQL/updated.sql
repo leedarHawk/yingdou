@@ -15,5 +15,9 @@ ALTER TABLE `t_admin`
 ADD COLUMN `type`  int(1) NULL COMMENT '1=系统总管理员,2=区域管理员' AFTER `updateTime`,
 ADD COLUMN `cityId`  int(11) NULL COMMENT ' 如果是区域管理员，则显示所在的城市的ID' AFTER `type`;
 
+ALTER TABLE `t_admin`
+ADD COLUMN `status`  int(1) NULL COMMENT '1:有效的，2：无效的' AFTER `cityId`;
+
+
 
 

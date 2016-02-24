@@ -36,6 +36,11 @@
 				window.location.href = "<c:url value="/admin/admin/deleteAdmin" />?ids=" + id;
 			}
 		},
+		changeStatus : function(id) {
+			if(confirm("是否更改?")) {
+				window.location.href = "<c:url value="/admin/admin/changeStatus" />?ids=" + id;
+			}
+		},
 		delMulti : function() {
 			var ids = [];
 			$('input.bodyBox').each(function(){
@@ -122,6 +127,7 @@
 					<td width="20%"><span class="tab_top">管理员</span></td>
 					<td width="17%"><span class="tab_top">创建时间</span></td>
 					<td width="17%"><span class="tab_top">修改时间</span></td>
+					<td width="17%"><span class="tab_top">用户状态</span></td>
 					<td><span class="tab_top">操作</span></td>
 				</tr>
 				<c:forEach items="${list}" var="admin">
@@ -130,7 +136,26 @@
 						<td>${admin.username}</td>
 						<td><fmt:formatDate value="${admin.createTime}" pattern="yyyy-MM-dd HH:mm:ss"/></td>
 						<td><fmt:formatDate value="${admin.updateTime}" pattern="yyyy-MM-dd HH:mm:ss"/></td>
-						<td><a class="btn" href="<c:url value="/admin/admin/edit/update/" />${admin.id}">修改</a>&nbsp;&nbsp;&nbsp;&nbsp;<a class="btn" href="javascript:PageUtil.del(${admin.id});void 0;">删除</a></td>
+						<td>
+							<c:choose>
+								<c:when test="${admin.status == 1}">
+									有效的
+								</c:when>
+								<c:otherwise>无效的</c:otherwise>
+							</c:choose>
+						</td>
+						<td>
+							<a class="btn" href="<c:url value="/admin/admin/edit/update/" />${admin.id}">修改</a>&nbsp;&nbsp;&nbsp;&nbsp;
+							<a class="btn" href="javascript:PageUtil.del(${admin.id});void 0;">删除</a>>&nbsp;&nbsp;&nbsp;&nbsp;
+							<c:choose>
+								<c:when test="${admin.status == 1}">
+									<a class="btn" href="javascript:PageUtil.changeStatus(${admin.id});void 0;">使下线</a>
+								</c:when>
+								<c:otherwise>
+									<a class="btn" href="javascript:PageUtil.changeStatus(${admin.id});void 0;">使上线</a>
+								</c:otherwise>
+							</c:choose>
+						</td>
 					</tr>
 				</c:forEach>
 			</table>

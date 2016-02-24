@@ -62,4 +62,8 @@ public class AdminServiceImpl implements AdminService {
 		mapper.delete(Arrays.asList(ids.split(",")));
 	}
 
+	public void changeStatus(Admin admin){
+		mapper.changeStatus(admin);
+	}
+
 }

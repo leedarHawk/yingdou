@@ -55,5 +55,6 @@ public interface AdminService {
 	 * @param ids
 	 */
 	public void delete(String ids);
-	
+
+	void changeStatus(Admin admin);
 }

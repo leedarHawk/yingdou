@@ -21,6 +21,16 @@ public class Admin {
 	public static final int ZONE_ADMINISTRATOR = 2 ;
 
 	/**
+	 * 有效的
+	 */
+	public static final int USEABLE = 1 ;
+
+	/**
+	 * 无效的
+	 */
+	public static final int UN_USEABLE = 0 ;
+
+	/**
 	 * id
 	 */
 	private long id;
@@ -44,6 +54,8 @@ public class Admin {
 	 * 修改时间
 	 */
 	private Timestamp updateTime;
+
+	private  int status ;
 
 	/**
 	 * 用户类型，系统管理员和区域管理员
@@ -139,5 +151,13 @@ public class Admin {
 
 	public void setCityId(long cityId) {
 		this.cityId = cityId;
+	}
+
+	public int getStatus() {
+		return status;
+	}
+
+	public void setStatus(int status) {
+		this.status = status;
 	}
 }

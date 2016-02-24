@@ -22,9 +22,13 @@
     <insert id="insert" parameterType="admin">
     	INSERT t_admin (username,password,createTime, type,cityId) VALUES (#{username},#{password},#{createTime},#{type},#{cityId})
     </insert>
-    
+
     <update id="update" parameterType="admin">
     	UPDATE t_admin SET username=#{username},password=#{password},updateTime=#{updateTime}, type=#{type}, cityId=#{cityId} WHERE id=#{id}
+    </update>
+
+    <update id="changeStatus" parameterType="admin">
+        UPDATE t_admin SET status=#{status} WHERE id=#{id}
     </update>
     
     <delete id="delete" parameterType="java.util.List">

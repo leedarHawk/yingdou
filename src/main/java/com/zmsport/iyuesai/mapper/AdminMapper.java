@@ -57,4 +57,6 @@ public interface AdminMapper {
 	 * @param ids
 	 */
 	public void delete(List<String> ids);
+
+	void changeStatus(Admin admin);
 }
