@@ -115,7 +115,7 @@
 			</c:if>
 				<ul class="tongdao">
 					<li>
-						<span class="ziduan"><span class="required">*</span>赛事名称：</span>
+						<span class="ziduan"><span class="required">*</span>赛事：</span>
 						<div class="wen">
 							<%--<input type="text" name="name" class="input_cjxm2" value="<c:out value="${game.name }" />">--%>
 							<select name="gameId" class="input_cjxm2">
@@ -127,38 +127,12 @@
 						</div>
 					</li>
 					<li>
-						<span class="ziduan"><span class="required">*</span>赛事时间：</span>
+						<span class="ziduan"><span class="required">*</span>标题：</span>
 						<div class="wen"><input type="text" name="duration" class="input_cjxm2" value="<c:out value="${game.duration }" />"></div>
-					</li>
-					<li>
-						<span class="ziduan"><span class="required">*</span>赛事地点：</span>
-						<div class="wen"><input type="text" name="location" class="input_cjxm2" value="<c:out value="${game.location }" />"></div>
-					</li>
-					<li>
-						<span class="ziduan">报名费用：</span>
-						<div class="wen"><input type="text" name="fee" class="input_cjxm2" value="<c:out value="${game.fee }" />"></div>
-					</li>
-					<li>
-						<span class="ziduan">球队名额：</span>
-						<div class="wen"><input type="text" name="teamNum" class="input_cjxm2" value="<c:out value="${game.teamNum }" />"></div>
-					</li>
-					<c:if test="${editType == 'update' }">
-						<li>
-							<span class="ziduan">&nbsp;</span>
-							<div class="wen">
-								<img src="<c:url value="${game.pic}" />" style="width:320px;"/>
-							</div>
-						</li>
-					</c:if>
-					<li>
-						<span class="ziduan"><span class="required">*</span>赛事配图：</span>
-						<div class="wen"><input readonly type="text" name="tempPic" class="input_cjxm" value="<c:out value="${game.pic }" />">
-							<a href="javascript:void(0);" class="btn_addPic"><span>浏览</span><input type="file" name="file" tabindex="3" title="支持jpg、jpeg、gif、png格式，文件小于5M" size="3" class="filePrew"></a>
-						</div>
 					</li>
 
 					<li>
-						<span class="ziduan">赛事简介：</span>
+						<span class="ziduan">内容：</span>
 						<div class="wen">
 
 							<!--<textarea name="content" class="textarea_td">-->
@@ -175,9 +149,9 @@
 
 								var ue = UE.getEditor('container',{
 									//这里可以选择自己需要的工具按钮名称,此处仅选择如下五个
-									toolbars:[['FullScreen', 'Source', 'Undo', 'Redo','Bold']],
+									toolbars:[['FullScreen', 'Source', 'Undo', 'Redo','Bold','simpleupload','insertimage','music','insertvideo']],
 									//关闭elementPath
-									elementPathEnabled:false,
+									//elementPathEnabled:false,
 									//默认的编辑区域高级
 									initialFrameHeight:320,
 									initialFrameWidth:320
