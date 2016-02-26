@@ -94,6 +94,8 @@ public class Game {
 	 */
 	private int teamNum;
 
+	private int cityId ;
+
 	/**
 	 * @return the id
 	 */
@@ -260,5 +262,13 @@ public class Game {
 	 */
 	public void setTeamNum(int teamNum) {
 		this.teamNum = teamNum;
+	}
+
+	public int getCityId() {
+		return cityId;
+	}
+
+	public void setCityId(int cityId) {
+		this.cityId = cityId;
 	}
 }

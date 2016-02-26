@@ -5,6 +5,7 @@ import java.util.List;
 
 import javax.servlet.http.HttpSession;
 
+import com.zmsport.iyuesai.service.CityService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -37,6 +38,9 @@ public class GameController {
 	
 	@Autowired
 	private GameService service;
+
+	@Autowired
+	private CityService cityService ;
 	
 	/**
 	 * 获取赛事列表
@@ -67,6 +71,7 @@ public class GameController {
 		if(type.equals("update")) {
 			model.addAttribute("game", service.getGamesById(id));
 		}
+		model.addAttribute("cityList", cityService.getEffectiveCitys()) ;
 		return "/admin/pages/gameEdit";
 	}
 	

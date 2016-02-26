@@ -51,6 +51,13 @@
 					$('input[name="name"]').focus();
 					return false;
 				}
+				var cityId = $.trim($('#cityId').val());
+				if(cityId == -1) {
+					alert("请选择城市");
+					$('cityId').focus();
+					return false;
+				}
+
 				var duration = $.trim($('input[name="duration"]').val());
 				if(duration.length == 0) {
 					alert("请输入赛事时间");
@@ -117,6 +124,17 @@
 					<li>
 						<span class="ziduan"><span class="required">*</span>赛事名称：</span>
 						<div class="wen"><input type="text" name="name" class="input_cjxm2" value="<c:out value="${game.name }" />"></div>
+					</li>
+					<li>
+						<span class="ziduan"><span class="required">*</span>赛事城市：</span>
+						<div class="wen">
+							<select class="input_cjxm2" name="cityId" id="cityId">
+								<option value="-1">请选择</option>
+								<c:forEach items="${cityList}" var="city">
+									<option value="${city.id}">${city.cityName}</option>
+								</c:forEach>
+							</select>
+						</div>
 					</li>
 					<li>
 						<span class="ziduan"><span class="required">*</span>赛事时间：</span>
