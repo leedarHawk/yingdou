@@ -106,12 +106,11 @@
 		<div class="TabbedPanelsContentGroup">
 		<div class="TabbedPanelsContent"  id="main_col2" >
 			<c:if test="${editType == 'update' }">
-				<form action="<c:url value="/admin/game/updateGame" />" method="post" enctype="multipart/form-data">
-				<input type="hidden" name="id" value="${game.id}" />
-				<input type="hidden" name="pic" value="${game.pic}" />
-			</c:if>        
+				<form action="<c:url value="/admin/gameContent/updateGameContent" />" method="post">
+				<input type="hidden" name="id" value="${gameContent.id}" />
+			</c:if>
 			<c:if test="${editType == 'add' }">
-				<form action="<c:url value="/admin/game/addGame" />" method="post" enctype="multipart/form-data">
+				<form action="<c:url value="/admin/gameContent/addGameContent" />" method="post">
 			</c:if>
 				<ul class="tongdao">
 					<li>

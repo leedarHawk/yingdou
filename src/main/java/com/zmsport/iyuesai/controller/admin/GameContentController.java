@@ -71,7 +71,7 @@ public class GameContentController {
     public String edit(@PathVariable String type, @PathVariable long id, Model model) {
         model.addAttribute("editType", type);
         if(type.equals("update")) {
-            model.addAttribute("game", service.getGameContentById(id));
+            model.addAttribute("gameContent", service.getGameContentById(id));
         }
         model.addAttribute("gameList", gameService.getNewGames());
         return "/admin/pages/gameContent/gameContentEdit";
@@ -80,7 +80,7 @@ public class GameContentController {
     /*
      * 添加赛事内容
      */
-    @RequestMapping("/addGame")
+    @RequestMapping("/addGameContent")
     public String add(@RequestParam MultipartFile file, HttpSession session, GameContent gameContent) {
         Admin admin = (Admin)session.getAttribute("admin");
         gameContent.setCreatId(admin.getId());
@@ -96,7 +96,7 @@ public class GameContentController {
      * @param gameContent
      * @return
      */
-    @RequestMapping("/updateGame")
+    @RequestMapping("/updateGameContent")
     public String update(@RequestParam MultipartFile file,HttpSession session,GameContent gameContent) {
       /* if(file.getOriginalFilename().length() > 0) {
             FileUtil.delFile(session.getServletContext().getRealPath("/") + java.io.File.separator + game.getPic());
