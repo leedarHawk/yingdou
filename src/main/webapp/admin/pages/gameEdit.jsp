@@ -131,7 +131,9 @@
 							<select class="input_cjxm2" name="cityId" id="cityId">
 								<option value="-1">请选择</option>
 								<c:forEach items="${cityList}" var="city">
-									<option value="${city.id}">${city.cityName}</option>
+									<option value="${city.id}"
+										<c:if test="${game.cityId == city.id}">selected</c:if>
+									>${city.cityName}</option>
 								</c:forEach>
 							</select>
 						</div>
