@@ -43,15 +43,15 @@
 				<h1><a href="<c:url value="/admin/city/list" />" target="main" class="wen"><img src="../images/iocn_01a.png"/>城市管理</a><!-- <a href="" class="shu">12</a> --></h1>
 				<div class="erjicaidan">
 				</div>
-				<h1><a href="<c:url value="/admin/gameContent/list" />" target="main" class="wen"><img src="../images/iocn_01a.png"/>区域赛事信息管理</a><!-- <a href="" class="shu">12</a> --></h1>
-				<div class="erjicaidan">
-				</div>
 			</c:when>
 			<c:otherwise>
-				<h1><a href="<c:url value="/admin/gameContent/list" />" target="main" class="wen"><img src="../images/iocn_01a.png"/>区域赛事信息管理</a><!-- <a href="" class="shu">12</a> --></h1>
+				<%--<h1><a href="<c:url value="/admin/gameContent/list" />" target="main" class="wen"><img src="../images/iocn_01a.png"/>区域赛事信息管理</a><!-- <a href="" class="shu">12</a> --></h1>
 				<div class="erjicaidan">
-				</div>
+				</div>--%>
 			</c:otherwise>
+			<h1><a href="<c:url value="/admin/gameContent/list" />" target="main" class="wen"><img src="../images/iocn_01a.png"/>区域赛事信息管理</a><!-- <a href="" class="shu">12</a> --></h1>
+			<div class="erjicaidan">
+			</div>
 		</c:choose>
 
 		<!-- <h1><a href="javascript:;" target="main" class="wen"><img src="images/iocn_01a.png"/>审批管理</a><a href="" class="shu">12</a></h1>
