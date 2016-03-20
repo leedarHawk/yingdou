@@ -37,6 +37,9 @@ ADD COLUMN `updateTime`  datetime NULL AFTER `createTime`;
 ALTER TABLE `t_game`
 ADD COLUMN `cityId`  int NULL AFTER `teamNum`;
 
+ALTER TABLE `t_team`
+ADD COLUMN `cityId`  int(11) NULL AFTER `likes`,
+ADD COLUMN `status`  int(2) NULL AFTER `cityId`;
 
 
 
