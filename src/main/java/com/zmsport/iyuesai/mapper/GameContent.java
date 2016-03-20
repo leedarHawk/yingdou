@@ -12,7 +12,7 @@ public class GameContent {
 
     private String title ;
 
-    private int content ;
+    private String content ;
 
     private long gameId ;
 
@@ -48,11 +48,11 @@ public class GameContent {
         this.title = title;
     }
 
-    public int getContent() {
+    public String getContent() {
         return content;
     }
 
-    public void setContent(int content) {
+    public void setContent(String content) {
         this.content = content;
     }
 

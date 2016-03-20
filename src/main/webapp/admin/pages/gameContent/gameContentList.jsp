@@ -33,7 +33,7 @@
 		},
 		del : function(id) {
 			if(confirm("是否删除?")) {
-				window.location.href = "<c:url value="/admin/game/deleteGame" />?ids=" + id;
+				window.location.href = "<c:url value="/admin/gameContent/deleteGameContent" />?ids=" + id;
 			}
 		},
 		delMulti : function() {
@@ -48,7 +48,7 @@
 			}
 			ids = ids.join(",");
 			if(confirm("是否删除?")) {
-				window.location.href = "<c:url value="/admin/game/deleteGame" />?ids=" + ids;
+				window.location.href = "<c:url value="/admin/gameContent/deleteGameContent" />?ids=" + ids;
 			}
 		},
 		toPage : function() {
@@ -59,8 +59,12 @@
 					$('#page').val('').focus();
 					return;
 				}
-				window.location.href = '<c:url value="/admin/game/list?page=" />' + page;
+				window.location.href = '<c:url value="/admin/gameContent/list?page=" />' + page;
 			}
+		},
+		search:function(){
+			var status = $.trim($("#status").val());
+			window.location.href = '<c:url value="/admin/gameContent/list?status=" />' + status;
 		},
 		initPage :function() {
 			var currentPage = <c:out value="${currentPage}" />;
@@ -100,17 +104,23 @@
 		
 		<div class="TabbedPanelsContent"  id="main_col2" >
 			<div class="riqi_sousuo">
-				<!-- <span>日期：</span>
+				 <span>状态：</span>
 				<span>
-				<input id="d13" class="input_riqi" type="text" onClick="WdatePicker()"/>
-				<img class="riqi_img" src="images/rili.png" onClick="WdatePicker({el:'d13'})">
+					<select name="status" id="status">
+						<option>---请选择---</option>
+						<option value="1" <c:if test="${status == 1}">selected</c:if>>有效</option>
+						<option value="0" <c:if test="${status == 0}">selected</c:if>>无效</option>
+					</select>
 				</span>
-				<span>至&nbsp;&nbsp;</span>
+				<!--<span>至&nbsp;&nbsp;</span>
 				<span>
 				<input id="d14" class="input_riqi" type="text" onClick="WdatePicker()"/>
 				<img class="riqi_img" src="images/rili.png" onClick="WdatePicker({el:'d14'})">
 				</span>
-				<input type="button" class="button_shaixuan" value="筛选" /><input type="text" class=" input_ss"  value="" placeholder="请输入你要搜索的关键字"/><input type="text" class=" input_ss"  value="" placeholder="请输入第二个关键字"/><input type="button" class="button_shaixuan" value="搜索" /> -->
+				<input type="button" class="button_shaixuan" value="筛选" />
+				<input type="text" class=" input_ss"  value="" placeholder="请输入你要搜索的关键字"/>
+				<input type="text" class=" input_ss"  value="" placeholder="请输入第二个关键字"/>-->
+				<input type="button" class="button_shaixuan" value="搜索" onclick="PageUtil.search();"/>
 			</div>
 			<div class="yhtz">
 				<a href="<c:url value="/admin/gameContent/edit/add/0" />" class="lvse_btn">新建</a>
@@ -119,28 +129,48 @@
 			<table width="100%" border="0" cellpadding="0" cellspacing="0" class="table_renzheng">
 				<tr>
 					<td width="4%" style="background:#e7e7e7;"><input class="headBox" style="vertical-align:middle;" type="checkbox" /></td>
-					<td width="20%"><span class="tab_top">赛事名称</span></td>
-					<td width="17%"><span class="tab_top">比赛时间</span></td>
-					<td width="17%"><span class="tab_top">比赛地点</span></td>
-					<td width="6%"><span class="tab_top">报名费用</span></td>
-					<td width="6%"><span class="tab_top">球队名额</span></td>
-					<td width="6%"><span class="tab_top">公告</span></td>
-					<td width="6%"><span class="tab_top">报名信息</span></td>
-					<td width="6%"><span class="tab_top">参加球队</span></td>
+					<td width="20%"><span class="tab_top">赛事</span></td>
+					<td width="17%"><span class="tab_top">信息标题</span></td>
+					<td width="17%"><span class="tab_top">信息内容</span></td>
+					<c:if test="${admin.cityId  == 0}">
+						<td width="6%"><span class="tab_top">创建者</span></td>
+						<td width="8%"><span class="tab_top">球队所属城市</span></td>
+					</c:if>
+					<td width="6%"><span class="tab_top">创建时间</span></td>
+					<td width="6%"><span class="tab_top">状态</span></td>
 					<td><span class="tab_top">操作</span></td>
 				</tr>
-				<c:forEach items="${list}" var="game">
+				<c:forEach items="${list}" var="gameContent">
 					<tr>
-						<td><input class="bodyBox" style="vertical-align:middle;" value="${game.id}" type="checkbox" /></td>
-						<td>${game.name}</td>
-						<td>${game.duration}</td>
-						<td>${game.location}</td>
-						<td><c:if test="${game.fee != 0 }">${game.fee}</c:if></td>
-						<td class="teamNum">${game.teamNum}</td>
-						<td><a class="btn" href="<c:url value="/admin/gameAnnouncement/list?gameId=${game.id}" />">查看</a></td>
-						<td><a class="btn" href="<c:url value="/admin/gameApply/list/${game.id}" />">查看</a></td>
-						<td><a class="btn" href="<c:url value="/admin/score/edit/${game.id}/${game.name}" />">查看</a></td>
-						<td><a class="btn" href="<c:url value="/admin/game/edit/update/" />${game.id}">修改</a>&nbsp;&nbsp;&nbsp;&nbsp;<a class="btn" href="javascript:PageUtil.del(${game.id});void 0;">删除</a></td>
+						<td><input class="bodyBox" style="vertical-align:middle;" value="${gameContent.id}" type="checkbox" /></td>
+						<td>${gameContent.gameName}</td>
+						<td>${gameContent.title}</td>
+						<td>${gameContent.content}</td>
+						<c:if test="${admin.cityId  == 0}">
+							<td>${gameContent.creator}</td>
+							<td>${gameContent.cityName}</td>
+						</c:if>
+
+						<td>
+							<fmt:formatDate value="${gameContent.createDate}" pattern="yyyy-MM-dd"/>
+						</td>
+						<td>
+							<c:choose>
+
+								<c:when test="${gameContent.status == 1}">
+									有效
+								</c:when>
+								<c:otherwise>
+									无效
+								</c:otherwise>
+							</c:choose>
+						</td>
+						<td>
+							<a class="btn" href="<c:url value="/admin/gameContent/view?ids=${gameContent.id}" />">查看</a>
+							<a class="btn" href="<c:url value="/admin/gameContent/edit/update/${gameContent.id}" />">编辑</a>
+							<a class="btn" href="<c:url value="/admin/gameContent/changeStatus?ids=${gameContent.id}" />">更改状态</a>
+							<a class="btn" href="javascript:PageUtil.del(${gameContent.id});void 0;">删除</a>
+						</td>
 					</tr>
 				</c:forEach>
 			</table>

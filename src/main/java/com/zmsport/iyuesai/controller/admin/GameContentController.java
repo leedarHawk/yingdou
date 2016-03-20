@@ -47,16 +47,22 @@ public class GameContentController {
                        @RequestParam(value="page",defaultValue="1") int page,
                        @RequestParam(value="size",defaultValue="10") int size,Model model, HttpSession session) {
         size = ConstantUtil.PAGE_SIZE;
-        int totalNum = service.getTotalNum();
-        int totalPage = totalNum < size ? 1 : (int)Math.ceil(1.0 * totalNum / size);
-        model.addAttribute("totalPage", totalPage);
-        model.addAttribute("currentPage", page);
+
+        int totalPage = 0 ;
         Admin admin = (Admin)session.getAttribute("admin");
         if(admin.getType() == Admin.SYSTEM_ADMINISTRATOR){
+            int totalNum = service.getTotalNumBySystemAdministrator(status);
+            totalPage = totalNum < size ? 1 : (int)Math.ceil(1.0 * totalNum / size);
             model.addAttribute("list", service.getGameContentBySystemAdministrator(status,page,size));
         }else{
+            int totalNum = service.getTotalNumByZoneAdministrator(status, admin.getId());
+            totalPage = totalNum < size ? 1 : (int)Math.ceil(1.0 * totalNum / size);
             model.addAttribute("list", service.getGameContentByZoneAdministrator(status,page,size, admin.getId()));
         }
+
+        model.addAttribute("totalPage", totalPage);
+        model.addAttribute("currentPage", page);
+        model.addAttribute("status", status);
 
         return "/admin/pages/gameContent/gameContentList";
     }
@@ -80,8 +86,8 @@ public class GameContentController {
     /*
      * 添加赛事内容
      */
-    @RequestMapping("/addGameContent")
-    public String add(@RequestParam MultipartFile file, HttpSession session, GameContent gameContent) {
+    @RequestMapping(value="/addGameContent", method=RequestMethod.POST)
+    public String addGameContent(HttpSession session, GameContent gameContent) {
         Admin admin = (Admin)session.getAttribute("admin");
         gameContent.setCreatId(admin.getId());
         gameContent.setCreateTime(new Timestamp(System.currentTimeMillis()));
@@ -96,14 +102,14 @@ public class GameContentController {
      * @param gameContent
      * @return
      */
-    @RequestMapping("/updateGameContent")
-    public String update(@RequestParam MultipartFile file,HttpSession session,GameContent gameContent) {
-      /* if(file.getOriginalFilename().length() > 0) {
-            FileUtil.delFile(session.getServletContext().getRealPath("/") + java.io.File.separator + game.getPic());
-            game.setPic(FileUtil.uploadGamePic(file, session.getServletContext().getRealPath("/")));
-        }*/
-        gameContent.setUpdateTime(new Timestamp(System.currentTimeMillis()));
-        service.updateGameContent(gameContent);
+    @RequestMapping(value="/updateGameContent", method=RequestMethod.POST)
+    public String updateGameContent(HttpSession session,GameContent gameContent) {
+        GameContent instance = service.getGameContentById(gameContent.getGameId()) ;
+        instance.setGameId(gameContent.getGameId());
+        instance.setTitle(gameContent.getTitle());
+        instance.setContent(gameContent.getContent());
+        instance.setUpdateTime(new Timestamp(System.currentTimeMillis()));
+        service.updateGameContent(instance);
         return "redirect:/admin/gameContent/list";
     }
 
@@ -112,7 +118,7 @@ public class GameContentController {
      * @param ids
      * @return
      */
-    @RequestMapping("/deleteGame")
+    @RequestMapping("/deleteGameContent")
     public String delete(@RequestParam String ids,HttpSession session) {
         List<GameContent> list = service.getGameContentsByIds(ids);
         service.delete(ids);
@@ -120,7 +126,7 @@ public class GameContentController {
     }
 
     /**
-     * 更改赛事内容内容
+     * 更改赛事内容状态
      * @param ids
      * @return
      */
@@ -134,5 +140,18 @@ public class GameContentController {
        }
         service.updateGameContent(gameContent);
         return "redirect:/admin/gameContent/list";
+    }
+
+    /**
+     * 查看赛事内容内容
+     * @param ids
+     * @return
+     */
+    @RequestMapping("/view")
+    public String view(@RequestParam String ids,HttpSession session, Model model) {
+        GameContent gameContent = service.getGameContentById(Long.valueOf(ids).longValue());
+        model.addAttribute("gameContent", gameContent);
+        model.addAttribute("game", gameService.getGamesById(gameContent.getGameId()));
+        return "/admin/pages/gameContent/gameContentView";
     }
 }

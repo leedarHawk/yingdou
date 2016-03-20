@@ -30,26 +30,65 @@
         <association property="game" javaType="Game" resultMap="gameResultMap"/>
     </resultMap>
 
-    <select id="getGameContentByZoneAdministrator" resultType="gameContent">
-    	SELECT tgc.id,tgc.title, tgc.content,tgc.status, tgc.createTime, tgc.updateTime,
-    	    tg.id as gameId, tg.name as gameName, tc.cityName, ta.username
-    	  FROM t_game_content tgc, t_game tg, t_city tc, t_admin ta  WHERE tgc.gameId=tg.id and tgc.creatId =ta.id and tg.cityId=tc.id
-    	    and tgc.status=#{0} and tgc.creatId=#{3} ORDER BY createTime DESC LIMIT #{1},#{2}
+    <select id="getGameContentByZoneAdministrator" resultType="com.zmsport.iyuesai.vo.GameContentVO">
+                    SELECT
+                tgc.id as "id",  tgc.title as "title" ,
+                tgc.content as "content", tgc.status as "status" ,
+                tgc.createTime as "createDate", tgc.updateTime as "UpdateDate",
+                tg.id AS "gameId",
+                tg.name AS "gameName",
+                tc.cityName as "cityName",
+                ta.username as "creator"
+            FROM
+                t_game_content tgc,
+                t_game tg,
+                t_city tc,
+                t_admin ta
+            WHERE
+                tgc.gameId = tg.id
+            AND tgc.creatId = ta.id
+            AND tg.cityId = tc.id
+            AND tgc.STATUS =#{0}
+            AND tgc.creatId =#{3}
+            ORDER BY
+                tgc.createTime DESC
+            LIMIT #{1}, #{2}
     </select>
 
-    <select id="getGameContentBySystemAdministrator" parameterType="int" resultType="gameContent">
-        SELECT tgc.id,tgc.title, tgc.content,tgc.status, tgc.createTime, tgc.updateTime,
-    	    tg.id as gameId, tg.name as gameName, tc.cityName, ta.username
-    	  FROM t_game_content tgc, t_game tg, t_city tc, t_admin ta  WHERE tgc.gameId=tg.id and tgc.creatId =ta.id and tg.cityId=tc.id
-    	    and tgc.status=#{0} ORDER BY createTime DESC LIMIT #{1},#{2}
+    <select id="getGameContentBySystemAdministrator" parameterType="int" resultType="com.zmsport.iyuesai.vo.GameContentVO">
+       SELECT
+                tgc.id as "id",  tgc.title as "title" ,
+                tgc.content as "content", tgc.status as "status" ,
+                tgc.createTime as "createDate", tgc.updateTime as "UpdateDate",
+                tg.id AS "gameId",
+                tg.name AS "gameName",
+                tc.cityName as "cityName",
+                ta.username as "creator"
+            FROM
+                t_game_content tgc,
+                t_game tg,
+                t_city tc,
+                t_admin ta
+            WHERE
+                tgc.gameId = tg.id
+            AND tgc.creatId = ta.id
+            AND tg.cityId = tc.id
+            AND tgc.STATUS =#{0}
+            ORDER BY
+                tgc.createTime DESC
+            LIMIT #{1}, #{2}
     </select>
     
     <select id="getGameContentById" parameterType="long" resultType="gameContent">
     	SELECT * FROM t_game_content WHERE id=#{id}
     </select>
     
-    <select id="getTotalNum" resultType="int">
-    	SELECT COUNT(*) FROM t_game_content
+    <select id="getTotalNumByZoneAdministrator" resultType="int">
+    	SELECT COUNT(*) FROM t_game_content WHERE creatId = #{1} and status=#{0}
+    </select>
+
+    <select id="getTotalNumBySystemAdministrator" resultType="int">
+        SELECT COUNT(*) FROM t_game_content WHERE  status=#{0}
     </select>
     
     <select id="getGameContentsByIds" parameterType="java.util.List" resultType="gameContent">
@@ -64,13 +103,13 @@
     	VALUES (#{title},#{content},#{gameId},#{cityId},#{status},#{creatId},#{createTime},#{updateTime})
     </insert>
     
-    <update id="update" parameterType="gameContent">
+    <update id="updateGameContent" parameterType="gameContent">
     	UPDATE t_game_content SET title=#{title}, content=#{content},gameId=#{gameId},cityId=#{cityId},status=#{status},creatId=#{creatId},createTime=#{createTime},updateTime=#{updateTime}
     	WHERE id=#{id}
     </update>
     
     <delete id="delete" parameterType="java.util.List">
-    	DELETE FROM t_game WHERE id IN 
+    	DELETE FROM t_game_content WHERE id IN
 		<foreach item="id" index="index" collection="list" open="(" separator="," close=")">  
  			#{id}  
  		</foreach>
