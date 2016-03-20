@@ -94,15 +94,15 @@ public class TeamServiceImpl implements TeamService {
 	}
 
 	@Override
-	public List<User> findAllTeamsByPage(int page, int size) {
+	public List<User> findAllTeamsByPage(int page, int size, int status) {
 		// TODO Auto-generated method stub
-		return mapper.findAllTeamsByPage(--page*size, size);
+		return mapper.findAllTeamsByPage(--page*size, size, status);
 	}
 
 	@Override
-	public int getTotalNum() {
+	public int getTotalNum(int status) {
 		// TODO Auto-generated method stub
-		return mapper.getTotalNum();
+		return mapper.getTotalNum(status);
 	}
 	
 	@Override
@@ -172,4 +172,13 @@ public class TeamServiceImpl implements TeamService {
 		}
 		return list;
 	}
+
+	public int getZoneTotalNum(long cityId, int status) {
+		return mapper.getZoneTotalNum(cityId, status);
+	}
+
+	public  List<Team> findAllZoneTeamsByPage(int page, int size, int status, long cityId){
+		return mapper.findAllZoneTeamsByPage(--page * size, size, status, cityId ) ;
+	}
+
 }

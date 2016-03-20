@@ -124,7 +124,7 @@
 				</tr>
 				<c:forEach items="${list}" var="team">
 					<tr>
-						<td><input class="bodyBox" style="vertical-align:middle;" value="${team.id}" type="checkbox" /></td>
+						<td><input class="bodyBox" style="vertical-align:middle;" value="${team.id}" type="checkbox" />123</td>
 						<td>${team.name}</td>
 						<td>${team.slogan}</td>
 						<td>${team.description}</td>

@@ -75,13 +75,13 @@ public interface TeamMapper {
 	 * @param size
 	 * @return
 	 */
-	public List<User> findAllTeamsByPage(int page, int size);
+	public List<User> findAllTeamsByPage(int page, int size, int status);
 	
 	/**
 	 * 获取球队总数
 	 * @return
 	 */
-	public int getTotalNum();
+	public int getTotalNum(int status);
 	
 	/**
 	 * 删除球队
@@ -108,4 +108,9 @@ public interface TeamMapper {
 	 * @return
 	 */
 	public List<Team> getAllTeamsByName(String name);
+
+
+	int getZoneTotalNum(long cityId, int status);
+
+	List<Team> findAllZoneTeamsByPage(int i, int size, int status, long cityId);
 }

@@ -6,6 +6,7 @@ import java.util.List;
 
 import javax.servlet.http.HttpSession;
 
+import com.zmsport.iyuesai.mapper.Admin;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -62,13 +63,21 @@ public class TeamController {
 	 */
 	@RequestMapping(value="/list", method=RequestMethod.GET)
 	public String list(@RequestParam(value="page",defaultValue="1") int page,
-			           @RequestParam(value="size",defaultValue="10") int size,Model model) {
+			           @RequestParam(value="size",defaultValue="10") int size,
+					   @RequestParam(value="status",defaultValue="1") int status,Model model, HttpSession session) {
 		size = ConstantUtil.PAGE_SIZE;
-		int totalNum = service.getTotalNum();
+		int totalNum = service.getTotalNum(status);
 		int totalPage = totalNum < size ? 1 : (int)Math.ceil(1.0 * totalNum / size);
+		Admin admin = (Admin)session.getAttribute("admin");
+		if(admin.getType() == Admin.ZONE_ADMINISTRATOR){
+			totalNum = service.getZoneTotalNum(admin.getCityId(), status);
+			totalPage = totalNum < size ? 1 : (int)Math.ceil(1.0 * totalNum / size);
+			model.addAttribute("list", service.findAllZoneTeamsByPage(page,size, status, admin.getCityId()));
+		}
+
 		model.addAttribute("totalPage", totalPage);
 		model.addAttribute("currentPage", page);
-		model.addAttribute("list", service.findAllTeamsByPage(page,size));
+		model.addAttribute("list", service.findAllTeamsByPage(page,size, status));
 		return "/admin/pages/teamList";
 	}
 	

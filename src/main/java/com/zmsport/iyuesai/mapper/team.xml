@@ -35,7 +35,15 @@
         <result property="pic" column="team_pic"/>
         <result property="likes" column="team_likes"/>
         <association property="creator" resultMap="userResultMap"/>
+		<association property="city" resultMap="cityResultMap"/>
     </resultMap>
+
+	<resultMap id="cityResultMap" type="city">
+		<id property="id" column="city_id"/>
+		<result property="cityName" column="cityName"/>
+		<result property="status" column="cityStatus"/>
+
+	</resultMap>
     
 	<select id="findTeamById" parameterType="int" resultMap="teamResultMap">
 		SELECT t.id AS team_id,t.creatorId AS team_creatorId,t.name AS team_name,t.slogan AS team_slogan,
@@ -46,11 +54,13 @@
 			   u.weight AS user_weight,u.position AS user_position,u.level AS user_level,
 			   u.mobile AS user_mobile,u.qq AS user_qq,u.headPic AS user_headPic,
 			   u.uid AS user_uid,u.country AS user_country,u.province AS user_province,
-			   u.city AS user_city,u.registerTime AS user_registerTime FROM t_team t,t_user u WHERE t.creatorId=u.id AND t.id=#{id}
+			   u.city AS user_city,u.registerTime AS user_registerTime,c.id as city_id,c.cityName, c.status as cityStatus
+			  FROM t_team t,t_user u, t_city c
+			   WHERE t.creatorId=u.id AND t.cityId=c.id AND c.status=1 AND t.id=#{id}
 	</select>
 	
 	<select id="findUsersByTeamId" parameterType="int" resultType="user">
-		SELECT u.* FROM t_team t,t_user u,t_userTeam ut WHERE t.id=ut.tid AND ut.uid=u.id AND t.id=#{0} AND ut.status=#{1}
+		SELECT u.* FROM t_team t,t_user u,t_userTeam ut WHERE t.id=ut.tid AN D ut.uid=u.id AND t.id=#{0} AND ut.status=#{1}
 	</select>
 	
 	<select id="findNewUsers" resultType="user">
@@ -76,14 +86,24 @@
 	<select id="getAllTeamsByName" parameterType="String" resultType="team">
 		SELECT * FROM t_team WHERE name LIKE CONCAT('%',#{name},'%')
 	</select>
-	
-	<select id="findAllTeamsByPage" resultType="team">
-		SELECT * FROM t_team ORDER BY createTime DESC LIMIT #{0},#{1}
+
+	<select id="findAllTeamsByPage" resultMap="teamResultMap">
+		SELECT t.*, c.id as city_id, c.cityName, c.status as cityStatus FROM t_team t , t_city c
+		where t.cityId=c.id AND t.status = #{2} ORDER BY t.createTime DESC LIMIT #{0},#{1}
+	</select>
+
+	<select id="findAllZoneTeamsByPage" resultMap="teamResultMap">
+		SELECT t.*, c.id as city_id, c.cityName, c.status as cityStatus FROM t_team t , t_city c
+		where t.cityId=c.id AND t.status = #{2} AND t.cityId = #{3} ORDER BY t.createTime DESC LIMIT #{0},#{1}
 	</select>
 
 	<select id="getTotalNum" resultType="int">
-    	SELECT COUNT(*) FROM t_team
+    	SELECT COUNT(*) FROM t_team WHERE status = #{0} AND cityId is not null
     </select>
+
+	<select id="getZoneTotalNum" resultType="int">
+		SELECT COUNT(*) FROM t_team WHERE status = #{0} AND cityId = #{1}
+	</select>
     
     <select id="getTeamsByIds" parameterType="java.util.List" resultType="team">
     	SELECT * FROM t_team WHERE id IN

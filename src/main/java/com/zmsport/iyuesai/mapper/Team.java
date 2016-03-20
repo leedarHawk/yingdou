@@ -94,7 +94,13 @@ public class Team {
 	 * 申请者
 	 */
 	private List<UserTeam> applicants;
-	
+
+	private int cityId;
+
+	private City city ;
+
+	private int status ;
+
 	/**
 	 * @return the id
 	 */
@@ -303,5 +309,29 @@ public class Team {
 	 */
 	public void setApplicants(List<UserTeam> applicants) {
 		this.applicants = applicants;
+	}
+
+	public int getCityId() {
+		return cityId;
+	}
+
+	public void setCityId(int cityId) {
+		this.cityId = cityId;
+	}
+
+	public City getCity() {
+		return city;
+	}
+
+	public void setCity(City city) {
+		this.city = city;
+	}
+
+	public int getStatus() {
+		return status;
+	}
+
+	public void setStatus(int status) {
+		this.status = status;
 	}
 }
