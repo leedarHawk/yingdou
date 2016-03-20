@@ -1,6 +1,7 @@
 package com.zmsport.iyuesai.service;
 
 import com.zmsport.iyuesai.mapper.GameContent;
+import com.zmsport.iyuesai.vo.GameContentVO;
 
 import java.util.List;
 
@@ -8,10 +9,11 @@ import java.util.List;
  * Created by ken.kang on 2016/2/25.
  */
 public interface GameContentService {
-    int getTotalNum();
+    int getTotalNumByZoneAdministrator(int status, long creatId);
+    int getTotalNumBySystemAdministrator(int status) ;
 
-    List<GameContent> getGameContentByZoneAdministrator(int status, int page, int size, long creatId);
-    List<GameContent> getGameContentBySystemAdministrator(int status, int page, int size);
+    List<GameContentVO> getGameContentByZoneAdministrator(int status, int page, int size, long creatId);
+    List<GameContentVO> getGameContentBySystemAdministrator(int status, int page, int size);
 
     GameContent getGameContentById(long id);
 
