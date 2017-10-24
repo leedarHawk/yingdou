@@ -34,7 +34,7 @@ public final class ConstantUtil {
 	/**
 	 * 微信公众号应用id
 	 */
-	public static final String APP_ID = "wx0748fed2eee81c19";
+	public static final String APP_ID = "wxca812fded25094c0";
 	
 	/**
 	 * 商户号id
@@ -47,9 +47,9 @@ public final class ConstantUtil {
 	public static final String MCH_KEY = "zW3473xhqJoesYl47Ijcwb32O6B7lzaT";
 	
 	/**
-	 * 微信公众号应用密钥
+	 * 微信公众号应用密钥 a3954d5e9a8378fe92f8ba1985c7d0b3
 	 */
-	public static final String APP_SECRET = "0b619d96ff15f7a9e3cf07e5b7c92994";
+	public static final String APP_SECRET = "a3954d5e9a8378fe92f8ba1985c7d0b3";
 	
 	/**
 	 * 微信公众号access_token获取url
